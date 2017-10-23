@@ -1,3 +1,7 @@
+package View;
+
+import Controller.Network.FixedGraph;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,7 +12,7 @@ public class GUI  extends JFrame implements ActionListener{
     private JLabel maxDeg = new JLabel();
     private JLabel minDeg = new JLabel();
     private JLabel aveDeg = new JLabel();
-    private JLabel apsp = new JLabel(); // All-pair shortest paths lengths
+    private JLabel maxDia = new JLabel(); // mix diameter
     private JComboBox comboBox = new JComboBox();
     private JButton processJButton = new JButton("OK");
 
@@ -19,7 +23,7 @@ public class GUI  extends JFrame implements ActionListener{
         this.setSize(500,500);
 
         Container contents = getContentPane();
-        contents.setLayout(new GridLayout(7,2, 10, 20));
+        contents.setLayout(new GridLayout(8,2, 10, 20));
         contents.add(new JLabel("Module: "));
 
 
@@ -30,6 +34,7 @@ public class GUI  extends JFrame implements ActionListener{
         comboBox.addItem("Preferential Attachment");
         comboBox.addItem("Preferential Attachment with Bernoulli");
         comboBox.addItem("9_11 Graph");
+        comboBox.addItem("Compare 9_11 and PAB");
         contents.add(comboBox);
 
 
@@ -37,7 +42,7 @@ public class GUI  extends JFrame implements ActionListener{
         maxDeg.setText("");
         minDeg.setText("");
         aveDeg.setText("");
-        apsp.setText("");
+        maxDia.setText("");
 
         contents.add(new JLabel("Node number: "));
         contents.add(nodeNum);
@@ -48,7 +53,7 @@ public class GUI  extends JFrame implements ActionListener{
         contents.add(new JLabel("Ave degree: "));
         contents.add(aveDeg);
         contents.add(new JLabel("Max distance: "));
-        contents.add(apsp);
+        contents.add(maxDia);
 
 
 
@@ -82,6 +87,8 @@ public class GUI  extends JFrame implements ActionListener{
                 graphResult = fg.PAB();
             }else if (comboBox.getSelectedItem().toString().equals("9_11 Graph")){
                 graphResult = fg.RG();
+            }else if (comboBox.getSelectedItem().toString().equals("Compare 9_11 and PAB")){
+//                graphResult = fg.CRPAB();
             }
 
 //            System.out.println("comboBoxValue is: " + comboBox.getSelectedItem().toString());
@@ -90,10 +97,11 @@ public class GUI  extends JFrame implements ActionListener{
             maxDeg.setText(""+graphResult[1]); // max degree
             minDeg.setText(""+graphResult[2]); // min degree
             aveDeg.setText(""+String.format("%.1f", graphResult[3])); // average degree
-            apsp.setText(""+graphResult[4]); // All-pair shortest paths lengths.
+            maxDia.setText(""+graphResult[4]); // All-pair shortest paths lengths.
         } //else if ( )
+
 
 
     } // actionPerformed
 
-} // GUI class
+} // View.GUI class

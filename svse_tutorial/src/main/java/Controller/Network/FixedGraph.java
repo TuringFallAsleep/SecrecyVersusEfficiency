@@ -1,16 +1,22 @@
+package Controller.Network;
+
+import Controller.ChartGenerate.BarChart;
+import Controller.FileReader.CSVReader;
+import Model.StaticGraph.GraphCal;
 import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
 import org.graphstream.algorithm.generator.Generator;
 import org.graphstream.algorithm.generator.RandomGenerator;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.DefaultGraph;
 import org.graphstream.graph.implementations.SingleGraph;
+import org.jfree.ui.RefineryUtilities;
 
 
 import java.util.*;
 
 public class FixedGraph {
 
-    int numOfNode = 59;
+    static int numOfNode = 59;
 
 
     public Double[] HighlyCentralised() {
@@ -37,7 +43,14 @@ public class FixedGraph {
         Double[] graphResult = DegreeCal(graph); // Calculate degrees
 //        AdjacencyCal(graph);
 
+        // Chart
+        BarChart chart = new BarChart("SNA Result",
+                "Static Graph", graph.getId(),graphResult[1],graphResult[2],graphResult[3],graphResult[4]);
+        chart.pack();
+        RefineryUtilities.centerFrameOnScreen( chart );
+
         graph.display();
+        chart.setVisible( true );
 
         return graphResult;
     } // HighlyCentralised()
@@ -66,7 +79,14 @@ public class FixedGraph {
         Double[] graphResult = DegreeCal(graph); // Calculate degrees
 //        AdjacencyCal(graph);
 
+        // Chart
+        BarChart chart = new BarChart("SNA Result",
+                "Static Graph", graph.getId(),graphResult[1],graphResult[2],graphResult[3],graphResult[4]);
+        chart.pack();
+        RefineryUtilities.centerFrameOnScreen( chart );
+
         graph.display();
+        chart.setVisible( true );
 
         return graphResult;
     } // HighlyDecentralised()
@@ -79,7 +99,7 @@ public class FixedGraph {
         // Generate 60 nodes:
         gen.addSink(graph);
         gen.begin();
-        for(int i=0; i<numOfNode; i++) {
+        for(int i=0; i<numOfNode-2; i++) {
             gen.nextEvents();
         }
         gen.end();
@@ -87,7 +107,14 @@ public class FixedGraph {
         Double[] graphResult = DegreeCal(graph); // Calculate degrees
 //        AdjacencyCal(graph);
 
+        // Chart
+        BarChart chart = new BarChart("SNA Result",
+                "Static Graph", graph.getId(),graphResult[1],graphResult[2],graphResult[3],graphResult[4]);
+        chart.pack();
+        RefineryUtilities.centerFrameOnScreen( chart );
+
         graph.display();
+        chart.setVisible( true );
 
         return graphResult;
     } // PAB()
@@ -98,10 +125,10 @@ public class FixedGraph {
         // Between 1 and 3 new links per node added.
         Generator gen = new BarabasiAlbertGenerator(1,false);
 
-        // Generate 61 nodes:
+        // Generate 60 nodes:
         gen.addSink(graph);
         gen.begin();
-        for(int i=0; i<numOfNode; i++) {
+        for(int i=0; i<numOfNode-1; i++) {
             gen.nextEvents();
         }
         gen.end();
@@ -109,10 +136,19 @@ public class FixedGraph {
         Double[] graphResult = DegreeCal(graph); // Calculate degrees
 //        AdjacencyCal(graph);
 
+        // Chart
+        BarChart chart = new BarChart("SNA Result",
+                "Static Graph", graph.getId(),graphResult[1],graphResult[2],graphResult[3],graphResult[4]);
+        chart.pack();
+        RefineryUtilities.centerFrameOnScreen( chart );
+
         graph.display();
+        chart.setVisible( true );
 
         return graphResult;
     } // PAB()
+
+
 
 
 
@@ -125,7 +161,7 @@ public class FixedGraph {
         // Generate 61 nodes:
         gen.addSink(graph);
         gen.begin();
-        for(int i=0; i<numOfNode; i++) {
+        for(int i=0; i<numOfNode-1; i++) {
             gen.nextEvents();
         }
         gen.end();
@@ -133,11 +169,19 @@ public class FixedGraph {
         Double[] graphResult = DegreeCal(graph); // Calculate degrees
 //        AdjacencyCal(graph);
 
+        // Chart
+        BarChart chart = new BarChart("SNA Result",
+                "Static Graph", graph.getId(),graphResult[1],graphResult[2],graphResult[3],graphResult[4]);
+        chart.pack();
+        RefineryUtilities.centerFrameOnScreen( chart );
+
         graph.display();
+        chart.setVisible( true );
 
         return graphResult;
     } // PAB()
 
+    /* Read data from a real network data set */
     public Double[] RG() {
 
         // read from csv file
@@ -173,10 +217,32 @@ public class FixedGraph {
         Double[] graphResult = DegreeCal(graph); // Calculate degrees
 //        AdjacencyCal(graph);
 
+
+
+        // Chart
+        BarChart chart = new BarChart("SNA Result",
+                "Static Graph", graph.getId(),graphResult[1],graphResult[2],graphResult[3],graphResult[4]);
+        chart.pack();
+        RefineryUtilities.centerFrameOnScreen( chart );
+
         graph.display();
+        chart.setVisible(true);
 
         return graphResult;
     } // RG()
+
+//    public Double[] CRPAB() {
+//
+//        // Chart
+//        Controller.ChartGenerate.BarChart chart = new Controller.ChartGenerate.BarChart("SNA Result",
+//                "Static Graph", graph.getId(),graphResult[1],graphResult[2],graphResult[3],graphResult[4]);
+//        chart.pack();
+//        RefineryUtilities.centerFrameOnScreen( chart );
+//
+//        graph.display();
+//        chart.setVisible( true );
+//        return graphResult;
+//    } // CRPAB
 
 
 
@@ -190,7 +256,7 @@ public class FixedGraph {
         System.out.println("Max degree: " + a.getMaxDegree());
         System.out.println("Min degree: " + a.getMinDegree());
         System.out.println("Ave degree: " + String.format("%.1f", a.getAvgDegree()));
-        System.out.println("APSP: " + String.format("%.1f", a.getMaxMinLength()));
+        System.out.println("Max diameter: " + String.format("%.1f", a.getMaxMinLength()));
 
         Double[] graphResult = {(double)graph.getNodeCount(), a.getMaxDegree(), a.getMinDegree(), a.getAvgDegree(), a.getMaxMinLength()};
 
@@ -231,4 +297,5 @@ public class FixedGraph {
     } // AdjacencyCal()
 
 
-} // FixedGraph class
+
+} // Controller.Network.FixedGraph class

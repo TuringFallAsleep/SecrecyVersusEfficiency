@@ -1,3 +1,5 @@
+package Model.StaticGraph;
+
 import org.graphstream.algorithm.APSP;
 import org.graphstream.algorithm.Algorithm;
 import org.graphstream.algorithm.BetweennessCentrality;
@@ -43,11 +45,11 @@ public class GraphCal implements Algorithm {
 //            System.out.println(info.getShortestPathTo("A"));
             for (Node m : theGraph.getEachNode()){
                 if (info.getShortestPathTo(m.getId())==null){
-                    System.out.println("Isolated node");
+//                    System.out.println("Isolated node");
                 }else{
-                    String shortestPath = info.getShortestPathTo(m.getId()).toString();
+//                    String shortestPath = info.getShortestPathTo(m.getId()).toString();
                     Double shortestPathLength = (double)info.getShortestPathTo(m.getId()).size();
-                    System.out.println(shortestPath + " " + shortestPathLength);
+//                    System.out.println(shortestPath + " " + shortestPathLength);
                     maxMinLength = Math.max(maxMinLength,shortestPathLength);
                 }
 

@@ -1,3 +1,5 @@
+package Controller.FileReader;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -7,7 +9,7 @@ import java.util.Scanner;
 
 public class CSVReader {
     public List<List<String>> CSVReader(){
-        String filePath = "/Users/yangboyin/Downloads/CODE/ThirdYearProject/SecrecyVersusEfficiency/svse_tutorial/dataSet/9_11_HIJACKERS_ASSOCIATES.csv";
+        String filePath = "/Users/yangboyin/Downloads/CODE/ThirdYearProject/SecrecyVersusEfficiency/svse_tutorial/src/main/resources/9_11_HIJACKERS_ASSOCIATES.csv";
         List<List<String>> lines = new ArrayList<>();
         try {
             Scanner inputStream = new Scanner(new File(filePath));
@@ -24,5 +26,5 @@ public class CSVReader {
             e.printStackTrace();
         }
         return lines;
-    } // CSVReader()
-} // class CSVReader
+    } // Controller.FileReader.CSVReader()
+} // class Controller.FileReader.CSVReader
