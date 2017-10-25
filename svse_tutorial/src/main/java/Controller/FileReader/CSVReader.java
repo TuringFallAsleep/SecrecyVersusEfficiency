@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CSVReader {
-    public List<List<String>> CSVReader(){
-        String filePath = "/Users/yangboyin/Downloads/CODE/ThirdYearProject/SecrecyVersusEfficiency/svse_tutorial/src/main/resources/9_11_HIJACKERS_ASSOCIATES.csv";
+    public List<List<String>> CSVReader(String filePath){
         List<List<String>> lines = new ArrayList<>();
         try {
             Scanner inputStream = new Scanner(new File(filePath));

@@ -182,11 +182,21 @@ public class FixedGraph {
     } // PAB()
 
     /* Read data from a real network data set */
-    public Double[] RG() {
+    public Double[] RG(String resource) {
 
         // read from csv file
         CSVReader csvReader = new CSVReader();
-        List<List<String>> networkData = csvReader.CSVReader();
+        String filePath;
+        List<List<String>> networkData = null;
+        if (resource.equals("9_11 Graph")){
+            filePath = "/Users/yangboyin/Downloads/CODE/ThirdYearProject/SecrecyVersusEfficiency/svse_tutorial/src/main/resources/9_11_HIJACKERS_ASSOCIATES.csv";
+            networkData= csvReader.CSVReader(filePath);
+        }else if (resource.equals("Suffragettes Inner Circle")){
+            filePath = "/Users/yangboyin/Downloads/CODE/ThirdYearProject/SecrecyVersusEfficiency/svse_tutorial/src/main/resources/50_EPANKHURST_INNER_CIRCLE.csv";
+            networkData= csvReader.CSVReader(filePath);
+        }
+
+
 
         Graph graph = new DefaultGraph("9_11");
         graph.setStrict(false);
