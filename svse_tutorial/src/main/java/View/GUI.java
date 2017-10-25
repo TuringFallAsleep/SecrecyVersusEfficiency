@@ -103,7 +103,6 @@ public class GUI  extends JFrame implements ActionListener{
         genProcessBtn.addActionListener(this);
 
 
-
         /*Set up Real Graph*/
 
         /*Real Graph Info*/
@@ -139,7 +138,6 @@ public class GUI  extends JFrame implements ActionListener{
         realDataPanel.add(realMaxDia);
 
 
-
         /*Real Graph Btn*/
         realPanel.add(realBtnPanel);
         realBtnPanel.setLayout(new GridLayout(0,1,10,20));
@@ -150,7 +148,6 @@ public class GUI  extends JFrame implements ActionListener{
 
         realProcessBtn.addActionListener(this);
 
-
         setVisible(true);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);  // EXIT_ON_CLOSE, DISPOSE_ON_CLOSE
@@ -160,7 +157,7 @@ public class GUI  extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == genProcessBtn){
             FixedGraph genGraph = new FixedGraph();
-            Double[] graphResult = {};
+            Double[][] graphResult = {};
 
             // decide which graph to display
             if (genComboBox.getSelectedItem().toString().equals("Highly Centralised")){
@@ -175,28 +172,20 @@ public class GUI  extends JFrame implements ActionListener{
                 graphResult = genGraph.PAB();
             }
 
-//            System.out.println("comboBoxValue is: " + genComboBox.getSelectedItem().toString());
-
-            genNodeNum.setText(""+graphResult[0]); // node number
-            genMaxDeg.setText(""+graphResult[1]); // max degree
-            genMinDeg.setText(""+graphResult[2]); // min degree
-            genAveDeg.setText(""+String.format("%.1f", graphResult[3])); // average degree
-            genMaxDia.setText(""+graphResult[4]); // All-pair shortest paths lengths.
+            genNodeNum.setText(""+graphResult[0][0]); // node number
+            genMaxDeg.setText(""+graphResult[1][0]); // max degree
+            genMinDeg.setText(""+graphResult[2][0]); // min degree
+            genAveDeg.setText(""+String.format("%.1f", graphResult[3][0])); // average degree
+            genMaxDia.setText(""+graphResult[4][0]); // All-pair shortest paths lengths.
         } else if (event.getSource() == realProcessBtn){
             FixedGraph realGraph = new FixedGraph();
-            Double[] graphResult = realGraph.RG(realComboBox.getSelectedItem().toString());
+            Double[][] graphResult = realGraph.RG(realComboBox.getSelectedItem().toString());
 
-//            if (realComboBox.getSelectedItem().toString().equals("9_11 Graph")){
-//
-//            }else if (realComboBox.getSelectedItem().toString().equals("Suffragettes Inner Circle")){
-//                graphResult = realGraph.RG(realComboBox.getSelectedItem().toString());
-//            }
-
-            realNodeNum.setText(""+graphResult[0]); // node number
-            realMaxDeg.setText(""+graphResult[1]); // max degree
-            realMinDeg.setText(""+graphResult[2]); // min degree
-            realAveDeg.setText(""+String.format("%.1f", graphResult[3])); // average degree
-            realMaxDia.setText(""+graphResult[4]); // All-pair shortest paths lengths.
+            realNodeNum.setText(""+graphResult[0][0]); // node number
+            realMaxDeg.setText(""+graphResult[1][0]); // max degree
+            realMinDeg.setText(""+graphResult[2][0]); // min degree
+            realAveDeg.setText(""+String.format("%.1f", graphResult[3][0])); // average degree
+            realMaxDia.setText(""+graphResult[4][0]); // All-pair shortest paths lengths.
 
         }
 
