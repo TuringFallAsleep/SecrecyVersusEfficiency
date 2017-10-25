@@ -1,19 +1,26 @@
+package Controller.Network;
+
+import Controller.ChartGenerate.BarChart;
+import Controller.ChartGenerate.LineChart;
+import Controller.FileReader.CSVReader;
+import Model.StaticGraph.GraphCal;
 import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
 import org.graphstream.algorithm.generator.Generator;
 import org.graphstream.algorithm.generator.RandomGenerator;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.DefaultGraph;
 import org.graphstream.graph.implementations.SingleGraph;
+import org.jfree.ui.RefineryUtilities;
 
 
 import java.util.*;
 
 public class FixedGraph {
 
-    int numOfNode = 59;
+    static int numOfNode = 59;
 
 
-    public Double[] HighlyCentralised() {
+    public Double[][] HighlyCentralised() {
 
         // Describe the graph
         Graph graph = new SingleGraph("Highly Centralised");
@@ -34,15 +41,17 @@ public class FixedGraph {
         graph.addEdge("AN", "A", "N");
 
 
-        Double[] graphResult = DegreeCal(graph); // Calculate degrees
+        Double[][] graphResult = DegreeCal(graph); // Calculate degrees
 //        AdjacencyCal(graph);
 
-        graph.display();
+
+        PlotBarChart(graphResult, graph);
+        PlotLineChart(graphResult, graph);
 
         return graphResult;
     } // HighlyCentralised()
 
-    public Double[] HighlyDecentralised() {
+    public Double[][] HighlyDecentralised() {
 
         // Describe the graph
         Graph graph = new SingleGraph("Highly Decentralised");
@@ -63,60 +72,68 @@ public class FixedGraph {
         graph.addEdge("MN", "M", "N");
         graph.addEdge("NA", "N", "A");
 
-        Double[] graphResult = DegreeCal(graph); // Calculate degrees
+        Double[][] graphResult = DegreeCal(graph); // Calculate degrees
 //        AdjacencyCal(graph);
 
-        graph.display();
+        PlotBarChart(graphResult, graph);
+        PlotLineChart(graphResult, graph);
+
 
         return graphResult;
     } // HighlyDecentralised()
 
 
-    public Double[] B() {
+    public Double[][] B() {
         Graph graph = new SingleGraph("Bernoulli");
 
         Generator gen = new RandomGenerator(2);
         // Generate 60 nodes:
         gen.addSink(graph);
         gen.begin();
-        for(int i=0; i<numOfNode; i++) {
+        for(int i=0; i<numOfNode-2; i++) {
             gen.nextEvents();
         }
         gen.end();
 
-        Double[] graphResult = DegreeCal(graph); // Calculate degrees
+        Double[][] graphResult = DegreeCal(graph); // Calculate degrees
 //        AdjacencyCal(graph);
 
-        graph.display();
+        PlotBarChart(graphResult, graph);
+        PlotLineChart(graphResult, graph);
+
 
         return graphResult;
     } // PAB()
 
-    public Double[] PA() {
+    public Double[][] PA() {
         Graph graph = new SingleGraph("Preferential Attachment");
 
         // Between 1 and 3 new links per node added.
         Generator gen = new BarabasiAlbertGenerator(1,false);
 
-        // Generate 61 nodes:
+        // Generate 60 nodes:
         gen.addSink(graph);
         gen.begin();
-        for(int i=0; i<numOfNode; i++) {
+        for(int i=0; i<numOfNode-1; i++) {
             gen.nextEvents();
         }
         gen.end();
 
-        Double[] graphResult = DegreeCal(graph); // Calculate degrees
+        Double[][] graphResult = DegreeCal(graph); // Calculate degrees
 //        AdjacencyCal(graph);
 
-        graph.display();
+        PlotBarChart(graphResult, graph);
+        PlotLineChart(graphResult, graph);
+
 
         return graphResult;
     } // PAB()
 
 
 
-    public Double[] PAB() {
+
+
+    public Double[][] PAB() {
         Graph graph = new SingleGraph("Preferential Attachment with Bernoulli");
 
         // Between 1 and 3 new links per node added.
@@ -125,24 +142,37 @@ public class FixedGraph {
         // Generate 61 nodes:
         gen.addSink(graph);
         gen.begin();
-        for(int i=0; i<numOfNode; i++) {
+        for(int i=0; i<numOfNode-1; i++) {
             gen.nextEvents();
         }
         gen.end();
 
-        Double[] graphResult = DegreeCal(graph); // Calculate degrees
+        Double[][] graphResult = DegreeCal(graph); // Calculate degrees
 //        AdjacencyCal(graph);
 
-        graph.display();
+        PlotBarChart(graphResult, graph);
+        PlotLineChart(graphResult, graph);
+
 
         return graphResult;
     } // PAB()
 
-    public Double[] RG() {
+    /* Read data from a real network data set */
+    public Double[][] RG(String resource) {
 
         // read from csv file
         CSVReader csvReader = new CSVReader();
-        List<List<String>> networkData = csvReader.CSVReader();
+        String filePath;
+        List<List<String>> networkData = null;
+        if (resource.equals("9_11 Graph")){
+            filePath = "/Users/yangboyin/Downloads/CODE/ThirdYearProject/SecrecyVersusEfficiency/svse_tutorial/src/main/resources/9_11_HIJACKERS_ASSOCIATES.csv";
+            networkData= csvReader.CSVReader(filePath);
+        }else if (resource.equals("Suffragettes Inner Circle")){
+            filePath = "/Users/yangboyin/Downloads/CODE/ThirdYearProject/SecrecyVersusEfficiency/svse_tutorial/src/main/resources/50_EPANKHURST_INNER_CIRCLE.csv";
+            networkData= csvReader.CSVReader(filePath);
+        }
+
+
 
         Graph graph = new DefaultGraph("9_11");
         graph.setStrict(false);
@@ -170,18 +200,56 @@ public class FixedGraph {
             lineNo++;
         }
 
-        Double[] graphResult = DegreeCal(graph); // Calculate degrees
+        Double[][] graphResult = DegreeCal(graph); // Calculate degrees
 //        AdjacencyCal(graph);
 
-        graph.display();
+
+
+        PlotBarChart(graphResult, graph);
+        PlotLineChart(graphResult, graph);
+
 
         return graphResult;
     } // RG()
 
+//    public Double[] CRPAB() {
+//
+//        // Chart
+//        Controller.ChartGenerate.BarChart chart = new Controller.ChartGenerate.BarChart("SNA Result",
+//                "Static Graph", graph.getId(),graphResult[1],graphResult[2],graphResult[3],graphResult[4]);
+//        chart.pack();
+//        RefineryUtilities.centerFrameOnScreen( chart );
+//
+//        graph.display();
+//        chart.setVisible( true );
+//        return graphResult;
+//    } // CRPAB
+
+    private void PlotLineChart(Double[][] graphResult, Graph graph){
+        LineChart lineChart = new LineChart(
+                "Node Degree Distribution" ,
+                "Num of Nodes on different degrees", graphResult[5],graph);
+
+        lineChart.pack();
+        RefineryUtilities.centerFrameOnScreen(lineChart);
+        lineChart.setVisible(true);
+
+    }
+
+    private void PlotBarChart(Double[][] graphResult, Graph graph){
+        BarChart chart = new BarChart("SNA Result",
+                "Static Graph", graph.getId(),graphResult[1][0],graphResult[2][0],graphResult[3][0],graphResult[4][0]);
+        chart.pack();
+        RefineryUtilities.centerFrameOnScreen( chart );
+
+        graph.display();
+        chart.setVisible( true );
+    }
 
 
 
-    private Double[] DegreeCal(Graph graph){
+
+    private Double[][] DegreeCal(Graph graph){
 
         GraphCal a = new GraphCal();
         a.init(graph);
@@ -190,9 +258,17 @@ public class FixedGraph {
         System.out.println("Max degree: " + a.getMaxDegree());
         System.out.println("Min degree: " + a.getMinDegree());
         System.out.println("Ave degree: " + String.format("%.1f", a.getAvgDegree()));
-        System.out.println("APSP: " + String.format("%.1f", a.getMaxMinLength()));
+        System.out.println("Max diameter: " + String.format("%.1f", a.getMaxMinLength()));
+        System.out.println("nodes degree length: "+ a.getAllNodesDeg().length);
 
-        Double[] graphResult = {(double)graph.getNodeCount(), a.getMaxDegree(), a.getMinDegree(), a.getAvgDegree(), a.getMaxMinLength()};
+        Double[][] graphResult = new Double[10][a.getAllNodesDeg().length+1];
+
+        graphResult[0][0] = (double)graph.getNodeCount();
+        graphResult[1][0] = a.getMaxDegree();
+        graphResult[2][0] = a.getMinDegree();
+        graphResult[3][0] = a.getAvgDegree();
+        graphResult[4][0] = a.getMaxMinLength();
+        graphResult[5] = a.getAllNodesDeg();
 
         // get each node, edge
 //        for(Node n:graph){
@@ -201,6 +277,7 @@ public class FixedGraph {
 //        for(Edge e:graph.getEachEdge()){
 //            System.out.println(e.getId());
 //        }
+
         return graphResult;
     } // DegreeCal()
 
@@ -231,4 +308,5 @@ public class FixedGraph {
     } // AdjacencyCal()
 
 
-} // FixedGraph class
+
+} // Controller.Network.FixedGraph class

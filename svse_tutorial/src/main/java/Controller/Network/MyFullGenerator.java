@@ -1,3 +1,5 @@
+package Controller.Network;
+
 import org.graphstream.stream.SourceBase;
 import sun.rmi.rmic.BatchEnvironment;
 import sun.rmi.rmic.Generator;

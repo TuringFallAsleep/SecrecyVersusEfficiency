@@ -1,3 +1,5 @@
+package Model.DynamicGraph;
+
 import org.graphstream.algorithm.DynamicAlgorithm;
 import org.graphstream.graph.Graph;
 import org.graphstream.stream.SinkAdapter;

@@ -1,3 +1,5 @@
+package Model.StaticGraph;
+
 import org.graphstream.algorithm.APSP;
 import org.graphstream.algorithm.Algorithm;
 import org.graphstream.algorithm.BetweennessCentrality;
@@ -9,6 +11,8 @@ public class GraphCal implements Algorithm {
     Graph theGraph;
     Double minDegree, maxDegree, avgDegree;
     Double maxMinLength;
+    Double[] allNodesDeg;
+    int graphSize;
     public void init(Graph graph){
         theGraph = graph;
     }
@@ -24,6 +28,11 @@ public class GraphCal implements Algorithm {
         FileSourceDGS source = new FileSourceDGS();
         source.addSink(theGraph);
 
+        graphSize = theGraph.getNodeCount();
+        allNodesDeg = new Double[graphSize+1];
+        for (int i=0; i<allNodesDeg.length; i++){
+            allNodesDeg[i] = 0.0;
+        }
 //        source.readAll(); ?????
         APSP apsp = new APSP();
         apsp.init(theGraph);
@@ -34,20 +43,22 @@ public class GraphCal implements Algorithm {
         for (Node n : theGraph.getEachNode()){
             // compute degree
             int deg = n.getDegree();
+//            System.out.println("deg is "+deg);
             minDegree = Math.min(minDegree,deg);
             maxDegree = Math.max(maxDegree,deg);
             avgDegree += deg;
+            allNodesDeg[deg]++;
 
 
             APSP.APSPInfo info = n.getAttribute(APSP.APSPInfo.ATTRIBUTE_NAME);
 //            System.out.println(info.getShortestPathTo("A"));
             for (Node m : theGraph.getEachNode()){
                 if (info.getShortestPathTo(m.getId())==null){
-                    System.out.println("Isolated node");
+//                    System.out.println("Isolated node");
                 }else{
-                    String shortestPath = info.getShortestPathTo(m.getId()).toString();
+//                    String shortestPath = info.getShortestPathTo(m.getId()).toString();
                     Double shortestPathLength = (double)info.getShortestPathTo(m.getId()).size();
-                    System.out.println(shortestPath + " " + shortestPathLength);
+//                    System.out.println(shortestPath + " " + shortestPathLength);
                     maxMinLength = Math.max(maxMinLength,shortestPathLength);
                 }
 
@@ -69,5 +80,6 @@ public class GraphCal implements Algorithm {
         return avgDegree;
     }
     public Double getMaxMinLength() { return maxMinLength-1; }
+    public Double[] getAllNodesDeg() { return allNodesDeg; }
 
 }
