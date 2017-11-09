@@ -10,11 +10,11 @@ import org.jfree.ui.ApplicationFrame;
 
 import static oracle.jrockit.jfr.events.Bits.intValue;
 
-public class LineChart extends ApplicationFrame {
+public class NodeDegreeLineChart extends ApplicationFrame {
     private DefaultCategoryDataset dataSet = new DefaultCategoryDataset( );
 
 
-    public LineChart( String applicationTitle , String chartTitle, Double[] allNodesDegree, Graph theGraph ) {
+    public NodeDegreeLineChart(String applicationTitle , String chartTitle, Double[] allNodesDegree, Graph theGraph ) {
         super(applicationTitle);
         JFreeChart lineChart = ChartFactory.createLineChart(
                 chartTitle,
@@ -28,12 +28,30 @@ public class LineChart extends ApplicationFrame {
         setContentPane( chartPanel );
     }
 
-
+    int rangeSumValue = 0;
+    double segment = 0.05;
+    int j = 0;
     private DefaultCategoryDataset createDataSet(Double[] allNodesDeg, Graph theGraph) {
         for (int i=0; i< allNodesDeg.length; i++){
-            dataSet.addValue(intValue(allNodesDeg[i]),theGraph.getId(), ""+i);
+
+            if (allNodesDeg.length<1/segment){
+                dataSet.addValue(intValue(allNodesDeg[i]),theGraph.getId(), ""+i);
+            }else{
+                if (j < allNodesDeg.length*segment){
+                    rangeSumValue += intValue(allNodesDeg[i]);
+                    j++;
+                    if (i == allNodesDeg.length){
+                        dataSet.addValue(rangeSumValue,theGraph.getId(),""+i);
+                        rangeSumValue = 0;
+                    }
+                }else {
+                    dataSet.addValue(rangeSumValue,theGraph.getId(), ""+i);
+                    j = 0;
+                    rangeSumValue = 0;
+                }
+            }
         }
         return dataSet;
     }
-}// class LineChart
+}// class NodeDegreeLineChart
 

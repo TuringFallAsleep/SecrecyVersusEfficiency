@@ -2,16 +2,15 @@ package Model.StaticGraph;
 
 import org.graphstream.algorithm.APSP;
 import org.graphstream.algorithm.Algorithm;
-import org.graphstream.algorithm.BetweennessCentrality;
 import org.graphstream.graph.*;
-import org.graphstream.stream.file.FileSource;
 import org.graphstream.stream.file.FileSourceDGS;
 
 public class GraphCal implements Algorithm {
     Graph theGraph;
     Double minDegree, maxDegree, avgDegree;
-    Double maxMinLength;
+    Double maxDiameter;
     Double[] allNodesDeg;
+    Double[] allDiameters;
     int graphSize;
     public void init(Graph graph){
         theGraph = graph;
@@ -24,15 +23,20 @@ public class GraphCal implements Algorithm {
         minDegree = Double.MAX_VALUE;
         maxDegree = 0.0;
 
-        maxMinLength = 0.0;
+        maxDiameter = 0.0;
         FileSourceDGS source = new FileSourceDGS();
         source.addSink(theGraph);
 
-        graphSize = theGraph.getNodeCount();
-        allNodesDeg = new Double[graphSize+1];
+        graphSize = theGraph.getNodeCount()+1;
+        allNodesDeg = new Double[graphSize];
         for (int i=0; i<allNodesDeg.length; i++){
             allNodesDeg[i] = 0.0;
         }
+        allDiameters = new Double[graphSize];
+        for (int i=0; i<allDiameters.length; i++){
+            allDiameters[i] = 0.0;
+        }
+
 //        source.readAll(); ?????
         APSP apsp = new APSP();
         apsp.init(theGraph);
@@ -40,6 +44,7 @@ public class GraphCal implements Algorithm {
         apsp.setWeightAttributeName("weight");
         apsp.compute();
 
+        int nodeNum = 0;
         for (Node n : theGraph.getEachNode()){
             // compute degree
             int deg = n.getDegree();
@@ -52,17 +57,20 @@ public class GraphCal implements Algorithm {
 
             APSP.APSPInfo info = n.getAttribute(APSP.APSPInfo.ATTRIBUTE_NAME);
 //            System.out.println(info.getShortestPathTo("A"));
+
+
             for (Node m : theGraph.getEachNode()){
                 if (info.getShortestPathTo(m.getId())==null){
 //                    System.out.println("Isolated node");
                 }else{
 //                    String shortestPath = info.getShortestPathTo(m.getId()).toString();
-                    Double shortestPathLength = (double)info.getShortestPathTo(m.getId()).size();
-//                    System.out.println(shortestPath + " " + shortestPathLength);
-                    maxMinLength = Math.max(maxMinLength,shortestPathLength);
+                    Double diameter = (double)info.getShortestPathTo(m.getId()).size()-1;
+                    // When the node is itself, it will goes out then back, i.e. it will be 2.
+                    allDiameters[nodeNum] = Math.max(allDiameters[nodeNum],diameter);
                 }
-
             }
+//            System.out.println("Node: " + nodeNum + " has diameter " + allDiameters[nodeNum]);
+            nodeNum++;
 
         }
 
@@ -79,7 +87,8 @@ public class GraphCal implements Algorithm {
     public Double getAvgDegree() {
         return avgDegree;
     }
-    public Double getMaxMinLength() { return maxMinLength-1; }
+    public Double getMaxDiameter() { return maxDiameter; }
     public Double[] getAllNodesDeg() { return allNodesDeg; }
+    public Double[] getAllDiameters() { return allDiameters; }
 
 }
