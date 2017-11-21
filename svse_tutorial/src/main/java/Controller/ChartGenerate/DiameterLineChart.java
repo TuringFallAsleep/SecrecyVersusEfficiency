@@ -27,9 +27,6 @@ public class DiameterLineChart extends ApplicationFrame {
         setContentPane( chartPanel );
     }
 
-    int rangeSumValue = 0;
-    double segment = 0.05;
-    int j = 0;
     private DefaultCategoryDataset createDataSet(Double[] allDia, Graph theGraph) {
         int maxDia = 0;
         for (int i=0; i< allDia.length; i++){
@@ -41,18 +38,11 @@ public class DiameterLineChart extends ApplicationFrame {
             numOfNodeWithDiffDia[i] = 0;
         }
 
-//        for (int i=0;i<allDia.length;i++){
-//            System.out.println(allDia[i]);
-//        } // allDia got correct value
-
         for (int i=0; i< allDia.length-1; i++){
             numOfNodeWithDiffDia[intValue(allDia[i])]++;
 //            System.out.println("Node: " + i + " has diameter " + allDia[i]);
         }
 
-        for (int i=0; i<numOfNodeWithDiffDia.length; i++){
-            System.out.println(numOfNodeWithDiffDia[i] + " number of nodes have diameter of " + i);
-        }
         for (int i=0; i< numOfNodeWithDiffDia.length; i++){
             dataSet.addValue(numOfNodeWithDiffDia[i], theGraph.getId(), ""+i);
         }

@@ -1,6 +1,7 @@
 package Controller.Network;
 
 import Controller.ChartGenerate.BarChart;
+import Controller.ChartGenerate.BetweennessLineChart;
 import Controller.ChartGenerate.DiameterLineChart;
 import Controller.ChartGenerate.NodeDegreeLineChart;
 import Controller.FileReader.CSVReader;
@@ -209,23 +210,12 @@ public class FixedGraph {
         return graphResult;
     } // RG()
 
-//    public Double[] CRPAB() {
-//
-//        // Chart
-//        Controller.ChartGenerate.BarChart chart = new Controller.ChartGenerate.BarChart("SNA Result",
-//                "Static Graph", graph.getId(),graphResult[1],graphResult[2],graphResult[3],graphResult[4]);
-//        chart.pack();
-//        RefineryUtilities.centerFrameOnScreen( chart );
-//
-//        graph.display();
-//        chart.setVisible( true );
-//        return graphResult;
-//    } // CRPAB
 
     private void PlotChart(Double[][] graphResult, Graph graph){
         PlotBarChart(graphResult,graph);
         PlotNodeDegreeLineChart(graphResult,graph);
         PlotDiameterLineChart(graphResult,graph);
+        PlotBetweennessLineChart(graphResult,graph);
     }
 
     private void PlotNodeDegreeLineChart(Double[][] graphResult, Graph graph){
@@ -249,6 +239,16 @@ public class FixedGraph {
         RefineryUtilities.centerFrameOnScreen(lineChart);
         lineChart.setVisible(true);
 
+    }
+
+    private void PlotBetweennessLineChart(Double[][] graphResult, Graph graph){
+        BetweennessLineChart lineChart = new BetweennessLineChart(
+                "Betweenness Distribution",
+                "The importance of nodes", graphResult[8],graph);
+
+        lineChart.pack();
+        RefineryUtilities.centerFrameOnScreen(lineChart);
+        lineChart.setVisible(true);
     }
 
     private void PlotBarChart(Double[][] graphResult, Graph graph){
@@ -275,8 +275,9 @@ public class FixedGraph {
         System.out.println("Ave degree: " + String.format("%.1f", a.getAvgDegree()));
         System.out.println("Max diameter: " + String.format("%.1f", a.getMaxDiameter()));
         System.out.println("nodes degree length: "+ a.getAllNodesDeg().length);
+        System.out.println("Max betweenness: "+String.format("%.1f",a.getMaxBetweenness()));
 
-        Double[][] graphResult = new Double[10][a.getAllNodesDeg().length+1];
+        Double[][] graphResult = new Double[20][a.getAllNodesDeg().length+1];
 
         graphResult[0][0] = (double)graph.getNodeCount();
         graphResult[1][0] = a.getMaxDegree();
@@ -285,6 +286,8 @@ public class FixedGraph {
         graphResult[4][0] = a.getMaxDiameter();
         graphResult[5] = a.getAllNodesDeg();
         graphResult[6] = a.getAllDiameters();
+        graphResult[7][0] = a.getMaxBetweenness();
+        graphResult[8] = a.getAllBetweenness();
 //        for (int i=0; i<graphResult[6].length;i++)
 //            System.out.println("graphResult[6] ["+i+"] "+graphResult[6][i]);
 
