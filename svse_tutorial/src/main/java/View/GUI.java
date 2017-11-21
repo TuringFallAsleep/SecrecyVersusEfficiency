@@ -12,12 +12,17 @@ public class GUI  extends JFrame implements ActionListener{
     private JLabel genMaxDeg = new JLabel();
     private JLabel genMinDeg = new JLabel();
     private JLabel genAveDeg = new JLabel();
-    private JLabel genMaxDia = new JLabel(); // mix diameter
+    private JLabel genMaxDia = new JLabel(); // max diameter
+    private JLabel genMaxBet = new JLabel(); // max betweenness
+    private JLabel genMaxClo = new JLabel(); // max closeness
     private JLabel realNodeNum = new JLabel();
     private JLabel realMaxDeg = new JLabel();
     private JLabel realMinDeg = new JLabel();
     private JLabel realAveDeg = new JLabel();
-    private JLabel realMaxDia = new JLabel(); // mix diameter
+    private JLabel realMaxDia = new JLabel(); // max diameter
+    private JLabel realMaxBet = new JLabel(); // max betweenness
+    private JLabel realMaxClo = new JLabel(); // max closeness
+
     private JComboBox genComboBox = new JComboBox();
     private JComboBox realComboBox = new JComboBox();
 
@@ -80,6 +85,8 @@ public class GUI  extends JFrame implements ActionListener{
         genMinDeg.setText("");
         genAveDeg.setText("");
         genMaxDia.setText("");
+        genMaxBet.setText("");
+        genMaxClo.setText("");
 
         genDataPanel.add(new JLabel("Node number: "));
         genDataPanel.add(genNodeNum);
@@ -89,8 +96,12 @@ public class GUI  extends JFrame implements ActionListener{
         genDataPanel.add(genMinDeg);
         genDataPanel.add(new JLabel("Ave degree: "));
         genDataPanel.add(genAveDeg);
-        genDataPanel.add(new JLabel("Max distance: "));
+        genDataPanel.add(new JLabel("Max diameter: "));
         genDataPanel.add(genMaxDia);
+        genDataPanel.add(new JLabel("Max betweenness: "));
+        genDataPanel.add(genMaxBet);
+        genDataPanel.add(new JLabel("Max closeness(*1000): "));
+        genDataPanel.add(genMaxClo);
 
 
         /*Generated Graph Btn*/
@@ -125,6 +136,8 @@ public class GUI  extends JFrame implements ActionListener{
         realMinDeg.setText("");
         realAveDeg.setText("");
         realMaxDia.setText("");
+        realMaxBet.setText("");
+        realMaxClo.setText("");
 
         realDataPanel.add(new JLabel("Node number: "));
         realDataPanel.add(realNodeNum);
@@ -136,6 +149,10 @@ public class GUI  extends JFrame implements ActionListener{
         realDataPanel.add(realAveDeg);
         realDataPanel.add(new JLabel("Max distance: "));
         realDataPanel.add(realMaxDia);
+        realDataPanel.add(new JLabel("Max betweenness: "));
+        realDataPanel.add(realMaxBet);
+        realDataPanel.add(new JLabel("Max closeness(*1000): "));
+        realDataPanel.add(realMaxClo);
 
 
         /*Real Graph Btn*/
@@ -177,6 +194,8 @@ public class GUI  extends JFrame implements ActionListener{
             genMinDeg.setText(""+graphResult[2][0]); // min degree
             genAveDeg.setText(""+String.format("%.1f", graphResult[3][0])); // average degree
             genMaxDia.setText(""+graphResult[4][0]); // All-pair shortest paths lengths.
+            genMaxBet.setText(""+graphResult[7][0]); // max betweenness
+            genMaxClo.setText(""+String.format("%.5f",graphResult[9][0]*1000)); // max closeness
         } else if (event.getSource() == realProcessBtn){
             FixedGraph realGraph = new FixedGraph();
             Double[][] graphResult = realGraph.RG(realComboBox.getSelectedItem().toString());
@@ -186,7 +205,8 @@ public class GUI  extends JFrame implements ActionListener{
             realMinDeg.setText(""+graphResult[2][0]); // min degree
             realAveDeg.setText(""+String.format("%.1f", graphResult[3][0])); // average degree
             realMaxDia.setText(""+graphResult[4][0]); // All-pair shortest paths lengths.
-
+            realMaxBet.setText(""+String.format("%.1f",graphResult[7][0])); // max betweenness
+            realMaxClo.setText(""+String.format("%.5f",graphResult[9][0]*1000)); // max closeness
         }
 
 

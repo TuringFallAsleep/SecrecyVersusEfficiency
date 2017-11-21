@@ -10,16 +10,16 @@ import org.jfree.ui.ApplicationFrame;
 
 import static oracle.jrockit.jfr.events.Bits.intValue;
 
-public class LineChart extends ApplicationFrame {
+public class ClosenessLineChart extends ApplicationFrame {
     private DefaultCategoryDataset dataSet = new DefaultCategoryDataset( );
 
 
-    public LineChart( String applicationTitle , String chartTitle, Double[] allNodesDegree, Graph theGraph ) {
+    public ClosenessLineChart(String applicationTitle , String chartTitle, Double[] allCloseness, Graph theGraph ) {
         super(applicationTitle);
         JFreeChart lineChart = ChartFactory.createLineChart(
                 chartTitle,
-                "Node Degree","Number of Nodes",
-                createDataSet(allNodesDegree, theGraph),
+                "Node No.","Closeness",
+                createDataSet(allCloseness, theGraph),
                 PlotOrientation.VERTICAL,
                 true,true,false);
 
@@ -28,12 +28,11 @@ public class LineChart extends ApplicationFrame {
         setContentPane( chartPanel );
     }
 
-
-    private DefaultCategoryDataset createDataSet(Double[] allNodesDeg, Graph theGraph) {
-        for (int i=0; i< allNodesDeg.length; i++){
-            dataSet.addValue(intValue(allNodesDeg[i]),theGraph.getId(), ""+i);
+    private DefaultCategoryDataset createDataSet(Double[] allClo, Graph theGraph) {
+        for (int i=0; i< allClo.length; i++){
+            dataSet.addValue(intValue(allClo[i]*1000.0),theGraph.getId(), ""+i);
         }
         return dataSet;
     }
-}// class LineChart
+}// class ClosenessLineChart
 

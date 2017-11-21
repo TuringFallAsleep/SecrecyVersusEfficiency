@@ -1,7 +1,6 @@
 package Controller.Network;
 
-import Controller.ChartGenerate.BarChart;
-import Controller.ChartGenerate.LineChart;
+import Controller.ChartGenerate.*;
 import Controller.FileReader.CSVReader;
 import Model.StaticGraph.GraphCal;
 import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
@@ -45,8 +44,7 @@ public class FixedGraph {
 //        AdjacencyCal(graph);
 
 
-        PlotBarChart(graphResult, graph);
-        PlotLineChart(graphResult, graph);
+        PlotChart(graphResult, graph);
 
         return graphResult;
     } // HighlyCentralised()
@@ -75,8 +73,7 @@ public class FixedGraph {
         Double[][] graphResult = DegreeCal(graph); // Calculate degrees
 //        AdjacencyCal(graph);
 
-        PlotBarChart(graphResult, graph);
-        PlotLineChart(graphResult, graph);
+        PlotChart(graphResult, graph);
 
 
         return graphResult;
@@ -98,8 +95,7 @@ public class FixedGraph {
         Double[][] graphResult = DegreeCal(graph); // Calculate degrees
 //        AdjacencyCal(graph);
 
-        PlotBarChart(graphResult, graph);
-        PlotLineChart(graphResult, graph);
+        PlotChart(graphResult, graph);
 
 
         return graphResult;
@@ -122,8 +118,7 @@ public class FixedGraph {
         Double[][] graphResult = DegreeCal(graph); // Calculate degrees
 //        AdjacencyCal(graph);
 
-        PlotBarChart(graphResult, graph);
-        PlotLineChart(graphResult, graph);
+        PlotChart(graphResult, graph);
 
 
         return graphResult;
@@ -150,8 +145,7 @@ public class FixedGraph {
         Double[][] graphResult = DegreeCal(graph); // Calculate degrees
 //        AdjacencyCal(graph);
 
-        PlotBarChart(graphResult, graph);
-        PlotLineChart(graphResult, graph);
+        PlotChart(graphResult, graph);
 
 
         return graphResult;
@@ -164,17 +158,20 @@ public class FixedGraph {
         CSVReader csvReader = new CSVReader();
         String filePath;
         List<List<String>> networkData = null;
+        Graph graph = null;
         if (resource.equals("9_11 Graph")){
             filePath = "/Users/yangboyin/Downloads/CODE/ThirdYearProject/SecrecyVersusEfficiency/svse_tutorial/src/main/resources/9_11_HIJACKERS_ASSOCIATES.csv";
             networkData= csvReader.CSVReader(filePath);
+            graph = new DefaultGraph("9_11");
         }else if (resource.equals("Suffragettes Inner Circle")){
             filePath = "/Users/yangboyin/Downloads/CODE/ThirdYearProject/SecrecyVersusEfficiency/svse_tutorial/src/main/resources/50_EPANKHURST_INNER_CIRCLE.csv";
             networkData= csvReader.CSVReader(filePath);
+            graph = new DefaultGraph("Suffragettes Inner Circle");
         }
 
 
 
-        Graph graph = new DefaultGraph("9_11");
+
         graph.setStrict(false);
         graph.setAutoCreate(true);
 
@@ -204,29 +201,23 @@ public class FixedGraph {
 //        AdjacencyCal(graph);
 
 
-
-        PlotBarChart(graphResult, graph);
-        PlotLineChart(graphResult, graph);
+        PlotChart(graphResult, graph);
 
 
         return graphResult;
     } // RG()
 
-//    public Double[] CRPAB() {
-//
-//        // Chart
-//        Controller.ChartGenerate.BarChart chart = new Controller.ChartGenerate.BarChart("SNA Result",
-//                "Static Graph", graph.getId(),graphResult[1],graphResult[2],graphResult[3],graphResult[4]);
-//        chart.pack();
-//        RefineryUtilities.centerFrameOnScreen( chart );
-//
-//        graph.display();
-//        chart.setVisible( true );
-//        return graphResult;
-//    } // CRPAB
 
-    private void PlotLineChart(Double[][] graphResult, Graph graph){
-        LineChart lineChart = new LineChart(
+    private void PlotChart(Double[][] graphResult, Graph graph){
+        PlotBarChart(graphResult,graph);
+        PlotNodeDegreeLineChart(graphResult,graph);
+        PlotDiameterLineChart(graphResult,graph);
+        PlotBetweennessLineChart(graphResult,graph);
+        PlotClosenessLineChart(graphResult,graph);
+    }
+
+    private void PlotNodeDegreeLineChart(Double[][] graphResult, Graph graph){
+        NodeDegreeLineChart lineChart = new NodeDegreeLineChart(
                 "Node Degree Distribution" ,
                 "Num of Nodes on different degrees", graphResult[5],graph);
 
@@ -234,6 +225,38 @@ public class FixedGraph {
         RefineryUtilities.centerFrameOnScreen(lineChart);
         lineChart.setVisible(true);
 
+    }
+
+    private void PlotDiameterLineChart(Double[][] graphResult, Graph graph){
+        DiameterLineChart lineChart = new DiameterLineChart(
+                "Diameter Distribution" ,
+                "Efficiency by diameter", graphResult[6],graph);
+
+
+        lineChart.pack();
+        RefineryUtilities.centerFrameOnScreen(lineChart);
+        lineChart.setVisible(true);
+
+    }
+
+    private void PlotBetweennessLineChart(Double[][] graphResult, Graph graph){
+        BetweennessLineChart lineChart = new BetweennessLineChart(
+                "Betweenness Distribution",
+                "The importance of nodes", graphResult[8],graph);
+
+        lineChart.pack();
+        RefineryUtilities.centerFrameOnScreen(lineChart);
+        lineChart.setVisible(true);
+    }
+
+    private void PlotClosenessLineChart(Double[][] graphResult, Graph graph){
+        ClosenessLineChart lineChart = new ClosenessLineChart(
+                "Closeness Distribution",
+                "The importance of nodes", graphResult[10],graph);
+
+        lineChart.pack();
+        RefineryUtilities.centerFrameOnScreen(lineChart);
+        lineChart.setVisible(true);
     }
 
     private void PlotBarChart(Double[][] graphResult, Graph graph){
@@ -258,17 +281,26 @@ public class FixedGraph {
         System.out.println("Max degree: " + a.getMaxDegree());
         System.out.println("Min degree: " + a.getMinDegree());
         System.out.println("Ave degree: " + String.format("%.1f", a.getAvgDegree()));
-        System.out.println("Max diameter: " + String.format("%.1f", a.getMaxMinLength()));
+        System.out.println("Max diameter: " + String.format("%.1f", a.getMaxDiameter()));
         System.out.println("nodes degree length: "+ a.getAllNodesDeg().length);
+        System.out.println("Max betweenness: "+String.format("%.1f",a.getMaxBetweenness()));
+        System.out.println("Max closeness*1000: "+String.format("%.1f",a.getMaxBetweenness()*1000));
 
-        Double[][] graphResult = new Double[10][a.getAllNodesDeg().length+1];
+        Double[][] graphResult = new Double[20][a.getAllNodesDeg().length+1];
 
         graphResult[0][0] = (double)graph.getNodeCount();
         graphResult[1][0] = a.getMaxDegree();
         graphResult[2][0] = a.getMinDegree();
         graphResult[3][0] = a.getAvgDegree();
-        graphResult[4][0] = a.getMaxMinLength();
+        graphResult[4][0] = a.getMaxDiameter();
         graphResult[5] = a.getAllNodesDeg();
+        graphResult[6] = a.getAllDiameters();
+        graphResult[7][0] = a.getMaxBetweenness();
+        graphResult[8] = a.getAllBetweenness();
+        graphResult[9][0] = a.getMaxCloseness();
+        graphResult[10] = a.getAllCloseness();
+//        for (int i=0; i<graphResult[6].length;i++)
+//            System.out.println("graphResult[6] ["+i+"] "+graphResult[6][i]);
 
         // get each node, edge
 //        for(Node n:graph){
