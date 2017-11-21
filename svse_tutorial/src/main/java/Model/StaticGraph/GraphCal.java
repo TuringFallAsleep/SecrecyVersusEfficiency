@@ -9,11 +9,14 @@ public class GraphCal implements Algorithm {
     Double minDegree, maxDegree, avgDegree;
     Double maxDiameter;
     Double maxBetweenness;
+    Double maxCloseness;
     Double[] allNodesDeg;
     Double[] allDiameters;
     Double[] allBetweenness;
+    Double[] allCloseness;
     Double[][] diameterResult;
     Double[][] betweennessResult;
+    Double[][] closenessResult;
     int graphSize;
     public void init(Graph graph){
         theGraph = graph;
@@ -63,6 +66,12 @@ public class GraphCal implements Algorithm {
         maxBetweenness = betweennessResult[0][0];
         allBetweenness = betweennessResult[1];
 
+        CalCloseness calClo = new CalCloseness();
+        closenessResult = calClo.CalCloseness(theGraph);
+
+        maxCloseness = closenessResult[0][0];
+        allCloseness = closenessResult[1];
+
 
         avgDegree /= theGraph.getNodeCount();
 
@@ -77,8 +86,10 @@ public class GraphCal implements Algorithm {
     }
     public Double getMaxDiameter() { return maxDiameter; }
     public Double getMaxBetweenness() { return maxBetweenness; }
+    public Double getMaxCloseness() { return maxCloseness; }
 
     public Double[] getAllNodesDeg() { return allNodesDeg; }
     public Double[] getAllDiameters() { return allDiameters; }
     public Double[] getAllBetweenness() { return allBetweenness; }
+    public Double[] getAllCloseness() { return allCloseness; }
 }

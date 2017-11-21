@@ -9,7 +9,7 @@ public class CalBetweenness {
     int graphSize;
 
     public Double[][] CalBetweenness(Graph theGraph){
-        //      Cal diameter
+        //      Cal betweenness
 
         FileSourceDGS source = new FileSourceDGS();
         source.addSink(theGraph);

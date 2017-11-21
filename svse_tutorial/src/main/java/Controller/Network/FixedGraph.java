@@ -1,9 +1,6 @@
 package Controller.Network;
 
-import Controller.ChartGenerate.BarChart;
-import Controller.ChartGenerate.BetweennessLineChart;
-import Controller.ChartGenerate.DiameterLineChart;
-import Controller.ChartGenerate.NodeDegreeLineChart;
+import Controller.ChartGenerate.*;
 import Controller.FileReader.CSVReader;
 import Model.StaticGraph.GraphCal;
 import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
@@ -216,6 +213,7 @@ public class FixedGraph {
         PlotNodeDegreeLineChart(graphResult,graph);
         PlotDiameterLineChart(graphResult,graph);
         PlotBetweennessLineChart(graphResult,graph);
+        PlotClosenessLineChart(graphResult,graph);
     }
 
     private void PlotNodeDegreeLineChart(Double[][] graphResult, Graph graph){
@@ -251,6 +249,16 @@ public class FixedGraph {
         lineChart.setVisible(true);
     }
 
+    private void PlotClosenessLineChart(Double[][] graphResult, Graph graph){
+        ClosenessLineChart lineChart = new ClosenessLineChart(
+                "Closeness Distribution",
+                "The importance of nodes", graphResult[10],graph);
+
+        lineChart.pack();
+        RefineryUtilities.centerFrameOnScreen(lineChart);
+        lineChart.setVisible(true);
+    }
+
     private void PlotBarChart(Double[][] graphResult, Graph graph){
         BarChart chart = new BarChart("SNA Result",
                 "Static Graph", graph.getId(),graphResult[1][0],graphResult[2][0],graphResult[3][0],graphResult[4][0]);
@@ -276,6 +284,7 @@ public class FixedGraph {
         System.out.println("Max diameter: " + String.format("%.1f", a.getMaxDiameter()));
         System.out.println("nodes degree length: "+ a.getAllNodesDeg().length);
         System.out.println("Max betweenness: "+String.format("%.1f",a.getMaxBetweenness()));
+        System.out.println("Max closeness*1000: "+String.format("%.1f",a.getMaxBetweenness()*1000));
 
         Double[][] graphResult = new Double[20][a.getAllNodesDeg().length+1];
 
@@ -288,6 +297,8 @@ public class FixedGraph {
         graphResult[6] = a.getAllDiameters();
         graphResult[7][0] = a.getMaxBetweenness();
         graphResult[8] = a.getAllBetweenness();
+        graphResult[9][0] = a.getMaxCloseness();
+        graphResult[10] = a.getAllCloseness();
 //        for (int i=0; i<graphResult[6].length;i++)
 //            System.out.println("graphResult[6] ["+i+"] "+graphResult[6][i]);
 
