@@ -7,7 +7,8 @@ import org.graphstream.stream.file.FileSourceDGS;
 
 public class CalDiameter {
 
-    int graphSize;
+    private int graphSize;
+    private Double[][] diameterResult;
 
     public Double[][] CalDiameter(Graph theGraph){
         //      Cal diameter
@@ -17,7 +18,7 @@ public class CalDiameter {
 
         graphSize = theGraph.getNodeCount()+1;
 
-        Double[][] diameterResult = new Double[2][graphSize];
+        diameterResult = new Double[2][graphSize];
 //        diameterResult[0][0]: the max diameter
 //        diameterResult[1][i]: the distribution of diameter
 
@@ -60,5 +61,9 @@ public class CalDiameter {
 
         return diameterResult;
 
+    }
+
+    public Double getMaxDiameter(){
+        return diameterResult[0][0];
     }
 }

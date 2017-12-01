@@ -5,6 +5,9 @@ import org.graphstream.graph.*;
 import org.graphstream.stream.file.FileSourceDGS;
 
 public class GraphCal implements Algorithm {
+
+    /* Calculate basic graph information*/
+
     Graph theGraph;
     Double minDegree, maxDegree, avgDegree;
     Double maxDiameter;
