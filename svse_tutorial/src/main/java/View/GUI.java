@@ -1,5 +1,6 @@
 package View;
 
+import Controller.Network.CovertNetwork;
 import Controller.Network.FixedGraph;
 
 import javax.swing.*;
@@ -15,6 +16,8 @@ public class GUI  extends JFrame implements ActionListener{
     private JLabel genMaxDia = new JLabel(); // max diameter
     private JLabel genMaxBet = new JLabel(); // max betweenness
     private JLabel genMaxClo = new JLabel(); // max closeness
+    private JLabel genSercey = new JLabel();
+
     private JLabel realNodeNum = new JLabel();
     private JLabel realMaxDeg = new JLabel();
     private JLabel realMinDeg = new JLabel();
@@ -22,6 +25,7 @@ public class GUI  extends JFrame implements ActionListener{
     private JLabel realMaxDia = new JLabel(); // max diameter
     private JLabel realMaxBet = new JLabel(); // max betweenness
     private JLabel realMaxClo = new JLabel(); // max closeness
+    private JLabel realSecrecy = new JLabel();
 
     private JComboBox genComboBox = new JComboBox();
     private JComboBox realComboBox = new JComboBox();
@@ -74,6 +78,7 @@ public class GUI  extends JFrame implements ActionListener{
         genComboBox.addItem("Bernoulli");
         genComboBox.addItem("Preferential Attachment");
         genComboBox.addItem("Preferential Attachment with Bernoulli");
+        genComboBox.addItem("Covert Network Model (based on betweenness)");
         genInfoPanel.add(genComboBox);
         genComboBox.addActionListener(this);
 
@@ -87,6 +92,7 @@ public class GUI  extends JFrame implements ActionListener{
         genMaxDia.setText("");
         genMaxBet.setText("");
         genMaxClo.setText("");
+        genSercey.setText("");
 
         genDataPanel.add(new JLabel("Node number: "));
         genDataPanel.add(genNodeNum);
@@ -102,6 +108,7 @@ public class GUI  extends JFrame implements ActionListener{
         genDataPanel.add(genMaxBet);
         genDataPanel.add(new JLabel("Max closeness(*1000): "));
         genDataPanel.add(genMaxClo);
+        genDataPanel.add(new JLabel("Secrecy: "));
 
 
         /*Generated Graph Btn*/
@@ -138,6 +145,8 @@ public class GUI  extends JFrame implements ActionListener{
         realMaxDia.setText("");
         realMaxBet.setText("");
         realMaxClo.setText("");
+        realSecrecy.setText("");
+
 
         realDataPanel.add(new JLabel("Node number: "));
         realDataPanel.add(realNodeNum);
@@ -153,6 +162,8 @@ public class GUI  extends JFrame implements ActionListener{
         realDataPanel.add(realMaxBet);
         realDataPanel.add(new JLabel("Max closeness(*1000): "));
         realDataPanel.add(realMaxClo);
+        realDataPanel.add(new JLabel("Secrecy"));
+        realDataPanel.add(realSecrecy);
 
 
         /*Real Graph Btn*/
@@ -174,6 +185,7 @@ public class GUI  extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == genProcessBtn){
             FixedGraph genGraph = new FixedGraph();
+//            CovertNetwork covNet = new CovertNetwork();
             Double[][] graphResult = {};
 
             // decide which graph to display
@@ -187,6 +199,8 @@ public class GUI  extends JFrame implements ActionListener{
                 graphResult = genGraph.PA();
             }else if(genComboBox.getSelectedItem().toString().equals("Preferential Attachment with Bernoulli")){
                 graphResult = genGraph.PAB();
+            }else if(genComboBox.getSelectedItem().toString().equals("Covert Network Model (based on betweenness)")){
+//                covNet.betweennessNet();
             }
 
             genNodeNum.setText(""+graphResult[0][0]); // node number

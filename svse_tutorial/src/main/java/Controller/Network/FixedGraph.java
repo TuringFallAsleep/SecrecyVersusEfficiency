@@ -2,6 +2,7 @@ package Controller.Network;
 
 import Controller.ChartGenerate.*;
 import Controller.FileReader.CSVReader;
+import Model.StaticGraph.CalSecrecy;
 import Model.StaticGraph.GraphCal;
 import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
 import org.graphstream.algorithm.generator.Generator;
@@ -272,11 +273,14 @@ public class FixedGraph {
 
 
 
-    private Double[][] DegreeCal(Graph graph){
+    public Double[][] DegreeCal(Graph graph){
 
         GraphCal a = new GraphCal();
         a.init(graph);
         a.compute();
+
+        CalSecrecy secrecy = new CalSecrecy();
+        secrecy.secrecyByBetweenness(graph);
 
         System.out.println("Max degree: " + a.getMaxDegree());
         System.out.println("Min degree: " + a.getMinDegree());
@@ -284,7 +288,7 @@ public class FixedGraph {
         System.out.println("Max diameter: " + String.format("%.1f", a.getMaxDiameter()));
         System.out.println("nodes degree length: "+ a.getAllNodesDeg().length);
         System.out.println("Max betweenness: "+String.format("%.1f",a.getMaxBetweenness()));
-        System.out.println("Max closeness*1000: "+String.format("%.1f",a.getMaxBetweenness()*1000));
+        System.out.println("Max closeness*1000: "+String.format("%.1f",a.getMaxCloseness()*1000));
 
         Double[][] graphResult = new Double[20][a.getAllNodesDeg().length+1];
 
