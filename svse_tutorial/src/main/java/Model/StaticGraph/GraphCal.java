@@ -8,19 +8,20 @@ public class GraphCal implements Algorithm {
 
     /* Calculate basic graph information*/
 
-    Graph theGraph;
-    Double minDegree, maxDegree, avgDegree;
-    Double maxDiameter;
-    Double maxBetweenness;
-    Double maxCloseness;
-    Double[] allNodesDeg;
-    Double[] allDiameters;
-    Double[] allBetweenness;
-    Double[] allCloseness;
-    Double[][] diameterResult;
-    Double[][] betweennessResult;
-    Double[][] closenessResult;
-    int graphSize;
+    private Graph theGraph;
+    private Double minDegree, maxDegree, avgDegree;
+    private Double maxDiameter;
+    private Double maxBetweenness;
+    private Double maxCloseness;
+    private Double[] allNodesDeg;
+    private Double[] allDiameters;
+    private Double[] allBetweenness;
+    private Double[] allCloseness;
+    private Double[][] diameterResult;
+    private Double[][] betweennessResult;
+    private Double[][] closenessResult;
+    private int graphSize;
+
     public void init(Graph graph){
         theGraph = graph;
     }

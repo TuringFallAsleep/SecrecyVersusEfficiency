@@ -1,23 +1,22 @@
 package Model.StaticGraph;
 
+import Model.NodeInformation.BenweennessComparator;
+import Model.NodeInformation.NodeInfo;
+import Model.NodeInformation.NodeOrderComparator;
 import org.graphstream.algorithm.BetweennessCentrality;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.stream.file.FileSourceDGS;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class CalBetweenness {
 
-    int graphSize;
-    Double[][] betweennessResult;
-    Double[] sortResultSToL;
-    Double[] sortResultLToS;
-    String[] nodeID;
-    String[] sortNodeID;
-    Node[] keyPlayers;
-    int keyPlayersNumber;
-    Graph graph;
+    private int graphSize;
+    private Double[][] betweennessResult;
+    private NodeInfo[] nodeInfo;
+//    private NodeInfo[] sortNodeInfo;
 
 
 
@@ -26,7 +25,7 @@ public class CalBetweenness {
 //    }
 
     public Double[][] CalBetweenness(Graph theGraph){
-        graph = theGraph;
+
         //      Cal betweenness
 
         FileSourceDGS source = new FileSourceDGS();
@@ -37,10 +36,7 @@ public class CalBetweenness {
         betweennessResult = new Double[2][graphSize];
 //        betweenessResult[0][0]: the max diameter
 //        betweenessResult[1][i]: the distribution of diameter
-        sortResultSToL = new Double[graphSize];
-        nodeID = new String[graphSize];
-        sortNodeID = new String[graphSize];
-
+        nodeInfo = new NodeInfo[graphSize];
 
         for (int i=0; i<betweennessResult.length; i++){
             for (int j=0; j<betweennessResult[0].length; j++){
@@ -48,10 +44,12 @@ public class CalBetweenness {
             }
         }
 
-        for (int i=0; i<nodeID.length;i++){
-            nodeID[i] = "";
-            sortResultSToL[i] = 0.0;
+        for (int i=0; i<graphSize;i++){
+            nodeInfo[i] = new NodeInfo();
+            nodeInfo[i].init();
+            nodeInfo[i].setOrder(i);
         }
+//        sortNodeInfo = nodeInfo;
 
 
         BetweennessCentrality betweennessCentrality = new BetweennessCentrality();
@@ -68,69 +66,51 @@ public class CalBetweenness {
 //            System.out.println("Node "+n.getId()+" has betweenness centrality "+String.format("%.1f", betweenness));
             betweennessResult[0][0] = Math.max(betweennessResult[0][0],betweenness);
             betweennessResult[1][nodeNum] = betweenness;
-            nodeID[nodeNum] = n.getId().toString();
 
-            sortResultSToL[nodeNum] = betweenness;
+
+            nodeInfo[nodeNum].setNode(n);
+            nodeInfo[nodeNum].setBetweenness(betweenness);
             nodeNum++;
         }
 
-
-//        getSortResult(3);
-//        getSortNodeID();
+//        NodeInfo[] sortNode = getKeyPlayers(3);
+//        System.out.println();
+//        System.out.println("betweenness sort: ");
+//        for (int i=0; i<graphSize; i++){
+//            if (sortNode[i].isKeyPlayer()){
+//                System.out.print(" ID: "+sortNode[i].getNode().getId()+" bet: "+sortNode[i].getBetweenness()+", ");
+//            }
+//        }
 
 
         return betweennessResult;
 
     }
 
-    public String[] getNodeID() {
-        return nodeID;
-    }
-
-    public Double[][] getBetweenessResult(){
-        return betweennessResult;
-    }
-
-    public Double[] getSortResult(int keyPlayersNum) {
-        keyPlayersNumber = keyPlayersNum;
-        Arrays.sort(sortResultSToL);
-        sortResultLToS = new Double[keyPlayersNum];
-        int j = 0;
-        for (int i = sortResultSToL.length - 1; i >= 0; i--){
-            if (j<keyPlayersNum){
-                sortResultLToS[j] = sortResultSToL[i];
-                j++;
+    public NodeInfo[] getKeyPlayers(int keyPlayersNumber) {
+//        sortNodeInfo = nodeInfo;
+        Arrays.sort(nodeInfo, new BenweennessComparator());
+        int i = 0;
+        int count = 0;
+        while(count<keyPlayersNumber){
+            if (!nodeInfo[i].isRemoved() && !nodeInfo[i].isArrested()){
+                nodeInfo[i].setKeyPlayer(true);
+//                System.out.println("This is key player: "+ nodeInfo[i].getNode().getId());
+                i++;
+                count++;
             }else{
-                break;
+                nodeInfo[i].setKeyPlayer(false);
+                i++;
             }
         }
-        System.out.println("sort large to small: "+Arrays.toString(sortResultLToS));
-        return sortResultLToS;
+//        for (int i=0; i<keyPlayersNumber;i++){
+//            nodeInfo[i].setKeyPlayer(true);
+//        }
+        Arrays.sort(nodeInfo, new NodeOrderComparator());
+        return nodeInfo;
     }
 
-    public String[] getSortNodeID() {
-        // use it after getSortResult(keyPlayersNum)
-        sortNodeID = new String[keyPlayersNumber];
-        keyPlayers = new Node[keyPlayersNumber];
-
-        for (int i = 0; i< keyPlayersNumber; i++) {
-            int j = 0;
-            for (Node n : graph.getEachNode()){
-                if (sortResultLToS[i].equals(betweennessResult[1][j])){
-                    sortNodeID[i] = n.getId().toString();
-                    keyPlayers[i] = n;
-//                    System.out.println("keyPlayers: "+keyPlayers[i].getId().toString());
-                }
-//                System.out.println("j = "+ j+ " ID: "+ n.getId());
-                j++;
-            }
-        }
-        System.out.println("Sort node ID: "+Arrays.toString(sortNodeID));
-//        System.out.println(betweennessResult[1][46]); // this confirm the betweennessResult doesn't ordered by original order
-        return sortNodeID;
-    }
-
-    public Node[] getKeyPlayers() {
-        return keyPlayers;
+    public NodeInfo[] getNodeInfo() {
+        return nodeInfo;
     }
 }

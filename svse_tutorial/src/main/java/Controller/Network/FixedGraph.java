@@ -18,34 +18,40 @@ import java.util.*;
 public class FixedGraph {
 
     static int numOfNode = 59;
+    private Graph highlyCentralisedGraph;
+    private Graph highlyDecentralisedGraph;
+    private Graph bernoulliGraph;
+    private Graph preferentialAttachmentGraph;
+    private Graph preferentialAttachmentWithBernoulliGraph;
+    private Graph realGraph;
 
 
     public Double[][] HighlyCentralised() {
 
         // Describe the graph
-        Graph graph = new SingleGraph("Highly Centralised");
-        graph.setStrict(false);
-        graph.setAutoCreate(true);
-        graph.addEdge("AB", "A", "B");
-        graph.addEdge("AC", "A", "C");
-        graph.addEdge("AD", "A", "D");
-        graph.addEdge("AE", "A", "E");
-        graph.addEdge("AF", "A", "F");
-        graph.addEdge("AG", "A", "G");
-        graph.addEdge("AH", "A", "H");
-        graph.addEdge("AI", "A", "I");
-        graph.addEdge("AJ", "A", "J");
-        graph.addEdge("AK", "A", "K");
-        graph.addEdge("AL", "A", "L");
-        graph.addEdge("AM", "A", "M");
-        graph.addEdge("AN", "A", "N");
+        highlyCentralisedGraph = new SingleGraph("Highly Centralised");
+        highlyCentralisedGraph.setStrict(false);
+        highlyCentralisedGraph.setAutoCreate(true);
+        highlyCentralisedGraph.addEdge("AB", "A", "B");
+        highlyCentralisedGraph.addEdge("AC", "A", "C");
+        highlyCentralisedGraph.addEdge("AD", "A", "D");
+        highlyCentralisedGraph.addEdge("AE", "A", "E");
+        highlyCentralisedGraph.addEdge("AF", "A", "F");
+        highlyCentralisedGraph.addEdge("AG", "A", "G");
+        highlyCentralisedGraph.addEdge("AH", "A", "H");
+        highlyCentralisedGraph.addEdge("AI", "A", "I");
+        highlyCentralisedGraph.addEdge("AJ", "A", "J");
+        highlyCentralisedGraph.addEdge("AK", "A", "K");
+        highlyCentralisedGraph.addEdge("AL", "A", "L");
+        highlyCentralisedGraph.addEdge("AM", "A", "M");
+        highlyCentralisedGraph.addEdge("AN", "A", "N");
 
 
-        Double[][] graphResult = DegreeCal(graph); // Calculate degrees
+        Double[][] graphResult = DegreeCal(highlyCentralisedGraph); // Calculate degrees
 //        AdjacencyCal(graph);
 
 
-        PlotChart(graphResult, graph);
+        PlotChart(graphResult, highlyCentralisedGraph);
 
         return graphResult;
     } // HighlyCentralised()
@@ -53,28 +59,28 @@ public class FixedGraph {
     public Double[][] HighlyDecentralised() {
 
         // Describe the graph
-        Graph graph = new SingleGraph("Highly Decentralised");
-        graph.setStrict(false);
-        graph.setAutoCreate(true);
-        graph.addEdge("AB", "A", "B");
-        graph.addEdge("BC", "B", "C");
-        graph.addEdge("CD", "C", "D");
-        graph.addEdge("DE", "D", "E");
-        graph.addEdge("EF", "E", "F");
-        graph.addEdge("FG", "F", "G");
-        graph.addEdge("GH", "G", "H");
-        graph.addEdge("HI", "H", "I");
-        graph.addEdge("IJ", "I", "J");
-        graph.addEdge("JK", "J", "K");
-        graph.addEdge("KL", "K", "L");
-        graph.addEdge("LM", "L", "M");
-        graph.addEdge("MN", "M", "N");
-        graph.addEdge("NA", "N", "A");
+        highlyDecentralisedGraph = new SingleGraph("Highly Decentralised");
+        highlyDecentralisedGraph.setStrict(false);
+        highlyDecentralisedGraph.setAutoCreate(true);
+        highlyDecentralisedGraph.addEdge("AB", "A", "B");
+        highlyDecentralisedGraph.addEdge("BC", "B", "C");
+        highlyDecentralisedGraph.addEdge("CD", "C", "D");
+        highlyDecentralisedGraph.addEdge("DE", "D", "E");
+        highlyDecentralisedGraph.addEdge("EF", "E", "F");
+        highlyDecentralisedGraph.addEdge("FG", "F", "G");
+        highlyDecentralisedGraph.addEdge("GH", "G", "H");
+        highlyDecentralisedGraph.addEdge("HI", "H", "I");
+        highlyDecentralisedGraph.addEdge("IJ", "I", "J");
+        highlyDecentralisedGraph.addEdge("JK", "J", "K");
+        highlyDecentralisedGraph.addEdge("KL", "K", "L");
+        highlyDecentralisedGraph.addEdge("LM", "L", "M");
+        highlyDecentralisedGraph.addEdge("MN", "M", "N");
+        highlyDecentralisedGraph.addEdge("NA", "N", "A");
 
-        Double[][] graphResult = DegreeCal(graph); // Calculate degrees
+        Double[][] graphResult = DegreeCal(highlyDecentralisedGraph); // Calculate degrees
 //        AdjacencyCal(graph);
 
-        PlotChart(graphResult, graph);
+        PlotChart(graphResult, highlyDecentralisedGraph);
 
 
         return graphResult;
@@ -82,44 +88,44 @@ public class FixedGraph {
 
 
     public Double[][] B() {
-        Graph graph = new SingleGraph("Bernoulli");
+        bernoulliGraph = new SingleGraph("Bernoulli");
 
         Generator gen = new RandomGenerator(2);
         // Generate 60 nodes:
-        gen.addSink(graph);
+        gen.addSink(bernoulliGraph);
         gen.begin();
         for(int i=0; i<numOfNode-2; i++) {
             gen.nextEvents();
         }
         gen.end();
 
-        Double[][] graphResult = DegreeCal(graph); // Calculate degrees
+        Double[][] graphResult = DegreeCal(bernoulliGraph); // Calculate degrees
 //        AdjacencyCal(graph);
 
-        PlotChart(graphResult, graph);
+        PlotChart(graphResult, bernoulliGraph);
 
 
         return graphResult;
     } // PAB()
 
     public Double[][] PA() {
-        Graph graph = new SingleGraph("Preferential Attachment");
+        preferentialAttachmentGraph = new SingleGraph("Preferential Attachment");
 
         // Between 1 and 3 new links per node added.
         Generator gen = new BarabasiAlbertGenerator(1,false);
 
         // Generate 60 nodes:
-        gen.addSink(graph);
+        gen.addSink(preferentialAttachmentGraph);
         gen.begin();
         for(int i=0; i<numOfNode-1; i++) {
             gen.nextEvents();
         }
         gen.end();
 
-        Double[][] graphResult = DegreeCal(graph); // Calculate degrees
+        Double[][] graphResult = DegreeCal(preferentialAttachmentGraph); // Calculate degrees
 //        AdjacencyCal(graph);
 
-        PlotChart(graphResult, graph);
+        PlotChart(graphResult, preferentialAttachmentGraph);
 
 
         return graphResult;
@@ -130,23 +136,23 @@ public class FixedGraph {
 
 
     public Double[][] PAB() {
-        Graph graph = new SingleGraph("Preferential Attachment with Bernoulli");
+        preferentialAttachmentWithBernoulliGraph = new SingleGraph("Preferential Attachment with Bernoulli");
 
         // Between 1 and 3 new links per node added.
         Generator gen = new BarabasiAlbertGenerator(3,false);
 
         // Generate 61 nodes:
-        gen.addSink(graph);
+        gen.addSink(preferentialAttachmentWithBernoulliGraph);
         gen.begin();
         for(int i=0; i<numOfNode-1; i++) {
             gen.nextEvents();
         }
         gen.end();
 
-        Double[][] graphResult = DegreeCal(graph); // Calculate degrees
+        Double[][] graphResult = DegreeCal(preferentialAttachmentWithBernoulliGraph); // Calculate degrees
 //        AdjacencyCal(graph);
 
-        PlotChart(graphResult, graph);
+        PlotChart(graphResult, preferentialAttachmentWithBernoulliGraph);
 
 
         return graphResult;
@@ -159,22 +165,20 @@ public class FixedGraph {
         CSVReader csvReader = new CSVReader();
         String filePath;
         List<List<String>> networkData = null;
-        Graph graph = null;
+        realGraph = null;
         if (resource.equals("9_11 Graph")){
             filePath = "/Users/yangboyin/Downloads/CODE/ThirdYearProject/SecrecyVersusEfficiency/svse_tutorial/src/main/resources/9_11_HIJACKERS_ASSOCIATES.csv";
             networkData= csvReader.CSVReader(filePath);
-            graph = new DefaultGraph("9_11");
+            realGraph = new DefaultGraph("9_11");
         }else if (resource.equals("Suffragettes Inner Circle")){
             filePath = "/Users/yangboyin/Downloads/CODE/ThirdYearProject/SecrecyVersusEfficiency/svse_tutorial/src/main/resources/50_EPANKHURST_INNER_CIRCLE.csv";
             networkData= csvReader.CSVReader(filePath);
-            graph = new DefaultGraph("Suffragettes Inner Circle");
+            realGraph = new DefaultGraph("Suffragettes Inner Circle");
         }
 
 
-
-
-        graph.setStrict(false);
-        graph.setAutoCreate(true);
+        realGraph.setStrict(false);
+        realGraph.setAutoCreate(true);
 
         // iterate through the 2-dimensional array
         int lineNo = 0;
@@ -191,18 +195,18 @@ public class FixedGraph {
                     sb.append(node2);
                     String graphId = sb.toString();
 
-                    graph.addEdge(graphId,node1,node2);
+                    realGraph.addEdge(graphId,node1,node2);
                 }
                 columnNo++;
             }
             lineNo++;
         }
 
-        Double[][] graphResult = DegreeCal(graph); // Calculate degrees
+        Double[][] graphResult = DegreeCal(realGraph); // Calculate degrees
 //        AdjacencyCal(graph);
 
 
-        PlotChart(graphResult, graph);
+        PlotChart(graphResult, realGraph);
 
 
         return graphResult;
@@ -343,6 +347,28 @@ public class FixedGraph {
         System.out.println("index: " + i +", id: " + id);
     } // AdjacencyCal()
 
+    public Graph getBernoulliGraph() {
+        return bernoulliGraph;
+    }
 
+    public Graph getHighlyCentralisedGraph() {
+        return highlyCentralisedGraph;
+    }
+
+    public Graph getHighlyDecentralisedGraph() {
+        return highlyDecentralisedGraph;
+    }
+
+    public Graph getPreferentialAttachmentGraph() {
+        return preferentialAttachmentGraph;
+    }
+
+    public Graph getPreferentialAttachmentWithBernoulliGraph() {
+        return preferentialAttachmentWithBernoulliGraph;
+    }
+
+    public Graph getRealGraph() {
+        return realGraph;
+    }
 
 } // Controller.Network.FixedGraph class

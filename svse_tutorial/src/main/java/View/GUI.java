@@ -185,7 +185,7 @@ public class GUI  extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent event){
         if (event.getSource() == genProcessBtn){
             FixedGraph genGraph = new FixedGraph();
-//            CovertNetwork covNet = new CovertNetwork();
+            CovertNetwork covNet = new CovertNetwork();
             Double[][] graphResult = {};
 
             // decide which graph to display
@@ -200,16 +200,20 @@ public class GUI  extends JFrame implements ActionListener{
             }else if(genComboBox.getSelectedItem().toString().equals("Preferential Attachment with Bernoulli")){
                 graphResult = genGraph.PAB();
             }else if(genComboBox.getSelectedItem().toString().equals("Covert Network Model (based on betweenness)")){
-//                covNet.betweennessNet();
+                covNet.betweennessNet();
             }
 
-            genNodeNum.setText(""+graphResult[0][0]); // node number
-            genMaxDeg.setText(""+graphResult[1][0]); // max degree
-            genMinDeg.setText(""+graphResult[2][0]); // min degree
-            genAveDeg.setText(""+String.format("%.1f", graphResult[3][0])); // average degree
-            genMaxDia.setText(""+graphResult[4][0]); // All-pair shortest paths lengths.
-            genMaxBet.setText(""+graphResult[7][0]); // max betweenness
-            genMaxClo.setText(""+String.format("%.5f",graphResult[9][0]*1000)); // max closeness
+            if (!genComboBox.getSelectedItem().toString().equals("Covert Network Model (based on betweenness)")) {
+                genNodeNum.setText("" + graphResult[0][0]); // node number
+                genMaxDeg.setText("" + graphResult[1][0]); // max degree
+                genMinDeg.setText("" + graphResult[2][0]); // min degree
+                genAveDeg.setText("" + String.format("%.1f", graphResult[3][0])); // average degree
+                genMaxDia.setText("" + graphResult[4][0]); // All-pair shortest paths lengths.
+                genMaxBet.setText("" + graphResult[7][0]); // max betweenness
+                genMaxClo.setText("" + String.format("%.5f", graphResult[9][0] * 1000)); // max closeness
+
+            }
+
         } else if (event.getSource() == realProcessBtn){
             FixedGraph realGraph = new FixedGraph();
             Double[][] graphResult = realGraph.RG(realComboBox.getSelectedItem().toString());
