@@ -8,9 +8,11 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 
+import javax.swing.*;
+
 import static oracle.jrockit.jfr.events.Bits.intValue;
 
-public class DiameterLineChart extends ApplicationFrame {
+public class DiameterLineChart extends JFrame {
     private DefaultCategoryDataset dataSet = new DefaultCategoryDataset( );
 
     public DiameterLineChart(String applicationTitle , String chartTitle, Double[] allDiameters, Graph theGraph ) {
@@ -25,6 +27,7 @@ public class DiameterLineChart extends ApplicationFrame {
         ChartPanel chartPanel = new ChartPanel( lineChart );
         chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
         setContentPane( chartPanel );
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     private DefaultCategoryDataset createDataSet(Double[] allDia, Graph theGraph) {

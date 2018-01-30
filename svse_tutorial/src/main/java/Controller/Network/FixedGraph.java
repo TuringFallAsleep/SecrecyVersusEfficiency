@@ -10,9 +10,11 @@ import org.graphstream.algorithm.generator.RandomGenerator;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.DefaultGraph;
 import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.ui.view.Viewer;
 import org.jfree.ui.RefineryUtilities;
 
 
+import javax.swing.*;
 import java.util.*;
 
 public class FixedGraph {
@@ -214,6 +216,10 @@ public class FixedGraph {
 
 
     private void PlotChart(Double[][] graphResult, Graph graph){
+        // Plot the graph which can be closed independently
+        Viewer viewer = graph.display();
+        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+
         PlotBarChart(graphResult,graph);
         PlotNodeDegreeLineChart(graphResult,graph);
         PlotDiameterLineChart(graphResult,graph);
@@ -229,7 +235,7 @@ public class FixedGraph {
         lineChart.pack();
         RefineryUtilities.centerFrameOnScreen(lineChart);
         lineChart.setVisible(true);
-
+        lineChart.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
     }
 
     private void PlotDiameterLineChart(Double[][] graphResult, Graph graph){
@@ -241,7 +247,6 @@ public class FixedGraph {
         lineChart.pack();
         RefineryUtilities.centerFrameOnScreen(lineChart);
         lineChart.setVisible(true);
-
     }
 
     private void PlotBetweennessLineChart(Double[][] graphResult, Graph graph){
@@ -270,7 +275,8 @@ public class FixedGraph {
         chart.pack();
         RefineryUtilities.centerFrameOnScreen( chart );
 
-        graph.display();
+//        graph.display();
+
         chart.setVisible( true );
     }
 

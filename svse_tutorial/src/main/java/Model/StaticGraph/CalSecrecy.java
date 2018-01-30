@@ -97,7 +97,7 @@ public class CalSecrecy {
             isDestroyed(destroySize);
 
             secrecyCount++;
-            System.out.println("Secrecy: "+secrecyCount);
+//            System.out.println("Secrecy: "+secrecyCount);
         }
 
         return secrecyCount;
@@ -125,19 +125,19 @@ public class CalSecrecy {
             }
         }
 
-        System.out.println();
-        System.out.println("Key players: ");
-        for (int i=0; i<keyPlayersNum; i++){
-            System.out.print(keyPlayers[i].getId()+", ");
-        }
-        System.out.println();
+//        System.out.println();
+//        System.out.println("Key players: ");
+//        for (int i=0; i<keyPlayersNum; i++){
+//            System.out.print(keyPlayers[i].getId()+", ");
+//        }
+//        System.out.println();
 
-        System.out.println("Key players' betweenness: ");
-        for (int i=0; i<graphSize; i++){
-            if (nodeInfo[i].isKeyPlayer() && !nodeInfo[i].isRemoved())
-                System.out.print("ID: "+nodeInfo[i].getNode().getId()+"betweenness: "+nodeInfo[i].getBetweenness()+", ");
-        }
-        System.out.println();
+//        System.out.println("Key players' betweenness: ");
+//        for (int i=0; i<graphSize; i++){
+//            if (nodeInfo[i].isKeyPlayer() && !nodeInfo[i].isRemoved())
+//                System.out.print("ID: "+nodeInfo[i].getNode().getId()+"betweenness: "+nodeInfo[i].getBetweenness()+", ");
+//        }
+//        System.out.println();
 
         for (int i=0; i<graphSize; i++){
             nodeInfo[i].setShortestDistanceToClosestKeyPlayer(Double.MAX_VALUE);
@@ -153,13 +153,13 @@ public class CalSecrecy {
             }
         }
 
-        System.out.println("shortest distance: ");
-        for (int i=0; i<graphSize; i++){
-            if (!nodeInfo[i].isRemoved()) {
-                System.out.print(" ID: " + nodeInfo[i].getNode().getId() + " distance: " + nodeInfo[i].getShortestDistanceToClosestKeyPlayer() + ", ");
-            }
-        }
-        System.out.println();
+//        System.out.println("shortest distance: ");
+//        for (int i=0; i<graphSize; i++){
+//            if (!nodeInfo[i].isRemoved()) {
+//                System.out.print(" ID: " + nodeInfo[i].getNode().getId() + " distance: " + nodeInfo[i].getShortestDistanceToClosestKeyPlayer() + ", ");
+//            }
+//        }
+//        System.out.println();
     }
 
     private void setArrestProbability(Double step, Double lowest ){
@@ -170,24 +170,24 @@ public class CalSecrecy {
             }
         }
 
-        System.out.println("arrest probability: ");
-        for (int i=0; i<graphSize; i++){
-            if (!nodeInfo[i].isRemoved()){
-                System.out.print(" ID: "+nodeInfo[i].getNode().getId()+" prob: "+nodeInfo[i].getArrestProbability()+", ");
-            }
-        }
-        System.out.println();
+//        System.out.println("arrest probability: ");
+//        for (int i=0; i<graphSize; i++){
+//            if (!nodeInfo[i].isRemoved()){
+//                System.out.print(" ID: "+nodeInfo[i].getNode().getId()+" prob: "+nodeInfo[i].getArrestProbability()+", ");
+//            }
+//        }
+//        System.out.println();
     }
 
     private void sortProbability(){
         Arrays.sort(nodeInfo, new ProbabilityComparator());
-        System.out.println("sorted probability: ");
-        for (int i=0; i<graphSize; i++){
-            if (!nodeInfo[i].isRemoved()) {
-                System.out.print(" ID: " + nodeInfo[i].getNode().getId() + " prob: " + nodeInfo[i].getArrestProbability() + ", ");
-            }
-        }
-        System.out.println();
+//        System.out.println("sorted probability: ");
+//        for (int i=0; i<graphSize; i++){
+//            if (!nodeInfo[i].isRemoved()) {
+//                System.out.print(" ID: " + nodeInfo[i].getNode().getId() + " prob: " + nodeInfo[i].getArrestProbability() + ", ");
+//            }
+//        }
+//        System.out.println();
         Arrays.sort(nodeInfo, new NodeOrderComparator());
     }
 
@@ -197,7 +197,7 @@ public class CalSecrecy {
             if (!nodeInfo[i].isArrested() && nodeInfo[i].getArrestProbability() - random.nextDouble() >= 0 && !nodeInfo[i].isRemoved()){
                 // select the node
                 nodeInfo[i].setArrested(true);
-                System.out.println("Arrest node: "+nodeInfo[i].getNode().getId() + ", Prob: "+nodeInfo[i].getArrestProbability());
+//                System.out.println("Arrest node: "+nodeInfo[i].getNode().getId() + ", Prob: "+nodeInfo[i].getArrestProbability());
                 break;
             }
         }
@@ -226,22 +226,22 @@ public class CalSecrecy {
                 for (int i=0; i<graphSize; i++){
                     if (nodeInfo[i].getNode().equals(neighbour) && !nodeInfo[i].isRemoved()){
                         nodeInfo[i].setArrestProbability(nodeInfo[i].getArrestProbability()+arrestProbabilitySteps);
-                        System.out.println("neighbour: "+nodeInfo[i].getNode().getId()+", probability: "+nodeInfo[i].getArrestProbability());
+//                        System.out.println("neighbour: "+nodeInfo[i].getNode().getId()+", probability: "+nodeInfo[i].getArrestProbability());
                     }
                 }
             }
         }else {
-            System.out.println("no neighbour");
+//            System.out.println("no neighbour");
         }
 
-        System.out.println("new probability: ");
-        for (int i=0; i<graphSize; i++){
-//            if (nodeInfo[i].isArrested()){
-            if (!nodeInfo[i].isRemoved()){
-                System.out.print(" ID: "+nodeInfo[i].getNode().getId()+" prob: "+nodeInfo[i].getArrestProbability()+", ");
-            }
-        }
-        System.out.println();
+//        System.out.println("new probability: ");
+//        for (int i=0; i<graphSize; i++){
+////            if (nodeInfo[i].isArrested()){
+//            if (!nodeInfo[i].isRemoved()){
+//                System.out.print(" ID: "+nodeInfo[i].getNode().getId()+" prob: "+nodeInfo[i].getArrestProbability()+", ");
+//            }
+//        }
+//        System.out.println();
     }
 
 
@@ -250,7 +250,7 @@ public class CalSecrecy {
             if (nodeInfo[i].isArrested() && !nodeInfo[i].isRemoved()){
                 theGraph.removeNode(nodeInfo[i].getNode());
                 nodeInfo[i].setRemoved(true);
-                System.out.println("Remove node: "+ nodeInfo[i].getNode().getId());
+//                System.out.println("Remove node: "+ nodeInfo[i].getNode().getId());
             }
 
         }
@@ -261,8 +261,8 @@ public class CalSecrecy {
         ConnectedComponents cc = new ConnectedComponents();
         cc.init(theGraph);
 //        isDestroyed = isKVertexConnected(theGraph, destroySize);
-        System.out.println(cc.getConnectedComponentsCount(destroySize+1) + " component(s) with size larger than "+(destroySize+1) + ". ");
-        System.out.println(cc.getConnectedComponentsCount(0,3) + " component(s) with size less than " + destroySize + ". ");
+//        System.out.println(cc.getConnectedComponentsCount(destroySize+1) + " component(s) with size larger than "+(destroySize+1) + ". ");
+//        System.out.println(cc.getConnectedComponentsCount(0,3) + " component(s) with size less than " + destroySize + ". ");
         if (cc.getConnectedComponentsCount(destroySize+1)>0){
             isDestroyed = false;
         }else {
