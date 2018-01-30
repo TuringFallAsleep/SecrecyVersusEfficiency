@@ -131,6 +131,7 @@ public class GUI  extends JFrame implements ActionListener{
         realComboBox.setBounds(10,10, 80, 25);
         realComboBox.addItem("9_11 Graph");
         realComboBox.addItem("Suffragettes Inner Circle");
+        realComboBox.addItem("Add file from this computer...");
         realInfoPanel.add(realComboBox);
         realComboBox.addActionListener(this);
 
@@ -178,7 +179,7 @@ public class GUI  extends JFrame implements ActionListener{
 
         setVisible(true);
 
-        setDefaultCloseOperation(EXIT_ON_CLOSE);  // EXIT_ON_CLOSE, DISPOSE_ON_CLOSE
+        frame.setDefaultCloseOperation(HIDE_ON_CLOSE);  // EXIT_ON_CLOSE, DISPOSE_ON_CLOSE
         pack();
     } // createGui
 
@@ -216,15 +217,21 @@ public class GUI  extends JFrame implements ActionListener{
 
         } else if (event.getSource() == realProcessBtn){
             FixedGraph realGraph = new FixedGraph();
-            Double[][] graphResult = realGraph.RG(realComboBox.getSelectedItem().toString());
+            if (realComboBox.getSelectedItem().toString().equals("Add file from this computer...")){
+                System.out.println("Read from file");
+            } else {
+                Double[][] graphResult = realGraph.RG(realComboBox.getSelectedItem().toString());
+                realNodeNum.setText(""+graphResult[0][0]); // node number
+                realMaxDeg.setText(""+graphResult[1][0]); // max degree
+                realMinDeg.setText(""+graphResult[2][0]); // min degree
+                realAveDeg.setText(""+String.format("%.1f", graphResult[3][0])); // average degree
+                realMaxDia.setText(""+graphResult[4][0]); // All-pair shortest paths lengths.
+                realMaxBet.setText(""+String.format("%.1f",graphResult[7][0])); // max betweenness
+                realMaxClo.setText(""+String.format("%.5f",graphResult[9][0]*1000)); // max closeness
+            }
 
-            realNodeNum.setText(""+graphResult[0][0]); // node number
-            realMaxDeg.setText(""+graphResult[1][0]); // max degree
-            realMinDeg.setText(""+graphResult[2][0]); // min degree
-            realAveDeg.setText(""+String.format("%.1f", graphResult[3][0])); // average degree
-            realMaxDia.setText(""+graphResult[4][0]); // All-pair shortest paths lengths.
-            realMaxBet.setText(""+String.format("%.1f",graphResult[7][0])); // max betweenness
-            realMaxClo.setText(""+String.format("%.5f",graphResult[9][0]*1000)); // max closeness
+
+
         }
 
 

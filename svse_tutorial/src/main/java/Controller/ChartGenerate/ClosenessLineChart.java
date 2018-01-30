@@ -8,9 +8,11 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 
+import javax.swing.*;
+
 import static oracle.jrockit.jfr.events.Bits.intValue;
 
-public class ClosenessLineChart extends ApplicationFrame {
+public class ClosenessLineChart extends JFrame {
     private DefaultCategoryDataset dataSet = new DefaultCategoryDataset( );
 
 
@@ -26,6 +28,7 @@ public class ClosenessLineChart extends ApplicationFrame {
         ChartPanel chartPanel = new ChartPanel( lineChart );
         chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
         setContentPane( chartPanel );
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     private DefaultCategoryDataset createDataSet(Double[] allClo, Graph theGraph) {
