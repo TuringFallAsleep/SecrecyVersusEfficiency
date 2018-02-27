@@ -1,0 +1,13 @@
+node {
+        fill-color: grey;
+        size: 10px;
+        stroke-mode: plain;
+        stroke-color: black;
+        stroke-width: 1px;
+    }
+node.important {
+        fill-color: red;
+    }
+node.big {
+        size: 15px;
+    }

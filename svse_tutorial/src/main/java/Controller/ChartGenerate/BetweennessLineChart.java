@@ -20,7 +20,7 @@ public class BetweennessLineChart extends JFrame {
         super(applicationTitle);
         JFreeChart lineChart = ChartFactory.createLineChart(
                 chartTitle,
-                "Node No.","Betweeness",
+                "Single Node's Betweenness","Number of Nodes",
                 createDataSet(allBetweenness, theGraph),
                 PlotOrientation.VERTICAL,
                 true,true,false);
@@ -31,10 +31,48 @@ public class BetweennessLineChart extends JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
+
+    int rangeSumValue = 0;
+    double segment = 0.05;
+    int j = 0;
     private DefaultCategoryDataset createDataSet(Double[] allBet, Graph theGraph) {
-        for (int i=0; i< allBet.length; i++){
-            dataSet.addValue(intValue(allBet[i]),theGraph.getId(), ""+i);
+        // find betMax
+        int betMax = 0;
+        for (int i=0; i<allBet.length;i++){
+            if (betMax<allBet[i]){
+                betMax = intValue(allBet[i]);
+            }
         }
+
+        if (betMax>1000)
+            segment = 0.07;
+        else if (betMax>2000)
+            segment = 0.1;
+
+        int[] numOfNodeWithDiffBet = new int[betMax+1];
+        for (int i=0; i<allBet.length;i++){
+            numOfNodeWithDiffBet[intValue(allBet[i])]++;
+        }
+
+        for (int i=0; i<numOfNodeWithDiffBet.length; i++){
+            if (numOfNodeWithDiffBet.length<1.0/segment){
+                dataSet.addValue(numOfNodeWithDiffBet[i],"Graph"+theGraph.getId()+" with "+theGraph.getNodeCount()+" nodes",""+i);
+            }else {
+                if (j<numOfNodeWithDiffBet.length*segment){
+                    rangeSumValue += numOfNodeWithDiffBet[i];
+                    j++;
+                    if (i == numOfNodeWithDiffBet.length-1){
+                        dataSet.addValue(rangeSumValue,"Graph"+theGraph.getId()+" with "+theGraph.getNodeCount()+" nodes",""+i);
+                        rangeSumValue = 0;
+                    }
+                }else {
+                    dataSet.addValue(rangeSumValue,"Graph"+theGraph.getId()+" with "+theGraph.getNodeCount()+" nodes",""+i);
+                    j = 0;
+                    rangeSumValue = 0;
+                }
+            }
+        }
+
         return dataSet;
     }
 }// class BetweennessLineChart

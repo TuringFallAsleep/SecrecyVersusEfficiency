@@ -21,6 +21,8 @@ public class Tutorial {
 
         //test jFreeChart
 
+        System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
+
 
 
 
