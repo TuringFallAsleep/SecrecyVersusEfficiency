@@ -41,7 +41,12 @@ public class CalEfficiency {
         removed.clear();
 
         // 1. Select a node, give it a piece of message
+//        do{
         selectedNode = SelectNode();
+//        }while (graph.getNode(selectedNode).getDegree()==0);
+        if (graph.getNode(selectedNode).getDegree()==0){
+            pass = pass + 10000;
+        }
         // 2. Pass the message to its neighbour, pass time++
         LinkedList<Integer> toVisit = new LinkedList<Integer>();
         toVisit.add(selectedNode);
@@ -142,7 +147,7 @@ public class CalEfficiency {
         for (Node n:graph.getEachNode()){
             n.addAttribute("ui.class", "important");
         }
-        graph.getNode(0).addAttribute("ui.style", "size: 15px;");
+        graph.getNode(0).addAttribute("ui.style.css", "size: 15px;");
         graph.getNode(2).addAttribute("ui.hide");
         graph.getNode(2).getEdgeBetween(0).addAttribute("ui.hide");
         graph.getNode(3).addAttribute("ui.class", "important");

@@ -6,7 +6,6 @@ import Controller.Network.FixedGraph;
 import Controller.Network.RealGraph;
 import Model.StaticGraph.GraphInfo;
 import org.graphstream.graph.Graph;
-import org.graphstream.ui.graphicGraph.GraphicGraph;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -169,6 +168,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
 
     private JFileChooser cov_fileChooser = new JFileChooser();
     private File cov_file;
+    private Boolean cov_added_file = false;
 
 
 
@@ -252,7 +252,6 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
         cov_comboBox_initial_graph.addItem("Bernoulli");
         cov_comboBox_initial_graph.addItem("Preferential Attachment");
         cov_comboBox_initial_graph.addItem("Preferential Attachment with Bernoulli");
-        cov_comboBox_initial_graph.addItem("Covert Network Model (based on betweenness)");
         cov_comboBox_initial_graph.addItem("Add from file...");
 
         cov_slider_node_number.setMajorTickSpacing(5);
@@ -825,7 +824,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
 
 
             if (imp_textField_hours_per_pass.getText().equals("")){
-                hoursPerPass = 0.0;
+                hoursPerPass = 1.0;
             }else {
                 hoursPerPass = Double.parseDouble(imp_textField_hours_per_pass.getText());
                 try {
@@ -837,7 +836,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
             }
 
             if (imp_textField_key_players_number.getText().equals("")){
-                keyPlayerNumber = 1;
+                keyPlayerNumber = 2;
             }else {
                 keyPlayerNumber = Integer.parseInt(imp_textField_key_players_number.getText());
                 try {
@@ -849,7 +848,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
             }
 
             if (imp_textField_segment_size.getText().equals("")){
-                maxSegmentSize = 1;
+                maxSegmentSize = 3;
             } else {
                 maxSegmentSize = Integer.parseInt(imp_textField_segment_size.getText());
                 try {
@@ -861,7 +860,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
             }
 
             if (imp_textField_arrest_probability_key_players.getText().equals("") || imp_textField_arrest_probability_key_players.getText().equals("%")){
-                keyPlayerArrestProbability = 0.0;
+                keyPlayerArrestProbability = 100.0;
             } else {
                 keyPlayerArrestProbability = Double.parseDouble(imp_textField_arrest_probability_key_players.getText());
                 try{
@@ -873,7 +872,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
             }
 
             if (imp_textField_step.getText().equals("") || imp_textField_step.getText().equals("%")){
-                arrestProbabilityStep = 0.0;
+                arrestProbabilityStep = 10.0;
             } else {
                 arrestProbabilityStep = Double.parseDouble(imp_textField_step.getText());
                 try{
@@ -894,8 +893,12 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
 
         }else // Imported graph ends
 
+
             // Covert network starts
-        if (cov_comboBox_initial_graph.getSelectedItem().equals("Add from file...")){ // Get imported graph
+        if (cov_comboBox_initial_graph.getSelectedItem().equals("Add from file...") && !cov_added_file ){ // Get imported graph
+
+            System.out.println("add file");
+            cov_added_file = true;
 
             int returnVal = cov_fileChooser.showOpenDialog(this);
 
@@ -903,7 +906,9 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                 cov_file = cov_fileChooser.getSelectedFile();
                 System.out.println(cov_file);
             }
-        }else if (event.getSource().equals(cov_button_ok)){
+        }
+
+        if (event.getSource().equals(cov_button_ok)){
 
             Double hoursPerPass;
             Integer keyPlayerNumber;
@@ -918,7 +923,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
 
             // covert network
             if (cov_textField_hours_per_pass.getText().equals("")){
-                hoursPerPass = 0.0;
+                hoursPerPass = 1.0;
             }else {
                 hoursPerPass = Double.parseDouble(cov_textField_hours_per_pass.getText());
                 try {
@@ -930,7 +935,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
             }
 
             if (cov_textField_key_players_number.getText().equals("")){
-                keyPlayerNumber = 1;
+                keyPlayerNumber = 2;
             }else {
                 keyPlayerNumber = Integer.parseInt(cov_textField_key_players_number.getText());
                 try {
@@ -942,7 +947,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
             }
 
             if (cov_textField_segment_size.getText().equals("")){
-                maxSegmentSize = 1;
+                maxSegmentSize = 5;
             } else {
                 maxSegmentSize = Integer.parseInt(cov_textField_segment_size.getText());
                 try {
@@ -954,7 +959,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
             }
 
             if (cov_textField_arrest_probability_key_players.getText().equals("") || cov_textField_arrest_probability_key_players.getText().equals("%")){
-                keyPlayerArrestProbability = 0.0;
+                keyPlayerArrestProbability = 100.0;
             } else {
                 keyPlayerArrestProbability = Double.parseDouble(cov_textField_arrest_probability_key_players.getText());
                 try{
@@ -966,7 +971,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
             }
 
             if (cov_textField_step.getText().equals("") || cov_textField_step.getText().equals("%")){
-                arrestProbabilityStep = 0.0;
+                arrestProbabilityStep = 10.0;
             } else {
                 arrestProbabilityStep = Double.parseDouble(cov_textField_step.getText());
                 try{
@@ -980,9 +985,10 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
             stepIncreaseMethod = cov_comboBox_step_increase.getSelectedItem().toString();
 
             if (cov_comboBox_initial_graph.getSelectedItem().toString().equals("Add from file...")){
-//                initialGraph = covertNetwork.initialImpGraph(cov_file);
-//                covertNetwork.buildCovertNetwork( cov_comboBox_algorithm.getSelectedItem().toString(), cov_slider_balance.getValue(), cov_comboBox_define_key_players_by.getSelectedItem().toString(),keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
-
+                System.out.println("initial");
+                initialGraph = covertNetwork.initialImpGraph(cov_file);
+                covertNetwork.buildCovertNetwork( initialGraph, cov_comboBox_algorithm.getSelectedItem().toString(), cov_slider_balance.getValue(), cov_comboBox_define_key_players_by.getSelectedItem().toString(),keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
+                cov_added_file = false;
             }else {
 //                initialGraph = covertNetwork.initialGenGraph("Preferential Attachment with Bernoulli",30);
 //                covertNetwork.buildCovertNetwork(initialGraph,"Accurate method", 0, "Betweenness",5,5,100.0,10.0,"None");
@@ -1015,285 +1021,6 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
         }
 
     }
-
-
-
-////      Old version
-//    private String networkType = new String();
-//    private int nodeNum;
-//    private TextField textField = new TextField ();
-//
-//    private JLabel genNodeNum = new JLabel();
-//    private JLabel genMaxDeg = new JLabel();
-//    private JLabel genMinDeg = new JLabel();
-//    private JLabel genAveDeg = new JLabel();
-//    private JLabel genMaxDia = new JLabel(); // max diameter
-//    private JLabel genMaxBet = new JLabel(); // max betweenness
-//    private JLabel genMaxClo = new JLabel(); // max closeness
-//    private JLabel genSercey = new JLabel();
-//
-//    private JLabel realNodeNum = new JLabel();
-//    private JLabel realMaxDeg = new JLabel();
-//    private JLabel realMinDeg = new JLabel();
-//    private JLabel realAveDeg = new JLabel();
-//    private JLabel realMaxDia = new JLabel(); // max diameter
-//    private JLabel realMaxBet = new JLabel(); // max betweenness
-//    private JLabel realMaxClo = new JLabel(); // max closeness
-//    private JLabel realSecrecy = new JLabel();
-//
-//    private JComboBox genComboBox = new JComboBox();
-//    private JComboBox realComboBox = new JComboBox();
-//
-//    private JComboBox networkTypeCombobox = new JComboBox();
-//
-//    private JButton genProcessBtn = new JButton("OK");
-//    private JButton realProcessBtn = new JButton("OK");
-//
-//
-//
-//    public  GUI(){
-//
-//
-//
-//        JFrame frame = new JFrame();
-//
-//        JPanel genInfoPanel = new JPanel();
-//        JPanel genDataPanel = new JPanel();
-//        final JPanel genNodeNumPanel = new JPanel();
-//        JPanel genBtnPanel = new JPanel();
-//
-//        JPanel realInfoPanel = new JPanel();
-//        JPanel realDataPanel = new JPanel();
-//        JPanel realBtnPanel = new JPanel();
-//
-//        Dimension d = new Dimension(15,10);
-//
-//
-//
-//        frame.setTitle("Secrecy VS Efficiency");
-//        frame.setSize(800,500);
-//
-//        Container container = getContentPane();
-//        container.setLayout(new GridLayout(1,1,20,10));
-//
-//        final JPanel graphPanel = new JPanel();
-//        container.add(graphPanel);
-//        graphPanel.setLayout(new GridLayout(0,1));
-//
-//        JPanel realPanel = new JPanel();
-//        container.add(realPanel);
-//        realPanel.setLayout(new GridLayout(0,1));
-//
-////        HBox hBox = new HBox();
-////        hBox.
-//
-//        /*Set up Generated Graph*/
-//        networkTypeCombobox.addItem("Generated Network");
-//        networkTypeCombobox.addItem("Real Network");
-//        networkTypeCombobox.addItemListener(new ItemListener() {
-//            @Override
-//            public void itemStateChanged(ItemEvent e) {
-//                if (e.getStateChange() == ItemEvent.SELECTED){
-//                    networkType = e.getItem().toString();
-//
-//                    System.out.println(networkType);
-//
-//                    if (networkType.equals("Real Network")){
-//                        genNodeNumPanel.setVisible(true);
-//                        nodeNum = Integer.parseInt(textField.getText());
-//                    }else{
-//                        genNodeNumPanel.setVisible(false);
-//                    }
-//                }
-//            }
-//        });
-//
-//
-//        graphPanel.add(networkTypeCombobox);
-////        System.out.println("Network type: "+networkTypeCombobox.getSelectedItem());
-//
-//        graphPanel.add(genNodeNumPanel);
-//        genNodeNumPanel.setLayout(new GridLayout(1,2,0,0));
-//        genNodeNumPanel.add(new JLabel("Node number: "));
-//        textField.setText("14");
-//        genNodeNumPanel.add(textField);
-//        genNodeNumPanel.setVisible(false);
-//
-//
-//            /*Generated Graph Info*/
-//            graphPanel.add(genInfoPanel);
-//            genInfoPanel.setLayout(new GridLayout(0,1,5, 5));
-//
-//            genInfoPanel.add(new JLabel("Generated Graph"));
-//
-//            genComboBox.setBounds(10,10, 80, 25);
-//            genComboBox.addItem("Highly Centralised");
-//            genComboBox.addItem("Highly Decentralised");
-//            genComboBox.addItem("Bernoulli");
-//            genComboBox.addItem("Preferential Attachment");
-//            genComboBox.addItem("Preferential Attachment with Bernoulli");
-//            genComboBox.addItem("Covert Network Model (based on betweenness)");
-//            genInfoPanel.add(genComboBox);
-//            genComboBox.addActionListener(this);
-//
-//        /*Generated Graph Data*/
-//            graphPanel.add(genDataPanel);
-//            genDataPanel.setLayout(new GridLayout(0,2,10,20));
-//            genNodeNum.setText("");
-//            genMaxDeg.setText("");
-//            genMinDeg.setText("");
-//            genAveDeg.setText("");
-//            genMaxDia.setText("");
-//            genMaxBet.setText("");
-//            genMaxClo.setText("");
-//            genSercey.setText("");
-//
-//            genDataPanel.add(new JLabel("Node number: "));
-//            genDataPanel.add(genNodeNum);
-//            genDataPanel.add(new JLabel("Max degree: "));
-//            genDataPanel.add(genMaxDeg);
-//            genDataPanel.add(new JLabel("Min degree: "));
-//            genDataPanel.add(genMinDeg);
-//            genDataPanel.add(new JLabel("Ave degree: "));
-//            genDataPanel.add(genAveDeg);
-//            genDataPanel.add(new JLabel("Max diameter: "));
-//            genDataPanel.add(genMaxDia);
-//            genDataPanel.add(new JLabel("Max betweenness: "));
-//            genDataPanel.add(genMaxBet);
-//            genDataPanel.add(new JLabel("Max closeness(*1000): "));
-//            genDataPanel.add(genMaxClo);
-//            genDataPanel.add(new JLabel("Secrecy: "));
-//
-//
-//        /*Generated Graph Btn*/
-//            graphPanel.add(genBtnPanel);
-//            genBtnPanel.setLayout(new GridLayout(0,1,10,20));
-//            genProcessBtn.setPreferredSize(d);
-//            genBtnPanel.add(new JLabel(""));
-//            genBtnPanel.add(genProcessBtn);
-//            genBtnPanel.add(new JLabel(""));
-//            genProcessBtn.addActionListener(this);
-//
-//
-//        /*Set up Real Graph*/
-//
-//        /*Real Graph Info*/
-//            realPanel.add(realInfoPanel);
-//            realInfoPanel.setLayout(new GridLayout(0,1, 5, 5));
-//            realInfoPanel.add(new JLabel("Real Graph"));
-//
-//            realComboBox.setBounds(10,10, 80, 25);
-//            realComboBox.addItem("9_11 Graph");
-//            realComboBox.addItem("Suffragettes Inner Circle");
-//            realComboBox.addItem("Add file from this computer...");
-//            realInfoPanel.add(realComboBox);
-//            realComboBox.addActionListener(this);
-//
-//
-//        /*Real Graph Data*/
-//            realPanel.add(realDataPanel);
-//            realDataPanel.setLayout(new GridLayout(0,2,10,20));
-//            realNodeNum.setText("");
-//            realMaxDeg.setText("");
-//            realMinDeg.setText("");
-//            realAveDeg.setText("");
-//            realMaxDia.setText("");
-//            realMaxBet.setText("");
-//            realMaxClo.setText("");
-//            realSecrecy.setText("");
-//
-//
-//            realDataPanel.add(new JLabel("Node number: "));
-//            realDataPanel.add(realNodeNum);
-//            realDataPanel.add(new JLabel("Max degree: "));
-//            realDataPanel.add(realMaxDeg);
-//            realDataPanel.add(new JLabel("Min degree: "));
-//            realDataPanel.add(realMinDeg);
-//            realDataPanel.add(new JLabel("Ave degree: "));
-//            realDataPanel.add(realAveDeg);
-//            realDataPanel.add(new JLabel("Max distance: "));
-//            realDataPanel.add(realMaxDia);
-//            realDataPanel.add(new JLabel("Max betweenness: "));
-//            realDataPanel.add(realMaxBet);
-//            realDataPanel.add(new JLabel("Max closeness(*1000): "));
-//            realDataPanel.add(realMaxClo);
-//            realDataPanel.add(new JLabel("Secrecy"));
-//            realDataPanel.add(realSecrecy);
-//
-//
-//        /*Real Graph Btn*/
-//            realPanel.add(realBtnPanel);
-//            realBtnPanel.setLayout(new GridLayout(0,1,10,20));
-//            realProcessBtn.setPreferredSize(d);
-//            realBtnPanel.add(new JLabel(""));
-//            realBtnPanel.add(realProcessBtn);
-//            realBtnPanel.add(new JLabel(""));
-//
-//            realProcessBtn.addActionListener(this);
-//
-//            setVisible(true);
-//
-//
-//
-//        frame.setDefaultCloseOperation(HIDE_ON_CLOSE);  // EXIT_ON_CLOSE, DISPOSE_ON_CLOSE
-//        pack();
-//    } // createGui
-//
-//
-//    public void actionPerformed(ActionEvent event){
-//        if (event.getSource() == genProcessBtn){
-//            FixedGraph genGraph = new FixedGraph();
-//            CovertNetwork covNet = new CovertNetwork();
-//            Double[][] graphResult = {};
-//
-//            // decide which graph to display
-//            if (genComboBox.getSelectedItem().toString().equals("Highly Centralised")){
-//                graphResult = genGraph.HighlyCentralised();
-//            }else if(genComboBox.getSelectedItem().toString().equals("Highly Decentralised")){
-//                graphResult = genGraph.HighlyDecentralised();
-//            }else if (genComboBox.getSelectedItem().toString().equals("Bernoulli")){
-//                graphResult = genGraph.B();
-//            }else if(genComboBox.getSelectedItem().toString().equals("Preferential Attachment")){
-//                graphResult = genGraph.PA();
-//            }else if(genComboBox.getSelectedItem().toString().equals("Preferential Attachment with Bernoulli")){
-//                graphResult = genGraph.PAB();
-//            }else if(genComboBox.getSelectedItem().toString().equals("Covert Network Model (based on betweenness)")){
-//                covNet.betweennessNet();
-//            }
-//
-//            if (!genComboBox.getSelectedItem().toString().equals("Covert Network Model (based on betweenness)")) {
-//                genNodeNum.setText("" + graphResult[0][0]); // node number
-//                genMaxDeg.setText("" + graphResult[1][0]); // max degree
-//                genMinDeg.setText("" + graphResult[2][0]); // min degree
-//                genAveDeg.setText("" + String.format("%.1f", graphResult[3][0])); // average degree
-//                genMaxDia.setText("" + graphResult[4][0]); // All-pair shortest paths lengths.
-//                genMaxBet.setText("" + graphResult[7][0]); // max betweenness
-//                genMaxClo.setText("" + String.format("%.5f", graphResult[9][0] * 1000)); // max closeness
-//
-//            }
-//
-//        } else if (event.getSource() == realProcessBtn){
-//            FixedGraph realGraph = new FixedGraph();
-//            if (realComboBox.getSelectedItem().toString().equals("Add file from this computer...")){
-//                System.out.println("Read from file");
-//            } else {
-//                Double[][] graphResult = realGraph.RG(realComboBox.getSelectedItem().toString());
-//                realNodeNum.setText(""+graphResult[0][0]); // node number
-//                realMaxDeg.setText(""+graphResult[1][0]); // max degree
-//                realMinDeg.setText(""+graphResult[2][0]); // min degree
-//                realAveDeg.setText(""+String.format("%.1f", graphResult[3][0])); // average degree
-//                realMaxDia.setText(""+graphResult[4][0]); // All-pair shortest paths lengths.
-//                realMaxBet.setText(""+String.format("%.1f",graphResult[7][0])); // max betweenness
-//                realMaxClo.setText(""+String.format("%.5f",graphResult[9][0]*1000)); // max closeness
-//            }
-//
-//
-//
-//        }
-//
-//
-//    } // actionPerformed
-
 
 
 } // View.GUI class

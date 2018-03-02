@@ -8,6 +8,7 @@ import org.graphstream.algorithm.Dijkstra;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.Graphs;
+import org.graphstream.stream.sync.SourceTime;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -74,9 +75,11 @@ public class CalSecrecy {
 
         while (!isDestroyed(destroySize)){
             // Step 1: find key players
+//            System.out.println("1");
             findKeyPlayers(keyPlayersNumber, findKeyPlayerBy);
 
 
+//            System.out.println("2");
             // Step 2.1: calculate the distance from every node to the closest key players
             calDistanceToClosestKeyPlayer();
 
@@ -84,7 +87,7 @@ public class CalSecrecy {
             setArrestProbability(arrestProbabilityStep, keyPlayerArrestProbability,stepIncreaseMethod);
 
 
-
+//            System.out.println("3");
             // Step 3.1: sort the probability from high to low
             sortProbability();
 
@@ -92,9 +95,11 @@ public class CalSecrecy {
             selectNodeToRemove();
 
 
+//            System.out.println("4");
             // Step 4: find the selected node's neighbours and increase their arrested probability
             increaseArrestedNodeNeighbourArrestProbability();
 
+//            System.out.println("5");
             // Step 5: remove the arrested node
             removeArrestedNode();
 

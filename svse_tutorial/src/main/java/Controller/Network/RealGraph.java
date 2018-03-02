@@ -11,6 +11,7 @@ import org.graphstream.algorithm.generator.Generator;
 import org.graphstream.algorithm.generator.RandomGenerator;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.DefaultGraph;
+import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;
 import org.jfree.ui.RefineryUtilities;
@@ -42,7 +43,7 @@ public class RealGraph {
 
             // read the file
         networkData= csvReader.CSVReader(filePath);
-        realGraph = new DefaultGraph(theFile.getName());
+        realGraph = new DefaultGraph(theFile.getName()); //
 
 
         realGraph.setStrict(false);
