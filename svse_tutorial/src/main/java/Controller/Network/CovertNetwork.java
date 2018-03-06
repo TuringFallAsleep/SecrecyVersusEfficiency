@@ -536,7 +536,7 @@ public class CovertNetwork {
 //        for (Edge e : resultGraph.getEachEdge()){
 //            System.out.println("Final result, index: "+e.getIndex()+", Edge ID: "+ e.getId() + ", Node0 = "+ e.getNode0()+ ", Node1 = "+ e.getNode1());
 //        }
-        resultGraph.addAttribute("ui.stylesheet","url('./style.css')");
+        resultGraph.addAttribute("ui.stylesheet","url('./efficiency.css')");
 
 
 

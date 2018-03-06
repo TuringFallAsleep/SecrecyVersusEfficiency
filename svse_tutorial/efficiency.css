@@ -1,0 +1,20 @@
+node {
+        fill-color: black;
+        size: 10px;
+        stroke-mode: plain;
+        stroke-color: black;
+        stroke-width: 1px;
+    }
+node.selected {
+        fill-color: red;
+        size: 15px;
+    }
+node.neighbour {
+        fill-color: yellow;
+        size: 10px;
+    }
+
+node.received {
+        fill-color: green;
+        size: 10px;
+    }

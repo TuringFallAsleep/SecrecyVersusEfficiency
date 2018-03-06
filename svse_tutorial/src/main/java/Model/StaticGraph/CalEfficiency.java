@@ -3,6 +3,7 @@ package Model.StaticGraph;
 import Model.NodeInformation.NodeInfo;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
+import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;
 
 import java.util.HashSet;
@@ -16,16 +17,12 @@ public class CalEfficiency {
     private int graphSize;
     private NodeInfo[] nodeInfo;
     private Graph theGraph;
+    private int layerEnd;
 
 
     HashSet<Integer> removed = new HashSet<Integer>();
 
     public Double DeliverMessage(Graph graph, Double hoursPerPass,Boolean displayEfficiencyProgress){
-
-        if (displayEfficiencyProgress){
-            efficiencyProgress(graph);
-            // todo dynamic graph
-        }
 
         int selectedNode;
         theGraph = graph;
@@ -40,18 +37,29 @@ public class CalEfficiency {
 
         removed.clear();
 
+
+        if (displayEfficiencyProgress){
+            theGraph.addAttribute("ui.stylesheet", "url('./efficiency.css')");
+
+            Viewer viewer = theGraph.display();
+            viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+            // todo dynamic graph
+
+        }
+
         // 1. Select a node, give it a piece of message
-//        do{
-        selectedNode = SelectNode();
-//        }while (graph.getNode(selectedNode).getDegree()==0);
-        if (graph.getNode(selectedNode).getDegree()==0){
+        selectedNode = SelectNode(displayEfficiencyProgress);
+        theGraph.getNode(selectedNode).addAttribute("ui.class", "selected");
+        sleep();
+        if (theGraph.getNode(selectedNode).getDegree()==0){
             pass = pass + 10000;
         }
         // 2. Pass the message to its neighbour, pass time++
         LinkedList<Integer> toVisit = new LinkedList<Integer>();
         toVisit.add(selectedNode);
         if (!toVisit.isEmpty()){
-            PassMessage(toVisit);
+            layerEnd = selectedNode;
+            PassMessage(toVisit, displayEfficiencyProgress);
         }
 
         // 3. Do 2. until all nodes receive that message, calculate the time
@@ -59,7 +67,7 @@ public class CalEfficiency {
         // check whether all nodes received the message
 
         efficiency = pass * hoursPerPass;
-//        System.out.println("All nodes received message, which cost "+efficiency+" hours");
+        System.out.println("All nodes received message, which cost "+efficiency+" hours");
 
 
 
@@ -67,7 +75,12 @@ public class CalEfficiency {
     }
 
 
-    private int SelectNode() {
+    private int SelectNode(Boolean displayEfficiencyProgress) {
+
+        if (displayEfficiencyProgress){
+            sleep();
+        }
+
         for (int i=0; i<graphSize; i++){
             nodeInfo[i] = new NodeInfo();
             nodeInfo[i].init();
@@ -92,69 +105,144 @@ public class CalEfficiency {
         return randomNum;
     }
 
-    private void PassMessage(LinkedList<Integer> toVisit) {
-        int selectedNode = toVisit.poll();
-        int isolatedSize = 0;
-        Iterator<Node> neighbour = nodeInfo[selectedNode].getNode().getNeighborNodeIterator();
+    private void PassMessage(LinkedList<Integer> toVisit, Boolean displayEfficiencyProgress) {
+
+        Boolean allReceived = true;
+        for (NodeInfo n : nodeInfo){
+            if (n.getReceivedMessage()==false){
+                allReceived = false;
+            }
+        }
+
+        if (allReceived==false){
+            Boolean oneLayerFinish = false;
+
+//            System.out.print("toVisit: ");
+//            for (int i : toVisit){
+//                System.out.print(i+", ");
+//            }
+//            System.out.println("");
+
+            Iterator<Node> findLayerLast = nodeInfo[toVisit.getFirst()].getNode().getNeighborNodeIterator();
+
+            if (layerEnd == toVisit.getFirst()){
+                pass++;
+//                System.out.println("Pass = "+pass);
+//                System.out.println("In if(): layerEnd = "+layerEnd+", toVisit.getFirst() = "+toVisit.getFirst());
+                while (findLayerLast.hasNext()){
+                    Node next = findLayerLast.next();
+                    if (nodeInfo[next.getIndex()].getReceivedMessage() == false){
+                        layerEnd = next.getIndex();
+//                        System.out.println("In while: layerEnd = "+layerEnd);
+                        oneLayerFinish = true;
+                    }else {
+//                        System.out.println("Node "+next.getIndex()+" has been visited.");
+                    }
+
+
+                }
+//                System.out.println("After while: layerEnd = "+layerEnd);
+//                System.out.println("Added node: "+toVisit.getFirst()+", Sleep");
+                if (displayEfficiencyProgress && layerEnd == toVisit.getFirst()){
+                    sleep();
+                }
+
+            }
+
+            int selectedNode = toVisit.poll();
+            int isolatedSize = 0;
+            Iterator<Node> neighbour = nodeInfo[selectedNode].getNode().getNeighborNodeIterator();
 //        toVisit.clear();
 
-        Boolean passContinue = false;
-        for (NodeInfo n : nodeInfo){
 
-            Iterator<Node> iterator = n.getNode().getNeighborNodeIterator();
-            while (iterator.hasNext()){ // It is not an isolated node
-                iterator.next();
-                isolatedSize++;
+
+
+            Boolean passContinue = false;
+            for (NodeInfo n : nodeInfo){
+
+                Iterator<Node> iterator = n.getNode().getNeighborNodeIterator();
+                while (iterator.hasNext()){ // It is not an isolated node
+                    iterator.next();
+                    isolatedSize++;
+                }
+                if (isolatedSize > 5 && !n.getReceivedMessage()){
+                    passContinue = true;
+                    break;
+                }
+
             }
-            if (isolatedSize > 5 && !n.getReceivedMessage()){
-                passContinue = true;
-                break;
-            }
-
-        }
 
 
-        // pass message to current node's neighbours
-        if (neighbour != null){
-            if (neighbour.hasNext() && passContinue){
-                Boolean doPass = false;
-                while (neighbour.hasNext()){
-                    Node node = neighbour.next();
-                    if (nodeInfo[node.getIndex()].getReceivedMessage() == false){
-                        nodeInfo[node.getIndex()].setReceivedMessage(true);
-                        toVisit.add(node.getIndex());
-                        doPass = true;
-//                        System.out.println("Node "+node.getIndex()+" received message.");
+            // pass message to current node's neighbours
+            if (neighbour != null){
+                if (neighbour.hasNext() && passContinue){
+
+                    while (neighbour.hasNext()){
+                        Node node = neighbour.next();
+                        System.out.println("Current node: "+node.getIndex() );
+                        if (nodeInfo[node.getIndex()].getReceivedMessage() == false){
+                            nodeInfo[node.getIndex()].setReceivedMessage(true);
+                            theGraph.getNode(node.getId()).addAttribute("ui.class","received");
+                            toVisit.add(node.getIndex()); // to visit current node's neighbours
+
+//                            System.out.println("Node "+node.getIndex()+" received message.");
+                        }
                     }
-                }
-                if (doPass){
-                    pass++;
-//                    System.out.println(pass+" run finish");
-                }
-                if (!toVisit.isEmpty()){
-                    PassMessage(toVisit);
-                }
 
+
+
+                    if (oneLayerFinish){
+                        if (displayEfficiencyProgress){
+                            sleep();
+//                            System.out.println("Neighbours added, Sleep.");
+                        }
+
+                    }
+
+
+                    if (!toVisit.isEmpty()){
+                        PassMessage(toVisit,displayEfficiencyProgress);
+                    }
+
+
+
+                }
             }
         }
+
+
 
 
     }
 
-    private void efficiencyProgress(Graph graph){
-//        graph.addAttribute("ui.stylesheet", "graph { fill-color: red; }");
+//    private void efficiencyProgress(Graph graph){
+////        System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
+//
+//        graph.addAttribute("ui.stylesheet", "url('./efficiency.css')");
+//
+//
+//        Viewer viewer = graph.display();
+//        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+//
+//
+//        for (Node node : graph.getEachNode()){
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//
+//            node.addAttribute("ui.class","important");
+//
+//        }
+//
+//
+//
+//        System.out.println("efficient progress");
+//    }
 
-        for (Node n:graph.getEachNode()){
-            n.addAttribute("ui.class", "important");
-        }
-        graph.getNode(0).addAttribute("ui.style.css", "size: 15px;");
-        graph.getNode(2).addAttribute("ui.hide");
-        graph.getNode(2).getEdgeBetween(0).addAttribute("ui.hide");
-        graph.getNode(3).addAttribute("ui.class", "important");
-
-        System.out.println("efficient progress");
-        Viewer viewer = graph.display();
-        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+    protected void sleep() {
+        try { Thread.sleep(5000); } catch (Exception e) {}
     }
 
 }

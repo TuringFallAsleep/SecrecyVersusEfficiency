@@ -682,321 +682,336 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     }
 
     @Override
-    public void actionPerformed(ActionEvent event){
+    public void actionPerformed(final ActionEvent event){
 
-        // Generated graph starts
-        if (event.getSource().equals(gen_button_ok)){
+        SwingWorker<Integer, Void> worker = new SwingWorker<Integer, Void>() {
+            @Override
+            public Integer doInBackground() {
 
-            Double hoursPerPass;
-            Integer keyPlayerNumber;
-            Integer maxSegmentSize;
-            Double keyPlayerArrestProbability;
-            Double arrestProbabilityStep;
-            String stepIncreaseMethod;
-
-            FixedGraph genGraph = new FixedGraph();
-            GraphInfo graphInfo = new GraphInfo();
-            // generated graph
-            if (gen_textField_hours_per_pass.getText().equals("")){
-                hoursPerPass = 0.0;
-            }else {
-                hoursPerPass = Double.parseDouble(gen_textField_hours_per_pass.getText());
-                try {
-                    hoursPerPass = Double.parseDouble(gen_textField_hours_per_pass.getText());
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                    // TODO handle the error
-                }
-            }
-
-            if (gen_textField_key_players_number.getText().equals("")){
-                keyPlayerNumber = 1;
-            }else {
-                keyPlayerNumber = Integer.parseInt(gen_textField_key_players_number.getText());
-                try {
-                    keyPlayerNumber = Integer.parseInt(gen_textField_key_players_number.getText());
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                    // TODO handle the error
-                }
-            }
-
-            if (gen_textField_segment_size.getText().equals("")){
-                maxSegmentSize = 1;
-            } else {
-                maxSegmentSize = Integer.parseInt(gen_textField_segment_size.getText());
-                try {
-                    maxSegmentSize = Integer.parseInt(gen_textField_segment_size.getText());
-                } catch (NumberFormatException e){
-                    e.printStackTrace();
-                    // TODO handle the error
-                }
-            }
-
-            if (gen_textField_arrest_probability_key_players.getText().equals("") || gen_textField_arrest_probability_key_players.getText().equals("%")){
-                keyPlayerArrestProbability = 0.0;
-            } else {
-                keyPlayerArrestProbability = Double.parseDouble(gen_textField_arrest_probability_key_players.getText());
-                try{
-                    keyPlayerArrestProbability = Double.parseDouble(gen_textField_arrest_probability_key_players.getText());
-                } catch (NumberFormatException e){
-                    e.printStackTrace();
-                    // TODO handle the error
-                }
-            }
-
-            if (gen_textField_step.getText().equals("") || gen_textField_step.getText().equals("%")){
-                arrestProbabilityStep = 0.0;
-            } else {
-                arrestProbabilityStep = Double.parseDouble(gen_textField_step.getText());
-                try{
-                    arrestProbabilityStep = Double.parseDouble(gen_textField_step.getText());
-                } catch (NumberFormatException e){
-                    e.printStackTrace();
-                    // TODO handle the error
-                }
-            }
-
-            stepIncreaseMethod = gen_comboBox_step_increase.getSelectedItem().toString();
-
-            if (gen_comboBox_structure.getSelectedItem().toString().equals("Highly Centralised")){
-                graphInfo = genGraph.HighlyCentralised(gen_slider_node_number.getValue(),
-                        hoursPerPass, gen_checkBox_efficiency.isSelected(),
-                        gen_checkBox_secrecy.isSelected(), gen_comboBox_define_key_players_by.getSelectedItem().toString(), keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod,
-                        gen_checkBox_network_graph.isSelected(), gen_checkbox_diameter_distribution.isSelected(), gen_checkBox_degree_distribution.isSelected(), gen_checkBox_closness_distribution.isSelected(), gen_checkBox_betweenness_distribution.isSelected(),
-                        gen_checkBox_save_selected_diagram.isSelected(),
-                        gen_checkBox_efficiency_progress.isSelected(), gen_checkBox_secrecy_progress.isSelected() );
-
-            }else if(gen_comboBox_structure.getSelectedItem().toString().equals("Highly Decentralised")){
-                genGraph.HighlyDecentralised(gen_slider_node_number.getValue(),
-                        hoursPerPass, gen_checkBox_efficiency.isSelected(),
-                        gen_checkBox_secrecy.isSelected(), gen_comboBox_define_key_players_by.getSelectedItem().toString(), keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod,
-                        gen_checkBox_network_graph.isSelected(), gen_checkbox_diameter_distribution.isSelected(), gen_checkBox_degree_distribution.isSelected(), gen_checkBox_closness_distribution.isSelected(), gen_checkBox_betweenness_distribution.isSelected(),
-                        gen_checkBox_save_selected_diagram.isSelected(),
-                        gen_checkBox_efficiency_progress.isSelected(), gen_checkBox_secrecy_progress.isSelected());
-            }else if (gen_comboBox_structure.getSelectedItem().toString().equals("Bernoulli")){
-                genGraph.B(gen_slider_node_number.getValue(),
-                        hoursPerPass, gen_checkBox_efficiency.isSelected(),
-                        gen_checkBox_secrecy.isSelected(), gen_comboBox_define_key_players_by.getSelectedItem().toString(), keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod,
-                        gen_checkBox_network_graph.isSelected(), gen_checkbox_diameter_distribution.isSelected(), gen_checkBox_degree_distribution.isSelected(), gen_checkBox_closness_distribution.isSelected(), gen_checkBox_betweenness_distribution.isSelected(),
-                        gen_checkBox_save_selected_diagram.isSelected(),
-                        gen_checkBox_efficiency_progress.isSelected(), gen_checkBox_secrecy_progress.isSelected());
-            }else if(gen_comboBox_structure.getSelectedItem().toString().equals("Preferential Attachment")){
-                genGraph.PA(gen_slider_node_number.getValue(),
-                        hoursPerPass, gen_checkBox_efficiency.isSelected(),
-                        gen_checkBox_secrecy.isSelected(), gen_comboBox_define_key_players_by.getSelectedItem().toString(), keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod,
-                        gen_checkBox_network_graph.isSelected(), gen_checkbox_diameter_distribution.isSelected(), gen_checkBox_degree_distribution.isSelected(), gen_checkBox_closness_distribution.isSelected(), gen_checkBox_betweenness_distribution.isSelected(),
-                        gen_checkBox_save_selected_diagram.isSelected(),
-                        gen_checkBox_efficiency_progress.isSelected(), gen_checkBox_secrecy_progress.isSelected());
-            }else if(gen_comboBox_structure.getSelectedItem().toString().equals("Preferential Attachment with Bernoulli")){
-                genGraph.PAB(gen_slider_node_number.getValue(),
-                        hoursPerPass, gen_checkBox_efficiency.isSelected(),
-                        gen_checkBox_secrecy.isSelected(), gen_comboBox_define_key_players_by.getSelectedItem().toString(), keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod,
-                        gen_checkBox_network_graph.isSelected(), gen_checkbox_diameter_distribution.isSelected(), gen_checkBox_degree_distribution.isSelected(), gen_checkBox_closness_distribution.isSelected(), gen_checkBox_betweenness_distribution.isSelected(),
-                        gen_checkBox_save_selected_diagram.isSelected(),
-                        gen_checkBox_efficiency_progress.isSelected(), gen_checkBox_secrecy_progress.isSelected());
-            }
-        } else // Generated graph ends
-
-        // Imported graph starts
-        if (event.getSource().equals(imp_button_select)){
-            int returnVal = imp_fileChooser.showOpenDialog(this);
-
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-                imp_file = imp_fileChooser.getSelectedFile();
-                System.out.println(imp_file);
-                //This is where a real application would open the file.
-                imp_textField_import_from_file.setText("Opening: " + imp_file.getName());
-            } else {
-                imp_textField_import_from_file.setText("Open command cancelled by user.");
-            }
-            imp_textField_import_from_file.setCaretPosition(imp_textField_import_from_file.getDocument().getLength());
-        } else
-        if (event.getSource().equals(imp_button_ok)){
-            Double hoursPerPass;
-            Integer keyPlayerNumber;
-            Integer maxSegmentSize;
-            Double keyPlayerArrestProbability;
-            Double arrestProbabilityStep;
-            String stepIncreaseMethod;
-
-            RealGraph realGraph = new RealGraph(imp_file);
+                // do heavy work / display the graph here
 
 
-            if (imp_textField_hours_per_pass.getText().equals("")){
-                hoursPerPass = 1.0;
-            }else {
-                hoursPerPass = Double.parseDouble(imp_textField_hours_per_pass.getText());
-                try {
-                    hoursPerPass = Double.parseDouble(imp_textField_hours_per_pass.getText());
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                    // TODO handle the error
-                }
-            }
+                // Generated graph starts
+                if (event.getSource().equals(gen_button_ok)){
 
-            if (imp_textField_key_players_number.getText().equals("")){
-                keyPlayerNumber = 2;
-            }else {
-                keyPlayerNumber = Integer.parseInt(imp_textField_key_players_number.getText());
-                try {
-                    keyPlayerNumber = Integer.parseInt(imp_textField_key_players_number.getText());
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                    // TODO handle the error
-                }
-            }
+                    Double hoursPerPass;
+                    Integer keyPlayerNumber;
+                    Integer maxSegmentSize;
+                    Double keyPlayerArrestProbability;
+                    Double arrestProbabilityStep;
+                    String stepIncreaseMethod;
 
-            if (imp_textField_segment_size.getText().equals("")){
-                maxSegmentSize = 3;
-            } else {
-                maxSegmentSize = Integer.parseInt(imp_textField_segment_size.getText());
-                try {
-                    maxSegmentSize = Integer.parseInt(imp_textField_segment_size.getText());
-                } catch (NumberFormatException e){
-                    e.printStackTrace();
-                    // TODO handle the error
-                }
-            }
+                    FixedGraph genGraph = new FixedGraph();
+                    GraphInfo graphInfo = new GraphInfo();
+                    // generated graph
+                    if (gen_textField_hours_per_pass.getText().equals("")){
+                        hoursPerPass = 0.0;
+                    }else {
+                        hoursPerPass = Double.parseDouble(gen_textField_hours_per_pass.getText());
+                        try {
+                            hoursPerPass = Double.parseDouble(gen_textField_hours_per_pass.getText());
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
 
-            if (imp_textField_arrest_probability_key_players.getText().equals("") || imp_textField_arrest_probability_key_players.getText().equals("%")){
-                keyPlayerArrestProbability = 100.0;
-            } else {
-                keyPlayerArrestProbability = Double.parseDouble(imp_textField_arrest_probability_key_players.getText());
-                try{
-                    keyPlayerArrestProbability = Double.parseDouble(imp_textField_arrest_probability_key_players.getText());
-                } catch (NumberFormatException e){
-                    e.printStackTrace();
-                    // TODO handle the error
-                }
-            }
+                    if (gen_textField_key_players_number.getText().equals("")){
+                        keyPlayerNumber = 1;
+                    }else {
+                        keyPlayerNumber = Integer.parseInt(gen_textField_key_players_number.getText());
+                        try {
+                            keyPlayerNumber = Integer.parseInt(gen_textField_key_players_number.getText());
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
 
-            if (imp_textField_step.getText().equals("") || imp_textField_step.getText().equals("%")){
-                arrestProbabilityStep = 10.0;
-            } else {
-                arrestProbabilityStep = Double.parseDouble(imp_textField_step.getText());
-                try{
-                    arrestProbabilityStep = Double.parseDouble(imp_textField_step.getText());
-                } catch (NumberFormatException e){
-                    e.printStackTrace();
-                    // TODO handle the error
-                }
-            }
+                    if (gen_textField_segment_size.getText().equals("")){
+                        maxSegmentSize = 1;
+                    } else {
+                        maxSegmentSize = Integer.parseInt(gen_textField_segment_size.getText());
+                        try {
+                            maxSegmentSize = Integer.parseInt(gen_textField_segment_size.getText());
+                        } catch (NumberFormatException e){
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
 
-            stepIncreaseMethod = imp_comboBox_step_increase.getSelectedItem().toString();
+                    if (gen_textField_arrest_probability_key_players.getText().equals("") || gen_textField_arrest_probability_key_players.getText().equals("%")){
+                        keyPlayerArrestProbability = 0.0;
+                    } else {
+                        keyPlayerArrestProbability = Double.parseDouble(gen_textField_arrest_probability_key_players.getText());
+                        try{
+                            keyPlayerArrestProbability = Double.parseDouble(gen_textField_arrest_probability_key_players.getText());
+                        } catch (NumberFormatException e){
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
 
-            realGraph.RG(hoursPerPass, imp_checkBox_efficiency.isSelected(),
-                    imp_checkBox_secrecy.isSelected(), imp_comboBox_define_key_players_by.getSelectedItem().toString(), keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod,
-                    imp_checkBox_network_graph.isSelected(), imp_checkbox_diameter_distribution.isSelected(), imp_checkBox_degree_distribution.isSelected(), imp_checkBox_closness_distribution.isSelected(), imp_checkBox_betweenness_distribution.isSelected(),
-                    imp_checkBox_save_selected_diagram.isSelected(),
-                    imp_checkBox_efficiency_progress.isSelected(), imp_checkBox_secrecy_progress.isSelected() );
+                    if (gen_textField_step.getText().equals("") || gen_textField_step.getText().equals("%")){
+                        arrestProbabilityStep = 0.0;
+                    } else {
+                        arrestProbabilityStep = Double.parseDouble(gen_textField_step.getText());
+                        try{
+                            arrestProbabilityStep = Double.parseDouble(gen_textField_step.getText());
+                        } catch (NumberFormatException e){
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
 
-        }else // Imported graph ends
+                    stepIncreaseMethod = gen_comboBox_step_increase.getSelectedItem().toString();
+
+                    if (gen_comboBox_structure.getSelectedItem().toString().equals("Highly Centralised")){
+                        graphInfo = genGraph.HighlyCentralised(gen_slider_node_number.getValue(),
+                                hoursPerPass, gen_checkBox_efficiency.isSelected(),
+                                gen_checkBox_secrecy.isSelected(), gen_comboBox_define_key_players_by.getSelectedItem().toString(), keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod,
+                                gen_checkBox_network_graph.isSelected(), gen_checkbox_diameter_distribution.isSelected(), gen_checkBox_degree_distribution.isSelected(), gen_checkBox_closness_distribution.isSelected(), gen_checkBox_betweenness_distribution.isSelected(),
+                                gen_checkBox_save_selected_diagram.isSelected(),
+                                gen_checkBox_efficiency_progress.isSelected(), gen_checkBox_secrecy_progress.isSelected() );
+
+                    }else if(gen_comboBox_structure.getSelectedItem().toString().equals("Highly Decentralised")){
+                        genGraph.HighlyDecentralised(gen_slider_node_number.getValue(),
+                                hoursPerPass, gen_checkBox_efficiency.isSelected(),
+                                gen_checkBox_secrecy.isSelected(), gen_comboBox_define_key_players_by.getSelectedItem().toString(), keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod,
+                                gen_checkBox_network_graph.isSelected(), gen_checkbox_diameter_distribution.isSelected(), gen_checkBox_degree_distribution.isSelected(), gen_checkBox_closness_distribution.isSelected(), gen_checkBox_betweenness_distribution.isSelected(),
+                                gen_checkBox_save_selected_diagram.isSelected(),
+                                gen_checkBox_efficiency_progress.isSelected(), gen_checkBox_secrecy_progress.isSelected());
+                    }else if (gen_comboBox_structure.getSelectedItem().toString().equals("Bernoulli")){
+                        genGraph.B(gen_slider_node_number.getValue(),
+                                hoursPerPass, gen_checkBox_efficiency.isSelected(),
+                                gen_checkBox_secrecy.isSelected(), gen_comboBox_define_key_players_by.getSelectedItem().toString(), keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod,
+                                gen_checkBox_network_graph.isSelected(), gen_checkbox_diameter_distribution.isSelected(), gen_checkBox_degree_distribution.isSelected(), gen_checkBox_closness_distribution.isSelected(), gen_checkBox_betweenness_distribution.isSelected(),
+                                gen_checkBox_save_selected_diagram.isSelected(),
+                                gen_checkBox_efficiency_progress.isSelected(), gen_checkBox_secrecy_progress.isSelected());
+                    }else if(gen_comboBox_structure.getSelectedItem().toString().equals("Preferential Attachment")){
+                        genGraph.PA(gen_slider_node_number.getValue(),
+                                hoursPerPass, gen_checkBox_efficiency.isSelected(),
+                                gen_checkBox_secrecy.isSelected(), gen_comboBox_define_key_players_by.getSelectedItem().toString(), keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod,
+                                gen_checkBox_network_graph.isSelected(), gen_checkbox_diameter_distribution.isSelected(), gen_checkBox_degree_distribution.isSelected(), gen_checkBox_closness_distribution.isSelected(), gen_checkBox_betweenness_distribution.isSelected(),
+                                gen_checkBox_save_selected_diagram.isSelected(),
+                                gen_checkBox_efficiency_progress.isSelected(), gen_checkBox_secrecy_progress.isSelected());
+                    }else if(gen_comboBox_structure.getSelectedItem().toString().equals("Preferential Attachment with Bernoulli")){
+                        genGraph.PAB(gen_slider_node_number.getValue(),
+                                hoursPerPass, gen_checkBox_efficiency.isSelected(),
+                                gen_checkBox_secrecy.isSelected(), gen_comboBox_define_key_players_by.getSelectedItem().toString(), keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod,
+                                gen_checkBox_network_graph.isSelected(), gen_checkbox_diameter_distribution.isSelected(), gen_checkBox_degree_distribution.isSelected(), gen_checkBox_closness_distribution.isSelected(), gen_checkBox_betweenness_distribution.isSelected(),
+                                gen_checkBox_save_selected_diagram.isSelected(),
+                                gen_checkBox_efficiency_progress.isSelected(), gen_checkBox_secrecy_progress.isSelected());
+                    }
+                } else // Generated graph ends
+
+                    // Imported graph starts
+                    if (event.getSource().equals(imp_button_select)){
+                        int returnVal = imp_fileChooser.showOpenDialog(getParent());
+
+                        if (returnVal == JFileChooser.APPROVE_OPTION) {
+                            imp_file = imp_fileChooser.getSelectedFile();
+                            System.out.println(imp_file);
+                            //This is where a real application would open the file.
+                            imp_textField_import_from_file.setText("Opening: " + imp_file.getName());
+                        } else {
+                            imp_textField_import_from_file.setText("Open command cancelled by user.");
+                        }
+                        imp_textField_import_from_file.setCaretPosition(imp_textField_import_from_file.getDocument().getLength());
+                    } else
+                    if (event.getSource().equals(imp_button_ok)){
+                        Double hoursPerPass;
+                        Integer keyPlayerNumber;
+                        Integer maxSegmentSize;
+                        Double keyPlayerArrestProbability;
+                        Double arrestProbabilityStep;
+                        String stepIncreaseMethod;
+
+                        RealGraph realGraph = new RealGraph(imp_file);
 
 
-            // Covert network starts
-        if (cov_comboBox_initial_graph.getSelectedItem().equals("Add from file...") && !cov_added_file ){ // Get imported graph
+                        if (imp_textField_hours_per_pass.getText().equals("")){
+                            hoursPerPass = 1.0;
+                        }else {
+                            hoursPerPass = Double.parseDouble(imp_textField_hours_per_pass.getText());
+                            try {
+                                hoursPerPass = Double.parseDouble(imp_textField_hours_per_pass.getText());
+                            } catch (NumberFormatException e) {
+                                e.printStackTrace();
+                                // TODO handle the error
+                            }
+                        }
 
-            System.out.println("add file");
-            cov_added_file = true;
+                        if (imp_textField_key_players_number.getText().equals("")){
+                            keyPlayerNumber = 2;
+                        }else {
+                            keyPlayerNumber = Integer.parseInt(imp_textField_key_players_number.getText());
+                            try {
+                                keyPlayerNumber = Integer.parseInt(imp_textField_key_players_number.getText());
+                            } catch (NumberFormatException e) {
+                                e.printStackTrace();
+                                // TODO handle the error
+                            }
+                        }
 
-            int returnVal = cov_fileChooser.showOpenDialog(this);
+                        if (imp_textField_segment_size.getText().equals("")){
+                            maxSegmentSize = 3;
+                        } else {
+                            maxSegmentSize = Integer.parseInt(imp_textField_segment_size.getText());
+                            try {
+                                maxSegmentSize = Integer.parseInt(imp_textField_segment_size.getText());
+                            } catch (NumberFormatException e){
+                                e.printStackTrace();
+                                // TODO handle the error
+                            }
+                        }
 
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-                cov_file = cov_fileChooser.getSelectedFile();
-                System.out.println(cov_file);
-            }
-        }
+                        if (imp_textField_arrest_probability_key_players.getText().equals("") || imp_textField_arrest_probability_key_players.getText().equals("%")){
+                            keyPlayerArrestProbability = 100.0;
+                        } else {
+                            keyPlayerArrestProbability = Double.parseDouble(imp_textField_arrest_probability_key_players.getText());
+                            try{
+                                keyPlayerArrestProbability = Double.parseDouble(imp_textField_arrest_probability_key_players.getText());
+                            } catch (NumberFormatException e){
+                                e.printStackTrace();
+                                // TODO handle the error
+                            }
+                        }
 
-        if (event.getSource().equals(cov_button_ok)){
+                        if (imp_textField_step.getText().equals("") || imp_textField_step.getText().equals("%")){
+                            arrestProbabilityStep = 10.0;
+                        } else {
+                            arrestProbabilityStep = Double.parseDouble(imp_textField_step.getText());
+                            try{
+                                arrestProbabilityStep = Double.parseDouble(imp_textField_step.getText());
+                            } catch (NumberFormatException e){
+                                e.printStackTrace();
+                                // TODO handle the error
+                            }
+                        }
 
-            Double hoursPerPass;
-            Integer keyPlayerNumber;
-            Integer maxSegmentSize;
-            Double keyPlayerArrestProbability;
-            Double arrestProbabilityStep;
-            String stepIncreaseMethod;
+                        stepIncreaseMethod = imp_comboBox_step_increase.getSelectedItem().toString();
 
-            Graph initialGraph;
-            CovertNetwork covertNetwork = new CovertNetwork();
-            GraphInfo graphInfo = new GraphInfo();
+                        realGraph.RG(hoursPerPass, imp_checkBox_efficiency.isSelected(),
+                                imp_checkBox_secrecy.isSelected(), imp_comboBox_define_key_players_by.getSelectedItem().toString(), keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod,
+                                imp_checkBox_network_graph.isSelected(), imp_checkbox_diameter_distribution.isSelected(), imp_checkBox_degree_distribution.isSelected(), imp_checkBox_closness_distribution.isSelected(), imp_checkBox_betweenness_distribution.isSelected(),
+                                imp_checkBox_save_selected_diagram.isSelected(),
+                                imp_checkBox_efficiency_progress.isSelected(), imp_checkBox_secrecy_progress.isSelected() );
 
-            // covert network
-            if (cov_textField_hours_per_pass.getText().equals("")){
-                hoursPerPass = 1.0;
-            }else {
-                hoursPerPass = Double.parseDouble(cov_textField_hours_per_pass.getText());
-                try {
-                    hoursPerPass = Double.parseDouble(cov_textField_hours_per_pass.getText());
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                    // TODO handle the error
-                }
-            }
+                    }else // Imported graph ends
 
-            if (cov_textField_key_players_number.getText().equals("")){
-                keyPlayerNumber = 2;
-            }else {
-                keyPlayerNumber = Integer.parseInt(cov_textField_key_players_number.getText());
-                try {
-                    keyPlayerNumber = Integer.parseInt(cov_textField_key_players_number.getText());
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                    // TODO handle the error
-                }
-            }
 
-            if (cov_textField_segment_size.getText().equals("")){
-                maxSegmentSize = 5;
-            } else {
-                maxSegmentSize = Integer.parseInt(cov_textField_segment_size.getText());
-                try {
-                    maxSegmentSize = Integer.parseInt(cov_textField_segment_size.getText());
-                } catch (NumberFormatException e){
-                    e.printStackTrace();
-                    // TODO handle the error
-                }
-            }
+                        // Covert network starts
+                        if (cov_comboBox_initial_graph.getSelectedItem().equals("Add from file...") && !cov_added_file ){ // Get imported graph
 
-            if (cov_textField_arrest_probability_key_players.getText().equals("") || cov_textField_arrest_probability_key_players.getText().equals("%")){
-                keyPlayerArrestProbability = 100.0;
-            } else {
-                keyPlayerArrestProbability = Double.parseDouble(cov_textField_arrest_probability_key_players.getText());
-                try{
-                    keyPlayerArrestProbability = Double.parseDouble(cov_textField_arrest_probability_key_players.getText());
-                } catch (NumberFormatException e){
-                    e.printStackTrace();
-                    // TODO handle the error
-                }
-            }
+                            System.out.println("add file");
+                            cov_added_file = true;
 
-            if (cov_textField_step.getText().equals("") || cov_textField_step.getText().equals("%")){
-                arrestProbabilityStep = 10.0;
-            } else {
-                arrestProbabilityStep = Double.parseDouble(cov_textField_step.getText());
-                try{
-                    arrestProbabilityStep = Double.parseDouble(cov_textField_step.getText());
-                } catch (NumberFormatException e){
-                    e.printStackTrace();
-                    // TODO handle the error
-                }
-            }
+                            int returnVal = cov_fileChooser.showOpenDialog(getParent());
 
-            stepIncreaseMethod = cov_comboBox_step_increase.getSelectedItem().toString();
+                            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                                cov_file = cov_fileChooser.getSelectedFile();
+                                System.out.println(cov_file);
+                            }
+                        }
 
-            if (cov_comboBox_initial_graph.getSelectedItem().toString().equals("Add from file...")){
-                System.out.println("initial");
-                initialGraph = covertNetwork.initialImpGraph(cov_file);
-                covertNetwork.buildCovertNetwork( initialGraph, cov_comboBox_algorithm.getSelectedItem().toString(), cov_slider_balance.getValue(), cov_comboBox_define_key_players_by.getSelectedItem().toString(),keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
-                cov_added_file = false;
-            }else {
+                if (event.getSource().equals(cov_button_ok)){
+
+                    Double hoursPerPass;
+                    Integer keyPlayerNumber;
+                    Integer maxSegmentSize;
+                    Double keyPlayerArrestProbability;
+                    Double arrestProbabilityStep;
+                    String stepIncreaseMethod;
+
+                    Graph initialGraph;
+                    CovertNetwork covertNetwork = new CovertNetwork();
+                    GraphInfo graphInfo = new GraphInfo();
+
+                    // covert network
+                    if (cov_textField_hours_per_pass.getText().equals("")){
+                        hoursPerPass = 1.0;
+                    }else {
+                        hoursPerPass = Double.parseDouble(cov_textField_hours_per_pass.getText());
+                        try {
+                            hoursPerPass = Double.parseDouble(cov_textField_hours_per_pass.getText());
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
+
+                    if (cov_textField_key_players_number.getText().equals("")){
+                        keyPlayerNumber = 2;
+                    }else {
+                        keyPlayerNumber = Integer.parseInt(cov_textField_key_players_number.getText());
+                        try {
+                            keyPlayerNumber = Integer.parseInt(cov_textField_key_players_number.getText());
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
+
+                    if (cov_textField_segment_size.getText().equals("")){
+                        maxSegmentSize = 5;
+                    } else {
+                        maxSegmentSize = Integer.parseInt(cov_textField_segment_size.getText());
+                        try {
+                            maxSegmentSize = Integer.parseInt(cov_textField_segment_size.getText());
+                        } catch (NumberFormatException e){
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
+
+                    if (cov_textField_arrest_probability_key_players.getText().equals("") || cov_textField_arrest_probability_key_players.getText().equals("%")){
+                        keyPlayerArrestProbability = 100.0;
+                    } else {
+                        keyPlayerArrestProbability = Double.parseDouble(cov_textField_arrest_probability_key_players.getText());
+                        try{
+                            keyPlayerArrestProbability = Double.parseDouble(cov_textField_arrest_probability_key_players.getText());
+                        } catch (NumberFormatException e){
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
+
+                    if (cov_textField_step.getText().equals("") || cov_textField_step.getText().equals("%")){
+                        arrestProbabilityStep = 10.0;
+                    } else {
+                        arrestProbabilityStep = Double.parseDouble(cov_textField_step.getText());
+                        try{
+                            arrestProbabilityStep = Double.parseDouble(cov_textField_step.getText());
+                        } catch (NumberFormatException e){
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
+
+                    stepIncreaseMethod = cov_comboBox_step_increase.getSelectedItem().toString();
+
+                    if (cov_comboBox_initial_graph.getSelectedItem().toString().equals("Add from file...")){
+                        System.out.println("initial");
+                        initialGraph = covertNetwork.initialImpGraph(cov_file);
+                        covertNetwork.buildCovertNetwork( initialGraph, cov_comboBox_algorithm.getSelectedItem().toString(), cov_slider_balance.getValue(), cov_comboBox_define_key_players_by.getSelectedItem().toString(),keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
+                        cov_added_file = false;
+                    }else {
 //                initialGraph = covertNetwork.initialGenGraph("Preferential Attachment with Bernoulli",30);
 //                covertNetwork.buildCovertNetwork(initialGraph,"Accurate method", 0, "Betweenness",5,5,100.0,10.0,"None");
 
-                initialGraph = covertNetwork.initialGenGraph(cov_comboBox_initial_graph.getSelectedItem().toString(),cov_slider_node_number.getValue());
-                covertNetwork.buildCovertNetwork( initialGraph, cov_comboBox_algorithm.getSelectedItem().toString(), cov_slider_balance.getValue(), cov_comboBox_define_key_players_by.getSelectedItem().toString(),keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
+                        initialGraph = covertNetwork.initialGenGraph(cov_comboBox_initial_graph.getSelectedItem().toString(),cov_slider_node_number.getValue());
+                        covertNetwork.buildCovertNetwork( initialGraph, cov_comboBox_algorithm.getSelectedItem().toString(), cov_slider_balance.getValue(), cov_comboBox_define_key_players_by.getSelectedItem().toString(),keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
+                    }
+                }
+
+                return 1;
             }
-        }
+        };
+
+        worker.execute();
+
+
     }
 
 

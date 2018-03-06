@@ -10,8 +10,10 @@ import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
 import org.graphstream.algorithm.generator.Generator;
 import org.graphstream.algorithm.generator.RandomGenerator;
 import org.graphstream.graph.Graph;
+import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.DefaultGraph;
 import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.ui.view.View;
 import org.graphstream.ui.view.Viewer;
 import org.jfree.ui.RefineryUtilities;
 
@@ -43,6 +45,7 @@ public class FixedGraph {
             CalEfficiency efficiency = new CalEfficiency();
             graphInfo.setEfficiency(efficiency.DeliverMessage(highlyCentralisedGraph,hoursPerPass,displayEfficiencyProgress));
         }
+
 
         if (calSecrecy){
             CalSecrecy secrecy = new CalSecrecy();
@@ -174,6 +177,7 @@ public class FixedGraph {
             CalEfficiency efficiency = new CalEfficiency();
             graphInfo.setEfficiency(efficiency.DeliverMessage(preferentialAttachmentWithBernoulliGraph,hoursPerPass,displayEfficiencyProgress));
         }
+
 
         if (calSecrecy){
             CalSecrecy secrecy = new CalSecrecy();
@@ -308,6 +312,10 @@ public class FixedGraph {
 //        graph.display();
 
         chart.setVisible( true );
+    }
+
+    protected void sleep() {
+        try { Thread.sleep(1000); } catch (Exception e) {}
     }
 
 
