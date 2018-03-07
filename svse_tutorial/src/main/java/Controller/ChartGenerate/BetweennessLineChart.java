@@ -13,12 +13,13 @@ import javax.swing.*;
 import static oracle.jrockit.jfr.events.Bits.intValue;
 
 public class BetweennessLineChart extends JFrame {
+    private JFreeChart lineChart;
     private DefaultCategoryDataset dataSet = new DefaultCategoryDataset( );
 
 
     public BetweennessLineChart(String applicationTitle , String chartTitle, Double[] allBetweenness, Graph theGraph ) {
         super(applicationTitle);
-        JFreeChart lineChart = ChartFactory.createLineChart(
+        lineChart = ChartFactory.createLineChart(
                 chartTitle,
                 "Single Node's Betweenness","Number of Nodes",
                 createDataSet(allBetweenness, theGraph),
@@ -75,5 +76,10 @@ public class BetweennessLineChart extends JFrame {
 
         return dataSet;
     }
+
+    public JFreeChart getChart(){
+        return lineChart;
+    }
+
 }// class BetweennessLineChart
 

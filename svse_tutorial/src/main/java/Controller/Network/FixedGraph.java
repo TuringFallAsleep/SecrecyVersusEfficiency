@@ -13,12 +13,17 @@ import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.DefaultGraph;
 import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.stream.file.*;
 import org.graphstream.ui.view.View;
 import org.graphstream.ui.view.Viewer;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
 import org.jfree.ui.RefineryUtilities;
 
 
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 public class FixedGraph {
@@ -29,7 +34,13 @@ public class FixedGraph {
     private Graph preferentialAttachmentGraph;
     private Graph preferentialAttachmentWithBernoulliGraph;
 
-    public GraphInfo HighlyCentralised(int nodeNum, Double hoursPerPass, Boolean calEfficiency, Boolean calSecrecy, String defineKeyPlayersBy, Integer keyPlayerNumber, Integer maxSegmentSize, Double keyPlayerArrestProbability, Double arrestProbabilityStep, String  stepIncreaseMethod, Boolean plotNetwork, Boolean plotDiameter, Boolean plotDegree, Boolean plotClosenness, Boolean plotBetweenness, Boolean saveResult, Boolean displayEfficiencyProgress, Boolean displaySecrecyProgress) {
+    private JFreeChart diameterLineChart;
+    private JFreeChart nodeDegreeLineChart;
+    private JFreeChart closenessLineChart;
+    private JFreeChart betweennessLineChart;
+    private JFreeChart barChart;
+
+    public GraphInfo HighlyCentralised (int nodeNum, Double hoursPerPass, Boolean calEfficiency, Boolean calSecrecy, String defineKeyPlayersBy, Integer keyPlayerNumber, Integer maxSegmentSize, Double keyPlayerArrestProbability, Double arrestProbabilityStep, String  stepIncreaseMethod, Boolean plotNetwork, Boolean plotDiameter, Boolean plotDegree, Boolean plotClosenness, Boolean plotBetweenness, Boolean saveResult, Boolean displayEfficiencyProgress, Boolean displaySecrecyProgress) {
 
         // Describe the graph
         highlyCentralisedGraph = new SingleGraph("Highly Centralised");
@@ -39,7 +50,7 @@ public class FixedGraph {
             highlyCentralisedGraph.addEdge(""+0+i,""+0,""+i);
         }
 
-        GraphInfo graphInfo = GraphInfoCal(highlyCentralisedGraph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness ); // Calculate degrees
+        GraphInfo graphInfo = GraphInfoCal(highlyCentralisedGraph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness, saveResult); // Calculate degrees
 
         if (calEfficiency){
             CalEfficiency efficiency = new CalEfficiency();
@@ -51,6 +62,7 @@ public class FixedGraph {
             CalSecrecy secrecy = new CalSecrecy();
             graphInfo.setSecrecy(secrecy.CalSecrecyBy(highlyCentralisedGraph,defineKeyPlayersBy,keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod));
         }
+
 
         System.out.println("Graph: "+highlyCentralisedGraph.getId()+"'s secrecy level is "+ graphInfo.getSecrecy() + " by using "+ defineKeyPlayersBy+" as key players defining method.");
 
@@ -69,7 +81,7 @@ public class FixedGraph {
         }
         highlyDecentralisedGraph.addEdge(""+nodeNum+"1",""+nodeNum,"1");
 
-        GraphInfo graphInfo = GraphInfoCal(highlyDecentralisedGraph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness); // Calculate degrees
+        GraphInfo graphInfo = GraphInfoCal(highlyDecentralisedGraph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness, saveResult); // Calculate degrees
 
         if (calEfficiency){
             CalEfficiency efficiency = new CalEfficiency();
@@ -100,7 +112,7 @@ public class FixedGraph {
         }
         gen.end();
 
-        GraphInfo graphInfo = GraphInfoCal(bernoulliGraph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness); // Calculate degrees
+        GraphInfo graphInfo = GraphInfoCal(bernoulliGraph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness, saveResult); // Calculate degrees
 
 
         if (calEfficiency){
@@ -133,7 +145,7 @@ public class FixedGraph {
         }
         gen.end();
 
-        GraphInfo graphInfo = GraphInfoCal(preferentialAttachmentGraph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness); // Calculate degrees
+        GraphInfo graphInfo = GraphInfoCal(preferentialAttachmentGraph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness, saveResult); // Calculate degrees
 
 
         if (calEfficiency){
@@ -170,7 +182,7 @@ public class FixedGraph {
         }
         gen.end();
 
-        GraphInfo graphInfo = GraphInfoCal(preferentialAttachmentWithBernoulliGraph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness); // Calculate degrees
+        GraphInfo graphInfo = GraphInfoCal(preferentialAttachmentWithBernoulliGraph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness, saveResult); // Calculate degrees
 //        AdjacencyCal(graph);
 
         if (calEfficiency){
@@ -192,7 +204,7 @@ public class FixedGraph {
 
 
 
-    public GraphInfo GraphInfoCal(Graph graph, Boolean plotNetwork, Boolean plotDiameter, Boolean plotDegree, Boolean plotClosenness, Boolean plotBetweenness){
+    public GraphInfo GraphInfoCal(Graph graph, Boolean plotNetwork, Boolean plotDiameter, Boolean plotDegree, Boolean plotClosenness, Boolean plotBetweenness, Boolean saveResult){
 
         GraphCal a = new GraphCal();
         a.init(graph);
@@ -233,25 +245,32 @@ public class FixedGraph {
             viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
         }
 
+
+
+
         if (plotDiameter){
-            PlotDiameterLineChart(graphInfo,graph);
+            diameterLineChart = PlotDiameterLineChart(graphInfo,graph);
         }
 
         if (plotDegree){
-            PlotNodeDegreeLineChart(graphInfo,graph);
+            nodeDegreeLineChart = PlotNodeDegreeLineChart(graphInfo,graph);
         }
 
         if (plotClosenness){
-            PlotClosenessLineChart(graphInfo,graph);
+            closenessLineChart = PlotClosenessLineChart(graphInfo,graph);
         }
 
         if (plotBetweenness){
-            PlotBetweennessLineChart(graphInfo,graph);
+            betweennessLineChart = PlotBetweennessLineChart(graphInfo,graph);
         }
 
 
         if (false){
-            PlotBarChart(graphInfo,graph);
+            barChart = PlotBarChart(graphInfo,graph);
+        }
+
+        if (saveResult){
+            saveResults(graph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness, diameterLineChart, nodeDegreeLineChart, closenessLineChart, betweennessLineChart, barChart);
         }
 
 
@@ -259,18 +278,19 @@ public class FixedGraph {
     } // GraphInfoCal()
 
 
-    private void PlotDiameterLineChart(GraphInfo graphInfo, Graph graph){
+    private JFreeChart PlotDiameterLineChart(GraphInfo graphInfo, Graph graph){
         DiameterLineChart lineChart = new DiameterLineChart(
                 "SVSE" ,
                 "Diameter Distribution", graphInfo.getAllDiameter(),graph);
 
-
         lineChart.pack();
         RefineryUtilities.centerFrameOnScreen(lineChart);
         lineChart.setVisible(true);
+
+        return lineChart.getChart();
     }
 
-    private void PlotNodeDegreeLineChart(GraphInfo graphInfo, Graph graph){
+    private JFreeChart PlotNodeDegreeLineChart(GraphInfo graphInfo, Graph graph){
         NodeDegreeLineChart lineChart = new NodeDegreeLineChart(
                 "SVSE" ,
                 "Degree Distribution", graphInfo.getAllDegree(),graph);
@@ -279,10 +299,12 @@ public class FixedGraph {
         RefineryUtilities.centerFrameOnScreen(lineChart);
         lineChart.setVisible(true);
         lineChart.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+        return lineChart.getChart();
     }
 
 
-    private void PlotClosenessLineChart(GraphInfo graphInfo, Graph graph){
+    private JFreeChart PlotClosenessLineChart(GraphInfo graphInfo, Graph graph){
         ClosenessLineChart lineChart = new ClosenessLineChart(
                 "SVSE",
                 "Closeness Distribution", graphInfo.getAllCloseness(),graph);
@@ -290,9 +312,12 @@ public class FixedGraph {
         lineChart.pack();
         RefineryUtilities.centerFrameOnScreen(lineChart);
         lineChart.setVisible(true);
+        lineChart.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+        return lineChart.getChart();
     }
 
-    private void PlotBetweennessLineChart(GraphInfo graphInfo, Graph graph){
+    private JFreeChart PlotBetweennessLineChart(GraphInfo graphInfo, Graph graph){
         BetweennessLineChart lineChart = new BetweennessLineChart(
                 "SVSE",
                 "Betweenness Distribution", graphInfo.getAllBetweenness(),graph);
@@ -300,10 +325,13 @@ public class FixedGraph {
         lineChart.pack();
         RefineryUtilities.centerFrameOnScreen(lineChart);
         lineChart.setVisible(true);
+        lineChart.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+        return lineChart.getChart();
     }
 
 
-    private void PlotBarChart(GraphInfo graphInfo, Graph graph){
+    private JFreeChart PlotBarChart(GraphInfo graphInfo, Graph graph){
         BarChart chart = new BarChart("SNA Result",
                 "Static Graph", graph.getId(),graphInfo.getMaxDegree(),graphInfo.getMinDegree(),graphInfo.getAveDegree(),graphInfo.getMaxDiameter());
         chart.pack();
@@ -312,10 +340,74 @@ public class FixedGraph {
 //        graph.display();
 
         chart.setVisible( true );
+        chart.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+        return chart.getChart();
     }
 
-    protected void sleep() {
-        try { Thread.sleep(1000); } catch (Exception e) {}
+    protected void saveResults(Graph graph, Boolean plotNetwork, Boolean plotDiameter, Boolean plotDegree, Boolean plotClosenness, Boolean plotBetweenness, JFreeChart diameterLineChart, JFreeChart nodeDegreeLineChart, JFreeChart closenessLineChart, JFreeChart betweennessLineChart, JFreeChart barChart) {
+        if (plotNetwork){
+            FileSinkGEXF fs = new FileSinkGEXF();
+            try {
+                fs.writeAll(graph, "./Result/"+graph.getId()+".gexf");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            FileSinkImages fileSinkImages = new FileSinkImages(FileSinkImages.OutputType.PNG, FileSinkImages.Resolutions.VGA);
+            try {
+
+                fileSinkImages.setLayoutPolicy(FileSinkImages.LayoutPolicy.COMPUTED_FULLY_AT_NEW_IMAGE);
+
+                fileSinkImages.writeAll(graph, "./Result/"+graph.getId()+" Image.png");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (plotDiameter){
+            try {
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Diameter.png"), diameterLineChart, 400, 300);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        if (plotDegree){
+            try {
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Degree.png"), nodeDegreeLineChart, 400, 300);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (plotClosenness){
+            try {
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Closeness.png"), closenessLineChart, 400, 300);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (plotBetweenness){
+            try {
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Betweenness.png"), betweennessLineChart, 400, 300);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (false){
+            try {
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Bar.png"), barChart, 400, 300);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
     }
 
 

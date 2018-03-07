@@ -1,0 +1,1314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd" version="1.2">
+ <meta lastmodifieddate="3/7/18 12:10 AM">
+  <creator>GraphStream - org.graphstream.stream.file.FileSinkGEXF</creator>
+ </meta>
+ <graph defaultedgetype="undirected">
+  <attributes class="node">
+   <attribute id="6" title="Cb" type="double"></attribute>
+   <attribute id="4" title="brandes.delta" type="double"></attribute>
+   <attribute id="1" title="brandes.sigma" type="double"></attribute>
+   <attribute id="3" title="closeness" type="double"></attribute>
+   <attribute id="0" title="APSPInfo" type="string"></attribute>
+   <attribute id="5" title="brandes.P" type="liststring"></attribute>
+   <attribute id="2" title="brandes.d" type="double"></attribute>
+  </attributes>
+  <attributes class="edge">
+   <attribute id="7" title="Cb" type="double"></attribute>
+  </attributes>
+  <nodes>
+   <node id="Majed Moqed">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@5c8cbfd0"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="5.0"></attvalue>
+     <attvalue for="3" value="0.004166666666666667"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Hani Hanjour]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Hani Hanjour">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@143607b8"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="4.0"></attvalue>
+     <attvalue for="3" value="0.005494505494505495"></attvalue>
+     <attvalue for="4" value="8.333333333333332"></attvalue>
+     <attvalue for="5" value="[Lofti Raissi]"></attvalue>
+     <attvalue for="6" value="725.252525252526"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Khalid Al-Mihdhar">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@42afdd90"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="5.0"></attvalue>
+     <attvalue for="3" value="0.004484304932735426"></attvalue>
+     <attvalue for="4" value="1.0"></attvalue>
+     <attvalue for="5" value="[Hani Hanjour]"></attvalue>
+     <attvalue for="6" value="80.2"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Nawaf Alhazmi">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@43bc85d8"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="5.0"></attvalue>
+     <attvalue for="3" value="0.004784688995215311"></attvalue>
+     <attvalue for="4" value="3.333333333333333"></attvalue>
+     <attvalue for="5" value="[Hani Hanjour]"></attvalue>
+     <attvalue for="6" value="493.9858585858582"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Salem Alhazmi*">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@7a77d040"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="6.0"></attvalue>
+     <attvalue for="3" value="0.003745318352059925"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Nawaf Alhazmi]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Ahmed Alnami">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@5ed81371"></attvalue>
+     <attvalue for="1" value="3.0"></attvalue>
+     <attvalue for="2" value="6.0"></attvalue>
+     <attvalue for="3" value="0.004016064257028112"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Saeed Alghamdi*, Nawaf Alhazmi, Hamza Alghamdi]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Saeed Alghamdi*">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@62271667"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="5.0"></attvalue>
+     <attvalue for="3" value="0.004807692307692308"></attvalue>
+     <attvalue for="4" value="1.0"></attvalue>
+     <attvalue for="5" value="[Ahmed Al Haznawi]"></attvalue>
+     <attvalue for="6" value="243.56139971139976"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Hamza Alghamdi">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@4592cdbe"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="5.0"></attvalue>
+     <attvalue for="3" value="0.004784688995215311"></attvalue>
+     <attvalue for="4" value="1.3333333333333333"></attvalue>
+     <attvalue for="5" value="[Ahmed Al Haznawi]"></attvalue>
+     <attvalue for="6" value="207.3813131313133"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Ahmed Alghamdi">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@1a3e09c"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="6.0"></attvalue>
+     <attvalue for="3" value="0.0038910505836575876"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Hamza Alghamdi]"></attvalue>
+     <attvalue for="6" value="5.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Ahmed Al Haznawi">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@1ffe2842"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="4.0"></attvalue>
+     <attvalue for="3" value="0.0053475935828877"></attvalue>
+     <attvalue for="4" value="4.333333333333333"></attvalue>
+     <attvalue for="5" value="[Ziad Jarrah]"></attvalue>
+     <attvalue for="6" value="356.5386724386722"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Mohand Alshehri*">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@453081f4"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="5.0"></attvalue>
+     <attvalue for="3" value="0.004524886877828055"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Fayez Ahmed]"></attvalue>
+     <attvalue for="6" value="36.62626262626264"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Ziad Jarrah">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@161c5bd1"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="3.0"></attvalue>
+     <attvalue for="3" value="0.006369426751592357"></attvalue>
+     <attvalue for="4" value="5.333333333333333"></attvalue>
+     <attvalue for="5" value="[Mohamed Atta]"></attvalue>
+     <attvalue for="6" value="451.10533910533877"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Fayez Ahmed">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@825fe8e"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="4.0"></attvalue>
+     <attvalue for="3" value="0.0051813471502590676"></attvalue>
+     <attvalue for="4" value="1.0"></attvalue>
+     <attvalue for="5" value="[Marwan Al-Shehhi, Mustafa Ahamend al-Hisawi]"></attvalue>
+     <attvalue for="6" value="92.7929292929293"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Marwan Al-Shehhi">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@66f76bf0"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="3.0"></attvalue>
+     <attvalue for="3" value="0.0064516129032258064"></attvalue>
+     <attvalue for="4" value="1.0"></attvalue>
+     <attvalue for="5" value="[Mohamed Atta]"></attvalue>
+     <attvalue for="6" value="266.55266955266956"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Mohamed Atta">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@278969fb"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="2.0"></attvalue>
+     <attvalue for="3" value="0.007518796992481203"></attvalue>
+     <attvalue for="4" value="42.0"></attvalue>
+     <attvalue for="5" value="[Essid Sami Ben Khemail]"></attvalue>
+     <attvalue for="6" value="1750.754978354978"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Abdul Aziz Al-Omari*">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@53bf6c08"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="3.0"></attvalue>
+     <attvalue for="3" value="0.005649717514124294"></attvalue>
+     <attvalue for="4" value="2.1666666666666665"></attvalue>
+     <attvalue for="5" value="[Mohamed Atta]"></attvalue>
+     <attvalue for="6" value="148.21904761904756"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Waleed Alshehri">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@74c9397f"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="4.0"></attvalue>
+     <attvalue for="3" value="0.004739336492890996"></attvalue>
+     <attvalue for="4" value="3.333333333333333"></attvalue>
+     <attvalue for="5" value="[Abdul Aziz Al-Omari*, Mustafa Ahamend al-Hisawi]"></attvalue>
+     <attvalue for="6" value="243.84920634920647"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Wail Alshehri">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@293c64fd"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="5.0"></attvalue>
+     <attvalue for="3" value="0.00392156862745098"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Waleed Alshehri]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Satam Suqami">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@45160690"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="5.0"></attvalue>
+     <attvalue for="3" value="0.004201680672268907"></attvalue>
+     <attvalue for="4" value="1.3333333333333333"></attvalue>
+     <attvalue for="5" value="[Waleed Alshehri]"></attvalue>
+     <attvalue for="6" value="131.11587301587298"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Raed Hijazi">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@6d61fd16"></attvalue>
+     <attvalue for="1" value="3.0"></attvalue>
+     <attvalue for="2" value="6.0"></attvalue>
+     <attvalue for="3" value="0.003937007874015748"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Saeed Alghamdi*, Satam Suqami]"></attvalue>
+     <attvalue for="6" value="34.855555555555554"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Nabil al-Marabh">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@50de2304"></attvalue>
+     <attvalue for="1" value="3.0"></attvalue>
+     <attvalue for="2" value="6.0"></attvalue>
+     <attvalue for="3" value="0.003952569169960474"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Saeed Alghamdi*, Satam Suqami]"></attvalue>
+     <attvalue for="6" value="49.18888888888889"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Mustafa Ahamend al-Hisawi">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@1a8fbe6e"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="3.0"></attvalue>
+     <attvalue for="3" value="0.005780346820809248"></attvalue>
+     <attvalue for="4" value="3.1666666666666665"></attvalue>
+     <attvalue for="5" value="[Mohamed Atta]"></attvalue>
+     <attvalue for="6" value="202.4857142857141"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Mamoun Darkazanli">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@6f581929"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="3.0"></attvalue>
+     <attvalue for="3" value="0.0053475935828877"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Mohamed Atta]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Said Bahaji">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@d33c099"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="3.0"></attvalue>
+     <attvalue for="3" value="0.005681818181818182"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Mohamed Atta]"></attvalue>
+     <attvalue for="6" value="9.679509379509378"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Zakariya Essabar">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@2c540438"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="3.0"></attvalue>
+     <attvalue for="3" value="0.0056179775280898875"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Mohamed Atta]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Ramzi Bin al-Shibh">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@4b4fa312"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="3.0"></attvalue>
+     <attvalue for="3" value="0.006172839506172839"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Mohamed Atta]"></attvalue>
+     <attvalue for="6" value="183.30173160173163"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Mounir El Motassadeq">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@64f17a03"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="3.0"></attvalue>
+     <attvalue for="3" value="0.005376344086021506"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Mohamed Atta]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Zacarias Moussaoui">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@7755590c"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="3.0"></attvalue>
+     <attvalue for="3" value="0.005952380952380952"></attvalue>
+     <attvalue for="4" value="4.5"></attvalue>
+     <attvalue for="5" value="[Mohamed Atta]"></attvalue>
+     <attvalue for="6" value="788.0666666666667"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Abu Qatada">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@7b2ce61a"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="3.0"></attvalue>
+     <attvalue for="3" value="0.0049261083743842365"></attvalue>
+     <attvalue for="4" value="3.5"></attvalue>
+     <attvalue for="5" value="[Tarek Maaroufi]"></attvalue>
+     <attvalue for="6" value="164.06666666666666"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Djamal Benghal">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@4dcd8d5e"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="4.0"></attvalue>
+     <attvalue for="3" value="0.004784688995215311"></attvalue>
+     <attvalue for="4" value="3.0"></attvalue>
+     <attvalue for="5" value="[Abu Qatada, Zacarias Moussaoui]"></attvalue>
+     <attvalue for="6" value="370.79999999999995"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Jerome Courtaillier">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@2283d786"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="4.0"></attvalue>
+     <attvalue for="3" value="0.0045662100456621"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Zacarias Moussaoui]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="David Courtaillier">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@7fc367e3"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="4.0"></attvalue>
+     <attvalue for="3" value="0.0045662100456621"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Zacarias Moussaoui]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Ahmen Ressam">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@63c34237"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="3.0"></attvalue>
+     <attvalue for="3" value="0.004694835680751174"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Haydar Abu Doha]"></attvalue>
+     <attvalue for="6" value="31.333333333333336"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Agus Budiman">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@42c5946c"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="3.0"></attvalue>
+     <attvalue for="3" value="0.005649717514124294"></attvalue>
+     <attvalue for="4" value="0.5"></attvalue>
+     <attvalue for="5" value="[Mohamed Atta]"></attvalue>
+     <attvalue for="6" value="83.60000000000002"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Ahed Khalil Ibrahim Samir Al-Ani">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@7e465455"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="3.0"></attvalue>
+     <attvalue for="3" value="0.005291005291005291"></attvalue>
+     <attvalue for="4" value="0.5"></attvalue>
+     <attvalue for="5" value="[Mohamed Atta]"></attvalue>
+     <attvalue for="6" value="30.39999999999999"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Lofti Raissi">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@1aded801"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="3.0"></attvalue>
+     <attvalue for="3" value="0.006369426751592357"></attvalue>
+     <attvalue for="4" value="11.333333333333332"></attvalue>
+     <attvalue for="5" value="[Mohamed Atta]"></attvalue>
+     <attvalue for="6" value="819.7191919191927"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Rayed Mohammed Abdullah">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@6375f397"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="4.0"></attvalue>
+     <attvalue for="3" value="0.005076142131979695"></attvalue>
+     <attvalue for="4" value="1.0"></attvalue>
+     <attvalue for="5" value="[Lofti Raissi]"></attvalue>
+     <attvalue for="6" value="81.6"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Bandar Alhazmi">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@dfd6d61"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="5.0"></attvalue>
+     <attvalue for="3" value="0.0041841004184100415"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Hani Hanjour, Rayed Mohammed Abdullah]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Faisal Al Salmi">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@41556477"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="5.0"></attvalue>
+     <attvalue for="3" value="0.0041841004184100415"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Hani Hanjour, Rayed Mohammed Abdullah]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Osama Awadallah">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@2da7b28c"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="6.0"></attvalue>
+     <attvalue for="3" value="0.0037735849056603774"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Khalid Al-Mihdhar, Nawaf Alhazmi]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Abdussattar Shaikh">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@618215e4"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="6.0"></attvalue>
+     <attvalue for="3" value="0.0037735849056603774"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Khalid Al-Mihdhar, Nawaf Alhazmi]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Mohamed Abdi">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@772fad0"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="6.0"></attvalue>
+     <attvalue for="3" value="0.003745318352059925"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Nawaf Alhazmi]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Mohamed Belfas">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@6d6e4095"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="4.0"></attvalue>
+     <attvalue for="3" value="0.004291845493562232"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Agus Budiman, Ahed Khalil Ibrahim Samir Al-Ani]"></attvalue>
+     <attvalue for="6" value="1.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Imad Eddin Baraat Yarkas">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@7d4dbc66"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="3.0"></attvalue>
+     <attvalue for="3" value="0.005681818181818182"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Mohamed Atta, Tarek Maaroufi]"></attvalue>
+     <attvalue for="6" value="100.96904761904761"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Tarek Maaroufi">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@c91bb1e"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="2.0"></attvalue>
+     <attvalue for="3" value="0.0049261083743842365"></attvalue>
+     <attvalue for="4" value="5.0"></attvalue>
+     <attvalue for="5" value="[Essid Sami Ben Khemail]"></attvalue>
+     <attvalue for="6" value="129.16666666666669"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Mohammed Bensakhria">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@1c256426"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="2.0"></attvalue>
+     <attvalue for="3" value="0.004651162790697674"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Essid Sami Ben Khemail]"></attvalue>
+     <attvalue for="6" value="14.166666666666666"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Essid Sami Ben Khemail">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@3d0e5df"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="1.0"></attvalue>
+     <attvalue for="3" value="0.005952380952380952"></attvalue>
+     <attvalue for="4" value="58.0"></attvalue>
+     <attvalue for="5" value="[Samir Kishk]"></attvalue>
+     <attvalue for="6" value="870.0309523809524"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Seifallah ben Hassine">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@13eed74f"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="2.0"></attvalue>
+     <attvalue for="3" value="0.004608294930875576"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Essid Sami Ben Khemail]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Essoussi Laaroussi">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@1226d767"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="2.0"></attvalue>
+     <attvalue for="3" value="0.004608294930875576"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Essid Sami Ben Khemail]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Abu Walid">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@25159551"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="4.0"></attvalue>
+     <attvalue for="3" value="0.003937007874015748"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Abu Qatada]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Jean-Marc Grandvisir">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@21ef6231"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="5.0"></attvalue>
+     <attvalue for="3" value="0.003745318352059925"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Djamal Benghal]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Abu Zubeida">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@44de8dec"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="5.0"></attvalue>
+     <attvalue for="3" value="0.003745318352059925"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Djamal Benghal]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Nizar Trabelsi">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@60e7e7ff"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="5.0"></attvalue>
+     <attvalue for="3" value="0.003745318352059925"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Djamal Benghal]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Kamel Daoudi">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@695149af"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="4.0"></attvalue>
+     <attvalue for="3" value="0.0047169811320754715"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Abu Qatada, Zacarias Moussaoui]"></attvalue>
+     <attvalue for="6" value="28.8"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Haydar Abu Doha">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@3375505e"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="2.0"></attvalue>
+     <attvalue for="3" value="0.004672897196261682"></attvalue>
+     <attvalue for="4" value="1.0"></attvalue>
+     <attvalue for="5" value="[Essid Sami Ben Khemail]"></attvalue>
+     <attvalue for="6" value="31.83333333333333"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Madjid Sahoune">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@3f41a31"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="2.0"></attvalue>
+     <attvalue for="3" value="0.004464285714285714"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Essid Sami Ben Khemail]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Mehdi Khammoun">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@5c73cdaf"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="2.0"></attvalue>
+     <attvalue for="3" value="0.004484304932735426"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Essid Sami Ben Khemail]"></attvalue>
+     <attvalue for="6" value="2.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Lased Ben Heni">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@3f8cfbbf"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="2.0"></attvalue>
+     <attvalue for="3" value="0.0044444444444444444"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Essid Sami Ben Khemail]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Fahid al Shakri">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@2662abb0"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="2.0"></attvalue>
+     <attvalue for="3" value="0.004424778761061947"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[Essid Sami Ben Khemail]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="Samir Kishk">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@56418df"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="0.0"></attvalue>
+     <attvalue for="3" value="0.004424778761061947"></attvalue>
+     <attvalue for="4" value="59.0"></attvalue>
+     <attvalue for="5" value="[]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+  </nodes>
+  <edges>
+   <edge id="Majed Moqed &amp; Hani Hanjour" source="Majed Moqed" target="Hani Hanjour">
+    <attvalues>
+     <attvalue for="7" value="118.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Khalid Al-Mihdhar &amp; Hani Hanjour" source="Khalid Al-Mihdhar" target="Hani Hanjour">
+    <attvalues>
+     <attvalue for="7" value="166.53333333333333"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Khalid Al-Mihdhar &amp; Nawaf Alhazmi" source="Khalid Al-Mihdhar" target="Nawaf Alhazmi">
+    <attvalues>
+     <attvalue for="7" value="27.666666666666664"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Hani Hanjour &amp; Nawaf Alhazmi" source="Hani Hanjour" target="Nawaf Alhazmi">
+    <attvalues>
+     <attvalue for="7" value="421.11919191919173"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Nawaf Alhazmi &amp; Salem Alhazmi*" source="Nawaf Alhazmi" target="Salem Alhazmi*">
+    <attvalues>
+     <attvalue for="7" value="118.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Nawaf Alhazmi &amp; Ahmed Alnami" source="Nawaf Alhazmi" target="Ahmed Alnami">
+    <attvalues>
+     <attvalue for="7" value="39.052525252525285"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Nawaf Alhazmi &amp; Saeed Alghamdi*" source="Nawaf Alhazmi" target="Saeed Alghamdi*">
+    <attvalues>
+     <attvalue for="7" value="133.99999999999994"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Nawaf Alhazmi &amp; Hamza Alghamdi" source="Nawaf Alhazmi" target="Hamza Alghamdi">
+    <attvalues>
+     <attvalue for="7" value="100.3333333333333"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Ahmed Alnami &amp; Saeed Alghamdi*" source="Ahmed Alnami" target="Saeed Alghamdi*">
+    <attvalues>
+     <attvalue for="7" value="40.132828282828285"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Ahmed Alnami &amp; Hamza Alghamdi" source="Ahmed Alnami" target="Hamza Alghamdi">
+    <attvalues>
+     <attvalue for="7" value="38.814646464646465"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Ahmed Alghamdi &amp; Hamza Alghamdi" source="Ahmed Alghamdi" target="Hamza Alghamdi">
+    <attvalues>
+     <attvalue for="7" value="108.99999999999997"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Hamza Alghamdi &amp; Saeed Alghamdi*" source="Hamza Alghamdi" target="Saeed Alghamdi*">
+    <attvalues>
+     <attvalue for="7" value="19.73333333333333"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Hamza Alghamdi &amp; Ahmed Al Haznawi" source="Hamza Alghamdi" target="Ahmed Al Haznawi">
+    <attvalues>
+     <attvalue for="7" value="190.75505050505063"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Hamza Alghamdi &amp; Mohand Alshehri*" source="Hamza Alghamdi" target="Mohand Alshehri*">
+    <attvalues>
+     <attvalue for="7" value="74.12626262626262"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Ahmed Al Haznawi &amp; Saeed Alghamdi*" source="Ahmed Al Haznawi" target="Saeed Alghamdi*">
+    <attvalues>
+     <attvalue for="7" value="202.11695526695533"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Ahmed Al Haznawi &amp; Ziad Jarrah" source="Ahmed Al Haznawi" target="Ziad Jarrah">
+    <attvalues>
+     <attvalue for="7" value="438.2053391053389"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mohand Alshehri* &amp; Fayez Ahmed" source="Mohand Alshehri*" target="Fayez Ahmed">
+    <attvalues>
+     <attvalue for="7" value="117.12626262626263"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Fayez Ahmed &amp; Marwan Al-Shehhi" source="Fayez Ahmed" target="Marwan Al-Shehhi">
+    <attvalues>
+     <attvalue for="7" value="119.99292929292923"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Ziad Jarrah &amp; Marwan Al-Shehhi" source="Ziad Jarrah" target="Marwan Al-Shehhi">
+    <attvalues>
+     <attvalue for="7" value="30.85728715728715"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Ziad Jarrah &amp; Mohamed Atta" source="Ziad Jarrah" target="Mohamed Atta">
+    <attvalues>
+     <attvalue for="7" value="258.9334776334777"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Marwan Al-Shehhi &amp; Mohamed Atta" source="Marwan Al-Shehhi" target="Mohamed Atta">
+    <attvalues>
+     <attvalue for="7" value="78.93333333333332"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Marwan Al-Shehhi &amp; Abdul Aziz Al-Omari*" source="Marwan Al-Shehhi" target="Abdul Aziz Al-Omari*">
+    <attvalues>
+     <attvalue for="7" value="53.76031746031747"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mohamed Atta &amp; Abdul Aziz Al-Omari*" source="Mohamed Atta" target="Abdul Aziz Al-Omari*">
+    <attvalues>
+     <attvalue for="7" value="198.34761904761893"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Abdul Aziz Al-Omari* &amp; Waleed Alshehri" source="Abdul Aziz Al-Omari*" target="Waleed Alshehri">
+    <attvalues>
+     <attvalue for="7" value="162.33015873015864"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Waleed Alshehri &amp; Wail Alshehri" source="Waleed Alshehri" target="Wail Alshehri">
+    <attvalues>
+     <attvalue for="7" value="87.86666666666666"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Waleed Alshehri &amp; Satam Suqami" source="Waleed Alshehri" target="Satam Suqami">
+    <attvalues>
+     <attvalue for="7" value="182.14920634920642"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Wail Alshehri &amp; Satam Suqami" source="Wail Alshehri" target="Satam Suqami">
+    <attvalues>
+     <attvalue for="7" value="30.133333333333333"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Raed Hijazi &amp; Saeed Alghamdi*" source="Raed Hijazi" target="Saeed Alghamdi*">
+    <attvalues>
+     <attvalue for="7" value="105.23650793650788"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Raed Hijazi &amp; Satam Suqami" source="Raed Hijazi" target="Satam Suqami">
+    <attvalues>
+     <attvalue for="7" value="78.47460317460322"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Raed Hijazi &amp; Nabil al-Marabh" source="Raed Hijazi" target="Nabil al-Marabh">
+    <attvalues>
+     <attvalue for="7" value="4.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Nabil al-Marabh &amp; Ahmed Alghamdi" source="Nabil al-Marabh" target="Ahmed Alghamdi">
+    <attvalues>
+     <attvalue for="7" value="19.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Nabil al-Marabh &amp; Saeed Alghamdi*" source="Nabil al-Marabh" target="Saeed Alghamdi*">
+    <attvalues>
+     <attvalue for="7" value="103.90317460317455"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Nabil al-Marabh &amp; Satam Suqami" source="Nabil al-Marabh" target="Satam Suqami">
+    <attvalues>
+     <attvalue for="7" value="89.47460317460322"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mustafa Ahamend al-Hisawi &amp; Fayez Ahmed" source="Mustafa Ahamend al-Hisawi" target="Fayez Ahmed">
+    <attvalues>
+     <attvalue for="7" value="66.46666666666664"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mustafa Ahamend al-Hisawi &amp; Marwan Al-Shehhi" source="Mustafa Ahamend al-Hisawi" target="Marwan Al-Shehhi">
+    <attvalues>
+     <attvalue for="7" value="46.03809523809524"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mustafa Ahamend al-Hisawi &amp; Mohamed Atta" source="Mustafa Ahamend al-Hisawi" target="Mohamed Atta">
+    <attvalues>
+     <attvalue for="7" value="237.11428571428547"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mustafa Ahamend al-Hisawi &amp; Waleed Alshehri" source="Mustafa Ahamend al-Hisawi" target="Waleed Alshehri">
+    <attvalues>
+     <attvalue for="7" value="173.35238095238086"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mamoun Darkazanli &amp; Marwan Al-Shehhi" source="Mamoun Darkazanli" target="Marwan Al-Shehhi">
+    <attvalues>
+     <attvalue for="7" value="33.26984126984127"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mamoun Darkazanli &amp; Mohamed Atta" source="Mamoun Darkazanli" target="Mohamed Atta">
+    <attvalues>
+     <attvalue for="7" value="76.71428571428572"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mamoun Darkazanli &amp; Said Bahaji" source="Mamoun Darkazanli" target="Said Bahaji">
+    <attvalues>
+     <attvalue for="7" value="8.015873015873016"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Zakariya Essabar &amp; Ziad Jarrah" source="Zakariya Essabar" target="Ziad Jarrah">
+    <attvalues>
+     <attvalue for="7" value="27.16666666666666"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Zakariya Essabar &amp; Marwan Al-Shehhi" source="Zakariya Essabar" target="Marwan Al-Shehhi">
+    <attvalues>
+     <attvalue for="7" value="19.933333333333326"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Zakariya Essabar &amp; Mohamed Atta" source="Zakariya Essabar" target="Mohamed Atta">
+    <attvalues>
+     <attvalue for="7" value="51.66666666666667"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Zakariya Essabar &amp; Said Bahaji" source="Zakariya Essabar" target="Said Bahaji">
+    <attvalues>
+     <attvalue for="7" value="3.1666666666666665"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Zakariya Essabar &amp; Ramzi Bin al-Shibh" source="Zakariya Essabar" target="Ramzi Bin al-Shibh">
+    <attvalues>
+     <attvalue for="7" value="16.066666666666666"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Said Bahaji &amp; Ziad Jarrah" source="Said Bahaji" target="Ziad Jarrah">
+    <attvalues>
+     <attvalue for="7" value="34.34617604617605"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Said Bahaji &amp; Marwan Al-Shehhi" source="Said Bahaji" target="Marwan Al-Shehhi">
+    <attvalues>
+     <attvalue for="7" value="18.76666666666666"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Said Bahaji &amp; Mohamed Atta" source="Said Bahaji" target="Mohamed Atta">
+    <attvalues>
+     <attvalue for="7" value="50.50000000000001"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Said Bahaji &amp; Mounir El Motassadeq" source="Said Bahaji" target="Mounir El Motassadeq">
+    <attvalues>
+     <attvalue for="7" value="6.33030303030303"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Said Bahaji &amp; Ramzi Bin al-Shibh" source="Said Bahaji" target="Ramzi Bin al-Shibh">
+    <attvalues>
+     <attvalue for="7" value="16.233333333333334"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mounir El Motassadeq &amp; Marwan Al-Shehhi" source="Mounir El Motassadeq" target="Marwan Al-Shehhi">
+    <attvalues>
+     <attvalue for="7" value="30.66060606060606"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mounir El Motassadeq &amp; Mohamed Atta" source="Mounir El Motassadeq" target="Mohamed Atta">
+    <attvalues>
+     <attvalue for="7" value="61.512121212121215"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mounir El Motassadeq &amp; Ramzi Bin al-Shibh" source="Mounir El Motassadeq" target="Ramzi Bin al-Shibh">
+    <attvalues>
+     <attvalue for="7" value="19.496969696969696"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Zacarias Moussaoui &amp; Mohamed Atta" source="Zacarias Moussaoui" target="Mohamed Atta">
+    <attvalues>
+     <attvalue for="7" value="658.8499999999999"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Zacarias Moussaoui &amp; Ramzi Bin al-Shibh" source="Zacarias Moussaoui" target="Ramzi Bin al-Shibh">
+    <attvalues>
+     <attvalue for="7" value="165.08333333333337"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Zacarias Moussaoui &amp; Abu Qatada" source="Zacarias Moussaoui" target="Abu Qatada">
+    <attvalues>
+     <attvalue for="7" value="76.13333333333334"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Zacarias Moussaoui &amp; Djamal Benghal" source="Zacarias Moussaoui" target="Djamal Benghal">
+    <attvalues>
+     <attvalue for="7" value="364.3333333333333"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Zacarias Moussaoui &amp; Jerome Courtaillier" source="Zacarias Moussaoui" target="Jerome Courtaillier">
+    <attvalues>
+     <attvalue for="7" value="97.53333333333333"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Zacarias Moussaoui &amp; David Courtaillier" source="Zacarias Moussaoui" target="David Courtaillier">
+    <attvalues>
+     <attvalue for="7" value="97.53333333333333"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Zacarias Moussaoui &amp; Ahmen Ressam" source="Zacarias Moussaoui" target="Ahmen Ressam">
+    <attvalues>
+     <attvalue for="7" value="128.33333333333331"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Ramzi Bin al-Shibh &amp; Ziad Jarrah" source="Ramzi Bin al-Shibh" target="Ziad Jarrah">
+    <attvalues>
+     <attvalue for="7" value="115.43506493506496"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Ramzi Bin al-Shibh &amp; Marwan Al-Shehhi" source="Ramzi Bin al-Shibh" target="Marwan Al-Shehhi">
+    <attvalues>
+     <attvalue for="7" value="47.999999999999986"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Ramzi Bin al-Shibh &amp; Mohamed Atta" source="Ramzi Bin al-Shibh" target="Mohamed Atta">
+    <attvalues>
+     <attvalue for="7" value="32.53333333333333"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Ramzi Bin al-Shibh &amp; Agus Budiman" source="Ramzi Bin al-Shibh" target="Agus Budiman">
+    <attvalues>
+     <attvalue for="7" value="28.033333333333328"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Agus Budiman &amp; Ziad Jarrah" source="Agus Budiman" target="Ziad Jarrah">
+    <attvalues>
+     <attvalue for="7" value="52.16666666666667"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Agus Budiman &amp; Marwan Al-Shehhi" source="Agus Budiman" target="Marwan Al-Shehhi">
+    <attvalues>
+     <attvalue for="7" value="37.133333333333326"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Agus Budiman &amp; Mohamed Atta" source="Agus Budiman" target="Mohamed Atta">
+    <attvalues>
+     <attvalue for="7" value="81.26666666666667"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Ahed Khalil Ibrahim Samir Al-Ani &amp; Mohamed Atta" source="Ahed Khalil Ibrahim Samir Al-Ani" target="Mohamed Atta">
+    <attvalues>
+     <attvalue for="7" value="145.40000000000006"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Lofti Raissi &amp; Hani Hanjour" source="Lofti Raissi" target="Hani Hanjour">
+    <attvalues>
+     <attvalue for="7" value="683.7858585858592"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Lofti Raissi &amp; Ziad Jarrah" source="Lofti Raissi" target="Ziad Jarrah">
+    <attvalues>
+     <attvalue for="7" value="63.100000000000016"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Lofti Raissi &amp; Marwan Al-Shehhi" source="Lofti Raissi" target="Marwan Al-Shehhi">
+    <attvalues>
+     <attvalue for="7" value="133.759595959596"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Lofti Raissi &amp; Mohamed Atta" source="Lofti Raissi" target="Mohamed Atta">
+    <attvalues>
+     <attvalue for="7" value="711.8595959595966"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Lofti Raissi &amp; Rayed Mohammed Abdullah" source="Lofti Raissi" target="Rayed Mohammed Abdullah">
+    <attvalues>
+     <attvalue for="7" value="164.93333333333334"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Rayed Mohammed Abdullah &amp; Hani Hanjour" source="Rayed Mohammed Abdullah" target="Hani Hanjour">
+    <attvalues>
+     <attvalue for="7" value="29.666666666666668"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Rayed Mohammed Abdullah &amp; Rayed Mohammed Abdullah" source="Rayed Mohammed Abdullah" target="Rayed Mohammed Abdullah">
+    <attvalues>
+     <attvalue for="7" value="0.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Rayed Mohammed Abdullah &amp; Bandar Alhazmi" source="Rayed Mohammed Abdullah" target="Bandar Alhazmi">
+    <attvalues>
+     <attvalue for="7" value="43.3"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Rayed Mohammed Abdullah &amp; Faisal Al Salmi" source="Rayed Mohammed Abdullah" target="Faisal Al Salmi">
+    <attvalues>
+     <attvalue for="7" value="43.3"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Bandar Alhazmi &amp; Hani Hanjour" source="Bandar Alhazmi" target="Hani Hanjour">
+    <attvalues>
+     <attvalue for="7" value="74.69999999999999"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Faisal Al Salmi &amp; Hani Hanjour" source="Faisal Al Salmi" target="Hani Hanjour">
+    <attvalues>
+     <attvalue for="7" value="74.69999999999999"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Osama Awadallah &amp; Khalid Al-Mihdhar" source="Osama Awadallah" target="Khalid Al-Mihdhar">
+    <attvalues>
+     <attvalue for="7" value="42.1"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Osama Awadallah &amp; Nawaf Alhazmi" source="Osama Awadallah" target="Nawaf Alhazmi">
+    <attvalues>
+     <attvalue for="7" value="73.9"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Osama Awadallah &amp; Abdussattar Shaikh" source="Osama Awadallah" target="Abdussattar Shaikh">
+    <attvalues>
+     <attvalue for="7" value="2.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Abdussattar Shaikh &amp; Khalid Al-Mihdhar" source="Abdussattar Shaikh" target="Khalid Al-Mihdhar">
+    <attvalues>
+     <attvalue for="7" value="42.1"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Abdussattar Shaikh &amp; Nawaf Alhazmi" source="Abdussattar Shaikh" target="Nawaf Alhazmi">
+    <attvalues>
+     <attvalue for="7" value="73.9"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mohamed Abdi &amp; Nawaf Alhazmi" source="Mohamed Abdi" target="Nawaf Alhazmi">
+    <attvalues>
+     <attvalue for="7" value="118.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mohamed Belfas &amp; Agus Budiman" source="Mohamed Belfas" target="Agus Budiman">
+    <attvalues>
+     <attvalue for="7" value="86.60000000000002"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mohamed Belfas &amp; Ahed Khalil Ibrahim Samir Al-Ani" source="Mohamed Belfas" target="Ahed Khalil Ibrahim Samir Al-Ani">
+    <attvalues>
+     <attvalue for="7" value="33.39999999999999"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Imad Eddin Baraat Yarkas &amp; Mohamed Atta" source="Imad Eddin Baraat Yarkas" target="Mohamed Atta">
+    <attvalues>
+     <attvalue for="7" value="141.8476190476191"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Imad Eddin Baraat Yarkas &amp; Ramzi Bin al-Shibh" source="Imad Eddin Baraat Yarkas" target="Ramzi Bin al-Shibh">
+    <attvalues>
+     <attvalue for="7" value="43.72142857142857"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Imad Eddin Baraat Yarkas &amp; Tarek Maaroufi" source="Imad Eddin Baraat Yarkas" target="Tarek Maaroufi">
+    <attvalues>
+     <attvalue for="7" value="61.13571428571428"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Imad Eddin Baraat Yarkas &amp; Abu Qatada" source="Imad Eddin Baraat Yarkas" target="Abu Qatada">
+    <attvalues>
+     <attvalue for="7" value="73.23333333333333"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Tarek Maaroufi &amp; Abu Qatada" source="Tarek Maaroufi" target="Abu Qatada">
+    <attvalues>
+     <attvalue for="7" value="130.5"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Tarek Maaroufi &amp; Mohammed Bensakhria" source="Tarek Maaroufi" target="Mohammed Bensakhria">
+    <attvalues>
+     <attvalue for="7" value="38.166666666666664"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Tarek Maaroufi &amp; Essid Sami Ben Khemail" source="Tarek Maaroufi" target="Essid Sami Ben Khemail">
+    <attvalues>
+     <attvalue for="7" value="96.53095238095239"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Tarek Maaroufi &amp; Seifallah ben Hassine" source="Tarek Maaroufi" target="Seifallah ben Hassine">
+    <attvalues>
+     <attvalue for="7" value="25.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Tarek Maaroufi &amp; Essoussi Laaroussi" source="Tarek Maaroufi" target="Essoussi Laaroussi">
+    <attvalues>
+     <attvalue for="7" value="25.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Abu Qatada &amp; Djamal Benghal" source="Abu Qatada" target="Djamal Benghal">
+    <attvalues>
+     <attvalue for="7" value="78.46666666666667"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Abu Qatada &amp; Abu Walid" source="Abu Qatada" target="Abu Walid">
+    <attvalues>
+     <attvalue for="7" value="63.333333333333336"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Djamal Benghal &amp; Jerome Courtaillier" source="Djamal Benghal" target="Jerome Courtaillier">
+    <attvalues>
+     <attvalue for="7" value="12.233333333333333"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Djamal Benghal &amp; David Courtaillier" source="Djamal Benghal" target="David Courtaillier">
+    <attvalues>
+     <attvalue for="7" value="12.233333333333333"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Djamal Benghal &amp; Abu Walid" source="Djamal Benghal" target="Abu Walid">
+    <attvalues>
+     <attvalue for="7" value="30.333333333333336"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Djamal Benghal &amp; Jean-Marc Grandvisir" source="Djamal Benghal" target="Jean-Marc Grandvisir">
+    <attvalues>
+     <attvalue for="7" value="118.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Djamal Benghal &amp; Abu Zubeida" source="Djamal Benghal" target="Abu Zubeida">
+    <attvalues>
+     <attvalue for="7" value="118.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Djamal Benghal &amp; Nizar Trabelsi" source="Djamal Benghal" target="Nizar Trabelsi">
+    <attvalues>
+     <attvalue for="7" value="118.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Jerome Courtaillier &amp; David Courtaillier" source="Jerome Courtaillier" target="David Courtaillier">
+    <attvalues>
+     <attvalue for="7" value="2.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Jerome Courtaillier &amp; Kamel Daoudi" source="Jerome Courtaillier" target="Kamel Daoudi">
+    <attvalues>
+     <attvalue for="7" value="6.233333333333333"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Ahmen Ressam &amp; Haydar Abu Doha" source="Ahmen Ressam" target="Haydar Abu Doha">
+    <attvalues>
+     <attvalue for="7" value="52.33333333333332"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Abu Walid &amp; Kamel Daoudi" source="Abu Walid" target="Kamel Daoudi">
+    <attvalues>
+     <attvalue for="7" value="24.333333333333336"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Haydar Abu Doha &amp; Essid Sami Ben Khemail" source="Haydar Abu Doha" target="Essid Sami Ben Khemail">
+    <attvalues>
+     <attvalue for="7" value="105.5"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Haydar Abu Doha &amp; Madjid Sahoune" source="Haydar Abu Doha" target="Madjid Sahoune">
+    <attvalues>
+     <attvalue for="7" value="11.333333333333332"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mehdi Khammoun &amp; Haydar Abu Doha" source="Mehdi Khammoun" target="Haydar Abu Doha">
+    <attvalues>
+     <attvalue for="7" value="12.5"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mehdi Khammoun &amp; Mohammed Bensakhria" source="Mehdi Khammoun" target="Mohammed Bensakhria">
+    <attvalues>
+     <attvalue for="7" value="11.166666666666668"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mehdi Khammoun &amp; Essid Sami Ben Khemail" source="Mehdi Khammoun" target="Essid Sami Ben Khemail">
+    <attvalues>
+     <attvalue for="7" value="98.33333333333333"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mohammed Bensakhria &amp; Lased Ben Heni" source="Mohammed Bensakhria" target="Lased Ben Heni">
+    <attvalues>
+     <attvalue for="7" value="10.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Mohammed Bensakhria &amp; Essid Sami Ben Khemail" source="Mohammed Bensakhria" target="Essid Sami Ben Khemail">
+    <attvalues>
+     <attvalue for="7" value="87.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Lased Ben Heni &amp; Essid Sami Ben Khemail" source="Lased Ben Heni" target="Essid Sami Ben Khemail">
+    <attvalues>
+     <attvalue for="7" value="108.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Essid Sami Ben Khemail &amp; Mohamed Atta" source="Essid Sami Ben Khemail" target="Mohamed Atta">
+    <attvalues>
+     <attvalue for="7" value="834.0309523809522"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Essid Sami Ben Khemail &amp; Seifallah ben Hassine" source="Essid Sami Ben Khemail" target="Seifallah ben Hassine">
+    <attvalues>
+     <attvalue for="7" value="93.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Essid Sami Ben Khemail &amp; Essoussi Laaroussi" source="Essid Sami Ben Khemail" target="Essoussi Laaroussi">
+    <attvalues>
+     <attvalue for="7" value="93.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Essid Sami Ben Khemail &amp; Fahid al Shakri" source="Essid Sami Ben Khemail" target="Fahid al Shakri">
+    <attvalues>
+     <attvalue for="7" value="118.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Essid Sami Ben Khemail &amp; Madjid Sahoune" source="Essid Sami Ben Khemail" target="Madjid Sahoune">
+    <attvalues>
+     <attvalue for="7" value="106.66666666666666"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Essid Sami Ben Khemail &amp; Samir Kishk" source="Essid Sami Ben Khemail" target="Samir Kishk">
+    <attvalues>
+     <attvalue for="7" value="118.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Kamel Daoudi &amp; Zacarias Moussaoui" source="Kamel Daoudi" target="Zacarias Moussaoui">
+    <attvalues>
+     <attvalue for="7" value="106.33333333333334"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Kamel Daoudi &amp; Abu Qatada" source="Kamel Daoudi" target="Abu Qatada">
+    <attvalues>
+     <attvalue for="7" value="24.466666666666665"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Kamel Daoudi &amp; Djamal Benghal" source="Kamel Daoudi" target="Djamal Benghal">
+    <attvalues>
+     <attvalue for="7" value="8.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="Kamel Daoudi &amp; David Courtaillier" source="Kamel Daoudi" target="David Courtaillier">
+    <attvalues>
+     <attvalue for="7" value="6.233333333333333"></attvalue>
+    </attvalues>
+   </edge>
+  </edges>
+ </graph>
+</gexf>

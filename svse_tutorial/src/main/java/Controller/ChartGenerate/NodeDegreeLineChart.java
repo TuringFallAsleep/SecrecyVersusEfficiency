@@ -13,12 +13,13 @@ import javax.swing.*;
 import static oracle.jrockit.jfr.events.Bits.intValue;
 
 public class NodeDegreeLineChart extends JFrame {
+    private JFreeChart lineChart;
     private DefaultCategoryDataset dataSet = new DefaultCategoryDataset( );
 
 
     public NodeDegreeLineChart(String applicationTitle , String chartTitle, Double[] allNodesDegree, Graph theGraph ) {
         super(applicationTitle);
-        JFreeChart lineChart = ChartFactory.createLineChart(
+        lineChart = ChartFactory.createLineChart(
                 chartTitle,
                 "Single Node's Degree","Number of Nodes",
                 createDataSet(allNodesDegree, theGraph),
@@ -56,5 +57,10 @@ public class NodeDegreeLineChart extends JFrame {
         }
         return dataSet;
     }
+
+    public JFreeChart getChart(){
+        return lineChart;
+    }
+
 }// class NodeDegreeLineChart
 

@@ -13,11 +13,13 @@ import javax.swing.*;
 import static oracle.jrockit.jfr.events.Bits.intValue;
 
 public class DiameterLineChart extends JFrame {
+    private JFreeChart lineChart;
     private DefaultCategoryDataset dataSet = new DefaultCategoryDataset( );
+
 
     public DiameterLineChart(String applicationTitle , String chartTitle, Double[] allDiameters, Graph theGraph ) {
         super(applicationTitle);
-        JFreeChart lineChart = ChartFactory.createLineChart(
+        lineChart = ChartFactory.createLineChart(
                 chartTitle,
                 "Single Node's Diameter","Number of nodes",
                 createDataSet(allDiameters, theGraph),
@@ -57,4 +59,9 @@ public class DiameterLineChart extends JFrame {
 
         return dataSet;
     }
+
+    public JFreeChart getChart(){
+        return lineChart;
+    }
+
 }// class DiameterLineChart
