@@ -1,17 +1,24 @@
 package View;
 
 
+import Controller.Network.CovertNetwork;
+import Controller.Network.FixedGraph;
+import Controller.Network.RealGraph;
+import Model.StaticGraph.GraphInfo;
+import org.graphstream.graph.Graph;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
 public class GUI extends JPanel implements ActionListener, ChangeListener{
 
-    private Dimension panelSize = new Dimension(800,670);
+    private Dimension panelSize = new Dimension(800,700);
     /* Generated graph*/
     private JLabel gen_label_data = new JLabel("Data: ");
     private JLabel gen_label_structure = new JLabel("Structure: ");
@@ -21,6 +28,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     private JLabel gen_label_hours_per_pass = new JLabel("Hours per pass: ");
     private JLabel gen_label_define_key_players_by = new JLabel("Define key players by: ");
     private JLabel gen_label_key_players_number = new JLabel("Key players number: ");
+    private JLabel gen_label_segment_size = new JLabel("Max segment size:  ");
     private JLabel gen_label_arrest_probability = new JLabel("Arrest probability:  Key players: ");
     private JLabel gen_label_step = new JLabel("                              Step: ");
     private JLabel gen_label_step_increase = new JLabel("                              Step increase: ");
@@ -45,8 +53,22 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     private JCheckBox gen_checkBox_efficiency_progress = new JCheckBox("Efficiency progress");
     private JCheckBox gen_checkBox_secrecy_progress = new JCheckBox("Secrecy progress");
 
+    Boolean boolean_gen_checkBox_efficiency = false;
+    Boolean boolean_gen_checkBox_secrecy = false;
+    Boolean boolean_gen_checkBox_network_graph = false;
+    Boolean boolean_gen_checkbox_diameter_distribution = false;
+    Boolean boolean_gen_checkBox_degree_distribution = false;
+    Boolean boolean_gen_checkBox_closness_distribution = false;
+    Boolean boolean_gen_checkBox_betweenness_distribution = false;
+    Boolean boolean_gen_checkBox_save_selected_diagram = false;
+    Boolean boolean_gen_checkBox_efficiency_progress = false;
+    Boolean boolean_gen_checkBox_secrecy_progress = false;
+
+
+
     private JTextField gen_textField_hours_per_pass = new JTextField();
     private JTextField gen_textField_key_players_number = new JTextField();
+    private JTextField gen_textField_segment_size = new JTextField();
     private JTextField gen_textField_arrest_probability_key_players = new JTextField("%");
     private JTextField gen_textField_step = new JTextField("%");
 
@@ -60,6 +82,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     private JLabel imp_label_hours_per_pass = new JLabel("Hours per pass: ");
     private JLabel imp_label_define_key_players_by = new JLabel("Define key players by: ");
     private JLabel imp_label_key_players_number = new JLabel("Key players number: ");
+    private JLabel imp_label_segment_size = new JLabel("Max segment size:  ");
     private JLabel imp_label_arrest_probability = new JLabel("Arrest probability:  Key players: ");
     private JLabel imp_label_step = new JLabel("                              Step: ");
     private JLabel imp_label_step_increase = new JLabel("                              Step increase: ");
@@ -85,11 +108,15 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     private JTextField imp_textField_import_from_file = new JTextField();
     private JTextField imp_textField_hours_per_pass = new JTextField();
     private JTextField imp_textField_key_players_number = new JTextField();
+    private JTextField imp_textField_segment_size = new JTextField();
     private JTextField imp_textField_arrest_probability_key_players = new JTextField("%");
     private JTextField imp_textField_step = new JTextField("%");
 
     private JButton imp_button_select = new JButton("Select");
     private JButton imp_button_ok = new JButton("OK");
+
+    private JFileChooser imp_fileChooser = new JFileChooser();
+    private File imp_file;
 
     /* Covert Network */
 
@@ -103,6 +130,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     private JLabel cov_label_hours_per_pass = new JLabel("Hours per pass: ");
     private JLabel cov_label_define_key_players_by = new JLabel("Define key players by: ");
     private JLabel cov_label_key_players_number = new JLabel("Key players number: ");
+    private JLabel cov_label_segment_size = new JLabel("Max segment size:  ");
     private JLabel cov_label_arrest_probability = new JLabel("Arrest probability:  Key players: ");
     private JLabel cov_label_step = new JLabel("                              Step: ");
     private JLabel cov_label_step_increase = new JLabel("                              Step increase: ");
@@ -132,10 +160,15 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
 
     private JTextField cov_textField_hours_per_pass = new JTextField();
     private JTextField cov_textField_key_players_number = new JTextField();
+    private JTextField cov_textField_segment_size = new JTextField();
     private JTextField cov_textField_arrest_probability_key_players = new JTextField("%");
     private JTextField cov_textField_step = new JTextField("%");
 
     private JButton cov_button_ok = new JButton("OK");
+
+    private JFileChooser cov_fileChooser = new JFileChooser();
+    private File cov_file;
+    private Boolean cov_added_file = false;
 
 
 
@@ -172,7 +205,6 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
         gen_comboBox_structure.addItem("Bernoulli");
         gen_comboBox_structure.addItem("Preferential Attachment");
         gen_comboBox_structure.addItem("Preferential Attachment with Bernoulli");
-        gen_comboBox_structure.addItem("Covert Network Model (based on betweenness)");
 
         gen_slider_node_number.setMajorTickSpacing(5);
         gen_slider_node_number.setMinorTickSpacing(1);
@@ -182,7 +214,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
         gen_slider_node_number.addChangeListener(this);
 //        gen_comboBox_structure.getMaximumSize();
 
-        gen_comboBox_efficiency.addItem("Distribution of diameter");
+        gen_comboBox_efficiency.addItem("Deliver message");
 
         gen_comboBox_define_key_players_by.addItem("Degree");
         gen_comboBox_define_key_players_by.addItem("Closeness");
@@ -190,10 +222,12 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
 
         gen_comboBox_step_increase.addItem("None");
         gen_comboBox_step_increase.addItem("Linear");
+
+        gen_button_ok.addActionListener(this);
     }
 
     private void initialiseImpComponents(){
-        imp_comboBox_efficiency.addItem("Distribution of diameter");
+        imp_comboBox_efficiency.addItem("Deliver message");
 
         imp_comboBox_define_key_players_by.addItem("Degree");
         imp_comboBox_define_key_players_by.addItem("Closeness");
@@ -201,6 +235,13 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
 
         imp_comboBox_step_increase.addItem("None");
         imp_comboBox_step_increase.addItem("Linear");
+
+        imp_textField_import_from_file.setEnabled(false);
+
+
+        imp_button_select.addActionListener(this);
+        imp_button_ok.addActionListener(this);
+        imp_fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 
     }
 
@@ -211,7 +252,6 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
         cov_comboBox_initial_graph.addItem("Bernoulli");
         cov_comboBox_initial_graph.addItem("Preferential Attachment");
         cov_comboBox_initial_graph.addItem("Preferential Attachment with Bernoulli");
-        cov_comboBox_initial_graph.addItem("Covert Network Model (based on betweenness)");
         cov_comboBox_initial_graph.addItem("Add from file...");
 
         cov_slider_node_number.setMajorTickSpacing(5);
@@ -221,8 +261,8 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
         cov_slider_node_number.setSnapToTicks(true);
         cov_slider_node_number.addChangeListener(this);
 
-        cov_comboBox_algorithm.addItem("Accurate method");
         cov_comboBox_algorithm.addItem("Fast method");
+        cov_comboBox_algorithm.addItem("Faster method");
 
 
 
@@ -239,7 +279,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
         labelTable.put(100, new JLabel("Efficiency"));
         cov_slider_balance.setLabelTable(labelTable);
 
-        cov_comboBox_efficiency.addItem("Distribution of diameter");
+        cov_comboBox_efficiency.addItem("Deliver message");
 
         cov_comboBox_define_key_players_by.addItem("Degree");
         cov_comboBox_define_key_players_by.addItem("Closeness");
@@ -247,6 +287,11 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
 
         cov_comboBox_step_increase.addItem("None");
         cov_comboBox_step_increase.addItem("Linear");
+
+        cov_fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+
+        cov_button_ok.addActionListener(this);
+        cov_comboBox_initial_graph.addActionListener(this);
 
     }
 
@@ -292,6 +337,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 .addComponent(gen_label_hours_per_pass)
                                 .addComponent(gen_label_define_key_players_by)
                                 .addComponent(gen_label_key_players_number)
+                                .addComponent(gen_label_segment_size)
                                 .addComponent(gen_label_arrest_probability)
                                 .addComponent(gen_label_step)
                                 .addComponent(gen_label_step_increase)
@@ -302,6 +348,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 .addComponent(gen_textField_hours_per_pass)
                                 .addComponent(gen_comboBox_define_key_players_by)
                                 .addComponent(gen_textField_key_players_number)
+                                .addComponent(gen_textField_segment_size)
                                 .addComponent(gen_textField_arrest_probability_key_players)
                                 .addComponent(gen_textField_step)
                                 .addComponent(gen_comboBox_step_increase)
@@ -333,6 +380,9 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(gen_label_key_players_number)
                                 .addComponent(gen_textField_key_players_number))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(gen_label_segment_size)
+                                .addComponent(gen_textField_segment_size))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(gen_label_arrest_probability)
                                 .addComponent(gen_textField_arrest_probability_key_players))
@@ -405,6 +455,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 .addComponent(imp_label_hours_per_pass)
                                 .addComponent(imp_label_define_key_players_by)
                                 .addComponent(imp_label_key_players_number)
+                                .addComponent(imp_label_segment_size)
                                 .addComponent(imp_label_arrest_probability)
                                 .addComponent(imp_label_step)
                                 .addComponent(imp_label_step_increase)
@@ -415,6 +466,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 .addComponent(imp_textField_hours_per_pass)
                                 .addComponent(imp_comboBox_define_key_players_by)
                                 .addComponent(imp_textField_key_players_number)
+                                .addComponent(imp_textField_segment_size)
                                 .addComponent(imp_textField_arrest_probability_key_players)
                                 .addComponent(imp_textField_step)
                                 .addComponent(imp_comboBox_step_increase)
@@ -443,6 +495,9 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(imp_label_key_players_number)
                                 .addComponent(imp_textField_key_players_number))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(imp_label_segment_size)
+                                .addComponent(imp_textField_segment_size))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(imp_label_arrest_probability)
                                 .addComponent(imp_textField_arrest_probability_key_players))
@@ -522,6 +577,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 .addComponent(cov_label_hours_per_pass)
                                 .addComponent(cov_label_define_key_players_by)
                                 .addComponent(cov_label_key_players_number)
+                                .addComponent(cov_label_segment_size)
                                 .addComponent(cov_label_arrest_probability)
                                 .addComponent(cov_label_step)
                                 .addComponent(cov_label_step_increase)
@@ -532,6 +588,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 .addComponent(cov_textField_hours_per_pass)
                                 .addComponent(cov_comboBox_define_key_players_by)
                                 .addComponent(cov_textField_key_players_number)
+                                .addComponent(cov_textField_segment_size)
                                 .addComponent(cov_textField_arrest_probability_key_players)
                                 .addComponent(cov_textField_step)
                                 .addComponent(cov_comboBox_step_increase)
@@ -568,6 +625,9 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(cov_label_key_players_number)
                                 .addComponent(cov_textField_key_players_number))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(cov_label_segment_size)
+                                .addComponent(cov_textField_segment_size))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(cov_label_arrest_probability)
                                 .addComponent(cov_textField_arrest_probability_key_players))
@@ -622,9 +682,338 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     }
 
     @Override
-    public void actionPerformed(ActionEvent event){
+    public void actionPerformed(final ActionEvent event){
+
+        SwingWorker<Integer, Void> worker = new SwingWorker<Integer, Void>() {
+            @Override
+            public Integer doInBackground() {
+
+                // do heavy work / display the graph here
+
+
+                // Generated graph starts
+                if (event.getSource().equals(gen_button_ok)){
+
+                    Double hoursPerPass;
+                    Integer keyPlayerNumber;
+                    Integer maxSegmentSize;
+                    Double keyPlayerArrestProbability;
+                    Double arrestProbabilityStep;
+                    String stepIncreaseMethod;
+
+                    FixedGraph genGraph = new FixedGraph();
+                    GraphInfo graphInfo = new GraphInfo();
+                    // generated graph
+                    if (gen_textField_hours_per_pass.getText().equals("")){
+                        hoursPerPass = 0.0;
+                    }else {
+                        hoursPerPass = Double.parseDouble(gen_textField_hours_per_pass.getText());
+                        try {
+                            hoursPerPass = Double.parseDouble(gen_textField_hours_per_pass.getText());
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
+
+                    if (gen_textField_key_players_number.getText().equals("")){
+                        keyPlayerNumber = 1;
+                    }else {
+                        keyPlayerNumber = Integer.parseInt(gen_textField_key_players_number.getText());
+                        try {
+                            keyPlayerNumber = Integer.parseInt(gen_textField_key_players_number.getText());
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
+
+                    if (gen_textField_segment_size.getText().equals("")){
+                        maxSegmentSize = 1;
+                    } else {
+                        maxSegmentSize = Integer.parseInt(gen_textField_segment_size.getText());
+                        try {
+                            maxSegmentSize = Integer.parseInt(gen_textField_segment_size.getText());
+                        } catch (NumberFormatException e){
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
+
+                    if (gen_textField_arrest_probability_key_players.getText().equals("") || gen_textField_arrest_probability_key_players.getText().equals("%")){
+                        keyPlayerArrestProbability = 0.0;
+                    } else {
+                        keyPlayerArrestProbability = Double.parseDouble(gen_textField_arrest_probability_key_players.getText());
+                        try{
+                            keyPlayerArrestProbability = Double.parseDouble(gen_textField_arrest_probability_key_players.getText());
+                        } catch (NumberFormatException e){
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
+
+                    if (gen_textField_step.getText().equals("") || gen_textField_step.getText().equals("%")){
+                        arrestProbabilityStep = 0.0;
+                    } else {
+                        arrestProbabilityStep = Double.parseDouble(gen_textField_step.getText());
+                        try{
+                            arrestProbabilityStep = Double.parseDouble(gen_textField_step.getText());
+                        } catch (NumberFormatException e){
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
+
+                    stepIncreaseMethod = gen_comboBox_step_increase.getSelectedItem().toString();
+
+                    if (gen_comboBox_structure.getSelectedItem().toString().equals("Highly Centralised")){
+                        graphInfo = genGraph.HighlyCentralised(gen_slider_node_number.getValue(),
+                                hoursPerPass, gen_checkBox_efficiency.isSelected(),
+                                gen_checkBox_secrecy.isSelected(), gen_comboBox_define_key_players_by.getSelectedItem().toString(), keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod,
+                                gen_checkBox_network_graph.isSelected(), gen_checkbox_diameter_distribution.isSelected(), gen_checkBox_degree_distribution.isSelected(), gen_checkBox_closness_distribution.isSelected(), gen_checkBox_betweenness_distribution.isSelected(),
+                                gen_checkBox_save_selected_diagram.isSelected(),
+                                gen_checkBox_efficiency_progress.isSelected(), gen_checkBox_secrecy_progress.isSelected() );
+
+                    }else if(gen_comboBox_structure.getSelectedItem().toString().equals("Highly Decentralised")){
+                        genGraph.HighlyDecentralised(gen_slider_node_number.getValue(),
+                                hoursPerPass, gen_checkBox_efficiency.isSelected(),
+                                gen_checkBox_secrecy.isSelected(), gen_comboBox_define_key_players_by.getSelectedItem().toString(), keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod,
+                                gen_checkBox_network_graph.isSelected(), gen_checkbox_diameter_distribution.isSelected(), gen_checkBox_degree_distribution.isSelected(), gen_checkBox_closness_distribution.isSelected(), gen_checkBox_betweenness_distribution.isSelected(),
+                                gen_checkBox_save_selected_diagram.isSelected(),
+                                gen_checkBox_efficiency_progress.isSelected(), gen_checkBox_secrecy_progress.isSelected());
+                    }else if (gen_comboBox_structure.getSelectedItem().toString().equals("Bernoulli")){
+                        genGraph.B(gen_slider_node_number.getValue(),
+                                hoursPerPass, gen_checkBox_efficiency.isSelected(),
+                                gen_checkBox_secrecy.isSelected(), gen_comboBox_define_key_players_by.getSelectedItem().toString(), keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod,
+                                gen_checkBox_network_graph.isSelected(), gen_checkbox_diameter_distribution.isSelected(), gen_checkBox_degree_distribution.isSelected(), gen_checkBox_closness_distribution.isSelected(), gen_checkBox_betweenness_distribution.isSelected(),
+                                gen_checkBox_save_selected_diagram.isSelected(),
+                                gen_checkBox_efficiency_progress.isSelected(), gen_checkBox_secrecy_progress.isSelected());
+                    }else if(gen_comboBox_structure.getSelectedItem().toString().equals("Preferential Attachment")){
+                        genGraph.PA(gen_slider_node_number.getValue(),
+                                hoursPerPass, gen_checkBox_efficiency.isSelected(),
+                                gen_checkBox_secrecy.isSelected(), gen_comboBox_define_key_players_by.getSelectedItem().toString(), keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod,
+                                gen_checkBox_network_graph.isSelected(), gen_checkbox_diameter_distribution.isSelected(), gen_checkBox_degree_distribution.isSelected(), gen_checkBox_closness_distribution.isSelected(), gen_checkBox_betweenness_distribution.isSelected(),
+                                gen_checkBox_save_selected_diagram.isSelected(),
+                                gen_checkBox_efficiency_progress.isSelected(), gen_checkBox_secrecy_progress.isSelected());
+                    }else if(gen_comboBox_structure.getSelectedItem().toString().equals("Preferential Attachment with Bernoulli")){
+                        genGraph.PAB(gen_slider_node_number.getValue(),
+                                hoursPerPass, gen_checkBox_efficiency.isSelected(),
+                                gen_checkBox_secrecy.isSelected(), gen_comboBox_define_key_players_by.getSelectedItem().toString(), keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod,
+                                gen_checkBox_network_graph.isSelected(), gen_checkbox_diameter_distribution.isSelected(), gen_checkBox_degree_distribution.isSelected(), gen_checkBox_closness_distribution.isSelected(), gen_checkBox_betweenness_distribution.isSelected(),
+                                gen_checkBox_save_selected_diagram.isSelected(),
+                                gen_checkBox_efficiency_progress.isSelected(), gen_checkBox_secrecy_progress.isSelected());
+                    }
+                } else // Generated graph ends
+
+                    // Imported graph starts
+                    if (event.getSource().equals(imp_button_select)){
+                        int returnVal = imp_fileChooser.showOpenDialog(getParent());
+
+                        if (returnVal == JFileChooser.APPROVE_OPTION) {
+                            imp_file = imp_fileChooser.getSelectedFile();
+                            System.out.println(imp_file);
+                            //This is where a real application would open the file.
+                            imp_textField_import_from_file.setText("Opening: " + imp_file.getName());
+                        } else {
+                            imp_textField_import_from_file.setText("Open command cancelled by user.");
+                        }
+                        imp_textField_import_from_file.setCaretPosition(imp_textField_import_from_file.getDocument().getLength());
+                    } else
+                    if (event.getSource().equals(imp_button_ok)){
+                        Double hoursPerPass;
+                        Integer keyPlayerNumber;
+                        Integer maxSegmentSize;
+                        Double keyPlayerArrestProbability;
+                        Double arrestProbabilityStep;
+                        String stepIncreaseMethod;
+
+                        RealGraph realGraph = new RealGraph(imp_file);
+
+
+                        if (imp_textField_hours_per_pass.getText().equals("")){
+                            hoursPerPass = 1.0;
+                        }else {
+                            hoursPerPass = Double.parseDouble(imp_textField_hours_per_pass.getText());
+                            try {
+                                hoursPerPass = Double.parseDouble(imp_textField_hours_per_pass.getText());
+                            } catch (NumberFormatException e) {
+                                e.printStackTrace();
+                                // TODO handle the error
+                            }
+                        }
+
+                        if (imp_textField_key_players_number.getText().equals("")){
+                            keyPlayerNumber = 2;
+                        }else {
+                            keyPlayerNumber = Integer.parseInt(imp_textField_key_players_number.getText());
+                            try {
+                                keyPlayerNumber = Integer.parseInt(imp_textField_key_players_number.getText());
+                            } catch (NumberFormatException e) {
+                                e.printStackTrace();
+                                // TODO handle the error
+                            }
+                        }
+
+                        if (imp_textField_segment_size.getText().equals("")){
+                            maxSegmentSize = 3;
+                        } else {
+                            maxSegmentSize = Integer.parseInt(imp_textField_segment_size.getText());
+                            try {
+                                maxSegmentSize = Integer.parseInt(imp_textField_segment_size.getText());
+                            } catch (NumberFormatException e){
+                                e.printStackTrace();
+                                // TODO handle the error
+                            }
+                        }
+
+                        if (imp_textField_arrest_probability_key_players.getText().equals("") || imp_textField_arrest_probability_key_players.getText().equals("%")){
+                            keyPlayerArrestProbability = 100.0;
+                        } else {
+                            keyPlayerArrestProbability = Double.parseDouble(imp_textField_arrest_probability_key_players.getText());
+                            try{
+                                keyPlayerArrestProbability = Double.parseDouble(imp_textField_arrest_probability_key_players.getText());
+                            } catch (NumberFormatException e){
+                                e.printStackTrace();
+                                // TODO handle the error
+                            }
+                        }
+
+                        if (imp_textField_step.getText().equals("") || imp_textField_step.getText().equals("%")){
+                            arrestProbabilityStep = 10.0;
+                        } else {
+                            arrestProbabilityStep = Double.parseDouble(imp_textField_step.getText());
+                            try{
+                                arrestProbabilityStep = Double.parseDouble(imp_textField_step.getText());
+                            } catch (NumberFormatException e){
+                                e.printStackTrace();
+                                // TODO handle the error
+                            }
+                        }
+
+                        stepIncreaseMethod = imp_comboBox_step_increase.getSelectedItem().toString();
+
+                        realGraph.RG(hoursPerPass, imp_checkBox_efficiency.isSelected(),
+                                imp_checkBox_secrecy.isSelected(), imp_comboBox_define_key_players_by.getSelectedItem().toString(), keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod,
+                                imp_checkBox_network_graph.isSelected(), imp_checkbox_diameter_distribution.isSelected(), imp_checkBox_degree_distribution.isSelected(), imp_checkBox_closness_distribution.isSelected(), imp_checkBox_betweenness_distribution.isSelected(),
+                                imp_checkBox_save_selected_diagram.isSelected(),
+                                imp_checkBox_efficiency_progress.isSelected(), imp_checkBox_secrecy_progress.isSelected() );
+
+                    }else // Imported graph ends
+
+
+                        // Covert network starts
+                        if (cov_comboBox_initial_graph.getSelectedItem().equals("Add from file...") && !cov_added_file ){ // Get imported graph
+
+                            System.out.println("add file");
+                            cov_added_file = true;
+
+                            int returnVal = cov_fileChooser.showOpenDialog(getParent());
+
+                            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                                cov_file = cov_fileChooser.getSelectedFile();
+                                System.out.println(cov_file);
+                            }
+                        }
+
+                if (event.getSource().equals(cov_button_ok)){
+
+                    Double hoursPerPass;
+                    Integer keyPlayerNumber;
+                    Integer maxSegmentSize;
+                    Double keyPlayerArrestProbability;
+                    Double arrestProbabilityStep;
+                    String stepIncreaseMethod;
+
+                    Graph initialGraph;
+                    CovertNetwork covertNetwork = new CovertNetwork();
+                    GraphInfo graphInfo = new GraphInfo();
+
+                    // covert network
+                    if (cov_textField_hours_per_pass.getText().equals("")){
+                        hoursPerPass = 1.0;
+                    }else {
+                        hoursPerPass = Double.parseDouble(cov_textField_hours_per_pass.getText());
+                        try {
+                            hoursPerPass = Double.parseDouble(cov_textField_hours_per_pass.getText());
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
+
+                    if (cov_textField_key_players_number.getText().equals("")){
+                        keyPlayerNumber = 2;
+                    }else {
+                        keyPlayerNumber = Integer.parseInt(cov_textField_key_players_number.getText());
+                        try {
+                            keyPlayerNumber = Integer.parseInt(cov_textField_key_players_number.getText());
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
+
+                    if (cov_textField_segment_size.getText().equals("")){
+                        maxSegmentSize = 5;
+                    } else {
+                        maxSegmentSize = Integer.parseInt(cov_textField_segment_size.getText());
+                        try {
+                            maxSegmentSize = Integer.parseInt(cov_textField_segment_size.getText());
+                        } catch (NumberFormatException e){
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
+
+                    if (cov_textField_arrest_probability_key_players.getText().equals("") || cov_textField_arrest_probability_key_players.getText().equals("%")){
+                        keyPlayerArrestProbability = 100.0;
+                    } else {
+                        keyPlayerArrestProbability = Double.parseDouble(cov_textField_arrest_probability_key_players.getText());
+                        try{
+                            keyPlayerArrestProbability = Double.parseDouble(cov_textField_arrest_probability_key_players.getText());
+                        } catch (NumberFormatException e){
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
+
+                    if (cov_textField_step.getText().equals("") || cov_textField_step.getText().equals("%")){
+                        arrestProbabilityStep = 10.0;
+                    } else {
+                        arrestProbabilityStep = Double.parseDouble(cov_textField_step.getText());
+                        try{
+                            arrestProbabilityStep = Double.parseDouble(cov_textField_step.getText());
+                        } catch (NumberFormatException e){
+                            e.printStackTrace();
+                            // TODO handle the error
+                        }
+                    }
+
+                    stepIncreaseMethod = cov_comboBox_step_increase.getSelectedItem().toString();
+
+                    if (cov_comboBox_initial_graph.getSelectedItem().toString().equals("Add from file...")){
+                        System.out.println("initial");
+                        initialGraph = covertNetwork.initialImpGraph(cov_file);
+                        covertNetwork.buildCovertNetwork( initialGraph, cov_comboBox_algorithm.getSelectedItem().toString(), cov_slider_balance.getValue(), cov_comboBox_define_key_players_by.getSelectedItem().toString(),keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
+                        cov_added_file = false;
+                    }else {
+//                initialGraph = covertNetwork.initialGenGraph("Preferential Attachment with Bernoulli",30);
+//                covertNetwork.buildCovertNetwork(initialGraph,"Accurate method", 0, "Betweenness",5,5,100.0,10.0,"None");
+
+                        initialGraph = covertNetwork.initialGenGraph(cov_comboBox_initial_graph.getSelectedItem().toString(),cov_slider_node_number.getValue());
+                        covertNetwork.buildCovertNetwork( initialGraph, cov_comboBox_algorithm.getSelectedItem().toString(), cov_slider_balance.getValue(), cov_comboBox_define_key_players_by.getSelectedItem().toString(),keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
+                    }
+                }
+
+                return 1;
+            }
+        };
+
+        worker.execute();
+
 
     }
+
 
     @Override
     public void stateChanged(ChangeEvent e) {
@@ -646,288 +1035,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
             }
         }
 
-
     }
-
-
-
-
-////      Old version
-//    private String networkType = new String();
-//    private int nodeNum;
-//    private TextField textField = new TextField ();
-//
-//    private JLabel genNodeNum = new JLabel();
-//    private JLabel genMaxDeg = new JLabel();
-//    private JLabel genMinDeg = new JLabel();
-//    private JLabel genAveDeg = new JLabel();
-//    private JLabel genMaxDia = new JLabel(); // max diameter
-//    private JLabel genMaxBet = new JLabel(); // max betweenness
-//    private JLabel genMaxClo = new JLabel(); // max closeness
-//    private JLabel genSercey = new JLabel();
-//
-//    private JLabel realNodeNum = new JLabel();
-//    private JLabel realMaxDeg = new JLabel();
-//    private JLabel realMinDeg = new JLabel();
-//    private JLabel realAveDeg = new JLabel();
-//    private JLabel realMaxDia = new JLabel(); // max diameter
-//    private JLabel realMaxBet = new JLabel(); // max betweenness
-//    private JLabel realMaxClo = new JLabel(); // max closeness
-//    private JLabel realSecrecy = new JLabel();
-//
-//    private JComboBox genComboBox = new JComboBox();
-//    private JComboBox realComboBox = new JComboBox();
-//
-//    private JComboBox networkTypeCombobox = new JComboBox();
-//
-//    private JButton genProcessBtn = new JButton("OK");
-//    private JButton realProcessBtn = new JButton("OK");
-//
-//
-//
-//    public  GUI(){
-//
-//
-//
-//        JFrame frame = new JFrame();
-//
-//        JPanel genInfoPanel = new JPanel();
-//        JPanel genDataPanel = new JPanel();
-//        final JPanel genNodeNumPanel = new JPanel();
-//        JPanel genBtnPanel = new JPanel();
-//
-//        JPanel realInfoPanel = new JPanel();
-//        JPanel realDataPanel = new JPanel();
-//        JPanel realBtnPanel = new JPanel();
-//
-//        Dimension d = new Dimension(15,10);
-//
-//
-//
-//        frame.setTitle("Secrecy VS Efficiency");
-//        frame.setSize(800,500);
-//
-//        Container container = getContentPane();
-//        container.setLayout(new GridLayout(1,1,20,10));
-//
-//        final JPanel graphPanel = new JPanel();
-//        container.add(graphPanel);
-//        graphPanel.setLayout(new GridLayout(0,1));
-//
-//        JPanel realPanel = new JPanel();
-//        container.add(realPanel);
-//        realPanel.setLayout(new GridLayout(0,1));
-//
-////        HBox hBox = new HBox();
-////        hBox.
-//
-//        /*Set up Generated Graph*/
-//        networkTypeCombobox.addItem("Generated Network");
-//        networkTypeCombobox.addItem("Real Network");
-//        networkTypeCombobox.addItemListener(new ItemListener() {
-//            @Override
-//            public void itemStateChanged(ItemEvent e) {
-//                if (e.getStateChange() == ItemEvent.SELECTED){
-//                    networkType = e.getItem().toString();
-//
-//                    System.out.println(networkType);
-//
-//                    if (networkType.equals("Real Network")){
-//                        genNodeNumPanel.setVisible(true);
-//                        nodeNum = Integer.parseInt(textField.getText());
-//                    }else{
-//                        genNodeNumPanel.setVisible(false);
-//                    }
-//                }
-//            }
-//        });
-//
-//
-//        graphPanel.add(networkTypeCombobox);
-////        System.out.println("Network type: "+networkTypeCombobox.getSelectedItem());
-//
-//        graphPanel.add(genNodeNumPanel);
-//        genNodeNumPanel.setLayout(new GridLayout(1,2,0,0));
-//        genNodeNumPanel.add(new JLabel("Node number: "));
-//        textField.setText("14");
-//        genNodeNumPanel.add(textField);
-//        genNodeNumPanel.setVisible(false);
-//
-//
-//            /*Generated Graph Info*/
-//            graphPanel.add(genInfoPanel);
-//            genInfoPanel.setLayout(new GridLayout(0,1,5, 5));
-//
-//            genInfoPanel.add(new JLabel("Generated Graph"));
-//
-//            genComboBox.setBounds(10,10, 80, 25);
-//            genComboBox.addItem("Highly Centralised");
-//            genComboBox.addItem("Highly Decentralised");
-//            genComboBox.addItem("Bernoulli");
-//            genComboBox.addItem("Preferential Attachment");
-//            genComboBox.addItem("Preferential Attachment with Bernoulli");
-//            genComboBox.addItem("Covert Network Model (based on betweenness)");
-//            genInfoPanel.add(genComboBox);
-//            genComboBox.addActionListener(this);
-//
-//        /*Generated Graph Data*/
-//            graphPanel.add(genDataPanel);
-//            genDataPanel.setLayout(new GridLayout(0,2,10,20));
-//            genNodeNum.setText("");
-//            genMaxDeg.setText("");
-//            genMinDeg.setText("");
-//            genAveDeg.setText("");
-//            genMaxDia.setText("");
-//            genMaxBet.setText("");
-//            genMaxClo.setText("");
-//            genSercey.setText("");
-//
-//            genDataPanel.add(new JLabel("Node number: "));
-//            genDataPanel.add(genNodeNum);
-//            genDataPanel.add(new JLabel("Max degree: "));
-//            genDataPanel.add(genMaxDeg);
-//            genDataPanel.add(new JLabel("Min degree: "));
-//            genDataPanel.add(genMinDeg);
-//            genDataPanel.add(new JLabel("Ave degree: "));
-//            genDataPanel.add(genAveDeg);
-//            genDataPanel.add(new JLabel("Max diameter: "));
-//            genDataPanel.add(genMaxDia);
-//            genDataPanel.add(new JLabel("Max betweenness: "));
-//            genDataPanel.add(genMaxBet);
-//            genDataPanel.add(new JLabel("Max closeness(*1000): "));
-//            genDataPanel.add(genMaxClo);
-//            genDataPanel.add(new JLabel("Secrecy: "));
-//
-//
-//        /*Generated Graph Btn*/
-//            graphPanel.add(genBtnPanel);
-//            genBtnPanel.setLayout(new GridLayout(0,1,10,20));
-//            genProcessBtn.setPreferredSize(d);
-//            genBtnPanel.add(new JLabel(""));
-//            genBtnPanel.add(genProcessBtn);
-//            genBtnPanel.add(new JLabel(""));
-//            genProcessBtn.addActionListener(this);
-//
-//
-//        /*Set up Real Graph*/
-//
-//        /*Real Graph Info*/
-//            realPanel.add(realInfoPanel);
-//            realInfoPanel.setLayout(new GridLayout(0,1, 5, 5));
-//            realInfoPanel.add(new JLabel("Real Graph"));
-//
-//            realComboBox.setBounds(10,10, 80, 25);
-//            realComboBox.addItem("9_11 Graph");
-//            realComboBox.addItem("Suffragettes Inner Circle");
-//            realComboBox.addItem("Add file from this computer...");
-//            realInfoPanel.add(realComboBox);
-//            realComboBox.addActionListener(this);
-//
-//
-//        /*Real Graph Data*/
-//            realPanel.add(realDataPanel);
-//            realDataPanel.setLayout(new GridLayout(0,2,10,20));
-//            realNodeNum.setText("");
-//            realMaxDeg.setText("");
-//            realMinDeg.setText("");
-//            realAveDeg.setText("");
-//            realMaxDia.setText("");
-//            realMaxBet.setText("");
-//            realMaxClo.setText("");
-//            realSecrecy.setText("");
-//
-//
-//            realDataPanel.add(new JLabel("Node number: "));
-//            realDataPanel.add(realNodeNum);
-//            realDataPanel.add(new JLabel("Max degree: "));
-//            realDataPanel.add(realMaxDeg);
-//            realDataPanel.add(new JLabel("Min degree: "));
-//            realDataPanel.add(realMinDeg);
-//            realDataPanel.add(new JLabel("Ave degree: "));
-//            realDataPanel.add(realAveDeg);
-//            realDataPanel.add(new JLabel("Max distance: "));
-//            realDataPanel.add(realMaxDia);
-//            realDataPanel.add(new JLabel("Max betweenness: "));
-//            realDataPanel.add(realMaxBet);
-//            realDataPanel.add(new JLabel("Max closeness(*1000): "));
-//            realDataPanel.add(realMaxClo);
-//            realDataPanel.add(new JLabel("Secrecy"));
-//            realDataPanel.add(realSecrecy);
-//
-//
-//        /*Real Graph Btn*/
-//            realPanel.add(realBtnPanel);
-//            realBtnPanel.setLayout(new GridLayout(0,1,10,20));
-//            realProcessBtn.setPreferredSize(d);
-//            realBtnPanel.add(new JLabel(""));
-//            realBtnPanel.add(realProcessBtn);
-//            realBtnPanel.add(new JLabel(""));
-//
-//            realProcessBtn.addActionListener(this);
-//
-//            setVisible(true);
-//
-//
-//
-//        frame.setDefaultCloseOperation(HIDE_ON_CLOSE);  // EXIT_ON_CLOSE, DISPOSE_ON_CLOSE
-//        pack();
-//    } // createGui
-//
-//
-//    public void actionPerformed(ActionEvent event){
-//        if (event.getSource() == genProcessBtn){
-//            FixedGraph genGraph = new FixedGraph();
-//            CovertNetwork covNet = new CovertNetwork();
-//            Double[][] graphResult = {};
-//
-//            // decide which graph to display
-//            if (genComboBox.getSelectedItem().toString().equals("Highly Centralised")){
-//                graphResult = genGraph.HighlyCentralised();
-//            }else if(genComboBox.getSelectedItem().toString().equals("Highly Decentralised")){
-//                graphResult = genGraph.HighlyDecentralised();
-//            }else if (genComboBox.getSelectedItem().toString().equals("Bernoulli")){
-//                graphResult = genGraph.B();
-//            }else if(genComboBox.getSelectedItem().toString().equals("Preferential Attachment")){
-//                graphResult = genGraph.PA();
-//            }else if(genComboBox.getSelectedItem().toString().equals("Preferential Attachment with Bernoulli")){
-//                graphResult = genGraph.PAB();
-//            }else if(genComboBox.getSelectedItem().toString().equals("Covert Network Model (based on betweenness)")){
-//                covNet.betweennessNet();
-//            }
-//
-//            if (!genComboBox.getSelectedItem().toString().equals("Covert Network Model (based on betweenness)")) {
-//                genNodeNum.setText("" + graphResult[0][0]); // node number
-//                genMaxDeg.setText("" + graphResult[1][0]); // max degree
-//                genMinDeg.setText("" + graphResult[2][0]); // min degree
-//                genAveDeg.setText("" + String.format("%.1f", graphResult[3][0])); // average degree
-//                genMaxDia.setText("" + graphResult[4][0]); // All-pair shortest paths lengths.
-//                genMaxBet.setText("" + graphResult[7][0]); // max betweenness
-//                genMaxClo.setText("" + String.format("%.5f", graphResult[9][0] * 1000)); // max closeness
-//
-//            }
-//
-//        } else if (event.getSource() == realProcessBtn){
-//            FixedGraph realGraph = new FixedGraph();
-//            if (realComboBox.getSelectedItem().toString().equals("Add file from this computer...")){
-//                System.out.println("Read from file");
-//            } else {
-//                Double[][] graphResult = realGraph.RG(realComboBox.getSelectedItem().toString());
-//                realNodeNum.setText(""+graphResult[0][0]); // node number
-//                realMaxDeg.setText(""+graphResult[1][0]); // max degree
-//                realMinDeg.setText(""+graphResult[2][0]); // min degree
-//                realAveDeg.setText(""+String.format("%.1f", graphResult[3][0])); // average degree
-//                realMaxDia.setText(""+graphResult[4][0]); // All-pair shortest paths lengths.
-//                realMaxBet.setText(""+String.format("%.1f",graphResult[7][0])); // max betweenness
-//                realMaxClo.setText(""+String.format("%.5f",graphResult[9][0]*1000)); // max closeness
-//            }
-//
-//
-//
-//        }
-//
-//
-//    } // actionPerformed
-
 
 
 } // View.GUI class

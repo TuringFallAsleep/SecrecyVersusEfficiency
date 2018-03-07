@@ -20,7 +20,7 @@ public class NodeDegreeLineChart extends JFrame {
         super(applicationTitle);
         JFreeChart lineChart = ChartFactory.createLineChart(
                 chartTitle,
-                "Node Degree","Number of Nodes",
+                "Single Node's Degree","Number of Nodes",
                 createDataSet(allNodesDegree, theGraph),
                 PlotOrientation.VERTICAL,
                 true,true,false);
@@ -37,18 +37,18 @@ public class NodeDegreeLineChart extends JFrame {
     private DefaultCategoryDataset createDataSet(Double[] allNodesDeg, Graph theGraph) {
         for (int i=0; i< allNodesDeg.length; i++){
 
-            if (allNodesDeg.length<1/segment){
-                dataSet.addValue(intValue(allNodesDeg[i]),theGraph.getId(), ""+i);
+            if (allNodesDeg.length<1.0/segment){
+                dataSet.addValue(intValue(allNodesDeg[i]),"Graph: " + theGraph.getId() + " with " + theGraph.getNodeCount() + " nodes", ""+i);
             }else{
                 if (j < allNodesDeg.length*segment){
                     rangeSumValue += intValue(allNodesDeg[i]);
                     j++;
                     if (i == allNodesDeg.length){
-                        dataSet.addValue(rangeSumValue,theGraph.getId(),""+i);
+                        dataSet.addValue(rangeSumValue,"Graph: " + theGraph.getId() + " with " + theGraph.getNodeCount() + " nodes",""+i);
                         rangeSumValue = 0;
                     }
                 }else {
-                    dataSet.addValue(rangeSumValue,theGraph.getId(), ""+i);
+                    dataSet.addValue(rangeSumValue,"Graph: " + theGraph.getId() + " with " + theGraph.getNodeCount() + " nodes", ""+i);
                     j = 0;
                     rangeSumValue = 0;
                 }

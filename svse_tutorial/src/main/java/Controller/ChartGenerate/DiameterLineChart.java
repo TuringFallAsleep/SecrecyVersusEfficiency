@@ -19,7 +19,7 @@ public class DiameterLineChart extends JFrame {
         super(applicationTitle);
         JFreeChart lineChart = ChartFactory.createLineChart(
                 chartTitle,
-                "Diameter","Number of Nodes",
+                "Single Node's Diameter","Number of nodes",
                 createDataSet(allDiameters, theGraph),
                 PlotOrientation.VERTICAL,
                 true,true,false);
@@ -46,9 +46,14 @@ public class DiameterLineChart extends JFrame {
 //            System.out.println("Node: " + i + " has diameter " + allDia[i]);
         }
 
+        // Plot with sum of nodes number with various diameters as x-axis
         for (int i=0; i< numOfNodeWithDiffDia.length; i++){
-            dataSet.addValue(numOfNodeWithDiffDia[i], theGraph.getId(), ""+i);
+            dataSet.addValue(numOfNodeWithDiffDia[i], "Graph: " + theGraph.getId() + " with " + theGraph.getNodeCount() + " nodes", ""+i);
         }
+
+//        for (int i=0; i< allDia.length; i++){
+//            dataSet.addValue(allDia[i], "Graph: " + theGraph.getId(), ""+i);
+//        }
 
         return dataSet;
     }

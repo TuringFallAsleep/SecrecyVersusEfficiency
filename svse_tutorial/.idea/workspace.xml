@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25aa1653-120d-4d71-b029-09aa14fff9db" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/View/GUI.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Model/Tutorial.class" afterPath="$PROJECT_DIR$/target/classes/Model/Tutorial.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/efficiency.css" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/style.css" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Controller/Network/FixedGraph.class" afterPath="$PROJECT_DIR$/target/classes/Controller/Network/FixedGraph.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Model/StaticGraph/CalEfficiency.class" afterPath="$PROJECT_DIR$/target/classes/Model/StaticGraph/CalEfficiency.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/View/GUI.class" afterPath="$PROJECT_DIR$/target/classes/View/GUI.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Model/Tutorial.java" afterPath="$PROJECT_DIR$/src/main/java/Model/Tutorial.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Controller/Network/CovertNetwork.java" afterPath="$PROJECT_DIR$/src/main/java/Controller/Network/CovertNetwork.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Controller/Network/FixedGraph.java" afterPath="$PROJECT_DIR$/src/main/java/Controller/Network/FixedGraph.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalEfficiency.java" afterPath="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalEfficiency.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/View/GUI.java" afterPath="$PROJECT_DIR$/src/main/java/View/GUI.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -19,51 +24,71 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/svse$Tutorial.coverage" NAME="Tutorial Coverage Results" MODIFIED="1519947557472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="svse" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GUI.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/View/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="13" column="54" lean-forward="false" selection-start-line="13" selection-start-column="54" selection-end-line="13" selection-end-column="54" />
+            <state relative-caret-position="141">
+              <caret line="1020" column="10" lean-forward="false" selection-start-line="1020" selection-start-column="9" selection-end-line="1020" selection-end-column="10" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#12561#12581#0" expanded="true" />
+                <element signature="e#40591#61218#0" expanded="true" />
+                <element signature="e#61217#61218#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JComponent.java" pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/src.zip!/javax/swing/JComponent.java">
+      <file leaf-file-name="CalEfficiency.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalEfficiency.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="1697" column="21" lean-forward="false" selection-start-line="1697" selection-start-column="21" selection-end-line="1697" selection-end-column="21" />
+            <state relative-caret-position="2685">
+              <caret line="188" column="25" lean-forward="true" selection-start-line="188" selection-start-column="25" selection-end-line="188" selection-end-column="25" />
+              <folding>
+                <element signature="e#606#615#0" expanded="true" />
+                <element signature="e#1755#1764#0" expanded="true" />
+                <element signature="e#7481#7482#0" expanded="true" />
+                <element signature="e#7546#7547#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FixedGraph.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Network/FixedGraph.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3926">
+              <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#14137#14138#0" expanded="true" />
+                <element signature="e#14202#14203#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tutorial.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Model/Tutorial.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CovertNetwork.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Network/CovertNetwork.java">
+      <file leaf-file-name="efficiency.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/efficiency.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2565">
-              <caret line="183" column="74" lean-forward="false" selection-start-line="183" selection-start-column="74" selection-end-line="183" selection-end-column="74" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CalSecrecy.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalSecrecy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1050">
-              <caret line="84" column="30" lean-forward="false" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
+            <state relative-caret-position="105">
+              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -80,36 +105,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>RefineryUtilities</find>
-      <find>hide</find>
-      <find>graph</find>
-      <find>plotB</find>
-      <find>PlotChart</find>
-      <find>9_11</find>
-      <find>realComboBox</find>
-      <find>Suffragettes Inner Circle</find>
-      <find>graph.dis</find>
-      <find>graph.display</find>
-      <find>graph.display();</find>
-      <find>dis</find>
-      <find>genDataPanel</find>
-      <find>graphPanel</find>
-      <find>efficiency</find>
-      <find>graphResult</find>
-      <find>content</find>
-      <find>700</find>
-      <find>650</find>
-      <find>Genera</find>
-      <find>600</find>
-      <find>algo</find>
-      <find>cov_label_blank</find>
-      <find>effi</find>
-      <find>ini</find>
-      <find>new Dimension(730,640);</find>
-      <find>new Dimension(730,640)</find>
-      <find>setPreferredSize</find>
-      <find>gen_data_note_number</find>
-      <find>step</find>
+      <find>resultGr</find>
+      <find>copy</find>
+      <find>newEdgeID</find>
+      <find>newEdgeID = 04</find>
+      <find>tempGraph.addEdge(newEdgeID,oldEdgeNode0,newEdgeNode1);</find>
+      <find>Inverse</find>
+      <find>addEdge</find>
+      <find>viewer</find>
+      <find>Final</find>
+      <find>0_5</find>
+      <find>9_4</find>
+      <find>edgeIn</find>
+      <find>0_3</find>
+      <find>initialGraph Secrecy =</find>
+      <find>added</find>
+      <find>Initial graph,</find>
+      <find>Algo</find>
+      <find>effici</find>
+      <find>css</find>
+      <find>progre</find>
+      <find>cov_combo</find>
+      <find>cov_comboBox_ini</find>
+      <find>resultGraph_0</find>
+      <find>New edge</find>
+      <find>segmen</find>
+      <find>Int</find>
+      <find>add</find>
+      <find>Deli</find>
+      <find>sleep</find>
+      <find>pass</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -130,14 +155,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/DegreeAlgorithm.java" />
-        <option value="$PROJECT_DIR$/src/main/java/CSVReader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Chart.java" />
-        <option value="$PROJECT_DIR$/src/main/java/LineChart_AWT.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ChartData.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Tutorial.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GraphCal.java" />
-        <option value="$PROJECT_DIR$/src/main/java/BarChart_AWT.java" />
         <option value="$PROJECT_DIR$/src/main/java/FixedGraph.java" />
         <option value="$PROJECT_DIR$/src/main/java/GUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/ApparitionAlgorithm.java" />
@@ -155,28 +172,40 @@
         <option value="$PROJECT_DIR$/src/main/java/Controller/FileReader/CSVReader.java" />
         <option value="/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/jre/lib/rt.jar!/com/apple/laf/AquaButtonUI.class" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/LineChart.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalCloseness.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalDiameter.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/NodeInformation/ProbabilityComparator.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/NodeInformation/PathLengthComparator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Model/NodeInformation/BenweennessComparator.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/NodeInformation/NodeOrderComparator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalBetweenness.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/NetworkInformation/NetworkInfo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controller/NetworkInformation/EdgeInfo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Model/NodeInformation/NodeInfo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalSecrecy.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/BarChart.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/BetweennessLineChart.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/ClosenessLineChart.java" />
+        <option value="$PROJECT_DIR$/src/main/java/View/NetworkTabbedPane.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/GraphCal.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/DiameterLineChart.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/NodeDegreeLineChart.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controller/Network/FixedGraph.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/GraphInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/NodeInformation/NodeInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/NodeInformation/BenweennessComparator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/NodeInformation/BetweennessComparator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/NodeInformation/ClosenessComparator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalCloseness.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/NodeInformation/DegreeComparator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalDegree.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Controller/NetworkInformation/EdgeInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/View/style" />
+        <option value="$PROJECT_DIR$/src/main/java/View/style.css" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalBetweenness.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/ClosenessLineChart.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/BetweennessLineChart.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Controller/Network/RealGraph.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalSecrecy.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/Network/CovertNetwork.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/GraphCal.java" />
-        <option value="$PROJECT_DIR$/src/main/java/View/NetworkTabbedPane.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.aidl" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/Tutorial.java" />
         <option value="$PROJECT_DIR$/src/main/java/View/GUI.java" />
+        <option value="$PROJECT_DIR$/style.css" />
+        <option value="$PROJECT_DIR$/src/main/java/Controller/Network/FixedGraph.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalEfficiency.java" />
       </list>
     </option>
   </component>
@@ -187,9 +216,17 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="710" />
-    <option name="height" value="800" />
+    <option name="x" value="506" />
+    <option name="y" value="22" />
+    <option name="width" value="1280" />
+    <option name="height" value="778" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -209,7 +246,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
@@ -323,17 +359,30 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scratches">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+              <item name="Scratches" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="SearchEverywhereHistoryKey" value="diameter&#9;PSI&#9;JAVA://org.graphstream.algorithm.Toolkit#diameter" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/yangboyin/Downloads/CODE/ThirdYearProject/SecrecyVersusEfficiency/svse_tutorial/src/main/java/Controller/NetworkInformation/EdgeInfo.java&#10;diameter&#9;PSI&#9;JAVA://org.graphstream.algorithm.Toolkit#diameter" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="AIDL" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/dataSet" />
     </key>
@@ -341,6 +390,8 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Controller.Network" />
+      <recent name="Model.StaticGraph" />
       <recent name="Model.NodeInformation" />
       <recent name="Controller.ChartGenerate" />
     </key>
@@ -456,9 +507,29 @@
       <properties />
       <listeners />
     </configuration>
+    <configuration name="scratch" type="Java Scratch" factoryName="Java Scratch" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SCRATCH_FILE_ID" value="65261" />
+      <option name="MAIN_CLASS_NAME" value="scratch" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Application.Tutorial" />
+      <item index="1" class="java.lang.String" itemvalue="Java Scratch.scratch" />
+    </list>
     <recent_temporary>
-      <list size="1">
+      <list size="2">
         <item index="0" class="java.lang.String" itemvalue="Application.Tutorial" />
+        <item index="1" class="java.lang.String" itemvalue="Java Scratch.scratch" />
       </list>
     </recent_temporary>
   </component>
@@ -503,136 +574,45 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22971115" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.4854369" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29160935" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26979" sideWeight="0.48472506" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19628432" sideWeight="0.48472506" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30536452" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.4776699" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39970502" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39889959" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21243942" sideWeight="0.51527494" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30536452" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5145631" order="8" side_tool="true" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager />
   </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/ChartData.java" />
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/src.zip!/javax/swing/JFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="670" column="21" lean-forward="false" selection-start-line="670" selection-start-column="21" selection-end-line="670" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/src.zip!/java/awt/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="2202" column="16" lean-forward="false" selection-start-line="2202" selection-start-column="16" selection-end-line="2202" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../../JavaLib/graphStream/gs-algo-1.3/gs-algo-1.3-sources.jar!/org/graphstream/algorithm/Algorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="97" column="17" lean-forward="false" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/jre/lib/rt.jar!/com/apple/laf/AquaButtonUI.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="482" column="0" lean-forward="false" selection-start-line="482" selection-start-column="0" selection-end-line="482" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/jre/lib/rt.jar!/com/apple/laf/AquaRootPaneUI.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="201" column="0" lean-forward="false" selection-start-line="201" selection-start-column="0" selection-end-line="201" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/src.zip!/javax/swing/plaf/basic/BasicButtonListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="251" column="0" lean-forward="false" selection-start-line="251" selection-start-column="0" selection-end-line="251" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../../JavaLib/graphStream/gs-algo-1.3/gs-algo-1.3-sources.jar!/org/graphstream/algorithm/Toolkit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="1097" column="25" lean-forward="false" selection-start-line="1097" selection-start-column="25" selection-end-line="1097" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../../JavaLib/graphStream/gs-algo-1.3/gs-algo-1.3-sources.jar!/org/graphstream/algorithm/APSP.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="569" column="20" lean-forward="false" selection-start-line="569" selection-start-column="20" selection-end-line="569" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/src.zip!/java/lang/System.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="58" column="19" lean-forward="false" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DynamicGraph/ApparitionAlgorithm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../../JavaLib/graphStream/gs-algo-1.3/gs-algo-1.3-sources.jar!/org/graphstream/algorithm/measure/ClosenessCentrality.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="43" column="65" lean-forward="false" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalCloseness.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-205">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/src.zip!/java/util/DualPivotQuicksort.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-10171">
-          <caret line="51" column="23" lean-forward="true" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/src.zip!/java/util/Arrays.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="143" column="23" lean-forward="true" selection-start-line="143" selection-start-column="23" selection-end-line="143" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/50_EPANKHURST_INNER_CIRCLE.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-636">
@@ -651,41 +631,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-649">
           <caret line="167" column="24" lean-forward="false" selection-start-line="167" selection-start-column="24" selection-end-line="167" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/ProbabilityComparator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="59" lean-forward="false" selection-start-line="7" selection-start-column="59" selection-end-line="7" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/BenweennessComparator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/PathLengthComparator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/NodeOrderComparator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../../JavaLib/graphStream/gs-core-1.3/gs-core-1.3-sources.jar!/org/graphstream/graph/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-121">
-          <caret line="265" column="33" lean-forward="false" selection-start-line="265" selection-start-column="33" selection-end-line="265" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -710,38 +655,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalBetweenness.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="59" column="8" lean-forward="false" selection-start-line="59" selection-start-column="8" selection-end-line="73" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/NodeInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="54" lean-forward="false" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../../../../JavaLib/graphStream/gs-core-1.3/gs-core-1.3-sources.jar!/org/graphstream/graph/implementations/AbstractNode.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="536" column="64" lean-forward="false" selection-start-line="536" selection-start-column="56" selection-end-line="536" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../../JavaLib/graphStream/gs-core-1.3/gs-core-1.3-sources.jar!/org/graphstream/graph/implementations/AdjacencyListNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/NetworkInformation/EdgeInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="41" column="16" lean-forward="false" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -752,38 +669,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../../JavaLib/graphStream/gs-core-1.3/gs-core-1.3-sources.jar!/org/graphstream/graph/implementations/AbstractGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="888" column="0" lean-forward="false" selection-start-line="888" selection-start-column="0" selection-end-line="888" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../../../JavaLib/graphStream/gs-core-1.3/gs-core-1.3-sources.jar!/org/graphstream/graph/Graph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="747" column="71" lean-forward="true" selection-start-line="747" selection-start-column="71" selection-end-line="747" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../../../../JavaLib/jfreechart-1.0.19/lib/jcommon-1.0.23.jar!/org/jfree/ui/RefineryUtilities.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="27" column="13" lean-forward="false" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/BetweennessLineChart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="30" column="49" lean-forward="false" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/FileReader/CSVReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -794,21 +683,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Network/FixedGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4425">
-          <caret line="310" column="34" lean-forward="false" selection-start-line="310" selection-start-column="34" selection-end-line="310" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/GraphCal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1305">
-          <caret line="95" column="20" lean-forward="false" selection-start-line="95" selection-start-column="20" selection-end-line="95" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/BarChart.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -816,79 +690,312 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/ClosenessLineChart.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/View/NetworkTabbedPane.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/src.zip!/java/awt/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="817" column="0" lean-forward="false" selection-start-line="817" selection-start-column="0" selection-end-line="817" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/src.zip!/javax/swing/JComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23835">
+          <caret line="1697" column="21" lean-forward="false" selection-start-line="1697" selection-start-column="21" selection-end-line="1697" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/ProbabilityComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="59" lean-forward="false" selection-start-line="7" selection-start-column="59" selection-end-line="7" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/PathLengthComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="27" lean-forward="true" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/NodeOrderComparator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="14" column="46" lean-forward="false" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/DynamicGraph/ApparitionAlgorithm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/GraphInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="131" column="16" lean-forward="false" selection-start-line="131" selection-start-column="16" selection-end-line="131" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/GraphCal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="899">
+          <caret line="95" column="32" lean-forward="false" selection-start-line="95" selection-start-column="32" selection-end-line="95" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../../JavaLib/jfreechart-1.0.19/lib/jcommon-1.0.23.jar!/org/jfree/util/ClassComparator.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="13" column="11" lean-forward="false" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/BetweennessComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/ClosenessComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="66" lean-forward="false" selection-start-line="7" selection-start-column="66" selection-end-line="7" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/DegreeComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalDegree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-42">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalCloseness.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="72" column="30" lean-forward="true" selection-start-line="72" selection-start-column="30" selection-end-line="72" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Network/MyFullGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-31">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../../JavaLib/graphStream/gs-core-1.3/gs-core-1.3-sources.jar!/org/graphstream/graph/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="190" column="23" lean-forward="false" selection-start-line="190" selection-start-column="15" selection-end-line="190" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../../JavaLib/graphStream/gs-core-1.3/gs-core-1.3-sources.jar!/org/graphstream/graph/implementations/AdjacencyListNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="159" column="0" lean-forward="false" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../../JavaLib/graphStream/gs-core-1.3/gs-core-1.3-sources.jar!/org/graphstream/graph/implementations/AbstractGraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="992" column="0" lean-forward="false" selection-start-line="992" selection-start-column="0" selection-end-line="992" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../../JavaLib/graphStream/gs-core-1.3/gs-core-1.3-sources.jar!/org/graphstream/graph/Graph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="859" column="11" lean-forward="true" selection-start-line="859" selection-start-column="11" selection-end-line="859" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/NodeInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="43">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/NetworkInformation/EdgeInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="41" column="16" lean-forward="false" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/NodeDegreeLineChart.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="14" column="47" lean-forward="false" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
+        <state relative-caret-position="-152">
+          <caret line="18" column="22" lean-forward="false" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/ClosenessLineChart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="74" column="13" lean-forward="true" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/BetweennessLineChart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="47" column="26" lean-forward="false" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/DiameterLineChart.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="53" column="47" lean-forward="true" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalBetweenness.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="73" column="81" lean-forward="true" selection-start-line="73" selection-start-column="81" selection-end-line="73" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/FileReader/CSVReader.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="14" column="45" lean-forward="false" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
+          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/View/NetworkTabbedPane.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/Tutorial.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Network/RealGraph.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state relative-caret-position="15">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="26" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/src.zip!/java/awt/Window.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalSecrecy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="817" column="0" lean-forward="false" selection-start-line="817" selection-start-column="0" selection-end-line="817" selection-end-column="0" />
+        <state relative-caret-position="1358">
+          <caret line="113" column="28" lean-forward="false" selection-start-line="113" selection-start-column="28" selection-end-line="113" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Network/CovertNetwork.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2565">
-          <caret line="183" column="74" lean-forward="false" selection-start-line="183" selection-start-column="74" selection-end-line="183" selection-end-column="74" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalSecrecy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="84" column="30" lean-forward="false" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="30" />
+        <state relative-caret-position="2269">
+          <caret line="538" column="8" lean-forward="false" selection-start-line="538" selection-start-column="8" selection-end-line="538" selection-end-column="71" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/src.zip!/javax/swing/JComponent.java">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.aidl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="1697" column="21" lean-forward="false" selection-start-line="1697" selection-start-column="21" selection-end-line="1697" selection-end-column="21" />
+        <state relative-caret-position="15">
+          <caret line="1" column="3" lean-forward="false" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../../../JavaLib/graphStream/gs-core-1.3/gs-core-1.3-sources.jar!/org/graphstream/graph/Element.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="325" column="72" lean-forward="false" selection-start-line="325" selection-start-column="61" selection-end-line="325" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/Tutorial.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/View/GUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="13" column="54" lean-forward="false" selection-start-line="13" selection-start-column="54" selection-end-line="13" selection-end-column="54" />
+        <state relative-caret-position="141">
+          <caret line="1020" column="10" lean-forward="false" selection-start-line="1020" selection-start-column="9" selection-end-line="1020" selection-end-column="10" />
+          <folding>
+            <element signature="e#40591#61218#0" expanded="true" />
+            <element signature="e#61217#61218#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/efficiency.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/src.zip!/java/util/LinkedList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="336" column="19" lean-forward="false" selection-start-line="336" selection-start-column="19" selection-end-line="336" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Network/FixedGraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3926">
+          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12561#12581#0" expanded="true" />
+            <element signature="e#14137#14138#0" expanded="true" />
+            <element signature="e#14202#14203#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalEfficiency.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2685">
+          <caret line="188" column="25" lean-forward="true" selection-start-line="188" selection-start-column="25" selection-end-line="188" selection-end-column="25" />
+          <folding>
+            <element signature="e#606#615#0" expanded="true" />
+            <element signature="e#1755#1764#0" expanded="true" />
+            <element signature="e#7481#7482#0" expanded="true" />
+            <element signature="e#7546#7547#0" expanded="true" />
           </folding>
         </state>
       </provider>

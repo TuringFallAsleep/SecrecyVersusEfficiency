@@ -9,6 +9,8 @@ import javax.swing.*;
 public class Tutorial {
     public static void main(String args[]) {
 
+        System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -20,6 +22,7 @@ public class Tutorial {
 //        window.setVisible(true);
 
         //test jFreeChart
+
 
 
 

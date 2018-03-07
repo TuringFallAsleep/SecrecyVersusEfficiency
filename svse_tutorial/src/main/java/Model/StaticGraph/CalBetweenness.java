@@ -1,6 +1,6 @@
 package Model.StaticGraph;
 
-import Model.NodeInformation.BenweennessComparator;
+import Model.NodeInformation.BetweennessComparator;
 import Model.NodeInformation.NodeInfo;
 import Model.NodeInformation.NodeOrderComparator;
 import org.graphstream.algorithm.BetweennessCentrality;
@@ -9,7 +9,6 @@ import org.graphstream.graph.Node;
 import org.graphstream.stream.file.FileSourceDGS;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class CalBetweenness {
 
@@ -44,6 +43,8 @@ public class CalBetweenness {
             }
         }
 
+
+        // Order start from 0
         for (int i=0; i<graphSize;i++){
             nodeInfo[i] = new NodeInfo();
             nodeInfo[i].init();
@@ -70,6 +71,7 @@ public class CalBetweenness {
 
             nodeInfo[nodeNum].setNode(n);
             nodeInfo[nodeNum].setBetweenness(betweenness);
+//            System.out.println("Node["+nodeNum+"], Betweenness: "+betweenness);
             nodeNum++;
         }
 
@@ -89,7 +91,7 @@ public class CalBetweenness {
 
     public NodeInfo[] getKeyPlayers(int keyPlayersNumber) {
 //        sortNodeInfo = nodeInfo;
-        Arrays.sort(nodeInfo, new BenweennessComparator());
+        Arrays.sort(nodeInfo, new BetweennessComparator());
         int i = 0;
         int count = 0;
         while(count<keyPlayersNumber){
