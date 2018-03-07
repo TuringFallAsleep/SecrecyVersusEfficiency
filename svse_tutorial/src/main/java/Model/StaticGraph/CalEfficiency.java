@@ -71,7 +71,7 @@ public class CalEfficiency {
         // check whether all nodes received the message
 
         efficiency = pass * hoursPerPass;
-        System.out.println("All nodes received message, which cost "+efficiency+" hours");
+//        System.out.println("All nodes received message, which cost "+efficiency+" hours");
 
 
 

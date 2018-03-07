@@ -6,6 +6,7 @@ import Model.StaticGraph.CalEfficiency;
 import Model.StaticGraph.CalSecrecy;
 import Model.StaticGraph.GraphCal;
 import Model.StaticGraph.GraphInfo;
+import View.ShowSecrecyAndEfficiency;
 import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
 import org.graphstream.algorithm.generator.Generator;
 import org.graphstream.algorithm.generator.RandomGenerator;
@@ -129,14 +130,20 @@ public class RealGraph {
 
         GraphInfo graphInfo = GraphInfoCal(realGraph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness, saveResult); // Calculate degrees
 
-        if (calEfficiency){
-            CalEfficiency efficiency = new CalEfficiency();
-            graphInfo.setEfficiency(efficiency.DeliverMessage(realGraph,hoursPerPass,displayEfficiencyProgress));
-        }
+        if (calEfficiency || calSecrecy){
+            if (calEfficiency){
+                CalEfficiency efficiency = new CalEfficiency();
+                graphInfo.setEfficiency(efficiency.DeliverMessage(realGraph,hoursPerPass,displayEfficiencyProgress));
+            }
 
-        if (calSecrecy){
-            CalSecrecy secrecy = new CalSecrecy();
-            graphInfo.setSecrecy(secrecy.CalSecrecyBy(realGraph,defineKeyPlayersBy,keyPlayerNumber, maxSegmentSize, keyPlayerArrestProbability, arrestProbabilityStep, stepIncreaseMethod));
+
+            if (calSecrecy){
+                CalSecrecy secrecy = new CalSecrecy();
+                graphInfo.setSecrecy(secrecy.CalSecrecyBy(realGraph,defineKeyPlayersBy,keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod));
+            }
+
+            ShowSecrecyAndEfficiency show = new ShowSecrecyAndEfficiency(graphInfo.getSecrecy(),graphInfo.getEfficiency());
+            show.showDialogWindow();
         }
 
         System.out.println("Graph: "+realGraph.getId()+"'s secrecy level is "+ graphInfo.getSecrecy() + " by using "+ defineKeyPlayersBy+" as key players defining method.");

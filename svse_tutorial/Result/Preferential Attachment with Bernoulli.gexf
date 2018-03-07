@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gexf xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd" version="1.2">
- <meta lastmodifieddate="3/7/18 2:06 AM">
+ <meta lastmodifieddate="3/7/18 11:20 PM">
   <creator>GraphStream - org.graphstream.stream.file.FileSinkGEXF</creator>
  </meta>
  <graph defaultedgetype="undirected">
@@ -19,118 +19,8 @@
   <nodes>
    <node id="0">
     <attvalues>
-     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@5870e4e4"></attvalue>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@77defb56"></attvalue>
      <attvalue for="1" value="1.0"></attvalue>
-     <attvalue for="2" value="1.0"></attvalue>
-     <attvalue for="3" value="0.047619047619047616"></attvalue>
-     <attvalue for="4" value="5.666666666666667"></attvalue>
-     <attvalue for="5" value="[14]"></attvalue>
-     <attvalue for="6" value="46.83333333333332"></attvalue>
-    </attvalues>
-   </node>
-   <node id="1">
-    <attvalues>
-     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@464db75f"></attvalue>
-     <attvalue for="1" value="3.0"></attvalue>
-     <attvalue for="2" value="2.0"></attvalue>
-     <attvalue for="3" value="0.047619047619047616"></attvalue>
-     <attvalue for="4" value="1.75"></attvalue>
-     <attvalue for="5" value="[2, 0, 8]"></attvalue>
-     <attvalue for="6" value="49.833333333333336"></attvalue>
-    </attvalues>
-   </node>
-   <node id="2">
-    <attvalues>
-     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@651d6413"></attvalue>
-     <attvalue for="1" value="1.0"></attvalue>
-     <attvalue for="2" value="1.0"></attvalue>
-     <attvalue for="3" value="0.043478260869565216"></attvalue>
-     <attvalue for="4" value="3.9166666666666665"></attvalue>
-     <attvalue for="5" value="[14]"></attvalue>
-     <attvalue for="6" value="55.33333333333333"></attvalue>
-    </attvalues>
-   </node>
-   <node id="3">
-    <attvalues>
-     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@6cc16ffe"></attvalue>
-     <attvalue for="1" value="2.0"></attvalue>
-     <attvalue for="2" value="2.0"></attvalue>
-     <attvalue for="3" value="0.037037037037037035"></attvalue>
-     <attvalue for="4" value="0.0"></attvalue>
-     <attvalue for="5" value="[2, 0]"></attvalue>
-     <attvalue for="6" value="0.0"></attvalue>
-    </attvalues>
-   </node>
-   <node id="4">
-    <attvalues>
-     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@3349f146"></attvalue>
-     <attvalue for="1" value="1.0"></attvalue>
-     <attvalue for="2" value="2.0"></attvalue>
-     <attvalue for="3" value="0.027777777777777776"></attvalue>
-     <attvalue for="4" value="0.0"></attvalue>
-     <attvalue for="5" value="[2]"></attvalue>
-     <attvalue for="6" value="0.0"></attvalue>
-    </attvalues>
-   </node>
-   <node id="5">
-    <attvalues>
-     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@18155f3f"></attvalue>
-     <attvalue for="1" value="1.0"></attvalue>
-     <attvalue for="2" value="2.0"></attvalue>
-     <attvalue for="3" value="0.037037037037037035"></attvalue>
-     <attvalue for="4" value="1.5"></attvalue>
-     <attvalue for="5" value="[0]"></attvalue>
-     <attvalue for="6" value="30.666666666666664"></attvalue>
-    </attvalues>
-   </node>
-   <node id="6">
-    <attvalues>
-     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@16a69dd2"></attvalue>
-     <attvalue for="1" value="1.0"></attvalue>
-     <attvalue for="2" value="2.0"></attvalue>
-     <attvalue for="3" value="0.041666666666666664"></attvalue>
-     <attvalue for="4" value="0.75"></attvalue>
-     <attvalue for="5" value="[0]"></attvalue>
-     <attvalue for="6" value="32.333333333333336"></attvalue>
-    </attvalues>
-   </node>
-   <node id="7">
-    <attvalues>
-     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@717fae67"></attvalue>
-     <attvalue for="1" value="2.0"></attvalue>
-     <attvalue for="2" value="2.0"></attvalue>
-     <attvalue for="3" value="0.04"></attvalue>
-     <attvalue for="4" value="0.0"></attvalue>
-     <attvalue for="5" value="[2, 8]"></attvalue>
-     <attvalue for="6" value="6.166666666666666"></attvalue>
-    </attvalues>
-   </node>
-   <node id="8">
-    <attvalues>
-     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@d40b2cf"></attvalue>
-     <attvalue for="1" value="1.0"></attvalue>
-     <attvalue for="2" value="1.0"></attvalue>
-     <attvalue for="3" value="0.03571428571428571"></attvalue>
-     <attvalue for="4" value="1.4166666666666665"></attvalue>
-     <attvalue for="5" value="[14]"></attvalue>
-     <attvalue for="6" value="3.333333333333333"></attvalue>
-    </attvalues>
-   </node>
-   <node id="9">
-    <attvalues>
-     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@3f1ef8ff"></attvalue>
-     <attvalue for="1" value="1.0"></attvalue>
-     <attvalue for="2" value="2.0"></attvalue>
-     <attvalue for="3" value="0.027777777777777776"></attvalue>
-     <attvalue for="4" value="0.0"></attvalue>
-     <attvalue for="5" value="[2]"></attvalue>
-     <attvalue for="6" value="0.0"></attvalue>
-    </attvalues>
-   </node>
-   <node id="10">
-    <attvalues>
-     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@1df4aac3"></attvalue>
-     <attvalue for="1" value="3.0"></attvalue>
      <attvalue for="2" value="3.0"></attvalue>
      <attvalue for="3" value="0.029411764705882353"></attvalue>
      <attvalue for="4" value="0.0"></attvalue>
@@ -138,185 +28,285 @@
      <attvalue for="6" value="0.0"></attvalue>
     </attvalues>
    </node>
+   <node id="1">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@2f127149"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="2.0"></attvalue>
+     <attvalue for="3" value="0.047619047619047616"></attvalue>
+     <attvalue for="4" value="2.2"></attvalue>
+     <attvalue for="5" value="[4]"></attvalue>
+     <attvalue for="6" value="70.89999999999999"></attvalue>
+    </attvalues>
+   </node>
+   <node id="2">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@7dac8e8a"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="2.0"></attvalue>
+     <attvalue for="3" value="0.041666666666666664"></attvalue>
+     <attvalue for="4" value="2.4"></attvalue>
+     <attvalue for="5" value="[13, 4]"></attvalue>
+     <attvalue for="6" value="56.46666666666667"></attvalue>
+    </attvalues>
+   </node>
+   <node id="3">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@3041ca16"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="2.0"></attvalue>
+     <attvalue for="3" value="0.034482758620689655"></attvalue>
+     <attvalue for="4" value="0.4"></attvalue>
+     <attvalue for="5" value="[13, 4]"></attvalue>
+     <attvalue for="6" value="4.466666666666667"></attvalue>
+    </attvalues>
+   </node>
+   <node id="4">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@30c59303"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="1.0"></attvalue>
+     <attvalue for="3" value="0.045454545454545456"></attvalue>
+     <attvalue for="4" value="7.1000000000000005"></attvalue>
+     <attvalue for="5" value="[14]"></attvalue>
+     <attvalue for="6" value="37.36666666666667"></attvalue>
+    </attvalues>
+   </node>
+   <node id="5">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@c61346b"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="2.0"></attvalue>
+     <attvalue for="3" value="0.037037037037037035"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[6, 4]"></attvalue>
+     <attvalue for="6" value="28.666666666666664"></attvalue>
+    </attvalues>
+   </node>
+   <node id="6">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@152033b3"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="1.0"></attvalue>
+     <attvalue for="3" value="0.02857142857142857"></attvalue>
+     <attvalue for="4" value="1.5"></attvalue>
+     <attvalue for="5" value="[14]"></attvalue>
+     <attvalue for="6" value="27.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="7">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@2b8f4a7b"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="2.0"></attvalue>
+     <attvalue for="3" value="0.020833333333333332"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[6]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="8">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@37ce9982"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="2.0"></attvalue>
+     <attvalue for="3" value="0.03571428571428571"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[4]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
+   <node id="9">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@3209317c"></attvalue>
+     <attvalue for="1" value="5.0"></attvalue>
+     <attvalue for="2" value="3.0"></attvalue>
+     <attvalue for="3" value="0.034482758620689655"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[3, 1, 2]"></attvalue>
+     <attvalue for="6" value="1.5"></attvalue>
+    </attvalues>
+   </node>
+   <node id="10">
+    <attvalues>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@26202125"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
+     <attvalue for="2" value="3.0"></attvalue>
+     <attvalue for="3" value="0.02702702702702703"></attvalue>
+     <attvalue for="4" value="0.0"></attvalue>
+     <attvalue for="5" value="[2]"></attvalue>
+     <attvalue for="6" value="0.0"></attvalue>
+    </attvalues>
+   </node>
    <node id="11">
     <attvalues>
-     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@11f4338c"></attvalue>
-     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@77ad7b08"></attvalue>
+     <attvalue for="1" value="2.0"></attvalue>
      <attvalue for="2" value="3.0"></attvalue>
-     <attvalue for="3" value="0.025"></attvalue>
+     <attvalue for="3" value="0.02702702702702703"></attvalue>
      <attvalue for="4" value="0.0"></attvalue>
-     <attvalue for="5" value="[5]"></attvalue>
+     <attvalue for="5" value="[2]"></attvalue>
      <attvalue for="6" value="0.0"></attvalue>
     </attvalues>
    </node>
    <node id="12">
     <attvalues>
-     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@192a2db7"></attvalue>
-     <attvalue for="1" value="4.0"></attvalue>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@34eceef6"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
      <attvalue for="2" value="3.0"></attvalue>
-     <attvalue for="3" value="0.03333333333333333"></attvalue>
+     <attvalue for="3" value="0.029411764705882353"></attvalue>
      <attvalue for="4" value="0.0"></attvalue>
-     <attvalue for="5" value="[1, 6]"></attvalue>
+     <attvalue for="5" value="[1]"></attvalue>
      <attvalue for="6" value="0.0"></attvalue>
     </attvalues>
    </node>
    <node id="13">
     <attvalues>
-     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@51bbf76d"></attvalue>
-     <attvalue for="1" value="2.0"></attvalue>
-     <attvalue for="2" value="3.0"></attvalue>
-     <attvalue for="3" value="0.02857142857142857"></attvalue>
-     <attvalue for="4" value="0.0"></attvalue>
-     <attvalue for="5" value="[5, 6]"></attvalue>
-     <attvalue for="6" value="0.0"></attvalue>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@4f15abc6"></attvalue>
+     <attvalue for="1" value="1.0"></attvalue>
+     <attvalue for="2" value="1.0"></attvalue>
+     <attvalue for="3" value="0.037037037037037035"></attvalue>
+     <attvalue for="4" value="2.4"></attvalue>
+     <attvalue for="5" value="[14]"></attvalue>
+     <attvalue for="6" value="10.3"></attvalue>
     </attvalues>
    </node>
    <node id="14">
     <attvalues>
-     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@69a1ed2b"></attvalue>
+     <attvalue for="0" value="org.graphstream.algorithm.APSP$APSPInfo@689b9208"></attvalue>
      <attvalue for="1" value="1.0"></attvalue>
      <attvalue for="2" value="0.0"></attvalue>
-     <attvalue for="3" value="0.034482758620689655"></attvalue>
-     <attvalue for="4" value="14.0"></attvalue>
+     <attvalue for="3" value="0.03333333333333333"></attvalue>
+     <attvalue for="4" value="14.000000000000002"></attvalue>
      <attvalue for="5" value="[]"></attvalue>
-     <attvalue for="6" value="1.5"></attvalue>
+     <attvalue for="6" value="15.333333333333332"></attvalue>
     </attvalues>
    </node>
   </nodes>
   <edges>
    <edge id="0_1" source="0" target="1">
     <attvalues>
-     <attvalue for="7" value="11.333333333333332"></attvalue>
-    </attvalues>
-   </edge>
-   <edge id="2_0" source="2" target="0">
-    <attvalues>
-     <attvalue for="7" value="24.999999999999996"></attvalue>
+     <attvalue for="7" value="28.0"></attvalue>
     </attvalues>
    </edge>
    <edge id="2_1" source="2" target="1">
     <attvalues>
-     <attvalue for="7" value="24.833333333333332"></attvalue>
-    </attvalues>
-   </edge>
-   <edge id="3_0" source="3" target="0">
-    <attvalues>
-     <attvalue for="7" value="10.333333333333332"></attvalue>
+     <attvalue for="7" value="27.5"></attvalue>
     </attvalues>
    </edge>
    <edge id="3_1" source="3" target="1">
     <attvalues>
-     <attvalue for="7" value="9.666666666666666"></attvalue>
+     <attvalue for="7" value="12.5"></attvalue>
     </attvalues>
    </edge>
-   <edge id="3_2" source="3" target="2">
+   <edge id="4_1" source="4" target="1">
     <attvalues>
-     <attvalue for="7" value="8.0"></attvalue>
+     <attvalue for="7" value="15.066666666666666"></attvalue>
     </attvalues>
    </edge>
    <edge id="4_2" source="4" target="2">
     <attvalues>
-     <attvalue for="7" value="28.0"></attvalue>
+     <attvalue for="7" value="20.566666666666666"></attvalue>
     </attvalues>
    </edge>
-   <edge id="5_0" source="5" target="0">
+   <edge id="4_3" source="4" target="3">
     <attvalues>
-     <attvalue for="7" value="36.666666666666664"></attvalue>
+     <attvalue for="7" value="9.566666666666666"></attvalue>
     </attvalues>
    </edge>
-   <edge id="6_0" source="6" target="0">
+   <edge id="5_1" source="5" target="1">
     <attvalues>
-     <attvalue for="7" value="14.333333333333332"></attvalue>
+     <attvalue for="7" value="34.33333333333333"></attvalue>
     </attvalues>
    </edge>
-   <edge id="6_1" source="6" target="1">
+   <edge id="5_4" source="5" target="4">
     <attvalues>
-     <attvalue for="7" value="18.333333333333332"></attvalue>
+     <attvalue for="7" value="17.333333333333336"></attvalue>
     </attvalues>
    </edge>
    <edge id="6_5" source="6" target="5">
     <attvalues>
-     <attvalue for="7" value="16.0"></attvalue>
-    </attvalues>
-   </edge>
-   <edge id="7_1" source="7" target="1">
-    <attvalues>
-     <attvalue for="7" value="6.5"></attvalue>
-    </attvalues>
-   </edge>
-   <edge id="7_2" source="7" target="2">
-    <attvalues>
-     <attvalue for="7" value="13.5"></attvalue>
+     <attvalue for="7" value="33.66666666666666"></attvalue>
     </attvalues>
    </edge>
    <edge id="7_6" source="7" target="6">
     <attvalues>
-     <attvalue for="7" value="14.166666666666668"></attvalue>
-    </attvalues>
-   </edge>
-   <edge id="8_0" source="8" target="0">
-    <attvalues>
-     <attvalue for="7" value="10.666666666666666"></attvalue>
+     <attvalue for="7" value="28.0"></attvalue>
     </attvalues>
    </edge>
    <edge id="8_1" source="8" target="1">
     <attvalues>
-     <attvalue for="7" value="11.5"></attvalue>
+     <attvalue for="7" value="10.333333333333332"></attvalue>
     </attvalues>
    </edge>
-   <edge id="8_7" source="8" target="7">
+   <edge id="8_2" source="8" target="2">
     <attvalues>
-     <attvalue for="7" value="6.166666666666666"></attvalue>
+     <attvalue for="7" value="8.0"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="8_4" source="8" target="4">
+    <attvalues>
+     <attvalue for="7" value="9.666666666666666"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="9_1" source="9" target="1">
+    <attvalues>
+     <attvalue for="7" value="14.066666666666666"></attvalue>
     </attvalues>
    </edge>
    <edge id="9_2" source="9" target="2">
     <attvalues>
-     <attvalue for="7" value="28.0"></attvalue>
+     <attvalue for="7" value="10.966666666666667"></attvalue>
     </attvalues>
    </edge>
-   <edge id="10_1" source="10" target="1">
+   <edge id="9_3" source="9" target="3">
+    <attvalues>
+     <attvalue for="7" value="5.966666666666667"></attvalue>
+    </attvalues>
+   </edge>
+   <edge id="10_2" source="10" target="2">
     <attvalues>
      <attvalue for="7" value="28.0"></attvalue>
     </attvalues>
    </edge>
-   <edge id="11_5" source="11" target="5">
+   <edge id="11_2" source="11" target="2">
     <attvalues>
      <attvalue for="7" value="28.0"></attvalue>
     </attvalues>
    </edge>
    <edge id="12_1" source="12" target="1">
     <attvalues>
-     <attvalue for="7" value="17.5"></attvalue>
+     <attvalue for="7" value="28.0"></attvalue>
     </attvalues>
    </edge>
-   <edge id="12_6" source="12" target="6">
+   <edge id="13_2" source="13" target="2">
     <attvalues>
-     <attvalue for="7" value="10.5"></attvalue>
+     <attvalue for="7" value="17.900000000000002"></attvalue>
     </attvalues>
    </edge>
-   <edge id="13_5" source="13" target="5">
+   <edge id="13_3" source="13" target="3">
     <attvalues>
-     <attvalue for="7" value="8.666666666666666"></attvalue>
+     <attvalue for="7" value="8.899999999999999"></attvalue>
     </attvalues>
    </edge>
-   <edge id="13_6" source="13" target="6">
+   <edge id="13_4" source="13" target="4">
     <attvalues>
-     <attvalue for="7" value="19.333333333333332"></attvalue>
+     <attvalue for="7" value="7.0"></attvalue>
     </attvalues>
    </edge>
-   <edge id="14_0" source="14" target="0">
+   <edge id="14_4" source="14" target="4">
     <attvalues>
-     <attvalue for="7" value="13.333333333333332"></attvalue>
+     <attvalue for="7" value="23.533333333333335"></attvalue>
     </attvalues>
    </edge>
-   <edge id="14_2" source="14" target="2">
+   <edge id="14_6" source="14" target="6">
     <attvalues>
-     <attvalue for="7" value="11.333333333333332"></attvalue>
+     <attvalue for="7" value="20.33333333333333"></attvalue>
     </attvalues>
    </edge>
-   <edge id="14_8" source="14" target="8">
+   <edge id="14_13" source="14" target="13">
     <attvalues>
-     <attvalue for="7" value="6.333333333333333"></attvalue>
+     <attvalue for="7" value="14.8"></attvalue>
     </attvalues>
    </edge>
   </edges>

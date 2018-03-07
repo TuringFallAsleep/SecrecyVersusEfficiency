@@ -53,22 +53,10 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     private JCheckBox gen_checkBox_efficiency_progress = new JCheckBox("Efficiency progress");
     private JCheckBox gen_checkBox_secrecy_progress = new JCheckBox("Secrecy progress");
 
-    Boolean boolean_gen_checkBox_efficiency = false;
-    Boolean boolean_gen_checkBox_secrecy = false;
-    Boolean boolean_gen_checkBox_network_graph = false;
-    Boolean boolean_gen_checkbox_diameter_distribution = false;
-    Boolean boolean_gen_checkBox_degree_distribution = false;
-    Boolean boolean_gen_checkBox_closness_distribution = false;
-    Boolean boolean_gen_checkBox_betweenness_distribution = false;
-    Boolean boolean_gen_checkBox_save_selected_diagram = false;
-    Boolean boolean_gen_checkBox_efficiency_progress = false;
-    Boolean boolean_gen_checkBox_secrecy_progress = false;
 
-
-
-    private JTextField gen_textField_hours_per_pass = new JTextField();
-    private JTextField gen_textField_key_players_number = new JTextField();
-    private JTextField gen_textField_segment_size = new JTextField();
+    private JTextField gen_textField_hours_per_pass = new JTextField("0.5");
+    private JTextField gen_textField_key_players_number = new JTextField("2");
+    private JTextField gen_textField_segment_size = new JTextField("3");
     private JTextField gen_textField_arrest_probability_key_players = new JTextField("%");
     private JTextField gen_textField_step = new JTextField("%");
 
@@ -106,9 +94,9 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     private JCheckBox imp_checkBox_secrecy_progress = new JCheckBox("Secrecy progress");
 
     private JTextField imp_textField_import_from_file = new JTextField();
-    private JTextField imp_textField_hours_per_pass = new JTextField();
-    private JTextField imp_textField_key_players_number = new JTextField();
-    private JTextField imp_textField_segment_size = new JTextField();
+    private JTextField imp_textField_hours_per_pass = new JTextField("0.5");
+    private JTextField imp_textField_key_players_number = new JTextField("2");
+    private JTextField imp_textField_segment_size = new JTextField("3");
     private JTextField imp_textField_arrest_probability_key_players = new JTextField("%");
     private JTextField imp_textField_step = new JTextField("%");
 
@@ -136,6 +124,8 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     private JLabel cov_label_step_increase = new JLabel("                              Step increase: ");
     private JLabel cov_label_show_result = new JLabel("Show Result: ");
     private JLabel cov_label_blank = new JLabel(" ");
+    private JLabel cov_label_efficiency = new JLabel("Efficiency: ");
+    private JLabel cov_label_secrecy = new JLabel("Secrecy: ");
 
     private JComboBox cov_comboBox_initial_graph = new JComboBox();
     private JComboBox cov_comboBox_algorithm = new JComboBox();
@@ -143,24 +133,24 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     private JComboBox cov_comboBox_define_key_players_by = new JComboBox();
     private JComboBox cov_comboBox_step_increase = new JComboBox();
 
+
     private JSlider cov_slider_node_number = new JSlider(10,100,15);
     private JSlider cov_slider_balance = new JSlider(0,100,50);
 
-    private JCheckBox cov_checkBox_efficiency = new JCheckBox("Efficiency: ");
-    private JCheckBox cov_checkBox_secrecy = new JCheckBox("Secrecy: ");
+
     private JCheckBox cov_checkBox_covert_network_graph = new JCheckBox("Covert network graph");
     private JCheckBox cov_checkBox_initial_network_graph = new JCheckBox("Initial network graph");
     private JCheckBox cov_checkbox_diameter_distribution = new JCheckBox("Diameter distribution");
     private JCheckBox cov_checkBox_degree_distribution = new JCheckBox("Degree distribution");
-    private JCheckBox cov_checkBox_closness_distribution = new JCheckBox("Closeness distribution");
+    private JCheckBox cov_checkBox_closeness_distribution = new JCheckBox("Closeness distribution");
     private JCheckBox cov_checkBox_betweenness_distribution = new JCheckBox("Betweenness distribution");
     private JCheckBox cov_checkBox_save_selected_diagram = new JCheckBox("Save selected diagram(s)");
     private JCheckBox cov_checkBox_efficiency_progress = new JCheckBox("Efficiency progress");
     private JCheckBox cov_checkBox_secrecy_progress = new JCheckBox("Secrecy progress");
 
-    private JTextField cov_textField_hours_per_pass = new JTextField();
-    private JTextField cov_textField_key_players_number = new JTextField();
-    private JTextField cov_textField_segment_size = new JTextField();
+    private JTextField cov_textField_hours_per_pass = new JTextField("0.5");
+    private JTextField cov_textField_key_players_number = new JTextField("2");
+    private JTextField cov_textField_segment_size = new JTextField("3");
     private JTextField cov_textField_arrest_probability_key_players = new JTextField("%");
     private JTextField cov_textField_step = new JTextField("%");
 
@@ -559,13 +549,13 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 .addComponent(cov_label_node_number)
                                 .addComponent(cov_label_algorithm)
                                 .addComponent(cov_label_balance)
-                                .addComponent(cov_checkBox_efficiency)
-                                .addComponent(cov_checkBox_secrecy)
+                                .addComponent(cov_label_efficiency)
+                                .addComponent(cov_label_secrecy)
                                 .addComponent(cov_checkBox_covert_network_graph)
                                 .addComponent(cov_checkBox_initial_network_graph)
                                 .addComponent(cov_checkbox_diameter_distribution)
                                 .addComponent(cov_checkBox_degree_distribution)
-                                .addComponent(cov_checkBox_closness_distribution)
+                                .addComponent(cov_checkBox_closeness_distribution)
                                 .addComponent(cov_checkBox_betweenness_distribution)
                                 .addComponent(cov_checkBox_save_selected_diagram))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -613,13 +603,13 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                         .addComponent(cov_label_blank)
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(cov_label_construction)
-                                .addComponent(cov_checkBox_efficiency)
+                                .addComponent(cov_label_efficiency)
                                 .addComponent(cov_comboBox_efficiency))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(cov_label_hours_per_pass)
                                 .addComponent(cov_textField_hours_per_pass))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(cov_checkBox_secrecy)
+                                .addComponent(cov_label_secrecy)
                                 .addComponent(cov_label_define_key_players_by)
                                 .addComponent(cov_comboBox_define_key_players_by))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -650,7 +640,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(cov_checkBox_degree_distribution))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(cov_checkBox_closness_distribution))
+                                .addComponent(cov_checkBox_closeness_distribution))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(cov_checkBox_betweenness_distribution))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -742,7 +732,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                             }
 
                             if (gen_textField_arrest_probability_key_players.getText().equals("") || gen_textField_arrest_probability_key_players.getText().equals("%")){
-                                keyPlayerArrestProbability = 0.0;
+                                keyPlayerArrestProbability = 100.0;
                             } else {
                                 keyPlayerArrestProbability = Double.parseDouble(gen_textField_arrest_probability_key_players.getText());
                                 try{
@@ -754,7 +744,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                             }
 
                             if (gen_textField_step.getText().equals("") || gen_textField_step.getText().equals("%")){
-                                arrestProbabilityStep = 0.0;
+                                arrestProbabilityStep = 10.0;
                             } else {
                                 arrestProbabilityStep = Double.parseDouble(gen_textField_step.getText());
                                 try{
@@ -995,17 +985,20 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
 
                             stepIncreaseMethod = cov_comboBox_step_increase.getSelectedItem().toString();
 
+                            covertNetwork.setOptions(cov_checkBox_covert_network_graph.isSelected(), cov_checkBox_initial_network_graph.isSelected(), cov_checkbox_diameter_distribution.isSelected(), cov_checkBox_degree_distribution.isSelected(), cov_checkBox_closeness_distribution.isSelected(), cov_checkBox_betweenness_distribution.isSelected(), cov_checkBox_save_selected_diagram.isSelected(), cov_checkBox_efficiency_progress.isSelected(), cov_checkBox_secrecy_progress.isSelected());
+
                             if (cov_comboBox_initial_graph.getSelectedItem().toString().equals("Add from file...")){
 
-                                System.out.println("initial");
                                 initialGraph[0] = covertNetwork.initialImpGraph(cov_file);
                                 covertNetwork.buildCovertNetwork(initialGraph[0], cov_comboBox_algorithm.getSelectedItem().toString(), cov_slider_balance.getValue(), cov_comboBox_define_key_players_by.getSelectedItem().toString(),keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
                                 cov_added_file = false;
+                                covertNetwork.showResult();
 
                             }else {
 
                                 initialGraph[0] = covertNetwork.initialGenGraph(cov_comboBox_initial_graph.getSelectedItem().toString(),cov_slider_node_number.getValue());
                                 covertNetwork.buildCovertNetwork(initialGraph[0], cov_comboBox_algorithm.getSelectedItem().toString(), cov_slider_balance.getValue(), cov_comboBox_define_key_players_by.getSelectedItem().toString(),keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
+                                covertNetwork.showResult();
                             }
 
 
