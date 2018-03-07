@@ -16,13 +16,15 @@ import static java.awt.FlowLayout.RIGHT;
 
 public class BarChart extends JFrame {
 
+    private JFreeChart barChart;
+
 
     public BarChart(String applicationTitle , String chartTitle, String graphName, Double maxDe, Double minDe, Double aveDe, Double maxDi ) {
         super( applicationTitle );
         JFrame f = new JFrame(applicationTitle);
         f.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        JFreeChart barChart = ChartFactory.createBarChart(
+        barChart = ChartFactory.createBarChart(
                 chartTitle,
                 "Category",
                 "Number",
@@ -51,6 +53,10 @@ public class BarChart extends JFrame {
 
 
         return dataSet;
+    }
+
+    public JFreeChart getChart(){
+        return barChart;
     }
 
 }

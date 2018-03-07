@@ -13,12 +13,14 @@ import javax.swing.*;
 import static oracle.jrockit.jfr.events.Bits.intValue;
 
 public class ClosenessLineChart extends JFrame {
+
+    private JFreeChart lineChart;
     private DefaultCategoryDataset dataSet = new DefaultCategoryDataset( );
 
 
     public ClosenessLineChart(String applicationTitle , String chartTitle, Double[] allCloseness, Graph theGraph ) {
         super(applicationTitle);
-        JFreeChart lineChart = ChartFactory.createLineChart(
+        lineChart = ChartFactory.createLineChart(
                 chartTitle,
                 "Single Node's Closeness","Number of nodes",
                 createDataSet(allCloseness, theGraph),
@@ -82,5 +84,10 @@ public class ClosenessLineChart extends JFrame {
 //        }
         return dataSet;
     }
+
+    public JFreeChart getChart(){
+        return lineChart;
+    }
+
 }// class ClosenessLineChart
 

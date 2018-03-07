@@ -1,10 +1,12 @@
 package Controller.Network;
 
+import Controller.ChartGenerate.*;
 import Controller.FileReader.CSVReader;
 import Controller.NetworkInformation.EdgeInfo;
 import Model.NodeInformation.NodeInfo;
 import Model.StaticGraph.CalEfficiency;
 import Model.StaticGraph.CalSecrecy;
+import Model.StaticGraph.GraphInfo;
 import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
 import org.graphstream.algorithm.generator.Generator;
 import org.graphstream.algorithm.generator.RandomGenerator;
@@ -15,10 +17,19 @@ import org.graphstream.graph.implementations.DefaultGraph;
 import org.graphstream.graph.implementations.Graphs;
 import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.stream.file.FileSinkGEXF;
+import org.graphstream.stream.file.FileSinkImages;
+import org.graphstream.stream.file.FileSource;
+import org.graphstream.stream.file.FileSourceGEXF;
 import org.graphstream.ui.graphicGraph.GraphicGraph;
 import org.graphstream.ui.view.Viewer;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.ui.RefineryUtilities;
 
+import javax.swing.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -26,23 +37,25 @@ public class CovertNetwork {
 
     private Graph resultGraph_0;
     private Graph tempGraph;
-            private int secrecyCount = Integer.MAX_VALUE;
-            private int graphSize;
-            private int edgeNum;
-            private EdgeInfo edgeInfo[];
-            private NodeInfo nodeInfo[];
-            private Double reCalNum = 1.0; //2.0
+    private int secrecyCount = Integer.MAX_VALUE;
+    private int graphSize;
+    private int edgeNum;
+    private EdgeInfo edgeInfo[];
+    private NodeInfo nodeInfo[];
+    private Double reCalNum = 1.0; //2.0
 
-            private String findKeyPlayerMethod;
-            private Integer keyPlayerNum;
-            private Integer destroySize;
+    private String findKeyPlayerMethod;
+    private Integer keyPlayerNum;
+    private Integer destroySize;
 
-            public Double arrestProbabilityStep;
-            public Double keyPlayerArrestProbability;
-            private String stepIncreaseMethod;
+    public Double arrestProbabilityStep;
+    public Double keyPlayerArrestProbability;
+    private String stepIncreaseMethod;
+
+
 
             // Generated Graph
-        public Graph initialGenGraph(String graphType, int nodeNum){
+     public Graph initialGenGraph(String graphType, int nodeNum){
 
             // Step 1: Get initial tempGraph
 
@@ -122,54 +135,96 @@ public class CovertNetwork {
 
     }
 
+    private String extension = "";
+    private String fileID = "";
+    private File theFile;
+
     // Imported Graph
     public Graph initialImpGraph(File file){
-        System.out.println("initial graph: "+file.getName());
+        System.out.println("initial graph(imported): "+file.getName());
+
 
         // Step 1: Get initial tempGraph
 
         String filePath = file.toString();
+        theFile = file;
 
-        CSVReader csvReader = new CSVReader();
+        String fileName = file.getName().toString();
 
-
-        List<List<String>> networkData = null;
-        Graph realGraph_0 = null;
-
-
-        // read the file
-        networkData= csvReader.CSVReader(filePath);
-        realGraph_0 = new DefaultGraph(file.getName());
-
-
-
-
-        realGraph_0.setStrict(false);
-        realGraph_0.setAutoCreate(true);
-
-        // iterate through the 2-dimensional array
-        int lineNo = 0;
-        String haveConnection = "1";
-        for(List<String> line: networkData) {
-            int columnNo = 0;
-            for (String value: line) {
-                if (haveConnection.equals(value)){
-                    StringBuilder sb = new StringBuilder();
-                    String node1 = networkData.get(lineNo).get(0);
-                    sb.append(node1);
-                    sb.append(" & ");
-                    String node2 = networkData.get(0).get(columnNo);
-                    sb.append(node2);
-                    String graphId = sb.toString();
-
-                    realGraph_0.addEdge(graphId,node1,node2);
-                }
-                columnNo++;
-            }
-            lineNo++;
+        int i = fileName.lastIndexOf('.');
+        if (i > 0) {
+            extension = fileName.substring(i+1);
+            fileID = fileName.substring(0, i);
+//            System.out.println("File ID: "+fileID);
         }
 
-        Graph realGraph = new MultiGraph("Covert Network ");
+        Graph realGraph_0 = null;
+
+        if (extension.equals("csv")){
+            CSVReader csvReader = new CSVReader();
+
+
+            List<List<String>> networkData = null;
+
+
+
+            // read the file
+            networkData= csvReader.CSVReader(filePath);
+            realGraph_0 = new DefaultGraph(theFile.getName());
+
+
+
+
+            realGraph_0.setStrict(false);
+            realGraph_0.setAutoCreate(true);
+
+            // iterate through the 2-dimensional array
+            int lineNo = 0;
+            String haveConnection = "1";
+            for(List<String> line: networkData) {
+                int columnNo = 0;
+                for (String value: line) {
+                    if (haveConnection.equals(value)){
+                        StringBuilder sb = new StringBuilder();
+                        String node1 = networkData.get(lineNo).get(0);
+                        sb.append(node1);
+                        sb.append(" & ");
+                        String node2 = networkData.get(0).get(columnNo);
+                        sb.append(node2);
+                        String graphId = sb.toString();
+
+                        realGraph_0.addEdge(graphId,node1,node2);
+                    }
+                    columnNo++;
+                }
+                lineNo++;
+            }
+        }else if (extension.equals("gexf")){
+            System.out.println("In gexf");
+            realGraph_0 = new DefaultGraph(theFile.getName());
+            realGraph_0.setStrict(false);
+            realGraph_0.setAutoCreate(true);
+
+            FileSource fs = new FileSourceGEXF();
+
+            fs.addSink(realGraph_0);
+
+            try {
+                fs.readAll(theFile.getPath());
+            } catch( IOException e) {
+                System.err.println("Caught IOException: " + e.getMessage());
+            } finally {
+                fs.removeSink(realGraph_0);
+            }
+
+        }else {
+            System.out.println("Please input a .csv or .gexf file.");
+            return null;
+        }
+
+
+
+        Graph realGraph = new MultiGraph("Covert Network: "+theFile.getName());
         realGraph.setStrict(false);
         realGraph.setAutoCreate(true);
 
@@ -539,9 +594,6 @@ public class CovertNetwork {
         resultGraph.addAttribute("ui.stylesheet","url('./efficiency.css')");
 
 
-
-
-
         resultGraph.getNode(1).addAttribute("ui.class","important");
 
 //        for (Edge e : initialGraph.getEachEdge()){
@@ -552,5 +604,145 @@ public class CovertNetwork {
         System.out.println("resultGraph Secrecy = "+resultSecrecy+", resultGraph Efficiency = "+resultEfficiency);
 
         return resultGraph;
+    }
+
+
+
+
+    // plot diagrams
+
+    private JFreeChart PlotDiameterLineChart(GraphInfo graphInfo, Graph graph){
+        DiameterLineChart lineChart = new DiameterLineChart(
+                "SVSE" ,
+                "Diameter Distribution", graphInfo.getAllDiameter(),graph);
+
+
+        lineChart.pack();
+        RefineryUtilities.centerFrameOnScreen(lineChart);
+        lineChart.setVisible(true);
+        lineChart.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+        return lineChart.getChart();
+    }
+
+    private JFreeChart PlotNodeDegreeLineChart(GraphInfo graphInfo, Graph graph){
+        NodeDegreeLineChart lineChart = new NodeDegreeLineChart(
+                "SVSE" ,
+                "Degree Distribution", graphInfo.getAllDegree(),graph);
+
+        lineChart.pack();
+        RefineryUtilities.centerFrameOnScreen(lineChart);
+        lineChart.setVisible(true);
+        lineChart.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+        return lineChart.getChart();
+    }
+
+
+    private JFreeChart PlotClosenessLineChart(GraphInfo graphInfo, Graph graph){
+        ClosenessLineChart lineChart = new ClosenessLineChart(
+                "SVSE",
+                "Closeness Distribution", graphInfo.getAllCloseness(),graph);
+
+        lineChart.pack();
+        RefineryUtilities.centerFrameOnScreen(lineChart);
+        lineChart.setVisible(true);
+        lineChart.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+        return lineChart.getChart();
+    }
+
+    private JFreeChart PlotBetweennessLineChart(GraphInfo graphInfo, Graph graph){
+        BetweennessLineChart lineChart = new BetweennessLineChart(
+                "SVSE",
+                "Betweenness Distribution", graphInfo.getAllBetweenness(),graph);
+
+        lineChart.pack();
+        RefineryUtilities.centerFrameOnScreen(lineChart);
+        lineChart.setVisible(true);
+        lineChart.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+        return lineChart.getChart();
+    }
+
+
+    private JFreeChart PlotBarChart(GraphInfo graphInfo, Graph graph){
+        BarChart chart = new BarChart("SNA Result",
+                "Static Graph", graph.getId(),graphInfo.getMaxDegree(),graphInfo.getMinDegree(),graphInfo.getAveDegree(),graphInfo.getMaxDiameter());
+        chart.pack();
+        RefineryUtilities.centerFrameOnScreen( chart );
+
+//        graph.display();
+
+        chart.setVisible( true );
+        chart.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+        return chart.getChart();
+    }
+
+
+    protected void saveResults(Graph graph, Boolean plotNetwork, Boolean plotDiameter, Boolean plotDegree, Boolean plotClosenness, Boolean plotBetweenness, JFreeChart diameterLineChart, JFreeChart nodeDegreeLineChart, JFreeChart closenessLineChart, JFreeChart betweennessLineChart, JFreeChart barChart) {
+        if (plotNetwork){
+            FileSinkGEXF fs = new FileSinkGEXF();
+            try {
+                fs.writeAll(graph, "./Result/"+graph.getId()+".gexf");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            FileSinkImages fileSinkImages = new FileSinkImages(FileSinkImages.OutputType.PNG, FileSinkImages.Resolutions.VGA);
+            try {
+
+                fileSinkImages.setLayoutPolicy(FileSinkImages.LayoutPolicy.COMPUTED_FULLY_AT_NEW_IMAGE);
+
+                fileSinkImages.writeAll(graph, "./Result/"+graph.getId()+" Image.png");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (plotDiameter){
+            try {
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Diameter.png"), diameterLineChart, 400, 300);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        if (plotDegree){
+            try {
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Degree.png"), nodeDegreeLineChart, 400, 300);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (plotClosenness){
+            try {
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Closeness.png"), closenessLineChart, 400, 300);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (plotBetweenness){
+            try {
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Betweenness.png"), betweennessLineChart, 400, 300);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (false){
+            try {
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Bar.png"), barChart, 400, 300);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
     }
 }

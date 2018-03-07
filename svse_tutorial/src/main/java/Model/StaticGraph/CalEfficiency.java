@@ -3,6 +3,7 @@ package Model.StaticGraph;
 import Model.NodeInformation.NodeInfo;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
+import org.graphstream.graph.implementations.Graphs;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;
 
@@ -25,7 +26,8 @@ public class CalEfficiency {
     public Double DeliverMessage(Graph graph, Double hoursPerPass,Boolean displayEfficiencyProgress){
 
         int selectedNode;
-        theGraph = graph;
+        Graphs copy = new Graphs();
+        theGraph = copy.clone(graph);
         efficiency = 0.0;
         pass = 0;
         if (graph==null){
@@ -50,7 +52,9 @@ public class CalEfficiency {
         // 1. Select a node, give it a piece of message
         selectedNode = SelectNode(displayEfficiencyProgress);
         theGraph.getNode(selectedNode).addAttribute("ui.class", "selected");
-        sleep();
+        if (displayEfficiencyProgress){
+            sleep();
+        }
         if (theGraph.getNode(selectedNode).getDegree()==0){
             pass = pass + 10000;
         }
@@ -179,7 +183,7 @@ public class CalEfficiency {
 
                     while (neighbour.hasNext()){
                         Node node = neighbour.next();
-                        System.out.println("Current node: "+node.getIndex() );
+//                        System.out.println("Current node: "+node.getIndex() );
                         if (nodeInfo[node.getIndex()].getReceivedMessage() == false){
                             nodeInfo[node.getIndex()].setReceivedMessage(true);
                             theGraph.getNode(node.getId()).addAttribute("ui.class","received");
@@ -215,34 +219,9 @@ public class CalEfficiency {
 
     }
 
-//    private void efficiencyProgress(Graph graph){
-////        System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.j2dviewer.J2DGraphRenderer");
-//
-//        graph.addAttribute("ui.stylesheet", "url('./efficiency.css')");
-//
-//
-//        Viewer viewer = graph.display();
-//        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
-//
-//
-//        for (Node node : graph.getEachNode()){
-//            try {
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//
-//            node.addAttribute("ui.class","important");
-//
-//        }
-//
-//
-//
-//        System.out.println("efficient progress");
-//    }
 
     protected void sleep() {
-        try { Thread.sleep(5000); } catch (Exception e) {}
+        try { Thread.sleep(2000); } catch (Exception e) {}
     }
 
 }

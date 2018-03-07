@@ -13,11 +13,15 @@ import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.DefaultGraph;
 import org.graphstream.graph.implementations.MultiGraph;
 import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.stream.file.*;
 import org.graphstream.ui.view.Viewer;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
 import org.jfree.ui.RefineryUtilities;
 
 import javax.swing.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class RealGraph {
@@ -26,52 +30,104 @@ public class RealGraph {
     private String filePath;
     private File theFile;
 
+    private JFreeChart diameterLineChart;
+    private JFreeChart nodeDegreeLineChart;
+    private JFreeChart closenessLineChart;
+    private JFreeChart betweennessLineChart;
+    private JFreeChart barChart;
+
+    private String extension = "";
+    private String fileID = "";
+
     public RealGraph(File file){
         filePath = file.toString();
         theFile = file;
+
+        String fileName = file.getName().toString();
+
+
+        int i = fileName.lastIndexOf('.');
+        if (i > 0) {
+            extension = fileName.substring(i+1);
+            fileID = fileName.substring(0, i);
+            System.out.println("File ID: "+fileID);
+        }
+
+//        System.out.println("extension: "+extension);
     }
 
 
     /* Read data from a real network data set */
     public GraphInfo RG(Double hoursPerPass, Boolean calEfficiency, Boolean calSecrecy, String defineKeyPlayersBy,Integer keyPlayerNumber, Integer maxSegmentSize, Double keyPlayerArrestProbability, Double arrestProbabilityStep, String  stepIncreaseMethod, Boolean plotNetwork, Boolean plotDiameter, Boolean plotDegree, Boolean plotClosenness, Boolean plotBetweenness, Boolean saveResult, Boolean displayEfficiencyProgress, Boolean displaySecrecyProgress) {
 
-        // read from csv file
-        CSVReader csvReader = new CSVReader();
+//        System.out.println("In RG");
 
-        List<List<String>> networkData = null;
-        realGraph = null;
+        if (extension.equals("csv")){
+//            System.out.println("In csv");
+            // read from csv file
+            CSVReader csvReader = new CSVReader();
+
+            List<List<String>> networkData = null;
+            realGraph = null;
 
             // read the file
-        networkData= csvReader.CSVReader(filePath);
-        realGraph = new DefaultGraph(theFile.getName()); //
+            networkData= csvReader.CSVReader(filePath);
+            realGraph = new DefaultGraph(fileID); //
 
 
-        realGraph.setStrict(false);
-        realGraph.setAutoCreate(true);
+            realGraph.setStrict(false);
+            realGraph.setAutoCreate(true);
 
-        // iterate through the 2-dimensional array
-        int lineNo = 0;
-        String haveConnection = "1";
-        for(List<String> line: networkData) {
-            int columnNo = 0;
-            for (String value: line) {
-                if (haveConnection.equals(value)){
-                    StringBuilder sb = new StringBuilder();
-                    String node1 = networkData.get(lineNo).get(0);
-                    sb.append(node1);
-                    sb.append(" & ");
-                    String node2 = networkData.get(0).get(columnNo);
-                    sb.append(node2);
-                    String graphId = sb.toString();
+            // iterate through the 2-dimensional array
+            int lineNo = 0;
+            String haveConnection = "1";
+            for(List<String> line: networkData) {
+                int columnNo = 0;
+                for (String value: line) {
+                    if (haveConnection.equals(value)){
+                        StringBuilder sb = new StringBuilder();
+                        String node1 = networkData.get(lineNo).get(0);
+                        sb.append(node1);
+                        sb.append(" & ");
+                        String node2 = networkData.get(0).get(columnNo);
+                        sb.append(node2);
+                        String graphId = sb.toString();
 
-                    realGraph.addEdge(graphId,node1,node2);
+                        realGraph.addEdge(graphId,node1,node2);
+                    }
+                    columnNo++;
                 }
-                columnNo++;
+                lineNo++;
             }
-            lineNo++;
+        }else if (extension.equals("gexf")){
+            System.out.println("In gexf");
+            realGraph = new DefaultGraph(theFile.getName());
+            realGraph.setStrict(false);
+            realGraph.setAutoCreate(true);
+
+            FileSource fs = new FileSourceGEXF();
+
+
+
+
+            fs.addSink(realGraph);
+
+            try {
+                fs.readAll(theFile.getPath());
+            } catch( IOException e) {
+                System.err.println("Caught IOException: " + e.getMessage());
+            } finally {
+                fs.removeSink(realGraph);
+            }
+
+        }else {
+            System.out.println("Please input a .csv or .gexf file.");
+            return null;
         }
 
-        GraphInfo graphInfo = GraphInfoCal(realGraph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness); // Calculate degrees
+
+
+        GraphInfo graphInfo = GraphInfoCal(realGraph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness, saveResult); // Calculate degrees
 
         if (calEfficiency){
             CalEfficiency efficiency = new CalEfficiency();
@@ -90,7 +146,7 @@ public class RealGraph {
     } // RG()
 
 
-    public GraphInfo GraphInfoCal(Graph graph, Boolean plotNetwork, Boolean plotDiameter, Boolean plotDegree, Boolean plotClosenness, Boolean plotBetweenness){
+    public GraphInfo GraphInfoCal(Graph graph, Boolean plotNetwork, Boolean plotDiameter, Boolean plotDegree, Boolean plotClosenness, Boolean plotBetweenness, Boolean saveResult){
 
         GraphCal a = new GraphCal();
         a.init(graph);
@@ -131,20 +187,21 @@ public class RealGraph {
             viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
         }
 
+
         if (plotDiameter){
-            PlotDiameterLineChart(graphInfo,graph);
+            diameterLineChart = PlotDiameterLineChart(graphInfo,graph);
         }
 
         if (plotDegree){
-            PlotNodeDegreeLineChart(graphInfo,graph);
+            nodeDegreeLineChart = PlotNodeDegreeLineChart(graphInfo,graph);
         }
 
         if (plotClosenness){
-            PlotClosenessLineChart(graphInfo,graph);
+            closenessLineChart = PlotClosenessLineChart(graphInfo,graph);
         }
 
         if (plotBetweenness){
-            PlotBetweennessLineChart(graphInfo,graph);
+            betweennessLineChart = PlotBetweennessLineChart(graphInfo,graph);
         }
 
 
@@ -152,12 +209,16 @@ public class RealGraph {
             PlotBarChart(graphInfo,graph);
         }
 
+        if (saveResult){
+            saveResults(graph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness, diameterLineChart, nodeDegreeLineChart, closenessLineChart, betweennessLineChart, barChart);
+        }
+
 
         return graphInfo;
     } // GraphInfoCal()
 
 
-    private void PlotDiameterLineChart(GraphInfo graphInfo, Graph graph){
+    private JFreeChart PlotDiameterLineChart(GraphInfo graphInfo, Graph graph){
         DiameterLineChart lineChart = new DiameterLineChart(
                 "SVSE" ,
                 "Diameter Distribution", graphInfo.getAllDiameter(),graph);
@@ -166,9 +227,12 @@ public class RealGraph {
         lineChart.pack();
         RefineryUtilities.centerFrameOnScreen(lineChart);
         lineChart.setVisible(true);
+        lineChart.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+        return lineChart.getChart();
     }
 
-    private void PlotNodeDegreeLineChart(GraphInfo graphInfo, Graph graph){
+    private JFreeChart PlotNodeDegreeLineChart(GraphInfo graphInfo, Graph graph){
         NodeDegreeLineChart lineChart = new NodeDegreeLineChart(
                 "SVSE" ,
                 "Degree Distribution", graphInfo.getAllDegree(),graph);
@@ -177,10 +241,12 @@ public class RealGraph {
         RefineryUtilities.centerFrameOnScreen(lineChart);
         lineChart.setVisible(true);
         lineChart.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+        return lineChart.getChart();
     }
 
 
-    private void PlotClosenessLineChart(GraphInfo graphInfo, Graph graph){
+    private JFreeChart PlotClosenessLineChart(GraphInfo graphInfo, Graph graph){
         ClosenessLineChart lineChart = new ClosenessLineChart(
                 "SVSE",
                 "Closeness Distribution", graphInfo.getAllCloseness(),graph);
@@ -188,9 +254,12 @@ public class RealGraph {
         lineChart.pack();
         RefineryUtilities.centerFrameOnScreen(lineChart);
         lineChart.setVisible(true);
+        lineChart.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+        return lineChart.getChart();
     }
 
-    private void PlotBetweennessLineChart(GraphInfo graphInfo, Graph graph){
+    private JFreeChart PlotBetweennessLineChart(GraphInfo graphInfo, Graph graph){
         BetweennessLineChart lineChart = new BetweennessLineChart(
                 "SVSE",
                 "Betweenness Distribution", graphInfo.getAllBetweenness(),graph);
@@ -198,10 +267,13 @@ public class RealGraph {
         lineChart.pack();
         RefineryUtilities.centerFrameOnScreen(lineChart);
         lineChart.setVisible(true);
+        lineChart.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+        return lineChart.getChart();
     }
 
 
-    private void PlotBarChart(GraphInfo graphInfo, Graph graph){
+    private JFreeChart PlotBarChart(GraphInfo graphInfo, Graph graph){
         BarChart chart = new BarChart("SNA Result",
                 "Static Graph", graph.getId(),graphInfo.getMaxDegree(),graphInfo.getMinDegree(),graphInfo.getAveDegree(),graphInfo.getMaxDiameter());
         chart.pack();
@@ -210,6 +282,75 @@ public class RealGraph {
 //        graph.display();
 
         chart.setVisible( true );
+        chart.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+
+        return chart.getChart();
+    }
+
+
+    protected void saveResults(Graph graph, Boolean plotNetwork, Boolean plotDiameter, Boolean plotDegree, Boolean plotClosenness, Boolean plotBetweenness, JFreeChart diameterLineChart, JFreeChart nodeDegreeLineChart, JFreeChart closenessLineChart, JFreeChart betweennessLineChart, JFreeChart barChart) {
+        if (plotNetwork){
+            FileSinkGEXF fs = new FileSinkGEXF();
+            try {
+                fs.writeAll(graph, "./Result/"+graph.getId()+".gexf");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            FileSinkImages fileSinkImages = new FileSinkImages(FileSinkImages.OutputType.PNG, FileSinkImages.Resolutions.VGA);
+            try {
+
+                fileSinkImages.setLayoutPolicy(FileSinkImages.LayoutPolicy.COMPUTED_FULLY_AT_NEW_IMAGE);
+
+                fileSinkImages.writeAll(graph, "./Result/"+graph.getId()+" Image.png");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (plotDiameter){
+            try {
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Diameter.png"), diameterLineChart, 400, 300);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        if (plotDegree){
+            try {
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Degree.png"), nodeDegreeLineChart, 400, 300);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (plotClosenness){
+            try {
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Closeness.png"), closenessLineChart, 400, 300);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (plotBetweenness){
+            try {
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Betweenness.png"), betweennessLineChart, 400, 300);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (false){
+            try {
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Bar.png"), barChart, 400, 300);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
     }
 
     public Graph getRealGraph() {
