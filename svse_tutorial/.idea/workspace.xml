@@ -4,30 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/GraphCal.java" line="12" mnemonic="6" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25aa1653-120d-4d71-b029-09aa14fff9db" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/View/GUI$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/View/GUI.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Controller/ChartGenerate/BarChart.class" afterPath="$PROJECT_DIR$/target/classes/Controller/ChartGenerate/BarChart.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Controller/ChartGenerate/BetweennessLineChart.class" afterPath="$PROJECT_DIR$/target/classes/Controller/ChartGenerate/BetweennessLineChart.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Controller/ChartGenerate/ClosenessLineChart.class" afterPath="$PROJECT_DIR$/target/classes/Controller/ChartGenerate/ClosenessLineChart.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Controller/ChartGenerate/DiameterLineChart.class" afterPath="$PROJECT_DIR$/target/classes/Controller/ChartGenerate/DiameterLineChart.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Controller/ChartGenerate/NodeDegreeLineChart.class" afterPath="$PROJECT_DIR$/target/classes/Controller/ChartGenerate/NodeDegreeLineChart.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Controller/Network/CovertNetwork.class" afterPath="$PROJECT_DIR$/target/classes/Controller/Network/CovertNetwork.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Controller/Network/FixedGraph.class" afterPath="$PROJECT_DIR$/target/classes/Controller/Network/FixedGraph.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Controller/Network/RealGraph.class" afterPath="$PROJECT_DIR$/target/classes/Controller/Network/RealGraph.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Model/StaticGraph/CalEfficiency.class" afterPath="$PROJECT_DIR$/target/classes/Model/StaticGraph/CalEfficiency.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/BarChart.java" afterPath="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/BarChart.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/BetweennessLineChart.java" afterPath="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/BetweennessLineChart.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/ClosenessLineChart.java" afterPath="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/ClosenessLineChart.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/DiameterLineChart.java" afterPath="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/DiameterLineChart.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/NodeDegreeLineChart.java" afterPath="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/NodeDegreeLineChart.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Controller/Network/CovertNetwork.java" afterPath="$PROJECT_DIR$/src/main/java/Controller/Network/CovertNetwork.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Controller/Network/FixedGraph.java" afterPath="$PROJECT_DIR$/src/main/java/Controller/Network/FixedGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Controller/Network/RealGraph.java" afterPath="$PROJECT_DIR$/src/main/java/Controller/Network/RealGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalEfficiency.java" afterPath="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalEfficiency.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/View/GUI.java" afterPath="$PROJECT_DIR$/src/main/java/View/GUI.java" />
-    </list>
+    <list default="true" id="25aa1653-120d-4d71-b029-09aa14fff9db" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -256,11 +233,6 @@
             <path>
               <item name="svse" type="b2602c69:ProjectViewProjectNode" />
               <item name="svse_tutorial" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="svse" type="b2602c69:ProjectViewProjectNode" />
-              <item name="svse_tutorial" type="462c0819:PsiDirectoryNode" />
-              <item name="Result" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="svse" type="b2602c69:ProjectViewProjectNode" />
@@ -507,7 +479,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -522,7 +493,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19628432" sideWeight="0.48472506" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19628432" sideWeight="0.48472506" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30536452" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.4776699" order="1" side_tool="false" content_ui="tabs" />
