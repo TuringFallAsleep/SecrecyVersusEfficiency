@@ -1,5 +1,7 @@
 package Controller.Network;
 
+import View.ShowSecrecyAndEfficiency;
+
 import Controller.ChartGenerate.*;
 import Controller.FileReader.CSVReader;
 import Model.StaticGraph.CalEfficiency;
@@ -52,15 +54,20 @@ public class FixedGraph {
 
         GraphInfo graphInfo = GraphInfoCal(highlyCentralisedGraph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness, saveResult); // Calculate degrees
 
-        if (calEfficiency){
-            CalEfficiency efficiency = new CalEfficiency();
-            graphInfo.setEfficiency(efficiency.DeliverMessage(highlyCentralisedGraph,hoursPerPass,displayEfficiencyProgress));
-        }
+        if (calEfficiency || calSecrecy){
+            if (calEfficiency){
+                CalEfficiency efficiency = new CalEfficiency();
+                graphInfo.setEfficiency(efficiency.DeliverMessage(highlyCentralisedGraph,hoursPerPass,displayEfficiencyProgress));
+            }
 
 
-        if (calSecrecy){
-            CalSecrecy secrecy = new CalSecrecy();
-            graphInfo.setSecrecy(secrecy.CalSecrecyBy(highlyCentralisedGraph,defineKeyPlayersBy,keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod));
+            if (calSecrecy){
+                CalSecrecy secrecy = new CalSecrecy();
+                graphInfo.setSecrecy(secrecy.CalSecrecyBy(highlyCentralisedGraph,defineKeyPlayersBy,keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod));
+            }
+
+            ShowSecrecyAndEfficiency show = new ShowSecrecyAndEfficiency(graphInfo.getSecrecy(),graphInfo.getEfficiency());
+            show.showDialogWindow();
         }
 
 
@@ -83,14 +90,20 @@ public class FixedGraph {
 
         GraphInfo graphInfo = GraphInfoCal(highlyDecentralisedGraph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness, saveResult); // Calculate degrees
 
-        if (calEfficiency){
-            CalEfficiency efficiency = new CalEfficiency();
-            graphInfo.setEfficiency(efficiency.DeliverMessage(highlyDecentralisedGraph,hoursPerPass,displayEfficiencyProgress));
-        }
+        if (calEfficiency || calSecrecy){
+            if (calEfficiency){
+                CalEfficiency efficiency = new CalEfficiency();
+                graphInfo.setEfficiency(efficiency.DeliverMessage(highlyDecentralisedGraph,hoursPerPass,displayEfficiencyProgress));
+            }
 
-        if (calSecrecy){
-            CalSecrecy secrecy = new CalSecrecy();
-            graphInfo.setSecrecy(secrecy.CalSecrecyBy(highlyDecentralisedGraph, defineKeyPlayersBy, keyPlayerNumber, maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod));
+
+            if (calSecrecy){
+                CalSecrecy secrecy = new CalSecrecy();
+                graphInfo.setSecrecy(secrecy.CalSecrecyBy(highlyDecentralisedGraph,defineKeyPlayersBy,keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod));
+            }
+
+            ShowSecrecyAndEfficiency show = new ShowSecrecyAndEfficiency(graphInfo.getSecrecy(),graphInfo.getEfficiency());
+            show.showDialogWindow();
         }
 
         System.out.println("Graph: "+highlyDecentralisedGraph.getId()+"'s secrecy level is "+ graphInfo.getSecrecy() + " by using "+ defineKeyPlayersBy+" as key players defining method.");
@@ -115,14 +128,20 @@ public class FixedGraph {
         GraphInfo graphInfo = GraphInfoCal(bernoulliGraph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness, saveResult); // Calculate degrees
 
 
-        if (calEfficiency){
-            CalEfficiency efficiency = new CalEfficiency();
-            graphInfo.setEfficiency(efficiency.DeliverMessage(bernoulliGraph,hoursPerPass,displayEfficiencyProgress));
-        }
+        if (calEfficiency || calSecrecy){
+            if (calEfficiency){
+                CalEfficiency efficiency = new CalEfficiency();
+                graphInfo.setEfficiency(efficiency.DeliverMessage(bernoulliGraph,hoursPerPass,displayEfficiencyProgress));
+            }
 
-        if (calSecrecy){
-            CalSecrecy secrecy = new CalSecrecy();
-            graphInfo.setSecrecy(secrecy.CalSecrecyBy(bernoulliGraph,defineKeyPlayersBy,keyPlayerNumber, maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod));
+
+            if (calSecrecy){
+                CalSecrecy secrecy = new CalSecrecy();
+                graphInfo.setSecrecy(secrecy.CalSecrecyBy(bernoulliGraph,defineKeyPlayersBy,keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod));
+            }
+
+            ShowSecrecyAndEfficiency show = new ShowSecrecyAndEfficiency(graphInfo.getSecrecy(),graphInfo.getEfficiency());
+            show.showDialogWindow();
         }
 
         System.out.println("Graph: "+bernoulliGraph.getId()+"'s secrecy level is "+ graphInfo.getSecrecy() + " by using "+ defineKeyPlayersBy+" as key players defining method.");
@@ -148,14 +167,20 @@ public class FixedGraph {
         GraphInfo graphInfo = GraphInfoCal(preferentialAttachmentGraph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness, saveResult); // Calculate degrees
 
 
-        if (calEfficiency){
-            CalEfficiency efficiency = new CalEfficiency();
-            graphInfo.setEfficiency(efficiency.DeliverMessage(preferentialAttachmentGraph,hoursPerPass,displayEfficiencyProgress));
-        }
+        if (calEfficiency || calSecrecy){
+            if (calEfficiency){
+                CalEfficiency efficiency = new CalEfficiency();
+                graphInfo.setEfficiency(efficiency.DeliverMessage(preferentialAttachmentGraph,hoursPerPass,displayEfficiencyProgress));
+            }
 
-        if (calSecrecy){
-            CalSecrecy secrecy = new CalSecrecy();
-            graphInfo.setSecrecy(secrecy.CalSecrecyBy(preferentialAttachmentGraph,defineKeyPlayersBy, keyPlayerNumber, maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod));
+
+            if (calSecrecy){
+                CalSecrecy secrecy = new CalSecrecy();
+                graphInfo.setSecrecy(secrecy.CalSecrecyBy(preferentialAttachmentGraph,defineKeyPlayersBy,keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod));
+            }
+
+            ShowSecrecyAndEfficiency show = new ShowSecrecyAndEfficiency(graphInfo.getSecrecy(),graphInfo.getEfficiency());
+            show.showDialogWindow();
         }
 
         System.out.println("Graph: "+preferentialAttachmentGraph.getId()+"'s secrecy level is "+ graphInfo.getSecrecy() + " by using "+ defineKeyPlayersBy+" as key players defining method.");
@@ -185,15 +210,20 @@ public class FixedGraph {
         GraphInfo graphInfo = GraphInfoCal(preferentialAttachmentWithBernoulliGraph, plotNetwork, plotDiameter, plotDegree, plotClosenness, plotBetweenness, saveResult); // Calculate degrees
 //        AdjacencyCal(graph);
 
-        if (calEfficiency){
-            CalEfficiency efficiency = new CalEfficiency();
-            graphInfo.setEfficiency(efficiency.DeliverMessage(preferentialAttachmentWithBernoulliGraph,hoursPerPass,displayEfficiencyProgress));
-        }
+        if (calEfficiency || calSecrecy){
+            if (calEfficiency){
+                CalEfficiency efficiency = new CalEfficiency();
+                graphInfo.setEfficiency(efficiency.DeliverMessage(preferentialAttachmentWithBernoulliGraph,hoursPerPass,displayEfficiencyProgress));
+            }
 
 
-        if (calSecrecy){
-            CalSecrecy secrecy = new CalSecrecy();
-            graphInfo.setSecrecy(secrecy.CalSecrecyBy(preferentialAttachmentWithBernoulliGraph,defineKeyPlayersBy,keyPlayerNumber, maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod));
+            if (calSecrecy){
+                CalSecrecy secrecy = new CalSecrecy();
+                graphInfo.setSecrecy(secrecy.CalSecrecyBy(preferentialAttachmentWithBernoulliGraph,defineKeyPlayersBy,keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod));
+            }
+
+            ShowSecrecyAndEfficiency show = new ShowSecrecyAndEfficiency(graphInfo.getSecrecy(),graphInfo.getEfficiency());
+            show.showDialogWindow();
         }
 
         System.out.println("Graph: "+preferentialAttachmentWithBernoulliGraph.getId()+"'s secrecy level is "+ graphInfo.getSecrecy() + " by using "+ defineKeyPlayersBy+" as key players defining method.");

@@ -6,7 +6,10 @@ import Controller.NetworkInformation.EdgeInfo;
 import Model.NodeInformation.NodeInfo;
 import Model.StaticGraph.CalEfficiency;
 import Model.StaticGraph.CalSecrecy;
+import Model.StaticGraph.GraphCal;
 import Model.StaticGraph.GraphInfo;
+import View.ShowSecrecyAndEfficiency;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
 import org.graphstream.algorithm.generator.Generator;
 import org.graphstream.algorithm.generator.RandomGenerator;
@@ -48,9 +51,52 @@ public class CovertNetwork {
     private Integer keyPlayerNum;
     private Integer destroySize;
 
-    public Double arrestProbabilityStep;
-    public Double keyPlayerArrestProbability;
+    private Double arrestProbabilityStep;
+    private Double keyPlayerArrestProbability;
     private String stepIncreaseMethod;
+
+    private Boolean plotCovertNetwork = false;
+    private Boolean plotInitialNetwork = false;
+    private Boolean plotDiameter = false;
+    private Boolean plotDegree = false;
+    private Boolean plotCloseness = false;
+    private Boolean plotBetweenness = false;
+    private Boolean saveResult = false;
+    private Boolean showEfficiencyProgress = false;
+    private Boolean showSecrecyProgress = false;
+
+    // Things to plot
+    private Graph resultGraph;
+    private Graph startGraph;
+    private GraphInfo initialGraphInfo;
+    private GraphInfo resultGraphInfo;
+
+    private JFreeChart init_diameterLineChart;
+    private JFreeChart init_nodeDegreeLineChart;
+    private JFreeChart init_closenessLineChart;
+    private JFreeChart init_betweennessLineChart;
+
+    private JFreeChart result_diameterLineChart;
+    private JFreeChart result_nodeDegreeLineChart;
+    private JFreeChart result_closenessLineChart;
+    private JFreeChart result_betweennessLineChart;
+
+    private double initSecrecy;
+    private double initEfficiency;
+    private double resultSecrecy;
+    private double resultEfficiency;
+
+    public void setOptions(Boolean plotCovertNetwork, Boolean plotInitialNetwork, Boolean plotDiameter, Boolean plotDegree, Boolean plotCloseness, Boolean plotBetweenness, Boolean saveResult, Boolean showEfficiencyProgress, Boolean showSecrecyProgress){
+        this.plotCovertNetwork = plotCovertNetwork;
+        this.plotInitialNetwork = plotInitialNetwork;
+        this.plotDiameter = plotDiameter;
+        this.plotDegree = plotDegree;
+        this.plotCloseness = plotCloseness;
+        this.plotBetweenness = plotBetweenness;
+        this.saveResult = saveResult;
+        this.showEfficiencyProgress = showEfficiencyProgress;
+        this.showSecrecyProgress = showSecrecyProgress;
+    }
 
 
 
@@ -248,14 +294,13 @@ public class CovertNetwork {
 
     public void  buildCovertNetwork(Graph initialGraph, String algorithm, int balance, String defineKeyPlayersBy, Integer keyPlayerNumber, Integer maxSegmentSize, Double keyPlayerArrestProbability, Double arrestProbabilityStep, String stepIncreaseMethod){
 
+        startGraph = initialGraph;
+
         Double proportion = (2.0 * (double)balance - 100.0)/100.0; // -1 ~ 0: secrecy; 0 ~ 1: efficiency
         System.out.println("Balance = "+balance);
         System.out.println("Proportion = "+proportion);
         greedy(algorithm, initialGraph, proportion, defineKeyPlayersBy, keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
 
-        if (algorithm.equals("Fast method")){
-        }else if (algorithm.equals("Faster method")){
-        }
     }
 
 
@@ -278,10 +323,10 @@ public class CovertNetwork {
 
 
         CalSecrecy calSecrecy = new CalSecrecy();
-        int se = calSecrecy.CalSecrecyBy(initialGraph,findKeyPlayerMethod,keyPlayerNum,destroySize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
+        initSecrecy = (double) calSecrecy.CalSecrecyBy(initialGraph,findKeyPlayerMethod,keyPlayerNum,destroySize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
         CalEfficiency calEfficiency = new CalEfficiency();
-        Double ef = calEfficiency.DeliverMessage(initialGraph,1.0,false);
-        System.out.println("initialGraph Secrecy = "+se+", Efficiency = "+ef);
+        initEfficiency = calEfficiency.DeliverMessage(initialGraph,1.0,false);
+        System.out.println("initialGraph Secrecy = "+initSecrecy+", Efficiency = "+initEfficiency);
 
 
 //        for (Edge e : initialGraph.getEachEdge()){
@@ -289,19 +334,14 @@ public class CovertNetwork {
 //        }
 
 
-        Graph resultGraph = step2_moveEdges(algorithm, initialGraph, proportion);
+        resultGraph = step2_moveEdges(algorithm, initialGraph, proportion);
+
+
 
         for (Node n : resultGraph.getEachNode()){
             if (n.getDegree() == 0)
                 System.out.println("Node "+n.getIndex()+" has degree 0.");
         }
-
-        Viewer viewer = initialGraph.display();
-        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
-
-        Viewer viewer2 = resultGraph.display();
-        viewer2.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
-
 
 
 
@@ -311,7 +351,7 @@ public class CovertNetwork {
 //        Viewer viewer = tempGraph.display();
 //        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
 
-    }
+    }// calculating ends
 
     private void collectGraphInfo(){
 
@@ -375,8 +415,7 @@ public class CovertNetwork {
 
 
 
-        Double resultSecrecy;
-        Double resultEfficiency;
+
         Double tempGraphSecrecy;
         Double tempGraphEfficiency;
         Iterator<Edge> edgesLinkedToCurrentNode = null;
@@ -603,18 +642,216 @@ public class CovertNetwork {
 
         System.out.println("resultGraph Secrecy = "+resultSecrecy+", resultGraph Efficiency = "+resultEfficiency);
 
+
         return resultGraph;
     }
+
+
+
+    // cal graph info
+
+    public GraphInfo graphInfoCal(Graph graph){
+
+        GraphCal a = new GraphCal();
+        a.init(graph);
+        a.compute();
+
+        GraphInfo graphInfo = new GraphInfo();
+        graphInfo.init(graph.getNodeCount());
+
+
+        System.out.println("Max degree: " + a.getMaxDegree());
+        System.out.println("Min degree: " + a.getMinDegree());
+        System.out.println("Ave degree: " + String.format("%.1f", a.getAvgDegree()));
+        System.out.println("Max diameter: " + String.format("%.1f", a.getMaxDiameter()));
+        System.out.println("nodes degree length: "+ a.getAllNodesDeg().length);
+        System.out.println("Max betweenness: "+String.format("%.1f",a.getMaxBetweenness()));
+        System.out.println("Max closeness*1000: "+String.format("%.1f",a.getMaxCloseness()*1000));
+
+        graphInfo.setAllDiameter(a.getAllDiameters());
+        graphInfo.setAllDegree(a.getAllNodesDeg());
+        graphInfo.setAllCloseness(a.getAllCloseness());
+        graphInfo.setAllBetweenness(a.getAllBetweenness());
+
+        graphInfo.setMaxDiameter(a.getMaxDiameter());
+        graphInfo.setMaxDegree(a.getMaxDegree());
+        graphInfo.setMinDegree(a.getMinDegree());
+        graphInfo.setAveDegree(a.getAvgDegree());
+        graphInfo.setMaxCloseness(a.getMaxCloseness());
+        graphInfo.setMaxBetweenness(a.getMaxBetweenness());
+
+
+
+
+        return graphInfo;
+    } // GraphInfoCal()
+
+
+    public void showResult(){
+
+
+
+        if (plotCovertNetwork && plotInitialNetwork){
+            Boolean isResult;
+
+            initialGraphInfo = graphInfoCal(startGraph);
+            resultGraphInfo = graphInfoCal(resultGraph);
+
+            // Initial graph
+            Viewer viewer1 = startGraph.display();
+            viewer1.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+
+            // Covert
+            Viewer viewer2 = resultGraph.display();
+            viewer2.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+
+            if (plotDiameter){
+                isResult = false;
+                init_diameterLineChart = PlotDiameterLineChart(isResult, initialGraphInfo,startGraph);
+                isResult = true;
+                result_diameterLineChart = PlotDiameterLineChart(isResult, resultGraphInfo,resultGraph);
+            }
+
+            if (plotDegree){
+                isResult = false;
+                init_nodeDegreeLineChart = PlotNodeDegreeLineChart(isResult, initialGraphInfo,startGraph);
+                isResult = true;
+                result_nodeDegreeLineChart = PlotNodeDegreeLineChart(isResult, resultGraphInfo,resultGraph);
+
+            }
+
+            if (plotCloseness){
+                isResult = false;
+                init_closenessLineChart = PlotClosenessLineChart(isResult, initialGraphInfo,startGraph);
+                isResult = true;
+                result_closenessLineChart = PlotClosenessLineChart(isResult, resultGraphInfo,resultGraph);
+
+            }
+
+            if (plotBetweenness){
+                isResult = false;
+                init_betweennessLineChart = PlotBetweennessLineChart(isResult, initialGraphInfo,startGraph);
+                isResult = true;
+                result_betweennessLineChart = PlotBetweennessLineChart(isResult, resultGraphInfo,resultGraph);
+
+            }
+
+            if (saveResult){
+                isResult = false;
+                saveResults(isResult, startGraph, plotCovertNetwork, plotDiameter, plotDegree, plotCloseness, plotBetweenness, init_diameterLineChart, init_nodeDegreeLineChart, init_closenessLineChart, init_betweennessLineChart);
+                isResult = true;
+                saveResults(isResult, resultGraph, plotCovertNetwork, plotDiameter, plotDegree, plotCloseness, plotBetweenness, result_diameterLineChart, result_nodeDegreeLineChart, result_closenessLineChart, result_betweennessLineChart);
+
+            }
+
+            if (showEfficiencyProgress){
+
+            }
+
+            if (showSecrecyProgress){
+
+            }
+        }else{
+
+            if (plotInitialNetwork){
+                Boolean isResult = false;
+                initialGraphInfo = graphInfoCal(startGraph);
+
+                Viewer viewer = startGraph.display();
+                viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+
+                if (plotDiameter){
+                    init_diameterLineChart = PlotDiameterLineChart(isResult, initialGraphInfo,startGraph);
+                }
+
+                if (plotDegree){
+                    init_nodeDegreeLineChart = PlotNodeDegreeLineChart(isResult, initialGraphInfo,startGraph);
+                }
+
+                if (plotCloseness){
+                    init_closenessLineChart = PlotClosenessLineChart(isResult, initialGraphInfo,startGraph);
+                }
+
+                if (plotBetweenness){
+                    init_betweennessLineChart = PlotBetweennessLineChart(isResult, initialGraphInfo,startGraph);
+                }
+
+                if (saveResult){
+                    saveResults(isResult, startGraph, plotCovertNetwork, plotDiameter, plotDegree, plotCloseness, plotBetweenness, init_diameterLineChart, init_nodeDegreeLineChart, init_closenessLineChart, init_betweennessLineChart);
+
+
+                }
+
+                if (showEfficiencyProgress){
+
+                }
+
+                if (showSecrecyProgress){
+
+                }
+            }
+
+            if (plotCovertNetwork){
+
+                Boolean isResult = true;
+                resultGraphInfo = graphInfoCal(resultGraph);
+
+                Viewer viewer = resultGraph.display();
+                viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+
+                if (plotDiameter){
+                    result_diameterLineChart = PlotDiameterLineChart(isResult, resultGraphInfo,resultGraph);
+                }
+
+                if (plotDegree){
+                    result_nodeDegreeLineChart = PlotNodeDegreeLineChart(isResult, resultGraphInfo,resultGraph);
+                }
+
+                if (plotCloseness){
+                    result_closenessLineChart = PlotClosenessLineChart(isResult, resultGraphInfo,resultGraph);
+                }
+
+                if (plotBetweenness){
+                    result_betweennessLineChart = PlotBetweennessLineChart(isResult, resultGraphInfo,resultGraph);
+                }
+
+                if (saveResult){
+                    saveResults(isResult, resultGraph, plotCovertNetwork, plotDiameter, plotDegree, plotCloseness, plotBetweenness, result_diameterLineChart, result_nodeDegreeLineChart, result_closenessLineChart, result_betweennessLineChart);
+                }
+
+                if (showEfficiencyProgress){
+
+                }
+
+                if (showSecrecyProgress){
+
+                }
+
+
+            }
+
+        }
+
+        // Show secrecy and efficiency comparison
+        ShowSecrecyAndEfficiency show = new ShowSecrecyAndEfficiency(initSecrecy,initEfficiency,resultSecrecy,resultEfficiency);
+        show.showInitAndResDialogWindow();
+
+    }// show result
 
 
 
 
     // plot diagrams
 
-    private JFreeChart PlotDiameterLineChart(GraphInfo graphInfo, Graph graph){
+    private JFreeChart PlotDiameterLineChart(Boolean isResult, GraphInfo graphInfo, Graph graph){
+        String additionalId = "";
+        if (isResult){
+            additionalId = "Covert Network: ";
+        }
+
         DiameterLineChart lineChart = new DiameterLineChart(
                 "SVSE" ,
-                "Diameter Distribution", graphInfo.getAllDiameter(),graph);
+                additionalId+"Diameter Distribution", graphInfo.getAllDiameter(),graph);
 
 
         lineChart.pack();
@@ -625,10 +862,15 @@ public class CovertNetwork {
         return lineChart.getChart();
     }
 
-    private JFreeChart PlotNodeDegreeLineChart(GraphInfo graphInfo, Graph graph){
+    private JFreeChart PlotNodeDegreeLineChart(Boolean isResult, GraphInfo graphInfo, Graph graph){
+        String additionalId = "";
+        if (isResult){
+            additionalId = "Covert Network: ";
+        }
+
         NodeDegreeLineChart lineChart = new NodeDegreeLineChart(
                 "SVSE" ,
-                "Degree Distribution", graphInfo.getAllDegree(),graph);
+                additionalId+"Degree Distribution", graphInfo.getAllDegree(),graph);
 
         lineChart.pack();
         RefineryUtilities.centerFrameOnScreen(lineChart);
@@ -639,10 +881,15 @@ public class CovertNetwork {
     }
 
 
-    private JFreeChart PlotClosenessLineChart(GraphInfo graphInfo, Graph graph){
+    private JFreeChart PlotClosenessLineChart(Boolean isResult, GraphInfo graphInfo, Graph graph){
+        String additionalId = "";
+        if (isResult){
+            additionalId = "Covert Network: ";
+        }
+
         ClosenessLineChart lineChart = new ClosenessLineChart(
                 "SVSE",
-                "Closeness Distribution", graphInfo.getAllCloseness(),graph);
+                additionalId+"Closeness Distribution", graphInfo.getAllCloseness(),graph);
 
         lineChart.pack();
         RefineryUtilities.centerFrameOnScreen(lineChart);
@@ -652,10 +899,15 @@ public class CovertNetwork {
         return lineChart.getChart();
     }
 
-    private JFreeChart PlotBetweennessLineChart(GraphInfo graphInfo, Graph graph){
+    private JFreeChart PlotBetweennessLineChart(Boolean isResult, GraphInfo graphInfo, Graph graph){
+        String additionalId = "";
+        if (isResult){
+            additionalId = "Covert Network: ";
+        }
+
         BetweennessLineChart lineChart = new BetweennessLineChart(
                 "SVSE",
-                "Betweenness Distribution", graphInfo.getAllBetweenness(),graph);
+                additionalId+"Betweenness Distribution", graphInfo.getAllBetweenness(),graph);
 
         lineChart.pack();
         RefineryUtilities.centerFrameOnScreen(lineChart);
@@ -666,26 +918,17 @@ public class CovertNetwork {
     }
 
 
-    private JFreeChart PlotBarChart(GraphInfo graphInfo, Graph graph){
-        BarChart chart = new BarChart("SNA Result",
-                "Static Graph", graph.getId(),graphInfo.getMaxDegree(),graphInfo.getMinDegree(),graphInfo.getAveDegree(),graphInfo.getMaxDiameter());
-        chart.pack();
-        RefineryUtilities.centerFrameOnScreen( chart );
 
-//        graph.display();
+    protected void saveResults(Boolean isResult, Graph graph, Boolean plotNetwork, Boolean plotDiameter, Boolean plotDegree, Boolean plotClosenness, Boolean plotBetweenness, JFreeChart diameterLineChart, JFreeChart nodeDegreeLineChart, JFreeChart closenessLineChart, JFreeChart betweennessLineChart) {
+        String additionalId = "";
+        if (isResult){
+            additionalId = "Covert Network of ";
+        }
 
-        chart.setVisible( true );
-        chart.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-
-        return chart.getChart();
-    }
-
-
-    protected void saveResults(Graph graph, Boolean plotNetwork, Boolean plotDiameter, Boolean plotDegree, Boolean plotClosenness, Boolean plotBetweenness, JFreeChart diameterLineChart, JFreeChart nodeDegreeLineChart, JFreeChart closenessLineChart, JFreeChart betweennessLineChart, JFreeChart barChart) {
         if (plotNetwork){
             FileSinkGEXF fs = new FileSinkGEXF();
             try {
-                fs.writeAll(graph, "./Result/"+graph.getId()+".gexf");
+                fs.writeAll(graph, "./Result/"+additionalId+graph.getId()+".gexf");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -695,7 +938,7 @@ public class CovertNetwork {
 
                 fileSinkImages.setLayoutPolicy(FileSinkImages.LayoutPolicy.COMPUTED_FULLY_AT_NEW_IMAGE);
 
-                fileSinkImages.writeAll(graph, "./Result/"+graph.getId()+" Image.png");
+                fileSinkImages.writeAll(graph, "./Result/"+additionalId+graph.getId()+" Image.png");
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -704,7 +947,7 @@ public class CovertNetwork {
 
         if (plotDiameter){
             try {
-                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Diameter.png"), diameterLineChart, 400, 300);
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+additionalId+graph.getId()+" Diameter.png"), diameterLineChart, 400, 300);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -713,7 +956,7 @@ public class CovertNetwork {
 
         if (plotDegree){
             try {
-                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Degree.png"), nodeDegreeLineChart, 400, 300);
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+additionalId+graph.getId()+" Degree.png"), nodeDegreeLineChart, 400, 300);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -721,7 +964,7 @@ public class CovertNetwork {
 
         if (plotClosenness){
             try {
-                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Closeness.png"), closenessLineChart, 400, 300);
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+additionalId+graph.getId()+" Closeness.png"), closenessLineChart, 400, 300);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -729,15 +972,7 @@ public class CovertNetwork {
 
         if (plotBetweenness){
             try {
-                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Betweenness.png"), betweennessLineChart, 400, 300);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if (false){
-            try {
-                ChartUtilities.saveChartAsPNG(new File("./Result/"+graph.getId()+" Bar.png"), barChart, 400, 300);
+                ChartUtilities.saveChartAsPNG(new File("./Result/"+additionalId+graph.getId()+" Betweenness.png"), betweennessLineChart, 400, 300);
             } catch (IOException e) {
                 e.printStackTrace();
             }
