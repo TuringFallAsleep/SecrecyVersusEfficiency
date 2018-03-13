@@ -23,15 +23,15 @@ public class GetKeyPlayers {
             calDegree.CalDegree(theGraph);
 
         }else if (attribute.equals("Closeness")){
+//            System.out.println("Using closeness");
             calCloseness = new CalCloseness();
             calCloseness.CalCloseness(theGraph);
 
         }else if (attribute.equals("Betweenness")){
+//            System.out.println("Using Betweenness");
             calBetweenness = new CalBetweenness();
             calBetweenness.CalBetweenness(theGraph);
         }
-
-
 
 
         Node[] keyPlayers = new Node[keyPlayerNum];
@@ -40,28 +40,50 @@ public class GetKeyPlayers {
 
         for (int num=0; num<graphSize; num++){
             allPlayers[num] = theGraph.getNode(num);
-//            System.out.println(node.getId()+" has degree: "+node.getAttribute("Degree"));
+//            System.out.println(allPlayers[num].getId()+" has"+attribute+": "+allPlayers[num].getAttribute(attribute));
         }
 
-
-        for (int k=0; k<keyPlayerNum+1; k++){
-            for (int i=0; i<k+1; i++){ // find kth biggest degree node
-                int maxIndex = i;
-                int maxValue = allPlayers[i].getAttribute(attribute);
-                for (int j=i+1; j<graphSize; j++){
-                    if ((Integer)allPlayers[j].getAttribute(attribute) > maxValue){
-                        maxIndex = j;
-                        maxValue = allPlayers[j].getAttribute(attribute);
-                        swap(allPlayers,i,maxIndex);
+        if (attribute.equals("Degree")){
+            for (int k=0; k<keyPlayerNum+1; k++){
+                for (int i=0; i<k+1; i++){ // find kth biggest degree node
+                    int maxIndex = i;
+                    int maxValue = allPlayers[i].getAttribute(attribute);
+                    for (int j=i+1; j<graphSize; j++){
+                        if ((Integer)allPlayers[j].getAttribute(attribute) > maxValue){
+                            maxIndex = j;
+                            maxValue = allPlayers[j].getAttribute(attribute);
+                            swap(allPlayers,i,maxIndex);
+                        }
                     }
                 }
+                if (k<keyPlayerNum){
+                    keyPlayers[k] = allPlayers[k];
+                    allPlayers[k].setAttribute(attribute+"KeyPlayer");
+//                    System.out.println("KP: "+allPlayers[k]);
+                }
             }
-            if (k<keyPlayerNum){
-                keyPlayers[k] = allPlayers[k];
-                allPlayers[k].setAttribute(attribute+"KeyPlayer");
-                System.out.println("KP: "+allPlayers[k]);
+        }else {
+            for (int k=0; k<keyPlayerNum+1; k++){
+                for (int i=0; i<k+1; i++){ // find kth biggest degree node
+                    int maxIndex = i;
+                    double maxValue = allPlayers[i].getAttribute(attribute);
+                    for (int j=i+1; j<graphSize; j++){
+                        if ((Double)allPlayers[j].getAttribute(attribute) > maxValue){
+                            maxIndex = j;
+                            maxValue = allPlayers[j].getAttribute(attribute);
+                            swap(allPlayers,i,maxIndex);
+                        }
+                    }
+                }
+                if (k<keyPlayerNum){
+                    keyPlayers[k] = allPlayers[k];
+                    allPlayers[k].setAttribute(attribute+"KeyPlayer");
+//                    System.out.println("KP: "+allPlayers[k]);
+                }
             }
         }
+
+
 
     }
 

@@ -80,16 +80,6 @@ public class CalBetweenness {
             nodeNum++;
         }
 
-//        NodeInfo[] sortNode = getKeyPlayers(3);
-//        System.out.println();
-//        System.out.println("betweenness sort: ");
-//        for (int i=0; i<graphSize; i++){
-//            if (sortNode[i].isKeyPlayer()){
-//                System.out.print(" ID: "+sortNode[i].getNode().getId()+" bet: "+sortNode[i].getBetweenness()+", ");
-//            }
-//        }
-
-
 
         return betweennessResult;
 

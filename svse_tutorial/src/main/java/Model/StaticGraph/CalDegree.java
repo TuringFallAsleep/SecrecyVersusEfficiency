@@ -1,7 +1,5 @@
 package Model.StaticGraph;
 
-import Model.NodeInformation.ClosenessComparator;
-import Model.NodeInformation.DegreeComparator;
 import Model.NodeInformation.NodeInfo;
 import Model.NodeInformation.NodeOrderComparator;
 import org.graphstream.algorithm.measure.ClosenessCentrality;

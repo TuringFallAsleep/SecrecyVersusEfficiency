@@ -253,6 +253,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
 
         cov_comboBox_algorithm.addItem("Fast method");
         cov_comboBox_algorithm.addItem("Faster method");
+        cov_comboBox_algorithm.addItem("Accurate method");
 
 
 
@@ -990,14 +991,14 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                             if (cov_comboBox_initial_graph.getSelectedItem().toString().equals("Add from file...")){
 
                                 initialGraph[0] = covertNetwork.initialImpGraph(cov_file);
-                                covertNetwork.buildCovertNetwork(initialGraph[0], cov_comboBox_algorithm.getSelectedItem().toString(), cov_slider_balance.getValue(), cov_comboBox_define_key_players_by.getSelectedItem().toString(),keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
+                                covertNetwork.buildCovertNetwork(initialGraph[0], cov_comboBox_algorithm.getSelectedItem().toString(), cov_slider_balance.getValue(), hoursPerPass, cov_comboBox_define_key_players_by.getSelectedItem().toString(),keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
                                 cov_added_file = false;
                                 covertNetwork.showResult();
 
                             }else {
 
                                 initialGraph[0] = covertNetwork.initialGenGraph(cov_comboBox_initial_graph.getSelectedItem().toString(),cov_slider_node_number.getValue());
-                                covertNetwork.buildCovertNetwork(initialGraph[0], cov_comboBox_algorithm.getSelectedItem().toString(), cov_slider_balance.getValue(), cov_comboBox_define_key_players_by.getSelectedItem().toString(),keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
+                                covertNetwork.buildCovertNetwork(initialGraph[0], cov_comboBox_algorithm.getSelectedItem().toString(), cov_slider_balance.getValue(), hoursPerPass, cov_comboBox_define_key_players_by.getSelectedItem().toString(),keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
                                 covertNetwork.showResult();
                             }
 

@@ -2,82 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25aa1653-120d-4d71-b029-09aa14fff9db" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/9_11_HIJACKERS_ASSOCIATES Betweenness.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/9_11_HIJACKERS_ASSOCIATES Closeness.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/9_11_HIJACKERS_ASSOCIATES Degree.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/9_11_HIJACKERS_ASSOCIATES Diameter.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/9_11_HIJACKERS_ASSOCIATES Image.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/9_11_HIJACKERS_ASSOCIATES.gexf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Covert Network of Preferential Attachment Betweenness.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Covert Network of Preferential Attachment Closeness.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Covert Network of Preferential Attachment Degree.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Covert Network of Preferential Attachment Diameter.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Covert Network of Preferential Attachment Image.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Covert Network of Preferential Attachment with Bernoulli Betweenness.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Covert Network of Preferential Attachment with Bernoulli Closeness.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Covert Network of Preferential Attachment with Bernoulli Degree.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Covert Network of Preferential Attachment with Bernoulli Diameter.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Covert Network of Preferential Attachment with Bernoulli Image.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Covert Network of Preferential Attachment with Bernoulli.gexf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Covert Network of Preferential Attachment.gexf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Highly Centralised Image.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Highly Centralised.gexf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Highly Decentralised Image.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Highly Decentralised.gexf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Preferential Attachment Betweenness.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Preferential Attachment Closeness.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Preferential Attachment Degree.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Preferential Attachment Diameter.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Preferential Attachment Image.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Preferential Attachment with Bernoulli Betweenness.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Preferential Attachment with Bernoulli Closeness.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Preferential Attachment with Bernoulli Degree.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Preferential Attachment with Bernoulli Diameter.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Preferential Attachment with Bernoulli Image.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Preferential Attachment with Bernoulli.gexf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Result/Preferential Attachment.gexf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/BarChart.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/BetweennessLineChart.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/ClosenessLineChart.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/DiameterLineChart.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/NodeDegreeLineChart.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Controller/FileReader/CSVReader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Controller/Network/CovertNetwork.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Controller/Network/FixedGraph.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Controller/Network/MyFullGenerator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Controller/Network/RealGraph.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Controller/NetworkInformation/EdgeInfo.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Model/DynamicGraph/ApparitionAlgorithm.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Model/NodeInformation/BetweennessComparator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Model/NodeInformation/ClosenessComparator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Model/NodeInformation/DegreeComparator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Model/NodeInformation/NodeInfo.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Model/NodeInformation/NodeOrderComparator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Model/NodeInformation/PathLengthComparator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Model/NodeInformation/ProbabilityComparator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalBetweenness.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalCloseness.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalDegree.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalDiameter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalEfficiency.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalSecrecy.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Model/StaticGraph/GraphCal.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Model/StaticGraph/GraphInfo.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/Model/Tutorial.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/View/GUI.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/View/ShowSecrecyAndEfficiency.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Model/DynamicGraph/ApparitionAlgorithm.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Model/StaticGraph/CalSecrecy.class" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/covert.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Controller/Network/CovertNetwork.class" afterPath="$PROJECT_DIR$/target/classes/Controller/Network/CovertNetwork.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Controller/Network/FixedGraph.class" afterPath="$PROJECT_DIR$/target/classes/Controller/Network/FixedGraph.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Controller/Network/RealGraph.class" afterPath="$PROJECT_DIR$/target/classes/Controller/Network/RealGraph.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Model/StaticGraph/CalBetweenness.class" afterPath="$PROJECT_DIR$/target/classes/Model/StaticGraph/CalBetweenness.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Model/StaticGraph/CalDegree.class" afterPath="$PROJECT_DIR$/target/classes/Model/StaticGraph/CalDegree.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Model/StaticGraph/CalSecrecy.class" afterPath="$PROJECT_DIR$/target/classes/Model/StaticGraph/CalSecrecy.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/Model/StaticGraph/GetKeyPlayers.class" afterPath="$PROJECT_DIR$/target/classes/Model/StaticGraph/GetKeyPlayers.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/View/GUI$1.class" afterPath="$PROJECT_DIR$/target/classes/View/GUI$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/View/GUI$2.class" afterPath="$PROJECT_DIR$/target/classes/View/GUI$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/View/GUI$3.class" afterPath="$PROJECT_DIR$/target/classes/View/GUI$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/View/GUI.class" afterPath="$PROJECT_DIR$/target/classes/View/GUI.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/View/ShowSecrecyAndEfficiency.class" afterPath="$PROJECT_DIR$/target/classes/View/ShowSecrecyAndEfficiency.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/efficiency.css" afterPath="$PROJECT_DIR$/efficiency.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/secrecy.css" afterPath="$PROJECT_DIR$/secrecy.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Controller/Network/CovertNetwork.java" afterPath="$PROJECT_DIR$/src/main/java/Controller/Network/CovertNetwork.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalBetweenness.java" afterPath="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalBetweenness.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalDegree.java" afterPath="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalDegree.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Model/StaticGraph/GetKeyPlayers.java" afterPath="$PROJECT_DIR$/src/main/java/Model/StaticGraph/GetKeyPlayers.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/View/GUI.java" afterPath="$PROJECT_DIR$/src/main/java/View/GUI.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -95,11 +36,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CalSecrecy.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CalSecrecy.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalSecrecy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="273" column="12" lean-forward="false" selection-start-line="273" selection-start-column="12" selection-end-line="273" selection-end-column="12" />
+            <state relative-caret-position="263">
+              <caret line="69" column="8" lean-forward="false" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="71" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -107,32 +48,40 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="secrecy.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/secrecy.css">
+      <file leaf-file-name="RealGraph.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Network/RealGraph.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="39" lean-forward="true" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
+            <state relative-caret-position="262">
+              <caret line="61" column="22" lean-forward="false" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProbabilityComparator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/ProbabilityComparator.java">
+      <file leaf-file-name="GUI.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/View/GUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="84" lean-forward="false" selection-start-line="10" selection-start-column="84" selection-end-line="10" selection-end-column="84" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="239">
+              <caret line="993" column="57" lean-forward="true" selection-start-line="993" selection-start-column="57" selection-end-line="993" selection-end-column="57" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CalDegree.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalDegree.java">
+      <file leaf-file-name="CovertNetwork.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Network/CovertNetwork.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
+            <state relative-caret-position="314">
+              <caret line="521" column="37" lean-forward="true" selection-start-line="521" selection-start-column="37" selection-end-line="521" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="covert.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/covert.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
               <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
               <folding />
             </state>
@@ -142,8 +91,8 @@
       <file leaf-file-name="GetKeyPlayers.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/GetKeyPlayers.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="750">
-              <caret line="50" column="43" lean-forward="false" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
+            <state relative-caret-position="-252">
+              <caret line="26" column="46" lean-forward="true" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -151,11 +100,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testCal.java" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/testCal.java">
+      <file leaf-file-name="DegreeComparator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/DegreeComparator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="29" column="47" lean-forward="true" selection-start-line="29" selection-start-column="47" selection-end-line="29" selection-end-column="47" />
+            <state relative-caret-position="165">
+              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClosenessComparator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/ClosenessComparator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BetweennessComparator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/BetweennessComparator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -164,31 +133,9 @@
       <file leaf-file-name="CalBetweenness.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalBetweenness.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="619">
-              <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+            <state relative-caret-position="193">
+              <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CalCloseness.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalCloseness.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="49" column="65" lean-forward="true" selection-start-line="49" selection-start-column="65" selection-end-line="49" selection-end-column="65" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CovertNetwork.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Network/CovertNetwork.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="170" column="33" lean-forward="true" selection-start-line="170" selection-start-column="33" selection-end-line="170" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -204,20 +151,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>oneLayerFinish</find>
-      <find>pass++</find>
-      <find>allR</find>
-      <find>nodeInfo</find>
-      <find>Sleep 2</find>
-      <find>sleep()</find>
-      <find>spri</find>
-      <find>New</find>
-      <find>showR</find>
-      <find>100%</find>
-      <find>10%</find>
-      <find>1%</find>
-      <find>Step 2</find>
-      <find>allNode</find>
       <find>sele</find>
       <find>removed</find>
       <find>Get</find>
@@ -232,8 +165,22 @@
       <find>findKeyPlayersMethod</find>
       <find>Sys</find>
       <find>ARREST_P</find>
-      <find>ui.label</find>
       <find>%</find>
+      <find>Fas</find>
+      <find>KP</find>
+      <find>Fa</find>
+      <find>Acc</find>
+      <find>resultSecrecy</find>
+      <find>vi</find>
+      <find>ui.label</find>
+      <find>CalEfficiency</find>
+      <find>Ca</find>
+      <find>CalSecrecy</find>
+      <find>ho</find>
+      <find>CalSec</find>
+      <find>resultEfficiency</find>
+      <find>New</find>
+      <find>resultGraph</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -254,7 +201,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/BarChart_AWT.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/Network/MyFullGenerator.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/ChartGenerate/ChartData.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/FileReader/CSVReader.java" />
@@ -292,19 +238,20 @@
         <option value="$PROJECT_DIR$/src/main/java/Model/NodeInformation/NodeInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/Network/FixedGraph.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/Network/RealGraph.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controller/Network/CovertNetwork.java" />
-        <option value="$PROJECT_DIR$/src/main/java/View/GUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalEfficiency.java" />
         <option value="$PROJECT_DIR$/efficiency.css" />
         <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/testCal.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalDegree.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalBetweenness.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalCloseness.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/NodeInformation/ProbabilityComparator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/GetKeyPlayers.java" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/testCal.java" />
-        <option value="$PROJECT_DIR$/secrecy.css" />
         <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalSecrecy.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalDegree.java" />
+        <option value="$PROJECT_DIR$/secrecy.css" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalBetweenness.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/StaticGraph/GetKeyPlayers.java" />
+        <option value="$PROJECT_DIR$/src/main/java/View/GUI.java" />
+        <option value="$PROJECT_DIR$/covert.css" />
+        <option value="$PROJECT_DIR$/src/main/java/Controller/Network/CovertNetwork.java" />
       </list>
     </option>
   </component>
@@ -410,7 +357,25 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+              <item name="NetworkInformation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="svse" type="b2602c69:ProjectViewProjectNode" />
+              <item name="svse_tutorial" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="Model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="svse" type="b2602c69:ProjectViewProjectNode" />
+              <item name="svse_tutorial" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="NodeInformation" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="svse" type="b2602c69:ProjectViewProjectNode" />
@@ -462,11 +427,11 @@
       <recent name="Model.StaticGraph" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$APPLICATION_CONFIG_DIR$/scratches" />
       <recent name="$PROJECT_DIR$/src/main" />
       <recent name="$PROJECT_DIR$/src/main/java/Model/StaticGraph" />
       <recent name="$PROJECT_DIR$/src/main/java/Model/NodeInformation" />
-      <recent name="$PROJECT_DIR$/src/main/java/Controller/Network" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="Controller.Network" />
@@ -777,22 +742,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Network/RealGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="135" column="16" lean-forward="false" selection-start-line="135" selection-start-column="16" selection-end-line="135" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/View/GUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="888" column="162" lean-forward="false" selection-start-line="888" selection-start-column="160" selection-end-line="888" selection-end-column="162" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../../../../JavaLib/graphStream/gs-core-1.3/gs-core-1.3-sources.jar!/org/graphstream/graph/implementations/AbstractElement.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -843,32 +792,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Network/CovertNetwork.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="170" column="33" lean-forward="true" selection-start-line="170" selection-start-column="33" selection-end-line="170" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalBetweenness.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="619">
-          <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalCloseness.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="49" column="65" lean-forward="true" selection-start-line="49" selection-start-column="65" selection-end-line="49" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/testCal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -887,47 +810,123 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/secrecy.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="39" lean-forward="true" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
+        <state relative-caret-position="435">
+          <caret line="29" column="15" lean-forward="true" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="16" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalDegree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/ProbabilityComparator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="84" lean-forward="false" selection-start-line="10" selection-start-column="84" selection-end-line="10" selection-end-column="84" />
+        <state relative-caret-position="105">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalCloseness.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="64" column="51" lean-forward="true" selection-start-line="64" selection-start-column="51" selection-end-line="64" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalDegree.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalBetweenness.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="81" column="0" lean-forward="false" selection-start-line="81" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/BetweennessComparator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/ClosenessComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="22" lean-forward="true" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/NodeInformation/DegreeComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/GetKeyPlayers.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="50" column="43" lean-forward="false" selection-start-line="50" selection-start-column="43" selection-end-line="50" selection-end-column="43" />
+        <state relative-caret-position="-252">
+          <caret line="26" column="46" lean-forward="true" selection-start-line="26" selection-start-column="46" selection-end-line="26" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/covert.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/View/GUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="993" column="57" lean-forward="true" selection-start-line="993" selection-start-column="57" selection-end-line="993" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Network/RealGraph.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="61" column="22" lean-forward="false" selection-start-line="61" selection-start-column="22" selection-end-line="61" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/StaticGraph/CalSecrecy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="273" column="12" lean-forward="false" selection-start-line="273" selection-start-column="12" selection-end-line="273" selection-end-column="12" />
+        <state relative-caret-position="263">
+          <caret line="69" column="8" lean-forward="false" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="71" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controller/Network/CovertNetwork.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="521" column="37" lean-forward="true" selection-start-line="521" selection-start-column="37" selection-end-line="521" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
