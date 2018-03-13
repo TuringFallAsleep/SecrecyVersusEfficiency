@@ -9,7 +9,6 @@ import Model.StaticGraph.CalSecrecy;
 import Model.StaticGraph.GraphCal;
 import Model.StaticGraph.GraphInfo;
 import View.ShowSecrecyAndEfficiency;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.graphstream.algorithm.generator.BarabasiAlbertGenerator;
 import org.graphstream.algorithm.generator.Generator;
 import org.graphstream.algorithm.generator.RandomGenerator;
@@ -19,12 +18,13 @@ import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.DefaultGraph;
 import org.graphstream.graph.implementations.Graphs;
 import org.graphstream.graph.implementations.MultiGraph;
-import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.stream.file.FileSinkGEXF;
 import org.graphstream.stream.file.FileSinkImages;
 import org.graphstream.stream.file.FileSource;
 import org.graphstream.stream.file.FileSourceGEXF;
-import org.graphstream.ui.graphicGraph.GraphicGraph;
+import org.graphstream.ui.graphicGraph.stylesheet.StyleConstants;
+import org.graphstream.ui.spriteManager.Sprite;
+import org.graphstream.ui.spriteManager.SpriteManager;
 import org.graphstream.ui.view.Viewer;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
@@ -40,12 +40,10 @@ public class CovertNetwork {
 
     private Graph resultGraph_0;
     private Graph tempGraph;
-    private int secrecyCount = Integer.MAX_VALUE;
     private int graphSize;
     private int edgeNum;
     private EdgeInfo edgeInfo[];
     private NodeInfo nodeInfo[];
-    private Double reCalNum = 1.0; //2.0
 
     private String findKeyPlayerMethod;
     private Integer keyPlayerNum;
@@ -85,6 +83,7 @@ public class CovertNetwork {
     private double initEfficiency;
     private double resultSecrecy;
     private double resultEfficiency;
+    private double hourPerPass;
 
     public void setOptions(Boolean plotCovertNetwork, Boolean plotInitialNetwork, Boolean plotDiameter, Boolean plotDegree, Boolean plotCloseness, Boolean plotBetweenness, Boolean saveResult, Boolean showEfficiencyProgress, Boolean showSecrecyProgress){
         this.plotCovertNetwork = plotCovertNetwork;
@@ -98,57 +97,54 @@ public class CovertNetwork {
         this.showSecrecyProgress = showSecrecyProgress;
     }
 
+    // Generated Graph
+    public Graph initialGenGraph(String graphType, int nodeNum){
 
+        // Step 1: Get initial tempGraph
+        Graph genGraph = null;
 
-            // Generated Graph
-     public Graph initialGenGraph(String graphType, int nodeNum){
+        if (graphType.equals("Highly Centralised")){
 
-            // Step 1: Get initial tempGraph
+            genGraph = new MultiGraph("Highly Centralised");
+            genGraph.setStrict(false);
+            genGraph.setAutoCreate(true);
+            for (int i=0; i<nodeNum-1; i++){
+                genGraph.addEdge(0+"_"+i,""+0,""+i);
+            }
 
-            Graph genGraph = null;
+        }else if (graphType.equals("Highly Decentralised")){
 
-            if (graphType.equals("Highly Centralised")){
+            genGraph = new MultiGraph("Highly Decentralised");
+            genGraph.setStrict(false);
+            genGraph.setAutoCreate(true);
 
-                genGraph = new MultiGraph("Highly Centralised");
-                genGraph.setStrict(false);
-                genGraph.setAutoCreate(true);
-                for (int i=0; i<nodeNum-1; i++){
-                    genGraph.addEdge(0+"_"+i,""+0,""+i);
-                }
+            for (int i=0; i<nodeNum-1; i++){
+                genGraph.addEdge(i+"_"+(i+1),""+i, ""+(i+1));
+            }
+            genGraph.addEdge((nodeNum-1)+"_"+"0",""+(nodeNum-1),"0");
 
-            }else if (graphType.equals("Highly Decentralised")){
+        }else if (graphType.equals("Bernoulli")){
 
-                genGraph = new MultiGraph("Highly Decentralised");
-                genGraph.setStrict(false);
-                genGraph.setAutoCreate(true);
+            genGraph = new MultiGraph("Bernoulli");
 
-                for (int i=0; i<nodeNum-1; i++){
-                    genGraph.addEdge(i+"_"+(i+1),""+i, ""+(i+1));
-                }
-                genGraph.addEdge((nodeNum-1)+"_"+"0",""+(nodeNum-1),"0");
+            Generator gen = new RandomGenerator(2);
+            gen.addSink(genGraph);
+            gen.begin();
+            for(int i=0; i<nodeNum-3; i++) {
+                gen.nextEvents();
+            }
+            gen.end();
 
-            }else if (graphType.equals("Bernoulli")){
+        }else if (graphType.equals("Preferential Attachment")){
 
-                genGraph = new MultiGraph("Bernoulli");
+            genGraph = new MultiGraph("Preferential Attachment");
 
-                Generator gen = new RandomGenerator(2);
-                gen.addSink(genGraph);
-                gen.begin();
-                for(int i=0; i<nodeNum-3; i++) {
-                    gen.nextEvents();
-                }
-                gen.end();
+            // Between 1 and 3 new links per node added.
+            Generator gen = new BarabasiAlbertGenerator(1,false);
 
-            }else if (graphType.equals("Preferential Attachment")){
-
-                genGraph = new MultiGraph("Preferential Attachment");
-
-                // Between 1 and 3 new links per node added.
-                Generator gen = new BarabasiAlbertGenerator(1,false);
-
-                // Generate 60 nodes:
-                gen.addSink(genGraph);
-                gen.begin();
+            // Generate 60 nodes:
+            gen.addSink(genGraph);
+            gen.begin();
             for(int i=0; i<nodeNum-2; i++) {
                 gen.nextEvents();
             }
@@ -169,8 +165,6 @@ public class CovertNetwork {
             }
             gen.end();
         }
-
-
 
         Graphs copy = new Graphs();
         resultGraph_0 = copy.clone(genGraph);
@@ -209,16 +203,12 @@ public class CovertNetwork {
         if (extension.equals("csv")){
             CSVReader csvReader = new CSVReader();
 
-
             List<List<String>> networkData = null;
-
 
 
             // read the file
             networkData= csvReader.CSVReader(filePath);
             realGraph_0 = new DefaultGraph(theFile.getName());
-
-
 
 
             realGraph_0.setStrict(false);
@@ -269,7 +259,6 @@ public class CovertNetwork {
         }
 
 
-
         Graph realGraph = new MultiGraph("Covert Network: "+theFile.getName());
         realGraph.setStrict(false);
         realGraph.setAutoCreate(true);
@@ -279,34 +268,27 @@ public class CovertNetwork {
             realGraph.addEdge(e.getId(),e.getNode0().getId(),e.getNode1().getId());
         }
 
-
         Graphs copy = new Graphs();
         resultGraph_0 = copy.clone(realGraph);
         collectGraphInfo();
 
-
-//        Viewer viewer = realGraph.display();
-//        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
-
-
         return realGraph;
     }
 
-    public void  buildCovertNetwork(Graph initialGraph, String algorithm, int balance, String defineKeyPlayersBy, Integer keyPlayerNumber, Integer maxSegmentSize, Double keyPlayerArrestProbability, Double arrestProbabilityStep, String stepIncreaseMethod){
+    public void  buildCovertNetwork(Graph initialGraph, String algorithm, int balance, Double hoursPerPass, String defineKeyPlayersBy, Integer keyPlayerNumber, Integer maxSegmentSize, Double keyPlayerArrestProbability, Double arrestProbabilityStep, String stepIncreaseMethod){
 
         startGraph = initialGraph;
+        this.hourPerPass = hoursPerPass;
 
         Double proportion = (2.0 * (double)balance - 100.0)/100.0; // -1 ~ 0: secrecy; 0 ~ 1: efficiency
         System.out.println("Balance = "+balance);
         System.out.println("Proportion = "+proportion);
         greedy(algorithm, initialGraph, proportion, defineKeyPlayersBy, keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
-
     }
 
 
     public void greedy(String algorithm, Graph initialGraph, Double proportion, String defineKeyPlayersBy, Integer keyPlayerNumber, Integer maxSegmentSize, Double keyPlayerArrestProbability, Double arrestProbabilityStep, String stepIncreaseMethod){
 
-        System.out.println("In greedy");
         findKeyPlayerMethod = defineKeyPlayersBy;
         keyPlayerNum = keyPlayerNumber;
         destroySize = maxSegmentSize;
@@ -316,26 +298,29 @@ public class CovertNetwork {
         this.stepIncreaseMethod = stepIncreaseMethod;
 
 
-
-
         // Step 2: Move an edge from one place to another
 //        moveEdges(proportion);
 
 
         CalSecrecy calSecrecy = new CalSecrecy();
-        initSecrecy = (double) calSecrecy.CalSecrecyBy(initialGraph,findKeyPlayerMethod,keyPlayerNum,destroySize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
+        initSecrecy = (double) calSecrecy.CalSecrecyBy(initialGraph,findKeyPlayerMethod,keyPlayerNum,destroySize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod, false);
         CalEfficiency calEfficiency = new CalEfficiency();
         initEfficiency = calEfficiency.DeliverMessage(initialGraph,1.0,false);
         System.out.println("initialGraph Secrecy = "+initSecrecy+", Efficiency = "+initEfficiency);
 
 
-//        for (Edge e : initialGraph.getEachEdge()){
-//            System.out.println("Initial graph, index: "+e.getIndex()+", Edge ID: "+ e.getId());
-//        }
-
-
         resultGraph = step2_moveEdges(algorithm, initialGraph, proportion);
 
+        startGraph.addAttribute("ui.stylesheet", "url('./covert.css')");
+        resultGraph.addAttribute("ui.stylesheet", "url('./covert.css')");
+
+
+        if (algorithm.equals("Accurate method")){
+            System.out.println("Using Accurate");
+            for (int i=1; i<graphSize; i++){
+                resultGraph = step2_moveEdges("Fast method", resultGraph, proportion);
+            }
+        }
 
 
         for (Node n : resultGraph.getEachNode()){
@@ -343,13 +328,6 @@ public class CovertNetwork {
                 System.out.println("Node "+n.getIndex()+" has degree 0.");
         }
 
-
-
-
-
-//        tempGraph.display();
-//        Viewer viewer = tempGraph.display();
-//        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
 
     }// calculating ends
 
@@ -392,14 +370,8 @@ public class CovertNetwork {
             tempGraph.addNode(i+"");
         }
 
-//        Viewer viewer = tempGraph.display();
-//        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
-
         System.out.println("Covert network: resultGraph node num = "+ resultGraph_0.getNodeCount()+", edge num = "+ resultGraph_0.getEdgeCount());
-//        System.out.println("tempGraph.getNodeCount() = "+ tempGraph.getNodeCount()+", edge num = "+ tempGraph.getEdgeCount());
-
     }
-
 
 
 
@@ -412,9 +384,6 @@ public class CovertNetwork {
         Graph resultGraph;
         Graphs copy1 = new Graphs();
         resultGraph = copy1.clone(resultGraph_0);
-
-
-
 
         Double tempGraphSecrecy;
         Double tempGraphEfficiency;
@@ -430,15 +399,10 @@ public class CovertNetwork {
             secrecyProportion = 1.0 - efficiencyProportion;
         }
 
-        System.out.println("secrecyProportion = "+ secrecyProportion+", efficiencyProportion = "+efficiencyProportion);
-
         CalEfficiency calInitialEfficiency = new CalEfficiency();
         resultEfficiency = calInitialEfficiency.DeliverMessage(initialGraph,1.0,false);
         CalSecrecy calInitialSecrecy = new CalSecrecy();
-        resultSecrecy = (double) calInitialSecrecy.CalSecrecyBy(initialGraph,findKeyPlayerMethod,keyPlayerNum,destroySize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
-
-//        System.out.println("Initial efficiency = "+resultEfficiency+", Initial secrecy = "+resultSecrecy);
-
+        resultSecrecy = (double) calInitialSecrecy.CalSecrecyBy(initialGraph,findKeyPlayerMethod,keyPlayerNum,destroySize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod, false);
 
         Edge oldEgde = null;
         int oldEdgeNode0 = 0;
@@ -462,15 +426,12 @@ public class CovertNetwork {
                         break;
                     }
 
-
                     Edge lastEdge = oldEgde;
                     for (int replacedNode=0; replacedNode<graphSize; replacedNode++){
 //                        System.out.println("Replaced Node = "+replacedNode);
 
                         if (replacedNode!=oldEdgeNode1 && replacedNode!=oldEdgeNode0){
                             String oldEdgeID = oldEdgeNode0+""+oldEdgeNode1;
-
-
 
                             // create an new edge which has different Node1
                             newEdgeNode0 = fixedNode; // same as oldEdgeNode0
@@ -492,45 +453,18 @@ public class CovertNetwork {
                             if (!edgeExisted){
                                 tempGraph.addEdge(newEdgeID,oldEdgeNode0,newEdgeNode1);
                                 newEdge = tempGraph.getEdge(newEdgeID);
-//                                System.out.println("newEdgeID = "+newEdgeID+", Node0 = "+newEdge.getNode0()+", Node1 = "+newEdge.getNode1());
-//                                System.out.println("newEdgeID = "+newEdgeID+", Node0 = "+oldEdgeNode0+", Node1 = "+newEdgeNode1);
 
-
-//                                for (Edge e : resultGraph.getEachEdge()){
-//                                    System.out.println("Before removing edges, index: "+e.getIndex()+", Edge ID: "+ e.getId());
-//                                }
-
-                                // remove last edge from resultGraph
-
-//                                System.out.println("Before remove, edgeID = "+newEdge.getId()+" Node0 = "+newEdge.getNode0()+", Node1 = "+newEdge.getNode1());
-//                                    System.out.println("lastEdge: "+lastEdge);
-                                    resultGraph.removeEdge(lastEdge.getId());
-//                                    System.out.println("Removed.");
-
-
-
-//                                for (Edge e : resultGraph.getEachEdge()){
-//                                    System.out.println("After removing edges, index: "+e.getIndex()+", Edge ID: "+ e.getId());
-//                                }
+                                resultGraph.removeEdge(lastEdge.getId());
 
                                 // add the new edge
 
-                                resultGraph.addEdge(newEdgeID,oldEdgeNode0,newEdgeNode1);
-//                                System.out.println("Try to add new edge: "+newEdge);
-//                                System.out.println("newEdgeID = "+newEdgeID+", Node0 = "+resultGraph.getEdge(newEdgeID).getNode0()+", Node1 = "+resultGraph.getEdge(newEdgeID).getNode1());
-
-
-//                                for (Edge e : resultGraph.getEachEdge()){
-//                                    System.out.println("After adding new edges, index: "+e.getIndex()+", Edge ID: "+ e.getId());
-//                                }
+                                Edge resultNewEdge = resultGraph.addEdge(newEdgeID,oldEdgeNode0,newEdgeNode1);
 
                                 // cal E&S
                                 CalEfficiency calEfficiency = new CalEfficiency();
                                 tempGraphEfficiency = calEfficiency.DeliverMessage(resultGraph,1.0,false);
-//                                System.out.println("tempGraphEfficiency = "+tempGraphEfficiency);
                                 CalSecrecy calSecrecy = new CalSecrecy();
-                                tempGraphSecrecy = (double) calSecrecy.CalSecrecyBy(resultGraph,findKeyPlayerMethod,keyPlayerNum,destroySize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
-//                                System.out.println("tempGraphSecrecy = "+tempGraphSecrecy);
+                                tempGraphSecrecy = (double) calSecrecy.CalSecrecyBy(resultGraph,findKeyPlayerMethod,keyPlayerNum,destroySize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod, false);
 
                                 Double result = secrecyProportion * resultSecrecy - efficiencyProportion * resultEfficiency;
                                 Double tempResult = secrecyProportion * tempGraphSecrecy - efficiencyProportion * tempGraphEfficiency;
@@ -546,35 +480,20 @@ public class CovertNetwork {
                                         }
                                         //remove new edge
                                         Edge removedEdge = resultGraph.removeEdge(newEdge.getId());
-//                                    System.out.println("Remopve edge: " + removedEdge);
+//                                        removedEdge.setAttribute("ui.class", "moved");
                                         //add last edge back
                                         oldEdgeNode0 = lastEdge.getNode0().getIndex();
                                         oldEdgeNode1 = lastEdge.getNode1().getIndex();
 
                                         resultGraph.addEdge(lastEdge.getId(),oldEdgeNode0,oldEdgeNode1);
-//                                    System.out.println("Add lastEdge back: "+lastEdge+ ", Node0 = "+oldEdgeNode0+", Node1 = "+oldEdgeNode1);
 
-//                                    System.out.println("Add oldEdge: "+oldEdgeID+" back");
                                     }else{
-//                                    System.out.println("result = "+result+", tempResult = "+tempResult);
                                         lastEdge = newEdge;
-//                                    System.out.println("lastEdge: "+lastEdge);
-//                                    System.out.println("newEdge"+newEdge);
-
                                         resultSecrecy = tempGraphSecrecy;
                                         resultEfficiency = tempGraphEfficiency;
-
-//                                    edgeInfo[lastEdge.getIndex()].setEdge(lastEdge);
-//                                    edgeInfo[lastEdge.getIndex()].getNode0();
-
-//                                    Viewer viewer = resultGraph.display();
-//                                    viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+//                                        resultNewEdge.setAttribute("ui.class", "moved");
                                         System.out.println("New edge: "+newEdge+" added!");
                                     }
-
-//                                for (Edge e : resultGraph.getEachEdge()){
-//                                    System.out.println("After one turn exchange, index: "+e.getIndex()+", Edge ID: "+ e.getId());
-//                                }
 
                                     tempGraph.removeEdge(newEdge.getId());
                                 }else if (algorithm.equals("Faster method")){
@@ -582,39 +501,26 @@ public class CovertNetwork {
                                         // the older is better
                                         //remove new edge
                                         Edge removedEdge = resultGraph.removeEdge(newEdge.getId());
+//                                        removedEdge.setAttribute("ui.class", "moved");
 //                                    System.out.println("Remopve edge: " + removedEdge);
                                         //add last edge back
                                         oldEdgeNode0 = lastEdge.getNode0().getIndex();
                                         oldEdgeNode1 = lastEdge.getNode1().getIndex();
 
                                         resultGraph.addEdge(lastEdge.getId(),oldEdgeNode0,oldEdgeNode1);
-//                                    System.out.println("Add lastEdge back: "+lastEdge+ ", Node0 = "+oldEdgeNode0+", Node1 = "+oldEdgeNode1);
 
-//                                    System.out.println("Add oldEdge: "+oldEdgeID+" back");
                                         tempGraph.removeEdge(newEdge.getId());
                                         break;
                                     }else{
-//                                    System.out.println("result = "+result+", tempResult = "+tempResult);
                                         lastEdge = newEdge;
-//                                    System.out.println("lastEdge: "+lastEdge);
-//                                    System.out.println("newEdge"+newEdge);
 
                                         resultSecrecy = tempGraphSecrecy;
                                         resultEfficiency = tempGraphEfficiency;
 
-//                                    edgeInfo[lastEdge.getIndex()].setEdge(lastEdge);
-//                                    edgeInfo[lastEdge.getIndex()].getNode0();
-
-//                                    Viewer viewer = resultGraph.display();
-//                                    viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
                                         System.out.println("New edge: "+newEdge+" added!");
-                                        tempGraph.removeEdge(newEdge.getId());
+//                                        resultNewEdge.setAttribute("ui.class","moved");
                                     }
-
-//                                for (Edge e : resultGraph.getEachEdge()){
-//                                    System.out.println("After one turn exchange, index: "+e.getIndex()+", Edge ID: "+ e.getId());
-//                                }
-
+                                        tempGraph.removeEdge(newEdge.getId()); // here or above?
 
                                 } // faster method
 
@@ -627,17 +533,8 @@ public class CovertNetwork {
             }
         }
 
-//        for (Edge e : resultGraph.getEachEdge()){
-//            System.out.println("Final result, index: "+e.getIndex()+", Edge ID: "+ e.getId() + ", Node0 = "+ e.getNode0()+ ", Node1 = "+ e.getNode1());
-//        }
-        resultGraph.addAttribute("ui.stylesheet","url('./efficiency.css')");
+        resultGraph.addAttribute("ui.stylesheet","url('./covert.css')");
 
-
-        resultGraph.getNode(1).addAttribute("ui.class","important");
-
-//        for (Edge e : initialGraph.getEachEdge()){
-//            System.out.println("Initial graph, index: "+e.getIndex()+", Edge ID: "+ e.getId() + ", Node0 = "+ e.getNode0()+ ", Node1 = "+ e.getNode1());
-//        }
 
 
         System.out.println("resultGraph Secrecy = "+resultSecrecy+", resultGraph Efficiency = "+resultEfficiency);
@@ -645,8 +542,6 @@ public class CovertNetwork {
 
         return resultGraph;
     }
-
-
 
     // cal graph info
 
@@ -658,7 +553,6 @@ public class CovertNetwork {
 
         GraphInfo graphInfo = new GraphInfo();
         graphInfo.init(graph.getNodeCount());
-
 
         System.out.println("Max degree: " + a.getMaxDegree());
         System.out.println("Min degree: " + a.getMinDegree());
@@ -680,22 +574,39 @@ public class CovertNetwork {
         graphInfo.setMaxCloseness(a.getMaxCloseness());
         graphInfo.setMaxBetweenness(a.getMaxBetweenness());
 
-
-
-
         return graphInfo;
     } // GraphInfoCal()
 
 
     public void showResult(){
 
-
-
         if (plotCovertNetwork && plotInitialNetwork){
             Boolean isResult;
 
             initialGraphInfo = graphInfoCal(startGraph);
             resultGraphInfo = graphInfoCal(resultGraph);
+
+            SpriteManager smStart = new SpriteManager(startGraph);
+            Sprite spriteStart = smStart.addSprite("spriteStart");
+            spriteStart.setPosition(StyleConstants.Units.PX, 80, 20, 0);
+//            spriteStart.addAttribute("ui.stylesheet","url('./efficiency.css')");
+//            spriteStart.addAttribute("ui.class","label");
+            spriteStart.addAttribute("ui.style","fill-color: white;");
+            spriteStart.addAttribute("ui.label","Initial Network");
+
+            SpriteManager smResult = new SpriteManager(resultGraph);
+            Sprite spriteResult = smResult.addSprite("spriteResult");
+            spriteResult.setPosition(StyleConstants.Units.PX, 80, 20,0);
+            spriteResult.addAttribute("ui.style","fill-color: white;");
+            spriteResult.addAttribute("ui.label","Result Network");
+
+            for (Node node : startGraph.getEachNode()){
+                node.setAttribute("ui.label", node.getId()+"");
+            }
+
+            for (Node node : resultGraph.getEachNode()){
+                node.setAttribute("ui.label", node.getId()+"");
+            }
 
             // Initial graph
             Viewer viewer1 = startGraph.display();
@@ -745,11 +656,20 @@ public class CovertNetwork {
             }
 
             if (showEfficiencyProgress){
+                CalEfficiency calEfficiency = new CalEfficiency();
+                initEfficiency = calEfficiency.DeliverMessage(startGraph,hourPerPass,true);
+
+                CalEfficiency calInitialEfficiency = new CalEfficiency();
+                resultEfficiency = calInitialEfficiency.DeliverMessage(resultGraph,hourPerPass,true);
 
             }
 
             if (showSecrecyProgress){
+                CalSecrecy calSecrecy = new CalSecrecy();
+                initSecrecy = (double) calSecrecy.CalSecrecyBy(startGraph,findKeyPlayerMethod,keyPlayerNum,destroySize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod, true);
 
+                CalSecrecy calInitialSecrecy = new CalSecrecy();
+                resultSecrecy = (double) calInitialSecrecy.CalSecrecyBy(resultGraph,findKeyPlayerMethod,keyPlayerNum,destroySize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod, true);
             }
         }else{
 
@@ -783,11 +703,13 @@ public class CovertNetwork {
                 }
 
                 if (showEfficiencyProgress){
-
+                    CalEfficiency calEfficiency = new CalEfficiency();
+                    initEfficiency = calEfficiency.DeliverMessage(startGraph, hourPerPass,true);
                 }
 
                 if (showSecrecyProgress){
-
+                    CalSecrecy calSecrecy = new CalSecrecy();
+                    initSecrecy = (double) calSecrecy.CalSecrecyBy(startGraph,findKeyPlayerMethod,keyPlayerNum,destroySize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod, true);
                 }
             }
 
@@ -820,10 +742,13 @@ public class CovertNetwork {
                 }
 
                 if (showEfficiencyProgress){
-
+                    CalEfficiency calEfficiency = new CalEfficiency();
+                    initEfficiency = calEfficiency.DeliverMessage(resultGraph,hourPerPass,true);
                 }
 
                 if (showSecrecyProgress){
+                    CalSecrecy calInitialSecrecy = new CalSecrecy();
+                    resultSecrecy = (double) calInitialSecrecy.CalSecrecyBy(resultGraph,findKeyPlayerMethod,keyPlayerNum,destroySize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod, false);
 
                 }
 

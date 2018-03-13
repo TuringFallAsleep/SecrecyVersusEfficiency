@@ -1,0 +1,22 @@
+node {
+        fill-color: rgb(0,0,0);
+        size: 10px;
+        stroke-mode: plain;
+        stroke-color: black;
+        stroke-width: 1px;
+        text-alignment: at-right;
+    }
+
+node.moved {
+        fill-color: rgb(255,10,10);
+        size: 12px;
+        stroke-mode: plain;
+        stroke-color: rgb(255,10,10);
+        stroke-width: 1px;
+        text-color: rgb(255,10,10);
+    }
+
+edge.moved {
+        fill-color:  rgb(255,10,10);
+}
+

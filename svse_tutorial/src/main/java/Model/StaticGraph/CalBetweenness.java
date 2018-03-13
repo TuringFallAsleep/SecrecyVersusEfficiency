@@ -4,6 +4,7 @@ import Model.NodeInformation.BetweennessComparator;
 import Model.NodeInformation.NodeInfo;
 import Model.NodeInformation.NodeOrderComparator;
 import org.graphstream.algorithm.BetweennessCentrality;
+import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.stream.file.FileSourceDGS;
@@ -27,8 +28,8 @@ public class CalBetweenness {
 
         //      Cal betweenness
 
-        FileSourceDGS source = new FileSourceDGS();
-        source.addSink(theGraph);
+//        FileSourceDGS source = new FileSourceDGS();
+//        source.addSink(theGraph);
 
         graphSize = theGraph.getNodeCount();
 
@@ -54,7 +55,11 @@ public class CalBetweenness {
 
 
         BetweennessCentrality betweennessCentrality = new BetweennessCentrality();
-//        betweennessCentrality.setWeightAttributeName("weight");
+        betweennessCentrality.setWeightAttributeName("weight");
+        for (Edge edge : theGraph.getEachEdge()){
+            betweennessCentrality.setWeight(edge.getNode0(),edge.getNode1(),1);
+        }
+
         betweennessCentrality.init(theGraph);
         betweennessCentrality.compute();
 
@@ -62,55 +67,24 @@ public class CalBetweenness {
         for (Node n : theGraph.getEachNode()){
 
             Double betweenness = n.getAttribute("Cb");
-//            String.format("%.1f", betweenness))
 
-//            System.out.println("Node "+n.getId()+" has betweenness centrality "+String.format("%.1f", betweenness));
             betweennessResult[0][0] = Math.max(betweennessResult[0][0],betweenness);
             betweennessResult[1][nodeNum] = betweenness;
 
 
             nodeInfo[nodeNum].setNode(n);
             nodeInfo[nodeNum].setBetweenness(betweenness);
+
+            n.setAttribute("Betweenness", betweenness);
 //            System.out.println("Node["+nodeNum+"], Betweenness: "+betweenness);
             nodeNum++;
         }
-
-//        NodeInfo[] sortNode = getKeyPlayers(3);
-//        System.out.println();
-//        System.out.println("betweenness sort: ");
-//        for (int i=0; i<graphSize; i++){
-//            if (sortNode[i].isKeyPlayer()){
-//                System.out.print(" ID: "+sortNode[i].getNode().getId()+" bet: "+sortNode[i].getBetweenness()+", ");
-//            }
-//        }
 
 
         return betweennessResult;
 
     }
 
-    public NodeInfo[] getKeyPlayers(int keyPlayersNumber) {
-//        sortNodeInfo = nodeInfo;
-        Arrays.sort(nodeInfo, new BetweennessComparator());
-        int i = 0;
-        int count = 0;
-        while(count<keyPlayersNumber){
-            if (!nodeInfo[i].isRemoved() && !nodeInfo[i].isArrested()){
-                nodeInfo[i].setKeyPlayer(true);
-//                System.out.println("This is key player: "+ nodeInfo[i].getNode().getId());
-                i++;
-                count++;
-            }else{
-                nodeInfo[i].setKeyPlayer(false);
-                i++;
-            }
-        }
-//        for (int i=0; i<keyPlayersNumber;i++){
-//            nodeInfo[i].setKeyPlayer(true);
-//        }
-        Arrays.sort(nodeInfo, new NodeOrderComparator());
-        return nodeInfo;
-    }
 
     public NodeInfo[] getNodeInfo() {
         return nodeInfo;

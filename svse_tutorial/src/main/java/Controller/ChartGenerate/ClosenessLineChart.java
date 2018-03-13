@@ -4,6 +4,8 @@ import org.graphstream.graph.Graph;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
@@ -18,6 +20,8 @@ public class ClosenessLineChart extends JFrame {
     private DefaultCategoryDataset dataSet = new DefaultCategoryDataset( );
 
 
+
+
     public ClosenessLineChart(String applicationTitle , String chartTitle, Double[] allCloseness, Graph theGraph ) {
         super(applicationTitle);
         lineChart = ChartFactory.createLineChart(
@@ -26,6 +30,11 @@ public class ClosenessLineChart extends JFrame {
                 createDataSet(allCloseness, theGraph),
                 PlotOrientation.VERTICAL,
                 true,true,false);
+
+        CategoryPlot plot = lineChart.getCategoryPlot();
+        // y axis to int
+        NumberAxis yAxis = (NumberAxis)plot.getRangeAxis();
+        yAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
 
         ChartPanel chartPanel = new ChartPanel( lineChart );
         chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
@@ -51,6 +60,9 @@ public class ClosenessLineChart extends JFrame {
             }
         }
 
+
+
+
         int[] numOfNodeWithDiffClo = new int[cloMax+1];
         for (int i=0; i<allClo.length;i++){
             numOfNodeWithDiffClo[intValue(allClo[i])]++;
@@ -58,19 +70,19 @@ public class ClosenessLineChart extends JFrame {
 
 
 
-        for (int i=0; i<numOfNodeWithDiffClo.length; i++){
+        for (int i=0; i<numOfNodeWithDiffClo.length-1; i++){
             if (numOfNodeWithDiffClo.length<1.0/segment){
-                dataSet.addValue(numOfNodeWithDiffClo[i],"Graph"+theGraph.getId()+" with "+theGraph.getNodeCount()+" nodes",""+i);
+                dataSet.addValue(numOfNodeWithDiffClo[i],"Graph"+theGraph.getId()+" with "+theGraph.getNodeCount()+" nodes",""+(double)i/1000);
             }else {
                 if (j<numOfNodeWithDiffClo.length*segment){
                     rangeSumValue += numOfNodeWithDiffClo[i];
                     j++;
-                    if (i == numOfNodeWithDiffClo.length-1){
-                        dataSet.addValue(rangeSumValue,"Graph"+theGraph.getId()+" with "+theGraph.getNodeCount()+" nodes",""+i);
+                    if (i == numOfNodeWithDiffClo.length-2){
+                        dataSet.addValue(rangeSumValue,"Graph"+theGraph.getId()+" with "+theGraph.getNodeCount()+" nodes",""+(double)i/1000);
                         rangeSumValue = 0;
                     }
                 }else {
-                    dataSet.addValue(rangeSumValue,"Graph"+theGraph.getId()+" with "+theGraph.getNodeCount()+" nodes",""+i);
+                    dataSet.addValue(rangeSumValue,"Graph"+theGraph.getId()+" with "+theGraph.getNodeCount()+" nodes",""+(double)i/1000);
                     j = 0;
                     rangeSumValue = 0;
                 }
@@ -90,4 +102,3 @@ public class ClosenessLineChart extends JFrame {
     }
 
 }// class ClosenessLineChart
-

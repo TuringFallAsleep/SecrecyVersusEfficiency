@@ -1,14 +1,15 @@
 package Model.StaticGraph;
 
-import Model.NodeInformation.NodeInfo;
-import Model.NodeInformation.NodeOrderComparator;
 import Model.NodeInformation.ProbabilityComparator;
 import org.graphstream.algorithm.ConnectedComponents;
 import org.graphstream.algorithm.Dijkstra;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.Graphs;
-import org.graphstream.stream.sync.SourceTime;
+import org.graphstream.ui.graphicGraph.stylesheet.StyleConstants;
+import org.graphstream.ui.spriteManager.Sprite;
+import org.graphstream.ui.spriteManager.SpriteManager;
+import org.graphstream.ui.view.Viewer;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -16,67 +17,100 @@ import java.util.Random;
 
 public class CalSecrecy {
 
+    private final static String ARREST_PROBABILITY =  "ArrestProbability";
+    private final static String SHORTEST_DISTANCE_TO_CLOSEST_KEY_PLAYER = "ShortestDistanceToClosestKeyPlayer";
+    private final static String ARRESTED = "Arrested";
+
     private Graph theGraph;
     private Node[] keyPlayers;
-    private CalDegree calDegree;
-    private CalCloseness calCloseness;
-    private CalBetweenness calBetweenness;
     private int graphSize;
 
-    private int keyPlayersNum = 5;
-    private NodeInfo[] nodeInfo;
+
+    private String findKeyPlayersMethod;
+
+    private int keyPlayersNum;
+//    private NodeInfo[] nodeInfo;
 
     private Double arrestProbabilityStep;
     private Double keyPlayerArrestProbability;
     private String stepIncreaseMethod;
     private int destroySize;
 
-    private int secrecyCount = 0;
+    private Node[] oldKeyPlayers;
+    private Boolean keyPlayersChanged;
+    private double aveKeyPlayerArrestProbability;
 
-    public int CalSecrecyBy(Graph graph, String findKeyPlayerBy, int keyPlayersNumber, int maxSegmentSize, Double keyPlayerArrestProb, Double probStep, String increaseMethod){
+    private int secrecyCount = 0;
+    private int removedNodeCount = 0;
+
+    private Sprite spriteSecrecy;
+
+    public int CalSecrecyBy(Graph graph, String findKeyPlayerBy, int keyPlayersNumber, int maxSegmentSize, Double keyPlayerArrestProb, Double probStep, String increaseMethod, Boolean displaySecrecyProgress){
+
         Graphs copy = new Graphs();
         theGraph = copy.clone(graph); // Clone a given graph with same node/edge structure and same attributes.
-        graphSize = theGraph.getNodeCount();
         arrestProbabilityStep = probStep;
         keyPlayerArrestProbability = keyPlayerArrestProb;
         stepIncreaseMethod = increaseMethod;
         destroySize = maxSegmentSize;
+        keyPlayersNum = keyPlayersNumber;
+        findKeyPlayersMethod = findKeyPlayerBy;
+
+        keyPlayersChanged = true;
+        oldKeyPlayers = new Node[keyPlayersNumber];
+        aveKeyPlayerArrestProbability = 0.0;
+
+        SpriteManager smStart = new SpriteManager(theGraph);
+        spriteSecrecy = smStart.addSprite("spriteSecrecy");
+
+        spriteSecrecy.setPosition(StyleConstants.Units.PX, 80, 20, 0);
+        spriteSecrecy.addAttribute("ui.style","fill-color: white;");
+        spriteSecrecy.addAttribute("ui.label","Secrecy Steps Count: "+secrecyCount);
+
+        theGraph.addAttribute("ui.stylesheet", "url('./secrecy.css')");
+        if (displaySecrecyProgress){
+            Viewer viewer = theGraph.display();
+            viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+            sleep();
+        }
 
 
         /* Return count steps of removing nodes and edges until the graph is destroyed */
 //        int step = 0;
 
-        if (findKeyPlayerBy.equals("Degree")){
-            calDegree = new CalDegree();
-            calDegree.CalDegree(theGraph);
-            nodeInfo = calDegree.getNodeInfo();
-
-        }else if (findKeyPlayerBy.equals("Closeness")){
-            calCloseness = new CalCloseness();
-            calCloseness.CalCloseness(theGraph);
-            nodeInfo = calCloseness.getNodeInfo();
-
-        }else if (findKeyPlayerBy.equals("Betweenness")){
-            calBetweenness = new CalBetweenness();
-            calBetweenness.CalBetweenness(theGraph);
-            nodeInfo = calBetweenness.getNodeInfo();
-
+        for (Node node : theGraph.getEachNode()){
+            node.setAttribute(ARREST_PROBABILITY, (Double)0.0);
+            node.setAttribute(SHORTEST_DISTANCE_TO_CLOSEST_KEY_PLAYER, Double.MAX_VALUE);
+            node.setAttribute("ui.label", node.getAttribute(ARREST_PROBABILITY)+"%");
+            node.addAttribute("ui.class","other");
         }
 
+        GetKeyPlayers getKeyPlayers = new GetKeyPlayers();
+        getKeyPlayers.getKP(theGraph, keyPlayersNumber, findKeyPlayerBy);
 
 
 
-//        System.out.println("node info: ");
-//        for (int i=0; i<graphSize; i++){
-//            System.out.println(" ID: "+nodeInfo[i].getNode().getId()+" is key player: "+nodeInfo[i].isKeyPlayer()+", ");
-//        }
+        if (displaySecrecyProgress){
+            for (Node node : theGraph.getEachNode()){
+                if (!node.getAttribute("ui.class").equals("other")){
+                    node.changeAttribute("ui.label", node.getId()+": "+node.getAttribute(ARREST_PROBABILITY)+"%");
+                }else {
+                    node.changeAttribute("ui.label", node.getAttribute(ARREST_PROBABILITY)+"%");
 
-                // Iterate
+                }
+            }
+            sleep();
+        }
 
+        // Iterate
         while (!isDestroyed(destroySize)){
+
+            graphSize = theGraph.getNodeCount();
+
             // Step 1: find key players
+
 //            System.out.println("1");
-            findKeyPlayers(keyPlayersNumber, findKeyPlayerBy);
+            findKeyPlayers(keyPlayersNumber);
 
 
 //            System.out.println("2");
@@ -85,55 +119,112 @@ public class CalSecrecy {
 
             // Step 2.2: set probability based on the distance to the closest key players
             setArrestProbability(arrestProbabilityStep, keyPlayerArrestProbability,stepIncreaseMethod);
+            for (Node node : theGraph.getEachNode()){
+                if (!node.getAttribute("ui.class").equals("other")){
+                    node.changeAttribute("ui.label", node.getId()+": "+node.getAttribute(ARREST_PROBABILITY)+"%");
+                }else {
+                    node.changeAttribute("ui.label", node.getAttribute(ARREST_PROBABILITY)+"%");
 
+                }
+            }
+            if (displaySecrecyProgress){
+                sleep();
+            }
 
 //            System.out.println("3");
-            // Step 3.1: sort the probability from high to low
-            sortProbability();
-
-            // Step 3.2: select a node to be removed
-            selectNodeToRemove();
-
+            // Step 3: sort the probability from high to low and select a node to be removed
+            sortProbabilityAndSelectNodeToRemove();
+            if (displaySecrecyProgress){
+                sleep();
+            }
 
 //            System.out.println("4");
             // Step 4: find the selected node's neighbours and increase their arrested probability
             increaseArrestedNodeNeighbourArrestProbability();
+            if (displaySecrecyProgress){
+                sleep();
+            }
+
 
 //            System.out.println("5");
             // Step 5: remove the arrested node
             removeArrestedNode();
 
             // Step 6: if the whole graph is destroyed
-//            isDestroyed(destroySize);
-
             secrecyCount++;
+            spriteSecrecy.changeAttribute("ui.label","Attack Times Count: "+secrecyCount);
 
+            if (displaySecrecyProgress){
+                sleep();
+            }
         }
 
-//        System.out.println("Secrecy level: "+secrecyCount);
         return secrecyCount;
 
     }
 
 
-    private void findKeyPlayers(int keyPlayersNumber, String findKeyPlayerBy){ // sort nodeInfo
+    private void findKeyPlayers(int keyPlayersNumber){ // sort nodeInfo
         keyPlayersNum = keyPlayersNumber;
 
 //        System.out.println("Step 1");
 
-        if (findKeyPlayerBy.equals("Degree")){
-            nodeInfo = calDegree.getKeyPlayers(keyPlayersNum);
-            nodeInfo = calDegree.getNodeInfo();
-        }else if (findKeyPlayerBy.equals("Closeness")){
-            nodeInfo = calCloseness.getKeyPlayers(keyPlayersNum);
-            nodeInfo = calCloseness.getNodeInfo();
-        }else if (findKeyPlayerBy.equals("Betweenness")){
-            nodeInfo = calBetweenness.getKeyPlayers(keyPlayersNum);
-            nodeInfo = calBetweenness.getNodeInfo();
+        GetKeyPlayers getKeyPlayers = new GetKeyPlayers();
+        getKeyPlayers.getKP(theGraph, keyPlayersNumber, findKeyPlayersMethod);
+
+        for (Node node : theGraph.getEachNode()){
+            if (node.hasAttribute(findKeyPlayersMethod+"KeyPlayer")){
+                node.changeAttribute("ui.class", "keyPlayer");
+            }else {
+                node.changeAttribute("ui.class", "other");
+            }
+        }
+
+        if (secrecyCount==0){
+            int j = 0;
+            for (Node node : theGraph.getEachNode()){
+                if (node.hasAttribute(findKeyPlayersMethod+"KeyPlayer")){
+                    oldKeyPlayers[j] = node;
+                    j++;
+                }
+            }
         }
 
 
+        keyPlayers = new Node[keyPlayersNum];
+        int j = 0;
+        for (Node node : theGraph.getEachNode()){
+            if (node.hasAttribute(findKeyPlayersMethod +"KeyPlayer")){
+                keyPlayers[j] = node;
+                j++;
+            }
+        }
 
+        int sameKeyPlayerNum = 0;
+        for (int i=0; i<keyPlayersNum; i++){
+            for (int k=0; k<keyPlayersNum; k++){
+                if (oldKeyPlayers[i].equals(keyPlayers[k])){
+                    sameKeyPlayerNum++;
+                }
+            }
+        }
+
+        aveKeyPlayerArrestProbability = 0.0;
+        if (sameKeyPlayerNum == keyPlayersNum){
+            keyPlayersChanged = false;
+//            System.out.println("Key players not changed");
+        }else {
+            keyPlayersChanged = true;
+            int l = 0;
+            for (Node node : theGraph.getEachNode()){
+                if (node.hasAttribute(findKeyPlayersMethod +"KeyPlayer")){
+                    oldKeyPlayers[l] = node;
+                    aveKeyPlayerArrestProbability += (Double) node.getAttribute(ARREST_PROBABILITY);
+                    l++;
+                }
+            }
+            aveKeyPlayerArrestProbability = aveKeyPlayerArrestProbability/keyPlayersNum;
+        }
     }
 
     private void calDistanceToClosestKeyPlayer(){
@@ -143,56 +234,17 @@ public class CalSecrecy {
         Dijkstra dijkstra = new Dijkstra();
         dijkstra.init(theGraph);
 
-        keyPlayers = new Node[keyPlayersNum];
 
-        int j = 0;
-        for (int i=0; i<graphSize; i++){
-            if (nodeInfo[i]==null){
-                System.out.println("nodeInfo is null, i = "+i);
-            }else {
-                if (nodeInfo[i].isKeyPlayer() && !nodeInfo[i].isRemoved()) {
-                    keyPlayers[j] = nodeInfo[i].getNode();
-                    j++;
-                }
-            }
-
-        }
-
-//        System.out.println();
-//        System.out.println("Key players: ");
-//        for (int i=0; i<keyPlayersNum; i++){
-//            System.out.print(keyPlayers[i].getId()+", ");
-//        }
-//        System.out.println();
-
-//        System.out.println("Key players' betweenness: ");
-//        for (int i=0; i<graphSize; i++){
-//            if (nodeInfo[i].isKeyPlayer() && !nodeInfo[i].isRemoved())
-//                System.out.print("ID: "+nodeInfo[i].getNode().getId()+"betweenness: "+nodeInfo[i].getBetweenness()+", ");
-//        }
-//        System.out.println();
-
-        for (int i=0; i<graphSize; i++){
-            nodeInfo[i].setShortestDistanceToClosestKeyPlayer(Double.MAX_VALUE);
-        }
         for (Node key : keyPlayers){
             dijkstra.setSource(key);
             dijkstra.compute();
-            int i = 0;
-            for (Node node : theGraph){
+
+            for (Node node : theGraph.getEachNode()){
                 Double pathLength = dijkstra.getPathLength(node);
-                nodeInfo[i].setShortestDistanceToClosestKeyPlayer(Math.min(nodeInfo[i].getShortestDistanceToClosestKeyPlayer(), pathLength));
-                i++;
+                Double shortestPathLength = Math.min((Double) node.getAttribute(SHORTEST_DISTANCE_TO_CLOSEST_KEY_PLAYER), pathLength);
+                node.changeAttribute(SHORTEST_DISTANCE_TO_CLOSEST_KEY_PLAYER, shortestPathLength);
             }
         }
-
-//        System.out.println("shortest distance: ");
-//        for (int i=0; i<graphSize; i++){
-//            if (!nodeInfo[i].isRemoved()) {
-//                System.out.print(" ID: " + nodeInfo[i].getNode().getId() + " distance: " + nodeInfo[i].getShortestDistanceToClosestKeyPlayer() + ", ");
-//            }
-//        }
-//        System.out.println();
     }
 
     private void setArrestProbability(Double step, Double lowest, String increaseMethod ){
@@ -201,144 +253,134 @@ public class CalSecrecy {
 
         if (increaseMethod.equals("None")){
 //            System.out.println("Choose None");
-            for (int i=0; i<graphSize; i++){
-                if (nodeInfo[i].getShortestDistanceToClosestKeyPlayer()<graphSize && !nodeInfo[i].isRemoved()){
-                    nodeInfo[i].setArrestProbability(nodeInfo[i].getShortestDistanceToClosestKeyPlayer()*step+lowest);
-//                    System.out.println("Node "+i+": Distance to key player: "+nodeInfo[i].getShortestDistanceToClosestKeyPlayer()+" Step: "+step+"Key player prob: "+lowest);
-//                    System.out.println("Arrest probability: nodeInfo["+i+"]: "+nodeInfo[i].getArrestProbability());
-//                    System.out.println("");
+            for (Node node : theGraph.getEachNode()){
+                if (keyPlayersChanged){
+                    if (node.hasAttribute(findKeyPlayersMethod +"KeyPlayer")){
+                        node.changeAttribute(ARREST_PROBABILITY, aveKeyPlayerArrestProbability);
+                    }else {
+                        node.changeAttribute(ARREST_PROBABILITY, aveKeyPlayerArrestProbability + (Double) node.getAttribute(SHORTEST_DISTANCE_TO_CLOSEST_KEY_PLAYER)*step);
+                    }
+                }else {
+                    if (secrecyCount == 0){
+                        node.changeAttribute(ARREST_PROBABILITY, lowest + (Double) node.getAttribute(SHORTEST_DISTANCE_TO_CLOSEST_KEY_PLAYER)*step);
+                    }
+                }
+                if (!node.getAttribute("ui.class").equals("other")){
+                    node.changeAttribute("ui.label", node.getId()+": "+node.getAttribute(ARREST_PROBABILITY)+"%");
+                }else {
+                    node.changeAttribute("ui.label", node.getAttribute(ARREST_PROBABILITY)+"%");
                 }
             }
+            
+
         }else if (increaseMethod.equals("Linear")){
-            for (int i=0; i<graphSize; i++){
-                if (nodeInfo[i].getShortestDistanceToClosestKeyPlayer()<graphSize && !nodeInfo[i].isRemoved()){
-                    nodeInfo[i].setArrestProbability(nodeInfo[i].getShortestDistanceToClosestKeyPlayer()*(nodeInfo[i].getShortestDistanceToClosestKeyPlayer()+step)+lowest);
+            for (Node node : theGraph.getEachNode()){
+                if (keyPlayersChanged){
+                    if (node.hasAttribute(findKeyPlayersMethod +"KeyPlayer")){
+                        node.changeAttribute(ARREST_PROBABILITY, aveKeyPlayerArrestProbability);
+                    }else {
+                        node.changeAttribute(ARREST_PROBABILITY, aveKeyPlayerArrestProbability + (Double) node.getAttribute(SHORTEST_DISTANCE_TO_CLOSEST_KEY_PLAYER)*((Double) node.getAttribute(SHORTEST_DISTANCE_TO_CLOSEST_KEY_PLAYER)+step));
+                    }
+                }else {
+                    if (secrecyCount == 0){
+                        node.changeAttribute(ARREST_PROBABILITY, lowest + (Double) node.getAttribute(SHORTEST_DISTANCE_TO_CLOSEST_KEY_PLAYER)*((Double) node.getAttribute(SHORTEST_DISTANCE_TO_CLOSEST_KEY_PLAYER)+step));
+                    }
+                }
+                if (!node.getAttribute("ui.class").equals("other")){
+                    node.changeAttribute("ui.label", node.getId()+": "+node.getAttribute(ARREST_PROBABILITY)+"%");
+                }else {
+                    node.changeAttribute("ui.label", node.getAttribute(ARREST_PROBABILITY)+"%");
                 }
             }
         }
-
-
-//        System.out.println("arrest probability: ");
-//        for (int i=0; i<graphSize; i++){
-//            if (!nodeInfo[i].isRemoved()){
-//                System.out.print(" ID: "+nodeInfo[i].getNode().getId()+" prob: "+nodeInfo[i].getArrestProbability()+", ");
-//            }
-//        }
-//        System.out.println();
     }
 
-    private void sortProbability(){
+    private void sortProbabilityAndSelectNodeToRemove(){
 
 //        System.out.println("Step 3.1");
-
-        Arrays.sort(nodeInfo, new ProbabilityComparator());
-//        System.out.println("sorted probability: ");
-//        for (int i=0; i<graphSize; i++){
-//            if (!nodeInfo[i].isRemoved()) {
-//                System.out.print(" ID: " + nodeInfo[i].getNode().getId() + " prob: " + nodeInfo[i].getArrestProbability() + ", ");
-//            }
-//        }
-//        System.out.println();
-        Arrays.sort(nodeInfo, new NodeOrderComparator());
-    }
-
-    private void selectNodeToRemove(){
-
-//        System.out.println("Step 3.2");
-
-        for (int i=0; i<graphSize;i++){
-            Random random = new Random();
-            if (!nodeInfo[i].isArrested() && nodeInfo[i].getArrestProbability() - random.nextDouble()*100.0 >= 0 && !nodeInfo[i].isRemoved()){
-                // select the node
-                nodeInfo[i].setArrested(true);
-//                System.out.println("Arrest node: "+nodeInfo[i].getNode().getId() + ", Prob: "+nodeInfo[i].getArrestProbability());
-                break;
+        Node[] allPlayers = new Node[graphSize+1];
+        allPlayers[graphSize] = theGraph.getNode(graphSize-1);
+        for (int num=0; num<graphSize; num++){
+            allPlayers[num] = theGraph.getNode(num);
+        }
+        Arrays.sort(allPlayers, new ProbabilityComparator());
+        for (Node node : allPlayers){
+            if (node.getDegree() >= 1){
+                Random random = new Random();
+                if (!node.hasAttribute(ARRESTED) && (Double) node.getAttribute(ARREST_PROBABILITY) - random.nextDouble()*100.0 >= 0.0){
+                    node.changeAttribute("ui.class", "arrested");
+                    node.setAttribute(ARRESTED);
+                    node.changeAttribute("ui.label", node.getId()+": "+node.getAttribute(ARREST_PROBABILITY)+"%");
+                    break;
+                }
             }
         }
-//        Arrays.sort(nodeInfo, new NodeOrderComparator());
-//        System.out.println("selected node: ");
-//        for (int i=0; i<graphSize; i++){
-//            if (nodeInfo[i].isArrested()){
-//                System.out.print(" ID: "+nodeInfo[i].getNode().getId()+" prob: "+nodeInfo[i].getArrestProbability()+", ");
-//            }
-//        }
-//        System.out.println();
+
     }
+
 
     private void increaseArrestedNodeNeighbourArrestProbability() {
 
-//        System.out.println("Step 4");
-
         Iterator<Node> arrestedNodeNeighbours = null;
-        for (int i=0; i<graphSize; i++){
-            if (!nodeInfo[i].isRemoved() && nodeInfo[i].isArrested()){
-                arrestedNodeNeighbours = nodeInfo[i].getNode().getNeighborNodeIterator();
-//                System.out.print(" ID: "+nodeInfo[i].getNode().getId()+" prob: "+nodeInfo[i].getArrestProbability()+", ");
+
+        for (Node node : theGraph.getEachNode()){
+            if (node.hasAttribute(ARRESTED)){
+                arrestedNodeNeighbours = node.getNeighborNodeIterator();
                 break;
             }
         }
+
         if (arrestedNodeNeighbours != null){
             if (arrestedNodeNeighbours.hasNext()){
                 while (arrestedNodeNeighbours.hasNext()){
                     Node neighbour = arrestedNodeNeighbours.next();
-                    for (int i=0; i<graphSize; i++){
-                        if (nodeInfo[i].getNode().equals(neighbour) && !nodeInfo[i].isRemoved()){
-                            nodeInfo[i].setArrestProbability(nodeInfo[i].getArrestProbability()+ arrestProbabilityStep);
-//                        System.out.println("neighbour: "+nodeInfo[i].getNode().getId()+", probability: "+nodeInfo[i].getArrestProbability());
-                        }
-                    }
+                    neighbour.changeAttribute(ARREST_PROBABILITY, (Double) neighbour.getAttribute(ARREST_PROBABILITY) + arrestProbabilityStep);
+                    neighbour.changeAttribute("ui.class", "neighbour");
+                    neighbour.changeAttribute("ui.label", neighbour.getId()+": "+neighbour.getAttribute(ARREST_PROBABILITY)+"%");
                 }
             }
-        }else {
-//            System.out.println("CalSecrecy: no Neighbours");
         }
 
-
-//        System.out.println("new probability: ");
-//        for (int i=0; i<graphSize; i++){
-////            if (nodeInfo[i].isArrested()){
-//            if (!nodeInfo[i].isRemoved()){
-//                System.out.print(" ID: "+nodeInfo[i].getNode().getId()+" prob: "+nodeInfo[i].getArrestProbability()+", ");
-//            }
-//        }
-//        System.out.println();
+        for (Node node : theGraph.getEachNode()){
+            if (!node.getAttribute("ui.class").equals("neighbour") && !node.getAttribute("ui.class").equals("keyPlayer") && !node.hasAttribute(ARRESTED)){
+                node.changeAttribute("ui.class", "other");
+            }
+        }
     }
-
 
     private void removeArrestedNode() {
 
-//        System.out.println("Step 5");
-
-        for (int i=0; i<graphSize; i++){
-            if (nodeInfo[i].isArrested() && !nodeInfo[i].isRemoved()){
-                theGraph.removeNode(nodeInfo[i].getNode());
-                nodeInfo[i].setRemoved(true);
-//                System.out.println("Remove node: "+ nodeInfo[i].getNode().getId());
+        for (Node node : theGraph.getEachNode()){
+            if (node.hasAttribute(ARRESTED)){
+                theGraph.removeNode(node);
             }
-
         }
+        graphSize = theGraph.getNodeCount();
+
     }
 
-    private Boolean isDestroyed(int destroySize){
 
-//        System.out.println("Step 6");
-//        System.out.println("copyTempGraph - node: "+theGraph.getNodeCount()+", edge: "+theGraph.getEdgeCount());
+    private Boolean isDestroyed(int destroySize){
 
         Boolean isDestroyed;
         ConnectedComponents cc = new ConnectedComponents();
         cc.init(theGraph);
-//        isDestroyed = isKVertexConnected(theGraph, destroySize);
-//        System.out.println(cc.getConnectedComponentsCount(destroySize+1) + " component(s) with size larger than "+(destroySize+1) + ". ");
-//        System.out.println(cc.getConnectedComponentsCount(0,3) + " component(s) with size less than " + destroySize + ". ");
+
         if (cc.getConnectedComponentsCount(destroySize+1)>0){
             isDestroyed = false;
             cc.getConnectedComponentsCount();
-//            System.out.println("cc.getConnectedComponentsCount(destroySize) = " + cc.getConnectedComponentsCount(destroySize));
         }else {
             isDestroyed = true;
         }
-//        System.out.println("graph size: "+theGraph.getNodeCount());
         return isDestroyed;
+    }
+
+    protected void sleep() {
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+
+        }
     }
 
 }

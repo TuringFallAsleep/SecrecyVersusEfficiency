@@ -4,6 +4,8 @@ import org.graphstream.graph.Graph;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
@@ -25,6 +27,12 @@ public class NodeDegreeLineChart extends JFrame {
                 createDataSet(allNodesDegree, theGraph),
                 PlotOrientation.VERTICAL,
                 true,true,false);
+
+        CategoryPlot plot = lineChart.getCategoryPlot();
+        // y axis to int
+        NumberAxis yAxis = (NumberAxis)plot.getRangeAxis();
+        yAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+
 
         ChartPanel chartPanel = new ChartPanel( lineChart );
         chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
