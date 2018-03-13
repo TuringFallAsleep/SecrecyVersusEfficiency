@@ -1,0 +1,42 @@
+node {
+        fill-color: rgb(0,0,0);
+        size: 10px;
+        stroke-mode: plain;
+        stroke-color: black;
+        stroke-width: 1px;
+        text-alignment: at-right;
+    }
+node.keyPlayer {
+        fill-color: rgb(100,100,255);
+        size: 20px;
+        stroke-mode: plain;
+        stroke-color: rgb(100,100,255);
+        stroke-width: 1px;
+        text-color: rgb(100,100,255);
+        text-size: 15px;
+    }
+node.neighbour {
+        fill-color: rgb(200,50,50);
+        size: 10px;
+        stroke-mode: plain;
+        stroke-color: rgb(200,50,50);
+        stroke-width: 1px;
+        text-color: rgb(200,50,50);
+        text-size: 20px;
+    }
+
+node.arrested {
+        fill-color: rgb(255,10,10);
+        size: 10px;
+        stroke-mode: plain;
+        stroke-color: rgb(255,10,10);
+        stroke-width: 1px;
+    }
+
+node.other {
+        fill-color: rgb(0,0,0);
+        size: 10px;
+        stroke-mode: plain;
+        stroke-color: rgb(0,0,0);
+        stroke-width: 1px;
+    }

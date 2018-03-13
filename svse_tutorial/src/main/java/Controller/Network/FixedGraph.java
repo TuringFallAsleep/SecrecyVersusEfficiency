@@ -63,7 +63,7 @@ public class FixedGraph {
 
             if (calSecrecy){
                 CalSecrecy secrecy = new CalSecrecy();
-                graphInfo.setSecrecy(secrecy.CalSecrecyBy(highlyCentralisedGraph,defineKeyPlayersBy,keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod));
+                graphInfo.setSecrecy(secrecy.CalSecrecyBy(highlyCentralisedGraph,defineKeyPlayersBy,keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod,displaySecrecyProgress));
             }
 
             ShowSecrecyAndEfficiency show = new ShowSecrecyAndEfficiency(graphInfo.getSecrecy(),graphInfo.getEfficiency());
@@ -99,7 +99,7 @@ public class FixedGraph {
 
             if (calSecrecy){
                 CalSecrecy secrecy = new CalSecrecy();
-                graphInfo.setSecrecy(secrecy.CalSecrecyBy(highlyDecentralisedGraph,defineKeyPlayersBy,keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod));
+                graphInfo.setSecrecy(secrecy.CalSecrecyBy(highlyDecentralisedGraph,defineKeyPlayersBy,keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod,displaySecrecyProgress));
             }
 
             ShowSecrecyAndEfficiency show = new ShowSecrecyAndEfficiency(graphInfo.getSecrecy(),graphInfo.getEfficiency());
@@ -137,7 +137,7 @@ public class FixedGraph {
 
             if (calSecrecy){
                 CalSecrecy secrecy = new CalSecrecy();
-                graphInfo.setSecrecy(secrecy.CalSecrecyBy(bernoulliGraph,defineKeyPlayersBy,keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod));
+                graphInfo.setSecrecy(secrecy.CalSecrecyBy(bernoulliGraph,defineKeyPlayersBy,keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod,displaySecrecyProgress));
             }
 
             ShowSecrecyAndEfficiency show = new ShowSecrecyAndEfficiency(graphInfo.getSecrecy(),graphInfo.getEfficiency());
@@ -176,7 +176,7 @@ public class FixedGraph {
 
             if (calSecrecy){
                 CalSecrecy secrecy = new CalSecrecy();
-                graphInfo.setSecrecy(secrecy.CalSecrecyBy(preferentialAttachmentGraph,defineKeyPlayersBy,keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod));
+                graphInfo.setSecrecy(secrecy.CalSecrecyBy(preferentialAttachmentGraph,defineKeyPlayersBy,keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod,displaySecrecyProgress));
             }
 
             ShowSecrecyAndEfficiency show = new ShowSecrecyAndEfficiency(graphInfo.getSecrecy(),graphInfo.getEfficiency());
@@ -219,7 +219,7 @@ public class FixedGraph {
 
             if (calSecrecy){
                 CalSecrecy secrecy = new CalSecrecy();
-                graphInfo.setSecrecy(secrecy.CalSecrecyBy(preferentialAttachmentWithBernoulliGraph,defineKeyPlayersBy,keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod));
+                graphInfo.setSecrecy(secrecy.CalSecrecyBy(preferentialAttachmentWithBernoulliGraph,defineKeyPlayersBy,keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod,displaySecrecyProgress));
             }
 
             ShowSecrecyAndEfficiency show = new ShowSecrecyAndEfficiency(graphInfo.getSecrecy(),graphInfo.getEfficiency());
@@ -350,7 +350,7 @@ public class FixedGraph {
     private JFreeChart PlotBetweennessLineChart(GraphInfo graphInfo, Graph graph){
         BetweennessLineChart lineChart = new BetweennessLineChart(
                 "SVSE",
-                "Betweenness Distribution", graphInfo.getAllBetweenness(),graph);
+                "Betweenness Distribution", graphInfo.getAllBetweenness(), graph);
 
         lineChart.pack();
         RefineryUtilities.centerFrameOnScreen(lineChart);

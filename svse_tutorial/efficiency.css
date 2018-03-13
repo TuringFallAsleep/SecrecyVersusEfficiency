@@ -5,16 +5,19 @@ node {
         stroke-color: black;
         stroke-width: 1px;
     }
+
 node.selected {
-        fill-color: red;
+        fill-color: rgb(200,10,10);
         size: 15px;
-    }
-node.neighbour {
-        fill-color: yellow;
-        size: 10px;
+        stroke-mode: plain;
+        stroke-color: rgb(180,10,10);
+        stroke-width: 1px;
     }
 
 node.received {
-        fill-color: green;
+        fill-color: rgb(20,180,50);
         size: 10px;
+        stroke-mode: plain;
+        stroke-color: rgb(20,150,50);
+        stroke-width: 1px;
     }

@@ -27,7 +27,7 @@ public class CalCloseness {
 
         closenessResult = new Double[2][graphSize];
 //        closenessResult[0][0]: the max diameter
-//        closenessResult[1][i]: the distribution of diameter
+//        closenessResult[1][i]: the distribution of ckoseness
         nodeInfo = new NodeInfo[graphSize];
 
 
@@ -62,35 +62,13 @@ public class CalCloseness {
 
             nodeInfo[nodeNum].setNode(n);
             nodeInfo[nodeNum].setCloseness(closeness);
+            n.setAttribute("Closeness", closeness);
             nodeNum++;
         }
 
 
         return closenessResult;
 
-    }
-
-    public NodeInfo[] getKeyPlayers(int keyPlayersNumber) {
-//        sortNodeInfo = nodeInfo;
-        Arrays.sort(nodeInfo, new ClosenessComparator());
-        int i = 0;
-        int count = 0;
-        while(count<keyPlayersNumber){
-            if (!nodeInfo[i].isRemoved() && !nodeInfo[i].isArrested()){
-                nodeInfo[i].setKeyPlayer(true);
-//                System.out.println("This is key player: "+ nodeInfo[i].getNode().getId());
-                i++;
-                count++;
-            }else{
-                nodeInfo[i].setKeyPlayer(false);
-                i++;
-            }
-        }
-//        for (int i=0; i<keyPlayersNumber;i++){
-//            nodeInfo[i].setKeyPlayer(true);
-//        }
-        Arrays.sort(nodeInfo, new NodeOrderComparator());
-        return nodeInfo;
     }
 
     public NodeInfo[] getNodeInfo() {

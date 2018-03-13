@@ -7,9 +7,13 @@ import Model.NodeInformation.NodeOrderComparator;
 import org.graphstream.algorithm.measure.ClosenessCentrality;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
+import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.stream.file.FileSourceDGS;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import static org.graphstream.algorithm.measure.ClosenessCentrality.DEFAULT_ATTRIBUTE_KEY;
 
@@ -32,34 +36,13 @@ public class CalDegree {
         for (Node node : theGraph.getEachNode()){
             nodeInfo[nodeNum].setNode(node);
             nodeInfo[nodeNum].setDegree(node.getDegree());
+            node.setAttribute("Degree", node.getDegree());
             nodeNum++;
         }
-
     }
 
-    public NodeInfo[] getKeyPlayers(int keyPlayersNumber) {
-//        sortNodeInfo = nodeInfo;
-        Arrays.sort(nodeInfo, new DegreeComparator());
-        int i = 0;
-        int count = 0;
-        while(count<keyPlayersNumber){
-            if (!nodeInfo[i].isRemoved() && !nodeInfo[i].isArrested()){
-                nodeInfo[i].setKeyPlayer(true);
-//                System.out.println("This is key player: "+ nodeInfo[i].getNode().getId());
-                i++;
-                count++;
-            }else{
-                nodeInfo[i].setKeyPlayer(false);
-                i++;
-            }
-        }
-//        for (int i=0; i<keyPlayersNumber;i++){
-//            nodeInfo[i].setKeyPlayer(true);
-//        }
-        Arrays.sort(nodeInfo, new NodeOrderComparator());
 
-        return nodeInfo;
-    }
+
 
     public NodeInfo[] getNodeInfo() {
         return nodeInfo;

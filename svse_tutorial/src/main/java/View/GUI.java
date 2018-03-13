@@ -57,8 +57,8 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     private JTextField gen_textField_hours_per_pass = new JTextField("0.5");
     private JTextField gen_textField_key_players_number = new JTextField("2");
     private JTextField gen_textField_segment_size = new JTextField("3");
-    private JTextField gen_textField_arrest_probability_key_players = new JTextField("%");
-    private JTextField gen_textField_step = new JTextField("%");
+    private JTextField gen_textField_arrest_probability_key_players = new JTextField("10%");
+    private JTextField gen_textField_step = new JTextField("1%");
 
     private JButton gen_button_ok = new JButton("OK");
 
@@ -97,8 +97,8 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     private JTextField imp_textField_hours_per_pass = new JTextField("0.5");
     private JTextField imp_textField_key_players_number = new JTextField("2");
     private JTextField imp_textField_segment_size = new JTextField("3");
-    private JTextField imp_textField_arrest_probability_key_players = new JTextField("%");
-    private JTextField imp_textField_step = new JTextField("%");
+    private JTextField imp_textField_arrest_probability_key_players = new JTextField("10%");
+    private JTextField imp_textField_step = new JTextField("1%");
 
     private JButton imp_button_select = new JButton("Select");
     private JButton imp_button_ok = new JButton("OK");
@@ -151,8 +151,8 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     private JTextField cov_textField_hours_per_pass = new JTextField("0.5");
     private JTextField cov_textField_key_players_number = new JTextField("2");
     private JTextField cov_textField_segment_size = new JTextField("3");
-    private JTextField cov_textField_arrest_probability_key_players = new JTextField("%");
-    private JTextField cov_textField_step = new JTextField("%");
+    private JTextField cov_textField_arrest_probability_key_players = new JTextField("100%");
+    private JTextField cov_textField_step = new JTextField("10%");
 
     private JButton cov_button_ok = new JButton("OK");
 
@@ -731,8 +731,8 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 }
                             }
 
-                            if (gen_textField_arrest_probability_key_players.getText().equals("") || gen_textField_arrest_probability_key_players.getText().equals("%")){
-                                keyPlayerArrestProbability = 100.0;
+                            if (gen_textField_arrest_probability_key_players.getText().equals("") || gen_textField_arrest_probability_key_players.getText().equals("%") || gen_textField_arrest_probability_key_players.getText().equals("10%")){
+                                keyPlayerArrestProbability = 10.0;
                             } else {
                                 keyPlayerArrestProbability = Double.parseDouble(gen_textField_arrest_probability_key_players.getText());
                                 try{
@@ -743,8 +743,8 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 }
                             }
 
-                            if (gen_textField_step.getText().equals("") || gen_textField_step.getText().equals("%")){
-                                arrestProbabilityStep = 10.0;
+                            if (gen_textField_step.getText().equals("") || gen_textField_step.getText().equals("%") || gen_textField_step.getText().equals("1%")){
+                                arrestProbabilityStep = 1.0;
                             } else {
                                 arrestProbabilityStep = Double.parseDouble(gen_textField_step.getText());
                                 try{
@@ -874,8 +874,8 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                     }
                                 }
 
-                                if (imp_textField_arrest_probability_key_players.getText().equals("") || imp_textField_arrest_probability_key_players.getText().equals("%")){
-                                    keyPlayerArrestProbability = 100.0;
+                                if (imp_textField_arrest_probability_key_players.getText().equals("") || imp_textField_arrest_probability_key_players.getText().equals("%") || imp_textField_arrest_probability_key_players.getText().equals("10%")){
+                                    keyPlayerArrestProbability = 10.0;
                                 } else {
                                     keyPlayerArrestProbability = Double.parseDouble(imp_textField_arrest_probability_key_players.getText());
                                     try{
@@ -886,8 +886,8 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                     }
                                 }
 
-                                if (imp_textField_step.getText().equals("") || imp_textField_step.getText().equals("%")){
-                                    arrestProbabilityStep = 10.0;
+                                if (imp_textField_step.getText().equals("") || imp_textField_step.getText().equals("%") || imp_textField_step.getText().equals("1%")){
+                                    arrestProbabilityStep = 1.0;
                                 } else {
                                     arrestProbabilityStep = Double.parseDouble(imp_textField_step.getText());
                                     try{
@@ -971,13 +971,13 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 maxSegmentSize = Integer.parseInt(cov_textField_segment_size.getText());
                             }
 
-                            if (cov_textField_arrest_probability_key_players.getText().equals("") || cov_textField_arrest_probability_key_players.getText().equals("%")){
+                            if (cov_textField_arrest_probability_key_players.getText().equals("") || cov_textField_arrest_probability_key_players.getText().equals("%") || cov_textField_arrest_probability_key_players.getText().equals("100%")){
                                 keyPlayerArrestProbability = 100.0;
                             } else {
                                 keyPlayerArrestProbability = Double.parseDouble(cov_textField_arrest_probability_key_players.getText());
                             }
 
-                            if (cov_textField_step.getText().equals("") || cov_textField_step.getText().equals("%")){
+                            if (cov_textField_step.getText().equals("") || cov_textField_step.getText().equals("%") || cov_textField_step.getText().equals("10%")){
                                 arrestProbabilityStep = 10.0;
                             } else {
                                 arrestProbabilityStep = Double.parseDouble(cov_textField_step.getText());
