@@ -34,6 +34,8 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     private JLabel gen_label_step_increase = new JLabel("                              Step increase: ");
     private JLabel gen_label_show_result = new JLabel("Show Result: ");
     private JLabel gen_label_blank = new JLabel(" ");
+    private JLabel gen_label_percent_sign_1 = new JLabel("%");
+    private JLabel gen_label_percent_sign_2 = new JLabel("%");
 
     private JComboBox gen_comboBox_structure = new JComboBox();
     private JComboBox gen_comboBox_efficiency = new JComboBox();
@@ -57,8 +59,8 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     private JTextField gen_textField_hours_per_pass = new JTextField("0.5");
     private JTextField gen_textField_key_players_number = new JTextField("2");
     private JTextField gen_textField_segment_size = new JTextField("3");
-    private JTextField gen_textField_arrest_probability_key_players = new JTextField("10%");
-    private JTextField gen_textField_step = new JTextField("1%");
+    private JTextField gen_textField_arrest_probability_key_players = new JTextField("10");
+    private JTextField gen_textField_step = new JTextField("1");
 
     private JButton gen_button_ok = new JButton("OK");
 
@@ -76,6 +78,8 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     private JLabel imp_label_step_increase = new JLabel("                              Step increase: ");
     private JLabel imp_label_show_result = new JLabel("Show Result: ");
     private JLabel imp_label_blank = new JLabel(" ");
+    private JLabel imp_label_percent_sign_1 = new JLabel("%");
+    private JLabel imp_label_percent_sign_2 = new JLabel("%");
 
 
     private JComboBox imp_comboBox_efficiency = new JComboBox();
@@ -97,8 +101,8 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     private JTextField imp_textField_hours_per_pass = new JTextField("0.5");
     private JTextField imp_textField_key_players_number = new JTextField("2");
     private JTextField imp_textField_segment_size = new JTextField("3");
-    private JTextField imp_textField_arrest_probability_key_players = new JTextField("10%");
-    private JTextField imp_textField_step = new JTextField("1%");
+    private JTextField imp_textField_arrest_probability_key_players = new JTextField("10");
+    private JTextField imp_textField_step = new JTextField("1");
 
     private JButton imp_button_select = new JButton("Select");
     private JButton imp_button_ok = new JButton("OK");
@@ -126,6 +130,9 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     private JLabel cov_label_blank = new JLabel(" ");
     private JLabel cov_label_efficiency = new JLabel("Efficiency: ");
     private JLabel cov_label_secrecy = new JLabel("Secrecy: ");
+    private JLabel cov_label_percent_sign_1 = new JLabel("%");
+    private JLabel cov_label_percent_sign_2 = new JLabel("%");
+
 
     private JComboBox cov_comboBox_initial_graph = new JComboBox();
     private JComboBox cov_comboBox_algorithm = new JComboBox();
@@ -151,8 +158,8 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
     private JTextField cov_textField_hours_per_pass = new JTextField("0.5");
     private JTextField cov_textField_key_players_number = new JTextField("2");
     private JTextField cov_textField_segment_size = new JTextField("3");
-    private JTextField cov_textField_arrest_probability_key_players = new JTextField("100%");
-    private JTextField cov_textField_step = new JTextField("10%");
+    private JTextField cov_textField_arrest_probability_key_players = new JTextField("100");
+    private JTextField cov_textField_step = new JTextField("10");
 
     private JButton cov_button_ok = new JButton("OK");
 
@@ -344,6 +351,9 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 .addComponent(gen_textField_step)
                                 .addComponent(gen_comboBox_step_increase)
                                 .addComponent(gen_button_ok))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(gen_label_percent_sign_1)
+                                .addComponent(gen_label_percent_sign_2))
         );
         groupLayout.setVerticalGroup(
                 groupLayout.createSequentialGroup()
@@ -376,10 +386,12 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 .addComponent(gen_textField_segment_size))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(gen_label_arrest_probability)
-                                .addComponent(gen_textField_arrest_probability_key_players))
+                                .addComponent(gen_textField_arrest_probability_key_players)
+                                .addComponent(gen_label_percent_sign_1))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(gen_label_step)
-                                .addComponent(gen_textField_step))
+                                .addComponent(gen_textField_step)
+                                .addComponent(gen_label_percent_sign_2))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(gen_label_step_increase)
                                 .addComponent(gen_comboBox_step_increase))
@@ -462,6 +474,9 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 .addComponent(imp_textField_step)
                                 .addComponent(imp_comboBox_step_increase)
                                 .addComponent(imp_button_ok))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(imp_label_percent_sign_1)
+                                .addComponent(imp_label_percent_sign_2))
         );
         groupLayout.setVerticalGroup(
                 groupLayout.createSequentialGroup()
@@ -491,10 +506,12 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 .addComponent(imp_textField_segment_size))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(imp_label_arrest_probability)
-                                .addComponent(imp_textField_arrest_probability_key_players))
+                                .addComponent(imp_textField_arrest_probability_key_players)
+                                .addComponent(imp_label_percent_sign_1))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(imp_label_step)
-                                .addComponent(imp_textField_step))
+                                .addComponent(imp_textField_step)
+                                .addComponent(imp_label_percent_sign_2))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(imp_label_step_increase)
                                 .addComponent(imp_comboBox_step_increase))
@@ -557,8 +574,7 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 .addComponent(cov_checkbox_diameter_distribution)
                                 .addComponent(cov_checkBox_degree_distribution)
                                 .addComponent(cov_checkBox_closeness_distribution)
-                                .addComponent(cov_checkBox_betweenness_distribution)
-                                .addComponent(cov_checkBox_save_selected_diagram))
+                                .addComponent(cov_checkBox_betweenness_distribution))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addComponent(cov_comboBox_initial_graph)
                                 .addComponent(cov_slider_node_number)
@@ -573,7 +589,8 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 .addComponent(cov_label_step)
                                 .addComponent(cov_label_step_increase)
                                 .addComponent(cov_checkBox_efficiency_progress)
-                                .addComponent(cov_checkBox_secrecy_progress))
+                                .addComponent(cov_checkBox_secrecy_progress)
+                                .addComponent(cov_checkBox_save_selected_diagram))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addComponent(cov_data_node_number)
                                 .addComponent(cov_textField_hours_per_pass)
@@ -584,6 +601,9 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 .addComponent(cov_textField_step)
                                 .addComponent(cov_comboBox_step_increase)
                                 .addComponent(cov_button_ok))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(cov_label_percent_sign_1)
+                                .addComponent(cov_label_percent_sign_2))
         );
         groupLayout.setVerticalGroup(
                 groupLayout.createSequentialGroup()
@@ -621,10 +641,12 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 .addComponent(cov_textField_segment_size))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(cov_label_arrest_probability)
-                                .addComponent(cov_textField_arrest_probability_key_players))
+                                .addComponent(cov_textField_arrest_probability_key_players)
+                                .addComponent(cov_label_percent_sign_1))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(cov_label_step)
-                                .addComponent(cov_textField_step))
+                                .addComponent(cov_textField_step)
+                                .addComponent(cov_label_percent_sign_2))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(cov_label_step_increase)
                                 .addComponent(cov_comboBox_step_increase))
@@ -637,15 +659,14 @@ public class GUI extends JPanel implements ActionListener, ChangeListener{
                                 .addComponent(cov_checkBox_initial_network_graph)
                                 .addComponent(cov_checkBox_secrecy_progress))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(cov_checkbox_diameter_distribution))
+                                .addComponent(cov_checkbox_diameter_distribution)
+                                .addComponent(cov_checkBox_save_selected_diagram))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(cov_checkBox_degree_distribution))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(cov_checkBox_closeness_distribution))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(cov_checkBox_betweenness_distribution))
-                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(cov_checkBox_save_selected_diagram))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(cov_button_ok))
         );

@@ -100,32 +100,26 @@ public class GraphInfo {
     }
 
     public Double getMaxDiameter() {
-        // TODO add calculation method
         return maxDiameter;
     }
 
     public Double getMaxDegree() {
-        // TODO add calculation method
         return maxDegree;
     }
 
     public Double getMinDegree() {
-        // TODO add calculation method
         return minDegree;
     }
 
     public Double getAveDegree() {
-        // TODO add calculation method
         return aveDegree;
     }
 
     public Double getMaxCloseness() {
-        // TODO add calculation method
         return maxCloseness;
     }
 
     public Double getMaxBetweenness() {
-        // TODO add calculation method
         return maxBetweenness;
     }
 

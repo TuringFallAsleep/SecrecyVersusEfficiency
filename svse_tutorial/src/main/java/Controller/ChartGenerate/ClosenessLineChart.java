@@ -19,9 +19,6 @@ public class ClosenessLineChart extends JFrame {
     private JFreeChart lineChart;
     private DefaultCategoryDataset dataSet = new DefaultCategoryDataset( );
 
-
-
-
     public ClosenessLineChart(String applicationTitle , String chartTitle, Double[] allCloseness, Graph theGraph ) {
         super(applicationTitle);
         lineChart = ChartFactory.createLineChart(
@@ -61,13 +58,10 @@ public class ClosenessLineChart extends JFrame {
         }
 
 
-
-
         int[] numOfNodeWithDiffClo = new int[cloMax+1];
         for (int i=0; i<allClo.length;i++){
             numOfNodeWithDiffClo[intValue(allClo[i])]++;
         }
-
 
 
         for (int i=0; i<numOfNodeWithDiffClo.length-1; i++){
@@ -90,10 +84,6 @@ public class ClosenessLineChart extends JFrame {
         }
 
 
-
-//        for (int i=0; i< allClo.length; i++){
-//            dataSet.addValue(intValue(allClo[i]*1000.0),"Graph: "+theGraph.getId(), ""+i);
-//        }
         return dataSet;
     }
 

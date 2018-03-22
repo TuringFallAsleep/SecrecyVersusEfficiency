@@ -24,7 +24,6 @@ public class BetweennessLineChart extends JFrame {
 
     public BetweennessLineChart(String applicationTitle , String chartTitle, Double[] allBetweenness, Graph theGraph ) {
         super(applicationTitle);
-//        Double[] normalisedAllBetweenness = normalise(allBetweenness, maxBetweenness);
 
         lineChart = ChartFactory.createLineChart(
                 chartTitle,
@@ -37,8 +36,6 @@ public class BetweennessLineChart extends JFrame {
         // y axis to int
         NumberAxis yAxis = (NumberAxis)plot.getRangeAxis();
         yAxis.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
-
-
 
 
         ChartPanel chartPanel = new ChartPanel( lineChart );
