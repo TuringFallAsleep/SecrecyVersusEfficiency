@@ -309,18 +309,23 @@ public class CovertNetwork {
         System.out.println("initialGraph Secrecy = "+initSecrecy+", Efficiency = "+initEfficiency);
 
 
-        resultGraph = step2_moveEdges(algorithm, initialGraph, proportion);
-
-        startGraph.addAttribute("ui.stylesheet", "url('./covert.css')");
-        resultGraph.addAttribute("ui.stylesheet", "url('./covert.css')");
 
 
         if (algorithm.equals("Accurate method")){
             System.out.println("Using Accurate");
-            for (int i=1; i<graphSize; i++){
-                resultGraph = step2_moveEdges("Fast method", resultGraph, proportion);
+            for (int i=0; i<graphSize; i++){
+                if (i == 0){
+                    resultGraph = step2_moveEdges("Fast method", initialGraph, proportion);
+                }else {
+                    resultGraph = step2_moveEdges("Fast method", resultGraph, proportion);
+                }
             }
+        }else{
+            resultGraph = step2_moveEdges(algorithm, initialGraph, proportion);
         }
+
+        startGraph.addAttribute("ui.stylesheet", "url('./covert.css')");
+        resultGraph.addAttribute("ui.stylesheet", "url('./covert.css')");
 
 
         for (Node n : resultGraph.getEachNode()){

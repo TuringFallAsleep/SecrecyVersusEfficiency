@@ -18,13 +18,6 @@ public class Tutorial {
                 GUI.createAndShowGUI();
             }
         });
-//        GUI window = new GUI();
-//        window.setVisible(true);
-
-        //test jFreeChart
-
-
-
 
 
     } // main

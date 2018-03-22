@@ -436,31 +436,8 @@ public class FixedGraph {
                 e.printStackTrace();
             }
         }
-
-
     }
 
 
-
-
-    public Graph getBernoulliGraph() {
-        return bernoulliGraph;
-    }
-
-    public Graph getHighlyCentralisedGraph() {
-        return highlyCentralisedGraph;
-    }
-
-    public Graph getHighlyDecentralisedGraph() {
-        return highlyDecentralisedGraph;
-    }
-
-    public Graph getPreferentialAttachmentGraph() {
-        return preferentialAttachmentGraph;
-    }
-
-    public Graph getPreferentialAttachmentWithBernoulliGraph() {
-        return preferentialAttachmentWithBernoulliGraph;
-    }
 
 } // Controller.Network.FixedGraph class

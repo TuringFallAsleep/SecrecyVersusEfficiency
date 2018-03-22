@@ -52,7 +52,6 @@ public class DiameterLineChart extends JFrame {
 
         for (int i=0; i< allDia.length-1; i++){
             numOfNodeWithDiffDia[intValue(allDia[i])]++;
-//            System.out.println("Node: " + i + " has diameter " + allDia[i]);
         }
 
         // Plot with sum of nodes number with various diameters as x-axis
@@ -60,9 +59,6 @@ public class DiameterLineChart extends JFrame {
             dataSet.addValue(numOfNodeWithDiffDia[i], "Graph: " + theGraph.getId() + " with " + theGraph.getNodeCount() + " nodes", ""+i);
         }
 
-//        for (int i=0; i< allDia.length; i++){
-//            dataSet.addValue(allDia[i], "Graph: " + theGraph.getId(), ""+i);
-//        }
 
         return dataSet;
     }
