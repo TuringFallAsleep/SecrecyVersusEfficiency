@@ -35,6 +35,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class CovertNetwork {
 
@@ -283,11 +284,11 @@ public class CovertNetwork {
         Double proportion = (2.0 * (double)balance - 100.0)/100.0; // -1 ~ 0: secrecy; 0 ~ 1: efficiency
         System.out.println("Balance = "+balance);
         System.out.println("Proportion = "+proportion);
-        greedy(algorithm, initialGraph, proportion, defineKeyPlayersBy, keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
+        buildStart(algorithm, initialGraph, proportion, defineKeyPlayersBy, keyPlayerNumber,maxSegmentSize,keyPlayerArrestProbability,arrestProbabilityStep,stepIncreaseMethod);
     }
 
 
-    public void greedy(String algorithm, Graph initialGraph, Double proportion, String defineKeyPlayersBy, Integer keyPlayerNumber, Integer maxSegmentSize, Double keyPlayerArrestProbability, Double arrestProbabilityStep, String stepIncreaseMethod){
+    public void buildStart(String algorithm, Graph initialGraph, Double proportion, String defineKeyPlayersBy, Integer keyPlayerNumber, Integer maxSegmentSize, Double keyPlayerArrestProbability, Double arrestProbabilityStep, String stepIncreaseMethod){
 
         findKeyPlayerMethod = defineKeyPlayersBy;
         keyPlayerNum = keyPlayerNumber;
@@ -315,13 +316,14 @@ public class CovertNetwork {
             System.out.println("Using Accurate");
             for (int i=0; i<graphSize; i++){
                 if (i == 0){
-                    resultGraph = step2_moveEdges("Fast method", initialGraph, proportion);
+                    resultGraph = step2_moveEdges(i,"Fast method", initialGraph, proportion);
                 }else {
-                    resultGraph = step2_moveEdges("Fast method", resultGraph, proportion);
+                    resultGraph = step2_moveEdges(i,"Fast method", resultGraph, proportion);
                 }
             }
         }else{
-            resultGraph = step2_moveEdges(algorithm, initialGraph, proportion);
+            int randomNum = ThreadLocalRandom.current().nextInt(0, graphSize);
+            resultGraph = step2_moveEdges(randomNum,algorithm, initialGraph, proportion);
         }
 
         startGraph.addAttribute("ui.stylesheet", "url('./covert.css')");
@@ -380,7 +382,7 @@ public class CovertNetwork {
 
 
 
-    private Graph step2_moveEdges(String algorithm, Graph initialGraph_0, Double proportion){
+    private Graph step2_moveEdges(int seed, String algorithm, Graph initialGraph_0, Double proportion){
 
         Graph initialGraph;
         Graphs copy = new Graphs();
@@ -418,7 +420,8 @@ public class CovertNetwork {
         int newEdgeNode1;
 
         int edgeNum = 0;
-        for (int fixedNode = 0; fixedNode < graphSize; fixedNode++){
+        int runTime = 0;
+        for (int fixedNode = seed; runTime < graphSize; runTime++){
             edgesLinkedToCurrentNode = resultGraph.getNode(fixedNode).getEdgeIterator();
             if (edgesLinkedToCurrentNode!=null){
                 while(edgesLinkedToCurrentNode.hasNext()){
@@ -536,6 +539,9 @@ public class CovertNetwork {
                     edgeNum++;
                 } // while loop
             }
+            seed++;
+            fixedNode = seed % graphSize;
+//            System.out.println("fixedNode = "+fixedNode+", seed = "+ seed);
         }
 
         resultGraph.addAttribute("ui.stylesheet","url('./covert.css')");
