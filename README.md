@@ -17,3 +17,4 @@ The stored graphs and (or) networks can be find under the folder ~/svse_tutorial
 
 If you have any problems about the experiment tool, or if you want to communicate with me, please send email to: yangboyin2014@gmail.com
 
+See the introduction on YouTube: https://youtu.be/aeAaMHp_UZE
